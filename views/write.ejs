@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/codebond.ico" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:500|Ubuntu&display=swap" rel="stylesheet" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/static/styles/grid.css">
+    <link rel="stylesheet" href="/static/styles/write/write.css">
+    <title>write</title>
+</head>
+
+<body>
+
+    <%- include('component/navbar')  %>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 start-with-quote">
+                <h2 class="text-center">In learning you will teach, and in teaching you will learn.</h2>
+                <h5 class="text-center">- PHIL COLLINS</h5>
+            </div>
+
+            
+
+            <div class="col-lg-10 col-md-7 col-sm-12 col-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 link">
+                            <h2>Host your image <a href="/<%=user.username%>/host" target="_blank"> here</a></h2>
+                          
+                                    <span style="color: #5bc8a1;">Editor doesn't support grammarly (disable grammarly)</span>
+                                    <span style="color: #5bc8a1;">Use images hosted on codebond</span>
+
+                          
+                        </div>
+
+                <% if(user){ %>
+                <div class="row myfrom">
+                    <div class="col-lg-4 col-md-4 co-sm-12 col-12">
+                        <input type="text" required pattern="\S+"" id="title" class="form-control " placeholder="title">
+                    </div> 
+                    <div class="col-lg-4 col-md-4 co-sm-12 col-12">
+                        <input type="text" name="image-url" id="image-url" placeholder="cover image url (optional)"
+                                class="form-control" value="">
+                    </div>
+                    
+                    
+                    <div class="col-lg-4 col-md-4 co-sm-12 col-12">
+
+                        <select class="custom-select" id="tech">
+                            <option selected value="0">technology</option>
+                            <option value="1">javascript</option>
+                            <option value="2">reactjs</option>
+                            <option value="3">nodejs</option>
+                            <option value="4">npm</option>
+                            <option value="5">css</option>
+                            <option value="6">other</option>
+                        </select>
+                    </div>
+
+                    
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div id="editorjs">
+                               
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+
+                        <div class="publish-cont">
+                            <span >by publishing post you are agree with <a href="/codebond/terms">terms & conditions</a></span>
+                            <div>
+                                   
+                                    <button class="btn btn-md btn-primary" id="save">Save</button>
+                                    <a href=<%="/"+user.username+"/preview"%> target="_blank" class="btn btn-md btn-dark previewbtn">Preview</a>
+                                    <button class="btn btn-success btn-md publishbtn" disabled>Publish</button>
+                                    <button class="btn btn-outline-danger btn-md clear" style="float: right;">Clear</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <% }else{ %>
+                    <div style="display: flex; justify-content: center;">
+                        <a href="/auth/login" class="btn btn-md a-login">login</a>
+                    </div>
+                    <% } %>
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="/static/scripts/dist/editor.js"></script>
+        <script>
+                document.querySelector(".search").style.display = "none"
+                </script>
+
+
+
+
+</body>
+
+</html>

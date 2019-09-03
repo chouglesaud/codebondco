@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/codebond.ico" />
+    <!-- Initialize EnlighterJS -->
+  
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Condensed|Ubuntu+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles/grid.css">
+
+    <title>preview : : </title>
+    <style>
+        
+    .author span{
+    font-size: 14px;
+
+}
+.space{
+    padding: 0px 6px;
+}
+    </style>
+</head>
+
+<body>
+    
+    <%- include('component/navbar')  %>
+
+    <div class="rootcontainer">
+        <%- include('component/precontent')  %>
+    </div>
+
+   
+
+    <!-- Optional JavaScript -->
+    <script src="/static/scripts/dist/lazyloading.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/static/scripts/dist/postjs.js"></script>
+
+    <script>
+            document.querySelector(".search").style.display = "none"
+            </script>
+</body>
+
+</html>

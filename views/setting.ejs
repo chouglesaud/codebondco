@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/codebond.ico" />
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:500|Ubuntu&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles/grid.css">
+    <title>setting</title>
+    <style>
+        .container {
+            padding: 10px;
+            font-family: "Helvetica";
+        }
+
+        .form-group {
+            background-color: white;
+            padding: 20px;
+        }
+
+        .settingprofilepic {
+            width: 100%;
+            background-color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+
+        }
+
+        .settingprofilepic form {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+
+
+
+        .settingprofilepic form label img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            overflow: hidden;
+            border-radius: 50%;
+            padding: 3px;
+            border: 1.5px solid #ccc;
+
+        }
+
+        .settingprofilepic form label img:hover {
+            border-radius: 50%;
+            padding: 3px;
+            border: 1.5px solid rgb(173, 170, 170);
+
+        }
+
+
+        .submit {
+            display: flex;
+            justify-content: center;
+            padding: 10px 5px;
+        }
+
+        .submit button {
+            color: white;
+        }
+
+        #change {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <%- include('component/navbar')  %>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-10 col-sm-11 col-11">
+                <div class="settingprofilepic">
+                    <form enctype="multipart/form-data" action=<%="/"+user.username+"/updateprofile"%> method="POST">
+                        <label for="change">
+                            <input type="file" name="profilepic" id="change">
+                            <img  id="profilepic" src=<%=user.profilePic%> width="120" height="120" alt="profilepic">
+                        </label>
+                        <button type="submit" class="btn btn-sm btn-secondary" id="button">upload</button>
+                    </form>
+
+                </div>
+                <form action=<%="/"+user.username+"/update"%> method="post">
+                    <div class="form-group shadow-sm p-3 bg-white rounded">
+
+                        <label for="instagram">instagram</label>
+
+                        <input type="text" id="instagram" name="instagram" value=<%=user.instagram%>
+                            class="form-control" placeholder="instagram username">
+                        <label for="twitter">twitter</label>
+                        <input type="text" id="twitter" name="twitter" value=<%=user.twitter%> class="form-control"
+                            placeholder="twitter username">
+                        <label for="insta">github</label>
+                        <input type="text" id="github" name="github" value=<%=user.github%> class="form-control"
+                            placeholder="github username">
+                        <label for="bio">bio</label>
+                        <textarea name="bio" class="form-control" id="bio" cols="30" rows="4"><%=user.bio %></textarea>
+                        <div class="submit">
+                            <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <%- include('component/footer')  %>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        document.querySelector(".search").style.display = "none"
+
+        document.querySelector("button").addEventListener("click", (e) => {
+            e.preventDefault()
+        })
+       
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+        
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    document.querySelector("#profilepic").setAttribute("src",e.target.result)
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#change").change(function () {
+            readURL(this);
+        });
+    </script>
+
+</body>
+
+</html>

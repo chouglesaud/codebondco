@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/codebond.ico" />
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:500|Ubuntu&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles/grid.css">
+    <title>admin</title>
+    <style>
+        body{
+          background-color: #54595D;
+       
+            
+        }
+       .row {
+           width: 100%;
+           height: 100vh;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+       }
+       .myform{
+        background-color: #323538;
+           padding: 20px;
+           border-radius: 10px;
+       }
+       input{
+        background-color: #54595D !important;
+           margin: 10px 0px;
+           outline: none !important;
+           border-style: none !important; 
+           color: #dde3e7 !important;
+       }
+       form div{
+          
+           border-radius: 4px;
+           display: flex;
+           justify-content: center;
+       }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 col-sm-11 col-11">
+                <div class="myform shadow-sm">
+                    <form action="/admin/authentication" method="post">
+                        <div ><img src="/static/images/footercodebond.svg" width="75" height="75" alt=""></div>
+                        <input type="email" name="email" class="form-control" placeholder="email" required>
+                        <input type="password" name="password" class="form-control" placeholder="password" required>
+                        <button type="submit" class="btn btn-block btn-primary">login</button>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+         document.querySelector(".search").style.display = "none"
+        document.querySelector("button").addEventListener("click", (e) => {
+            e.preventDefault()
+        })
+    </script>
+   
+</body>
+
+</html>

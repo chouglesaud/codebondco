@@ -1,0 +1,34 @@
+version: '3'
+services: 
+    app:
+      container_name: codebond-dep_app
+      restart: always
+      build: .
+      volumes:
+        - './:/app/'
+      ports:
+        - '8000:8000'
+      links:
+        - mongo
+      environment:
+        googleId           : 1084112566139-g1886rp350hf9cethi83ajqquv8c84ja.apps.googleusercontent.com
+        googleSecret       : zaxfwyvDgIIpY_LzLEexw8Ht
+        mongodbUrl         : mongodb://mongo:27017/codebond-dep_app
+        sessionKey         : asdoksfovasodjaklfvoa
+        cloudName          : saudchougle
+        cloudKey           : 164346964364529
+        cloudSecret        : eFWkM5oc3KB39UEnSxcEXGdQgoQ
+        emailFrom          : codebond.cb@gmail.com
+        googleGmailId      : 560125691479-u12f0gld7v2jte46vbqoc41iit2cd3si.apps.googleusercontent.com
+        googleGmailSecret  : RIcNt-cZ2l07J6tRW99Dv0h9
+        googleRefreshToken : 1/meRnxcghabkbEHJDl2SwjEeSui1I_ClYYba2GiuS3Gg
+        googleAccessToken  : ya29.Glt0B3esCL-fNcfwyD56IlaT4_-IyVqy_8jvNIZ97i_HXG0AF0vBqxwrmUc7sJ6p-YVJXH-kKX3dt-wwEjTTL6Kbl46eyANvVJ_YUNX8XzTJtnYj9irLynXTaOTu
+        emailTo            : saudchougle.sc@gmail.com
+        jwtSecret          : hhsslarljkfajkibnbakjdsfjk2312
+    mongo:
+      container_name: mongo
+      image: mongo
+      restart: always
+      ports:
+        - '27017:27017'
+   

@@ -1,0 +1,115 @@
+<div class="content-section">
+        <div class="row justify-content-center">
+                <% if(data) { %>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <!-- hero-compoent -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 hero">
+                
+                    <h1 class="heading"><%= data.title %></h1>
+                <div class="author">
+                      <a href=<%="/"+user.username %>> <img class="profilepic" src=<%=user.profilePic%> alt="profile picture"></a>
+                       <a href=<%="/"+user.username%>> <span style="font-size: 14px;color: #212529;"> <%= user.name %></span> </a>
+                        <span class="space"></span>   
+                        <span style="font-size: 13px;color: #54595d;"><%= data.date %></span>
+                        <span class="space"></span>   
+                   
+                     
+                </div>
+                
+               
+            </div>
+           
+            <% if(data.img){ %>
+                <div class="myimage col-lg-12 col-md-12 col-sm-12 col-12">
+                        <img src=<%=data.img%> alt="image" class="rounded img-fluid">
+                </div>
+            <% } %>
+            
+            <% data.content.forEach((el,i)=>{ %>
+            <% if(el.type === "header"){ %>
+            <!-- point-component -->
+           
+                <div class="header col-lg-12 col-md-12 col-sm-12 col-12">
+                   <% if(el.data.level === 1) {%>
+                      <h1><%= el.data.text %></h1>
+                    <% } else if(el.data.level === 2){ %>
+                      <h2><%= el.data.text %></h2>
+                      <% } else if(el.data.level === 3){ %>
+                        <h3><%= el.data.text %></h3>
+                        <% } else if(el.data.level === 4){ %>
+                            <h4><%= el.data.text %></h4>
+                            <% } else if(el.data.level === 5){ %>
+                                <h5><%= el.data.text %></h5>
+                                <% }else{ %>
+                                    <h6><%= el.data.text %></h6>
+                                    <% } %>
+                        
+                </div>
+           
+            <% }  else if(el.type === "paragraph"){ %>
+            <!-- explanation-component -->
+                <div class=" exp col-lg-12 col-md-12 col-sm-12 col-12">
+                    <p class="para"><%= el.data.text %></p>
+                </div>
+           
+            <% }  else if(el.type === "image"){ %>
+            <!-- image-component -->
+            
+                <div class="myimage col-lg-12 col-md-12 col-sm-12 col-12">
+                    <img src="/static/images/ph.png" data-src=<%=el.data.url%>   class="lazy img-fluid" alt="photo">
+                </div>
+           
+            <%}  else if(el.type === "code"){ %>
+            <!-- code-component -->
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 code">
+<pre>
+<%= el.data.code%>
+</pre>
+            </div>
+            
+            <% }   else if(el.type === "quote" && el.data.text.length > 0){ %>
+            
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 quote">
+                    <p class="para"><%= el.data.text %></p>
+                    <% if(el.data.caption) {%>
+                    <p class="text-right" style="font-size: 16px;"><%= el.data.caption %></p>
+                    <% } %>
+                </div>
+            
+            <% }  else if(el.type === "warning"){ %>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 warning">
+                        
+                        <p  class="para"><%= el.data.message %></p>
+                </div>
+            
+            <% } else if(el.type === "list"){ %>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 list">
+               <% if(el.data.style === "unordered") {%>
+                <ul>
+                    <% el.data.items.forEach((element)=>{ %>
+                    <li><%= element %></li>
+                    <% }) %>
+                </ul>
+                <% }else{ %>
+                    <ol>
+                        <% el.data.items.forEach((element)=>{ %>
+                        <li><%= element %></li>
+                        <% }) %>
+                    </ol>
+                    <% } %>
+            </div>
+            <% }else if(el.type === "embed"){ %>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 embed embed-responsive embed-responsive-16by9">
+                            <iframe  src=<%=el.data.embed %> class="shadow embed-responsive-item"  frameborder="0" allowfullscreen loading="lazy"></iframe>  
+                </div> 
+            <% } else{ %>
+
+            <%}%>
+            <% }); %>
+        </div>
+            
+       <% } %>
+    </div>
+    
+    </div>

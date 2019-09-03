@@ -1,0 +1,59 @@
+<div class="comment-section">
+    <hr>
+   <div class="first">
+       <h3><%=data.comment.length %> COMMENTS</h3>
+        <%- include('./share') %>
+   </div>
+    <% if(user){ %>
+      <div class="write">
+            <div class="mycomment">
+                    <a href=<%="/"+user.username%>> 
+                        <img class="profilepic" src=<%=user.profilePic %> alt="">
+                        </a>
+                    <a href=<%="/"+user.username%>><p><%= user.name %></p></a>
+            </div>
+                
+                <div id="editorjs">
+
+                    </div>
+               
+                <button class="btn btn-sm btn-danger commentbtn">comment</button>
+      </div>
+      <% } else{%>
+        <div style="margin: 10px 0px;">
+               <span><a href="/auth/login" class="btn btn-md btn-primary login">login </a> for adding comment</span> 
+          </div>
+      <% } %>
+         
+           <% data.comment.reverse().forEach((comment)=>{ %>
+            <div class="comment">
+            <div class="info">
+                    <a href=<%="/"+comment.username%>> 
+                        <img class="profilepic" src=<%=comment.profilePic %> alt="">
+                        </a>
+                    <div class="person">
+                       <a href=<%="/"+comment.username%>>
+                        <p><%= comment.name %></p>
+                    </a>
+                       <span><%= comment.commentdate %></span>
+                    </div>
+            </div>
+            <div class="text">
+                <% comment.commentArray.forEach((el)=>{ %>
+                    <div>
+                            <% if(el.type === "paragraph"){ %>
+                                <p class="text-left"><%= el.data.text %></p>
+                            <% } else if(el.type === "code"){ %>
+<pre class="comment-code">
+<%= el.data.code %>
+</pre>   <% } %>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+            <% }) %>
+        
+        <div class="showhide">
+            <button id="showhidebtn" class="btn btn-sm btn-primary">show all</button>
+        </div>
+    </div>
