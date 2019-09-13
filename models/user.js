@@ -13,8 +13,10 @@ const userSchema = new Schema({
   twitter   : String,
   github    : String,
   bio       : String,
+  writing   : {},
   posts     : [],
-  gallery   : []
+  gallery   : [],
+
     })
 userSchema.index({username: -1})
 const User           = mongoose.model("user",userSchema)

@@ -1,9 +1,9 @@
-    // require("dotenv").config()
+
     const express       = require("express")
     const bodyParser    = require("body-parser")
     const path          = require("path")
     const fs            = require("fs")
-    const PORT          =  8000
+    const PORT          = process.env.PORT || 8000
     const ejs           = require("ejs")
     const ejsLayout     = require("express-ejs-layouts")
     const mongoose      = require("mongoose")
@@ -173,13 +173,20 @@
         localStorage.setItem('redirect', req.url);
         res.render("write",{user: req.user})
     })
-
-    app.post("/post/preview",(req,res)=>{
+    app.post("/post/reload",checkUser,(req,res)=>{
+        User.findOne({username: req.user.username}).then((found)=>{
+            res.json(found.writing)
+        })
+    })
+    app.post("/post/preview",checkUser,async(req,res)=>{
         preview = req.body
+       User.findOneAndUpdate({username: req.user.username},{writing: preview},{new: true}).then((found)=>{
+           
+           res.json(found.writing)
+       })
     })
 
     app.get("/:username/preview",checkUser,(req,res)=>{
-        
         res.render("preview",{user: req.user,data: preview})
     })
 
@@ -284,15 +291,15 @@
     });
     
 //    500 - Any server error
-    // app.use(function(err, req, res, next) {
-    //     let error = {
-    //         name      : 500,
-    //         firstnum  : 5,
-    //         secondnum : 0,
-    //         thirdnum  : 0,
-    //         firstword : "internal",
-    //         secondword: "server",
-    //         thirdword : "error"
-    //     }
-    //     res.render("error",{user: req.user,error,nouser: false})
-    // });
+     app.use(function(err, req, res, next) {
+         let error = {
+             name      : 500,
+            firstnum  : 5,
+             secondnum : 0,
+             thirdnum  : 0,
+             firstword : "internal",
+             secondword: "server",
+             thirdword : "error"
+         }
+         res.render("error",{user: req.user,error,nouser: false})
+     });

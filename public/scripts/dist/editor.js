@@ -319,10 +319,7 @@ var tech = "technology";
 var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 var date = new Date();
 var fulldate = "".concat(month[date.getMonth()], " ").concat(date.getDate(), ", ").concat(date.getFullYear());
-var titleList;
-var rawObj;
-var obj;
-var techNumber;
+var techNumber, editor, obj, rawObj, titleList;
 clear.addEventListener('click',
 /*#__PURE__*/
 _asyncToGenerator(
@@ -343,8 +340,10 @@ regeneratorRuntime.mark(function _callee() {
           decision = _context.sent;
 
           if (decision) {
-            localStorage.clear();
-            window.location.reload();
+            axios.post("/post/preview", null).then(function (res) {
+              localStorage.setItem("post", null);
+              window.location.reload();
+            });
           }
 
         case 4:
@@ -354,109 +353,164 @@ regeneratorRuntime.mark(function _callee() {
     }
   }, _callee);
 })));
+window.addEventListener("load",
+/*#__PURE__*/
+_asyncToGenerator(
+/*#__PURE__*/
+regeneratorRuntime.mark(function _callee3() {
+  return regeneratorRuntime.wrap(function _callee3$(_context3) {
+    while (1) {
+      switch (_context3.prev = _context3.next) {
+        case 0:
+          _context3.next = 2;
+          return axios.post("/post/reload").then(
+          /*#__PURE__*/
+          function () {
+            var _ref3 = _asyncToGenerator(
+            /*#__PURE__*/
+            regeneratorRuntime.mark(function _callee2(res) {
+              return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                while (1) {
+                  switch (_context2.prev = _context2.next) {
+                    case 0:
+                      _context2.next = 2;
+                      return localStorage.setItem("post", JSON.stringify(res.data));
 
-if (localStorage.getItem("post") !== null) {
-  rawObj = localStorage.getItem("post");
-  obj = JSON.parse(rawObj);
-  title.value = obj.title;
-  imageUrl.value = obj.img;
-  selectTag.selectedIndex = obj.techNumber;
-  tech = obj.tech;
-} else {
-  obj = {
-    savedData: null
-  };
-}
+                    case 2:
+                    case "end":
+                      return _context2.stop();
+                  }
+                }
+              }, _callee2);
+            }));
 
-var editor = new _editorjs.default({
-  holder: "editorjs",
-  tools: {
-    embed: {
-      class: _embed.default,
-      config: {
-        services: {
-          youtube: true,
-          codepen: {
-            regex: /https                                                                                                                               : \/\/codepen.io\/([^\/\?\&]*)\/pen\/([^\/\?\&]*)/,
-            embedUrl: 'https://codepen.io/<%= remote_id %>?height=300&theme-id=0&default-tab=css,result&embed-version=2',
-            html: "<iframe height='300' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
-            height: 300,
-            width: 600,
-            id: function id(groups) {
-              return groups.join('/embed/preview/');
+            return function (_x) {
+              return _ref3.apply(this, arguments);
+            };
+          }()).then(function () {
+            if (localStorage.getItem("post") !== null) {
+              rawObj = localStorage.getItem("post");
+              obj = JSON.parse(rawObj);
+
+              if (obj.title) {
+                title.value = obj.title;
+              }
+
+              if (obj.img) {
+                imageUrl.value = obj.img;
+              }
+
+              if (obj.techNumber) {
+                selectTag.selectedIndex = obj.techNumber;
+              }
+
+              if (obj.tech) {
+                tech = obj.tech;
+              }
+            } else {
+              obj = {
+                savedData: null
+              };
             }
-          }
-        }
-      }
-    },
-    Marker: {
-      class: _marker.default,
-      shortcut: 'CMD+SHIFT+M',
-      inlineToolbar: true
-    },
-    image: {
-      class: _simpleImage.default,
-      inlineToolbar: ["link"],
-      caption: false
-    },
-    code: {
-      class: _code.default,
-      shortcut: 'CMD+SHIFT+X'
-    },
-    list: {
-      class: _list.default,
-      shortcut: 'CMD+SHIFT+L',
-      inlineToolbar: true
-    },
-    header: {
-      class: _header.default,
-      shortcut: 'CMD+SHIFT+H',
-      config: {
-        placeholder: 'Enter a header'
-      }
-    },
-    quote: {
-      class: _quote.default,
-      shortcut: 'CMD+SHIFT+Q',
-      inlineToolbar: true,
-      config: {
-        quotePlaceholder: 'Enter a quote',
-        captionPlaceholder: 'Quote\'s author'
-      }
-    },
-    icode: {
-      class: _inlineCode.default,
-      shortcut: 'CMD+SHIFT+M'
-    },
-    paragraph: {
-      class: _paragraph.default,
-      inlineToolbar: true,
-      config: {
-        placeholder: "let's write awesome tutorial"
-      }
-    },
-    warning: {
-      class: _warning.default,
-      inlineToolbar: true,
-      config: {
-        messagePlaceholder: 'Message'
-      }
-    }
-  },
-  data: obj.savedData,
-  initialBlock: "paragraph",
-  onChange: function onChange() {
-    save.textContent = "Save";
-    button.setAttribute("disabled", "disabled");
-  },
-  validate: function validate(savedData) {
-    if (savedData.text.trim() === "") {
-      return false;
-    }
 
-    return true;
-  }
-});
+            editor = new _editorjs.default({
+              holder: "editorjs",
+              tools: {
+                embed: {
+                  class: _embed.default,
+                  config: {
+                    services: {
+                      youtube: true,
+                      codepen: {
+                        regex: /https                                                                                                                               : \/\/codepen.io\/([^\/\?\&]*)\/pen\/([^\/\?\&]*)/,
+                        embedUrl: 'https://codepen.io/<%= remote_id %>?height=300&theme-id=0&default-tab=css,result&embed-version=2',
+                        html: "<iframe height='300' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
+                        height: 300,
+                        width: 600,
+                        id: function id(groups) {
+                          return groups.join('/embed/preview/');
+                        }
+                      }
+                    }
+                  }
+                },
+                Marker: {
+                  class: _marker.default,
+                  shortcut: 'CMD+SHIFT+M',
+                  inlineToolbar: true
+                },
+                image: {
+                  class: _simpleImage.default,
+                  inlineToolbar: ["link"],
+                  caption: false
+                },
+                code: {
+                  class: _code.default,
+                  shortcut: 'CMD+SHIFT+X'
+                },
+                list: {
+                  class: _list.default,
+                  shortcut: 'CMD+SHIFT+L',
+                  inlineToolbar: true
+                },
+                header: {
+                  class: _header.default,
+                  shortcut: 'CMD+SHIFT+H',
+                  config: {
+                    placeholder: 'Enter a header'
+                  }
+                },
+                quote: {
+                  class: _quote.default,
+                  shortcut: 'CMD+SHIFT+Q',
+                  inlineToolbar: true,
+                  config: {
+                    quotePlaceholder: 'Enter a quote',
+                    captionPlaceholder: 'Quote\'s author'
+                  }
+                },
+                icode: {
+                  class: _inlineCode.default,
+                  shortcut: 'CMD+SHIFT+M'
+                },
+                paragraph: {
+                  class: _paragraph.default,
+                  inlineToolbar: true,
+                  config: {
+                    placeholder: "let's write awesome tutorial"
+                  }
+                },
+                warning: {
+                  class: _warning.default,
+                  inlineToolbar: true,
+                  config: {
+                    messagePlaceholder: 'Message'
+                  }
+                }
+              },
+              data: obj.savedData,
+              initialBlock: "paragraph",
+              onChange: function onChange() {
+                save.textContent = "Save";
+                button.setAttribute("disabled", "disabled");
+              },
+              validate: function validate(savedData) {
+                if (savedData.text.trim() === "") {
+                  return false;
+                }
+
+                return true;
+              }
+            });
+          });
+
+        case 2:
+        case "end":
+          return _context3.stop();
+      }
+    }
+  }, _callee3);
+})));
 title.addEventListener("focus", function () {
   save.textContent = "Save";
   button.setAttribute("disabled", "disabled");
@@ -474,89 +528,81 @@ imageUrl.addEventListener("focus", function (e) {
 button.addEventListener("click", varification);
 save.addEventListener("click", preview);
 
-function preview(_x) {
+function preview(_x2) {
   return _preview.apply(this, arguments);
 }
 
 function _preview() {
   _preview = _asyncToGenerator(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee2(e) {
-    var outputData, content, count, slug, hero0, hero1;
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+  regeneratorRuntime.mark(function _callee4(e) {
+    var newTechNumber, outputData, content, count, slug, hero1;
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context4.prev = _context4.next) {
           case 0:
-            _context2.next = 2;
+            newTechNumber = techNumber;
+            _context4.next = 3;
             return editor.save();
 
-          case 2:
-            outputData = _context2.sent;
+          case 3:
+            outputData = _context4.sent;
             content = outputData.blocks;
             count = content.length;
             slug = title.value.toLowerCase().replace(/\ /g, "-");
             previewbtn.removeAttribute("disabled");
-            button.removeAttribute("disabled");
-            save.textContent = "Saved";
-            _context2.next = 11;
+            save.textContent = "Saving";
+            _context4.next = 11;
             return {
               date: fulldate,
               title: title.value,
               img: imageUrl.value,
-              tech: tech,
-              techNumber: techNumber,
-              savedData: outputData
-            };
-
-          case 11:
-            hero0 = _context2.sent;
-            _context2.next = 14;
-            return {
-              date: fulldate,
-              title: title.value,
-              img: imageUrl.value,
+              techNumber: newTechNumber,
+              savedData: outputData,
               tech: tech,
               content: content
             };
 
-          case 14:
-            hero1 = _context2.sent;
-            localStorage.setItem("post", JSON.stringify(hero0));
-            _context2.next = 18;
-            return axios.post("/post/preview", hero1);
+          case 11:
+            hero1 = _context4.sent;
+            axios.post("/post/preview", hero1).then(function (res) {
+              button.removeAttribute("disabled");
+              save.textContent = "Saved";
+              localStorage.setItem("post", JSON.stringify(res.data));
+            });
 
-          case 18:
+          case 13:
           case "end":
-            return _context2.stop();
+            return _context4.stop();
         }
       }
-    }, _callee2);
+    }, _callee4);
   }));
   return _preview.apply(this, arguments);
 }
 
-function varification(_x2) {
+function varification(_x3) {
   return _varification.apply(this, arguments);
 }
 
 function _varification() {
   _varification = _asyncToGenerator(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee3(e) {
+  regeneratorRuntime.mark(function _callee5(e) {
     var outputData, content, score, slug, decision, hero;
-    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
       while (1) {
-        switch (_context3.prev = _context3.next) {
+        switch (_context5.prev = _context5.next) {
           case 0:
-            _context3.next = 2;
+            _context5.next = 2;
             return editor.save();
 
           case 2:
-            outputData = _context3.sent;
+            outputData = _context5.sent;
             content = outputData.blocks;
             score = 0;
             slug = title.value.toLowerCase().replace(/\ /g, "-");
-            _context3.next = 8;
+            _context5.next = 8;
             return axios.post("/confirm", {
               slug: slug
             }).then(function (res) {
@@ -603,17 +649,17 @@ function _varification() {
             }
 
             if (!(score === 5)) {
-              _context3.next = 17;
+              _context5.next = 17;
               break;
             }
 
-            _context3.next = 15;
+            _context5.next = 15;
             return swal("Are you ready?", {
               buttons: ["No, not ready", "Yes, ready"]
             });
 
           case 15:
-            decision = _context3.sent;
+            decision = _context5.sent;
 
             if (decision) {
               button.textContent = "Publishing..";
@@ -630,10 +676,10 @@ function _varification() {
 
           case 17:
           case "end":
-            return _context3.stop();
+            return _context5.stop();
         }
       }
-    }, _callee3);
+    }, _callee5);
   }));
   return _varification.apply(this, arguments);
 }
@@ -676,7 +722,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35325" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43299" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
