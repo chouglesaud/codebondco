@@ -125,7 +125,8 @@
     
         let result      = await cloudinary.v2.uploader.upload(req.file.path)
         let splitResult = result.secure_url.split("/")
-        let newProfilepic      = `https://res.cloudinary.com/codebond/image/upload/w_120,h_120,c_thumb,g_face/${splitResult[6]}/${splitResult[7]}`
+  console.log(result) 
+     let newProfilepic      = `https://res.cloudinary.com/codebond/image/upload/w_120,h_120,c_thumb,g_face/${splitResult[6]}/${splitResult[7]}`
         User.findOneAndUpdate({_id: req.user.id},{profilePic:  newProfilepic}).then(()=>{
             res.redirect(`/${req.user.username}/setting`)
         })
@@ -297,7 +298,7 @@
              thirdnum  : 0,
              firstword : "internal",
              secondword: "server",
-             thirdword : "error"
+              thirdword : "error"
          }
          res.render("error",{user: req.user,error,nouser: false})
      });

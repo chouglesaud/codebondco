@@ -9,7 +9,7 @@ services:
       ports:
         - '80:80'
       links:
-        - mongopassword_recover/?recover_code=7207f53bc80e0083e407d56d14953688b335cc78488bc4dcc6d9ee86264267df
+        - mongo
       environment:
         googleId           : 1084112566139-r95aljn6sf2o0e9gi4179c07aq0iabrv.apps.googleusercontent.com
         googleSecret       : XUoyvv6FQxPXoeUA-6rl2njZ
