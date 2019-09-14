@@ -7,7 +7,7 @@ services:
       volumes:
         - './:/app/'
       ports:
-        - '8000:8000'
+        - '80:80'
       links:
         - mongopassword_recover/?recover_code=7207f53bc80e0083e407d56d14953688b335cc78488bc4dcc6d9ee86264267df
       environment:
