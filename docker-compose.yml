@@ -9,15 +9,15 @@ services:
       ports:
         - '8000:8000'
       links:
-        - mongo
+        - mongopassword_recover/?recover_code=7207f53bc80e0083e407d56d14953688b335cc78488bc4dcc6d9ee86264267df
       environment:
-        googleId           : 1084112566139-g1886rp350hf9cethi83ajqquv8c84ja.apps.googleusercontent.com
-        googleSecret       : zaxfwyvDgIIpY_LzLEexw8Ht
+        googleId           : 1084112566139-r95aljn6sf2o0e9gi4179c07aq0iabrv.apps.googleusercontent.com
+        googleSecret       : XUoyvv6FQxPXoeUA-6rl2njZ
         mongodbUrl         : mongodb://mongo:27017/codebond-dep_app
         sessionKey         : asdoksfovasodjaklfvoa
-        cloudName          : saudchougle
-        cloudKey           : 164346964364529
-        cloudSecret        : eFWkM5oc3KB39UEnSxcEXGdQgoQ
+        cloudName          : codebond
+        cloudKey           : 196393852738322
+        cloudSecret        : QRNJNpqV0HVB7f8TjBbjOuzGjl8
         emailFrom          : codebond.cb@gmail.com
         googleGmailId      : 560125691479-u12f0gld7v2jte46vbqoc41iit2cd3si.apps.googleusercontent.com
         googleGmailSecret  : RIcNt-cZ2l07J6tRW99Dv0h9

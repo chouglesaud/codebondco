@@ -35,8 +35,7 @@
     const User       = require("./models/user")
 
 
-    let preview    = null;
-
+    
     if (typeof localStorage === "undefined" || localStorage === null) {
         var LocalStorage = require('node-localstorage').LocalStorage;
             localStorage = new LocalStorage('./scratch');
@@ -114,7 +113,7 @@
     app.post("/:username/upload",checkUser,upload.single("image"),async(req,res)=>{
         let result      = await cloudinary.v2.uploader.upload(req.file.path)
         let splitResult = result.secure_url.split("/")
-        let newUrl      = `https://res.cloudinary.com/saudchougle/image/upload/w_700,q_auto:good,f_auto/${splitResult[6]}/${splitResult[7]}`
+        let newUrl      = `https://res.cloudinary.com/codebond/image/upload/w_700,q_auto:good,f_auto/${splitResult[6]}/${splitResult[7]}`
         
         User.findOneAndUpdate({_id: req.user.id},{$push: { gallery: newUrl } }).then(()=>{
             res.redirect(`/${req.user.username}/host`)
@@ -126,7 +125,7 @@
     
         let result      = await cloudinary.v2.uploader.upload(req.file.path)
         let splitResult = result.secure_url.split("/")
-        let newProfilepic      = `https://res.cloudinary.com/saudchougle/image/upload/w_120,h_120,c_thumb,g_face/${splitResult[6]}/${splitResult[7]}`
+        let newProfilepic      = `https://res.cloudinary.com/codebond/image/upload/w_120,h_120,c_thumb,g_face/${splitResult[6]}/${splitResult[7]}`
         User.findOneAndUpdate({_id: req.user.id},{profilePic:  newProfilepic}).then(()=>{
             res.redirect(`/${req.user.username}/setting`)
         })
@@ -179,15 +178,14 @@
         })
     })
     app.post("/post/preview",checkUser,async(req,res)=>{
-        preview = req.body
-       User.findOneAndUpdate({username: req.user.username},{writing: preview},{new: true}).then((found)=>{
-           
+
+       User.findOneAndUpdate({username: req.user.username},{writing: req.body},{new: true}).then((found)=>{
            res.json(found.writing)
        })
     })
 
     app.get("/:username/preview",checkUser,(req,res)=>{
-        res.render("preview",{user: req.user,data: preview})
+        res.render("preview",{user: req.user,data: req.user.writing})
     })
 
  
