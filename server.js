@@ -3,7 +3,7 @@
     const bodyParser    = require("body-parser")
     const path          = require("path")
     const fs            = require("fs")
-    const PORT          = process.env.PORT || 8000
+    const PORT          = 80
     const ejs           = require("ejs")
     const ejsLayout     = require("express-ejs-layouts")
     const mongoose      = require("mongoose")
