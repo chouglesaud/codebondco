@@ -18,7 +18,12 @@
 
   gtag('config', 'UA-147948621-1');
 </script>
-
+<style>
+.vultr_ref{
+display: flex;
+justify-content: center;
+}
+</style>
     <title>host</title>
 </head>
 
@@ -27,7 +32,10 @@
     <%- include('component/navbar')  %>
     <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-7 col-md-10 col-sm-11 col-11 hosting">
+               <div class="col-lg-7 col-md-10 col-sm-11 col-11 vultr_ref">
+                <a href="https://www.vultr.com/?ref=8254376-4F"><img src="https://www.vultr.com/media/banners/banner_468x60.png" width="468" height="60" class="img-fluid"></a>
+               </div>
+                      <div class="col-lg-7 col-md-10 col-sm-11 col-11 hosting">
                         <div class="box">
                                <form action=<%="/"+user.username+"/upload" %> method="POST" enctype="multipart/form-data">
                                 <input type="file" name="image" id="file-7" class="inputfile inputfile-6">
