@@ -9,21 +9,25 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:500|Ubuntu&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/styles/grid.css">
+    
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147948621-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147948621-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-147948621-1');
-</script>
-<style>
-.vultr_ref{
-display: flex;
-justify-content: center;
-}
-</style>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-147948621-1');
+    </script>
+    <style>
+        .vultr_ref {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
     <title>host</title>
 </head>
 
@@ -31,35 +35,38 @@ justify-content: center;
 
     <%- include('component/navbar')  %>
     <div class="container">
-            <div class="row justify-content-center">
-               <div class="col-lg-7 col-md-10 col-sm-11 col-11 vultr_ref">
-                <a href="https://www.vultr.com/?ref=8254376-4F"><img src="https://www.vultr.com/media/banners/banner_468x60.png" width="468" height="60" class="img-fluid"></a>
-               </div>
-                      <div class="col-lg-7 col-md-10 col-sm-11 col-11 hosting">
-                        <div class="box">
-                               <form action=<%="/"+user.username+"/upload" %> method="POST" enctype="multipart/form-data">
-                                <input type="file" name="image" id="file-7" class="inputfile inputfile-6">
-                                <label for="file-7"><span style="font-size: 16px;" class="name">no file selected</span> <button class="btn btn-sm a-login">
-                                       choose file
-                                </button>
-                            </label>
-                            <button id="sbt" type="submit" class="btn btn-sm btn-primary">upload</button>
-                            </form>
-                            </div>   
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-10 col-sm-11 col-11 vultr_ref">
+                <a href="https://www.vultr.com/?ref=8254376-4F"><img
+                        src="https://www.vultr.com/media/banners/banner_468x60.png" width="468" height="60"
+                        class="img-fluid"></a>
+            </div>
+            <div class="col-lg-7 col-md-10 col-sm-11 col-11 hosting">
+                <div class="box">
+                    <form action=<%="/"+user.username+"/upload" %> method="POST" enctype="multipart/form-data">
+                        <input type="file" name="image" id="file-7" class="inputfile inputfile-6">
+                        <label for="file-7"><span style="font-size: 16px;" class="name">no file selected</span> <button
+                                class="btn btn-sm a-login">
+                                choose file
+                            </button>
+                        </label>
+                        <button id="sbt" type="submit" class="btn btn-sm btn-primary">upload</button>
+                    </form>
                 </div>
-                <div class="col-lg-7 col-md-11 col-sm-11 col-11 uploaded-image ">
-                    <% user.gallery.reverse().forEach(image=>{ %>
-                        <img src="/static/images/ph.png"  data-src=<%=image%> class="lazy img-fluid shadow bg-white" alt="image">
-                        <div>
-                                <input type="text" class="url text-center" value=<%=image%> readonly>
-                                <button class="btn btn-sm btn-primary copy">copy</button>
-                                
-                        </div>
-                        <hr>
-                    <% }) %>
-                    </div>
+            </div>
+            <div class="col-lg-7 col-md-11 col-sm-11 col-11 uploaded-image ">
+                <% user.gallery.reverse().forEach(image=>{ %>
+                <img src="/static/images/ph.png" data-src=<%=image%> class="lazy img-fluid shadow bg-white" alt="image">
+                <div>
+                    <input type="text" class="url text-center" value=<%=image%> readonly>
+                    <button class="btn btn-sm btn-primary copy">copy</button>
+
+                </div>
+                <hr>
+                <% }) %>
             </div>
         </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
@@ -70,7 +77,8 @@ justify-content: center;
     <script src="/static/scripts/dist/lazyloading.js"></script>
     <script src="/static/scripts/clipboard.js"></script>
     <script>
-            document.querySelector(".search").style.display = "none"
-   </script>
+        document.querySelector(".search").style.display = "none"
+    </script>
 </body>
+
 </html>

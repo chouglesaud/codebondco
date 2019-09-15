@@ -5,60 +5,63 @@
     <meta charset="UTF-8">
     <meta name="description" content="<%=data.title%>">
     <meta name="keywords" content=<%=data.tech%>>
-   <meta name="author" content=<%=data.username%>>
+    <meta name="author" content=<%=data.username%>>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" type="image/x-icon" href="/static/images/codebond.ico" />
     <!-- Initialize EnlighterJS -->
-    
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400|Ubuntu|Ubuntu+Condensed|Ubuntu+Mono&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400|Ubuntu|Ubuntu+Condensed|Ubuntu+Mono&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/styles/grid.css">
 
-     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-2650533982969945",
-    enable_page_level_ads: true
-  });
-</script>
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147948621-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147948621-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-147948621-1');
-</script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-147948621-1');
+    </script>
+
+    <!-- google ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-2650533982969945",
+            enable_page_level_ads: true
+        });
+    </script>
 
     <title><%=data.title %></title>
     <style>
+        .author span {
+            font-size: 14px;
 
-    .author span{
-    font-size: 14px;
+        }
 
-}
-.space{
-    padding: 0px 6px;
-}
+        .space {
+            padding: 0px 6px;
+        }
     </style>
 </head>
 
 <body>
-    
+
     <%- include('component/navbar')  %>
 
     <div class="rootcontainer">
         <%- include('component/content')  %>
         <%- include('component/comment') %>
     </div>
-    
-            
+
+
     </div>
-    
+
     <!-- footer-section -->
     <%- include('component/footer')  %>
 
@@ -74,11 +77,11 @@
         let title = document.querySelector(".heading").textContent.replace(/\s/g, "%20");
         let url = window.location
         let link = `${title}%20${url}`
-        
+
         let twitter = document.querySelector("#twitter-link")
-        twitter.setAttribute("href",`https://twitter.com/intent/tweet?text=${link}`)
+        twitter.setAttribute("href", `https://twitter.com/intent/tweet?text=${link}`)
         let facebook = document.querySelector("#facebook-link")
-        facebook.setAttribute("href",`https://www.facebook.com/sharer.php?u=${url}`)
+        facebook.setAttribute("href", `https://www.facebook.com/sharer.php?u=${url}`)
     </script>
 
 
