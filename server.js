@@ -3,9 +3,9 @@
     // const http         = require('http')
     const hostname     = 'codebond.co'
     const httpsOptions = {
-         cert: fs.readFileSync('./ssl/codebond_co.crt'),
+         cert: fs.readFileSync('./ssl/codebond_co_crt.pem'),
          ca  : fs.readFileSync('./ssl/codebond_co.ca-bundle'),
-         key : fs.readFileSync('./ssl/codebond_co.key')
+         key : fs.readFileSync('./ssl/codebond_co_key.pem')
    }
     const express    = require("express")
     const bodyParser = require("body-parser")
@@ -53,7 +53,7 @@
     // Initialization
     //   app.listen(httpPORT,()=> console.log("server started ..."))
 //    const httpServer =  http.createServer(app);
-   const httpsServer = https.createServer(httpsOptions,app);
+   const httpsServer = https.createServer(httpsOptions,app).listen(httpsPORT,()=>{console.log("server started");})
    
     
     // Middlewares
@@ -319,5 +319,4 @@
          res.render("error",{user: req.user,error,nouser: false})
      });
 
-//httpServer.listen(httpPORT,hostname)
-httpsServer.listen(httpsPORT,hostname)
+
