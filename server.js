@@ -1,16 +1,16 @@
-    const fs    = require('fs') 
-//    const https = require('https') this is changed by hydrogen
-//    const http  = require('http')
-//    const hostname = 'codebond.co'
-//    const httpsOptions = {
-//          cert: fs.readFileSync('./ssl/codebond_co.crt'),
-//          ca: fs.readFileSync('./ssl/codebond_co.ca-bundle'),
-//          key: fs.readFileSync('./ssl/codebond_co.key')
-//    }
-    const express       = require("express")
-    const bodyParser    = require("body-parser")
-    const path          = require("path")
-    const httpPORT      = 80
+    const fs           = require('fs')
+    const https        = require("https")
+    // const http         = require('http')
+    const hostname     = 'codebond.co'
+    const httpsOptions = {
+         cert: fs.readFileSync('./ssl/codebond_co.crt'),
+         ca  : fs.readFileSync('./ssl/codebond_co.ca-bundle'),
+         key : fs.readFileSync('./ssl/codebond_co.key')
+   }
+    const express    = require("express")
+    const bodyParser = require("body-parser")
+    const path       = require("path")
+    const httpPORT   = 80
 //    const httpsPORT     = 443
     const ejs           = require("ejs")
     const ejsLayout     = require("express-ejs-layouts")
@@ -51,9 +51,9 @@
    
     
     // Initialization
-      app.listen(httpPORT,()=> console.log("server started ..."))
+    //   app.listen(httpPORT,()=> console.log("server started ..."))
 //    const httpServer =  http.createServer(app);
-//    const httpsServer = https.createServer(httpsOptions,app);
+   const httpsServer = https.createServer(httpsOptions,app);
    
     
     // Middlewares
@@ -142,7 +142,7 @@
         let result      = await cloudinary.v2.uploader.upload(req.file.path)
         let splitResult = result.secure_url.split("/")
   console.log(result) 
-     let newProfilepic      = `https://res.cloudinary.com/codebond/image/upload/w_120,h_120,c_thumb,g_face/${splitResult[6]}/${splitResult[7]}`
+     let newProfilepic = `https://res.cloudinary.com/codebond/image/upload/w_120,h_120,c_thumb,g_face/${splitResult[6]}/${splitResult[7]}`
         User.findOneAndUpdate({_id: req.user.id},{profilePic:  newProfilepic}).then(()=>{
             res.redirect(`/${req.user.username}/setting`)
         })
@@ -309,15 +309,15 @@
      app.use(function(err, req, res, next) {
          let error = {
              name      : 500,
-            firstnum  : 5,
+             firstnum  : 5,
              secondnum : 0,
              thirdnum  : 0,
              firstword : "internal",
              secondword: "server",
-              thirdword : "error"
+             thirdword : "error"
          }
          res.render("error",{user: req.user,error,nouser: false})
      });
 
 //httpServer.listen(httpPORT,hostname)
-//httpsServer.listen(httpsPORT,hostname)
+httpsServer.listen(httpsPORT,hostname)
