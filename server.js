@@ -3,9 +3,9 @@
     // const http         = require('http')
     const hostname     = 'codebond.co'
     const httpsOptions = {
-         cert: fs.readFileSync('./ssl/codebond_co_crt.pem'),
+         cert: fs.readFileSync('./ssl/codebond_co.crt'),
          ca  : fs.readFileSync('./ssl/codebond_co.ca-bundle'),
-         key : fs.readFileSync('./ssl/codebond_co_key.pem')
+         key : fs.readFileSync('./ssl/codebond_co.key')
    }
     const express    = require("express")
     const bodyParser = require("body-parser")
