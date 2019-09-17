@@ -7,7 +7,6 @@ services:
       volumes:
         - './:/app/'
       ports:
-        - '80:443'
         - '80:80'
       links:
         - mongo
