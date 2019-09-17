@@ -4,7 +4,7 @@
   "description": "codebond is tutorial website",
   "main": "server.js",
   "scripts": {
-    "start": "sudo node server.js"
+    "start": "node server.js"
   },
   "author": "saud chougle",
   "license": "ISC",
