@@ -1,17 +1,8 @@
     const fs           = require('fs')
-    const https        = require("https")
-    const http         = require('http')
-    const hostname     = 'codebond.co'
-    const httpsOptions = {
-         cert: fs.readFileSync('./ssl/codebond_co.crt'),
-         ca  : fs.readFileSync('./ssl/codebond_co.ca-bundle'),
-         key : fs.readFileSync('./ssl/codebond_co.key')
-   }
     const express    = require("express")
     const bodyParser = require("body-parser")
     const path       = require("path")
     const httpPORT   = 80
-    const httpsPORT     = 443
     const ejs           = require("ejs")
     const ejsLayout     = require("express-ejs-layouts")
     const mongoose      = require("mongoose")
@@ -51,19 +42,11 @@
    
     
     // Initialization
-    //   app.listen(httpPORT,()=> console.log("server started ..."))
-   const httpServer =  http.createServer(app).listen(httpsPORT,()=>{console.log("server started");})
-   const httpsServer = https.createServer(httpsOptions,app).listen(httpsPORT,()=>{console.log("server started");})
+      app.listen(httpPORT,()=> console.log("server started ..."))
+
    
     
     // Middlewares
-   app.use((req,res,next) => {
-     if(req.protocol === 'http'){
-         res.redirect(301, `https://${req.headers.host}${req.url}`);
-     }else{
-         next();
-    }
-   });
     app.use('/static', express.static(path.join(__dirname, 'public')))
     app.use(bodyParser.urlencoded({extended: true}))
     app.use(bodyParser.json())
