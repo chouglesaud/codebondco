@@ -3,15 +3,15 @@
     // const http         = require('http')
     const hostname     = 'codebond.co'
     const httpsOptions = {
-         cert: fs.readFileSync('./ssl/codebond_co_crt.pem'),
+         cert: fs.readFileSync('./ssl/codebond_co.crt'),
          ca  : fs.readFileSync('./ssl/codebond_co.ca-bundle'),
-         key : fs.readFileSync('./ssl/codebond_co_key.pem')
+         key : fs.readFileSync('./ssl/codebond_co.key')
    }
     const express    = require("express")
     const bodyParser = require("body-parser")
     const path       = require("path")
     const httpPORT   = 80
-    const httpsPORT     = 80
+    const httpsPORT     = 443
     const ejs           = require("ejs")
     const ejsLayout     = require("express-ejs-layouts")
     const mongoose      = require("mongoose")
