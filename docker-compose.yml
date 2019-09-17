@@ -7,7 +7,7 @@ services:
       volumes:
         - './:/app/'
       ports:
-        - '443:80'
+        - '80:443'
       links:
         - mongo
       environment:
