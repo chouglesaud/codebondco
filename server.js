@@ -11,7 +11,7 @@
     const bodyParser = require("body-parser")
     const path       = require("path")
     const httpPORT   = 80
-    const httpsPORT     = 443
+    const httpsPORT     = 80
     const ejs           = require("ejs")
     const ejsLayout     = require("express-ejs-layouts")
     const mongoose      = require("mongoose")
