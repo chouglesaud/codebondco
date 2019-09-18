@@ -77,13 +77,14 @@
     <script>
         document.querySelector(".search").style.display = "none"
         let title = document.querySelector(".heading").textContent.replace(/\s/g, "%20");
-        let url = window.location;
-        let newURL = url.replace(/\//g, "%F").replace(/:/g,"3A");
+        let fullURL = window.location;
+        let newURL = fullURL
+        let url   = newURL.replace(/\//g, "%F").replace(/:/g,"3A");
         let link = `${title}`
         let twitter = document.querySelector("#twitter-link")
-        twitter.setAttribute("href", `https://twitter.com/intent/tweet?text=${link}&url=${newURL}`)
+        twitter.setAttribute("href", `https://twitter.com/intent/tweet?text=${link}&url=${url}`)
         let facebook = document.querySelector("#facebook-link")
-        facebook.setAttribute("href", `https://www.facebook.com/sharer.php?u=${newURL}`)
+        facebook.setAttribute("href", `https://www.facebook.com/sharer.php?u=${url}`)
     </script>
 
 
