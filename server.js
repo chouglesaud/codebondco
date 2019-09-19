@@ -105,7 +105,25 @@
  
         
         app.get("/robot.txt",(req,res)=>{
-            let txt = "User-agent: *\nAllow: /\nSitemap: http://codebond.co/sitemap.xml"
+            let txt = `
+            User-agent: Mediapartners-Google\n
+            Allow: /\n
+            User-agent: Googlebot\n
+            Allow: /\n
+            User-agent: Adsbot-Google\n
+            Allow: /\n
+            User-agent: Googlebot-Mobile\n
+            Allow: /\n
+            User-agent: Bingbot\n
+            Allow: /\n
+            User-agent: Slurp\n
+            Allow: /\n
+            User-agent: DuckDuckBot\n
+            Allow: /\n
+            User-agent: Baiduspider
+            Allow: /\n
+            Sitemap: http://codebond.co/sitemap.xml
+            `
             res.header('Content-Type', 'text/txt');
             res.send(txt)
         })
