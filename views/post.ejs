@@ -80,12 +80,15 @@
         let fullURL = window.location;
         let newURL = fullURL.href
         let url   = newURL.replace(/\//g, "%2F").replace(/:/g,"3A");
-        let twitter = document.querySelector("#twitter-link")
-        twitter.setAttribute("href", `https://twitter.com/intent/tweet?text=${titile}&url=${url}`)
-        twitter.setAttribute("target","_blank")
-        twitter.setAttribute("rel","noopener noreferrer")
-        let facebook = document.querySelector("#facebook-link")
-        facebook.setAttribute("href", `https://www.facebook.com/sharer.php?u=${window.location.href}`)
+
+         $('#twitter-link').attr({
+            href: `https://twitter.com/intent/tweet?text=${titile}&url=${url}`,
+            target:"_blank",
+            rel:"noopener noreferrer"
+        });
+        $('#facebook-link').attr({
+            href:`https://www.facebook.com/sharer.php?u=${window.location.href}`
+        });
     </script>
 
 
