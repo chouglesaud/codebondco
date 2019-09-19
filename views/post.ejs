@@ -84,10 +84,14 @@
          $('#twitter-link').attr({
             href: `https://twitter.com/intent/tweet?text=${title}&url=${url}`,
             target:"_blank",
-            rel:"noopener noreferrer"
+            rel:"noopener noreferrer",
+            title: "twitter"
         });
         $('#facebook-link').attr({
-            href:`https://www.facebook.com/sharer.php?u=${window.location.href}`
+            href:`https://www.facebook.com/sharer.php?u=${window.location.href}`,
+            target:"_blank",
+            rel:"noopener noreferrer",
+            title: "facebook"
         });
     </script>
 
