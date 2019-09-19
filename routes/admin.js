@@ -38,11 +38,11 @@ const bcryptHashing = async (data) =>{
     return  hash
 }
 router.get("/login",async(req,res)=>{
-    new Admin({
-     email: "codebond.cb@gmail.com",
-     password: await bcryptHashing("codebondisAwesome/@#?/")
-   }).save((newadmin)=>{console.log("newadmin")}).then(()=>{res.render("adminlogin")}).catch((err)=>{console.log(err)})
-    // res.render("adminlogin")
+//     new Admin({
+//      email: "codebond.cb@gmail.com",
+//      password: await bcryptHashing("codebondisAwesome/@#?/")
+//    }).save((newadmin)=>{console.log("newadmin")}).then(()=>{res.render("adminlogin")}).catch((err)=>{console.log(err)})
+    res.render("adminlogin")
 })
 
 router.post("/authentication",async(req,res)=>{
@@ -56,7 +56,7 @@ router.post("/authentication",async(req,res)=>{
                     to                  : process.env.emailTo,
                     subject             : "codebond token",
                     generateTextFromHTML: true,
-                    html                : `<div style="width: 100%; height: 200px; display: flex;justify-content: center; align-item: center;background-color: #323538;color: #f5f4f5; font-size: 14px;">
+                    html                : `<div style="width: 100%; height: 200px; display: flex;justify-content: center; align-item: center;font-size: 14px;">
                     ${token}</div>`
                 };
                 
