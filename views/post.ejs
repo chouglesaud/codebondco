@@ -79,7 +79,7 @@
         let title = document.querySelector(".heading").textContent.replace(/\s/g, "%20");
         let fullURL = window.location;
         let newURL = fullURL.href
-        let url   = newURL.replace(/\//g, "%F").replace(/:/g,"3A");
+        let url   = newURL.replace(/\//g, "%2F").replace(/:/g,"3A");
         let link = `${title}`
         let twitter = document.querySelector("#twitter-link")
         twitter.setAttribute("href", `https://twitter.com/intent/tweet?text=${link}&url=${url}`)
