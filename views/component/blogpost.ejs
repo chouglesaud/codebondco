@@ -7,7 +7,9 @@
 
                <% if(post.img){ %>
                    <div class="image">
+                       <a href=<%=post.url%>>
                     <img src="/static/images/ph.png" class="lazy img-fluid" alt=<%=post.slug%> data-src=<%= post.img %>>
+                </a>
                 </div>
             <% } %>
                 <div class="details">
@@ -26,7 +28,7 @@
                     </div>
                 </div>
                 <div class="description">
-                    <h1 class="title"><%=post.title %></h1>
+                    <a href=<%=post.url%>><h1 class="title"><%=post.title %></h1></a>
                 </div>
 
                 <div class="read"><a role="button" class="btn btn-sm btn-outline-primary" href=<%=post.url%>>Read now</a></div>
