@@ -85,6 +85,8 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <form>
                         <input type="text" name="title" id="title" class="form-control" placeholder="title">
+                        <input type="text" name="slug" id="slug" class="form-control" placeholder="slug">
+                        <input type="text" name="postusername" id="postusername" class="form-control" placeholder="postusername">
                         <input type="text" name="tech" id="tech" class="form-control" placeholder="technology">
                         <button  id="removepost" class="btn btn-block btn-primary">Remove Post</button>
                     </form>
@@ -110,15 +112,17 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        let title      = document.querySelector("#title")
-        let tech       = document.querySelector("#tech")
-        let username   = document.querySelector("#username")
-        let removepost = document.querySelector("#removepost")
-        let removeuser = document.querySelector("#removeuser")
+        let title        = document.querySelector("#title")
+        let slug         = document.querySelector("#slug")
+        let Postusername = document.querySelector("#postusername")
+        let tech         = document.querySelector("#tech")
+        let username     = document.querySelector("#username")
+        let removepost   = document.querySelector("#removepost")
+        let removeuser   = document.querySelector("#removeuser")
 
         removepost.addEventListener("click",(e)=>{
             e.preventDefault()
-            axios.post("/admin/removepost",{title: title.value,tech: tech.value}).then(()=>{
+            axios.post("/admin/removepost",{title: title.value,tech: tech.value,slug: slug.value,postusername: postusername.value}).then(()=>{
                 window.location.reload()
             })
         })

@@ -99,8 +99,10 @@ router.get("/:token/dashboard",verifyToken,async(req,res)=>{
 
 router.post("/removepost",(req,res)=>{
     
-    const tech = req.body.tech
-    const slug = req.body.title
+    const tech         = req.body.tech
+    const slug         = req.body.slug
+    const title        = req.body.title
+    const postusername = req.body.postusername
 
     if(tech === "javascript"){
         removePost(Javascript)
@@ -122,9 +124,12 @@ router.post("/removepost",(req,res)=>{
     }
     function removePost(tech){
         tech.findOneAndDelete({slug}).then(found=>{
-        
+           
             Recent.findOneAndDelete({slug}).then(async()=>{
-                res.json({success: true})
+                User.updateOne({username: postusername},{$pull: {posts: {title: title}}}).then(()=>{
+                    res.json({success: true})
+
+                })
             })
         })
        
