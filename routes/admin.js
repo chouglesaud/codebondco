@@ -38,10 +38,10 @@ const bcryptHashing = async (data) =>{
     return  hash
 }
 router.get("/login",async(req,res)=>{
-    new Admin({
-     email: "codebond.cb@gmail.com",
-     password: await bcryptHashing("codebondisAwesome/@#?/")
-   }).save((newadmin)=>{console.log("newadmin")}).then(()=>{res.render("adminlogin")}).catch((err)=>{console.log(err)})
+//     new Admin({
+//      email: "*********",
+//      password: await bcryptHashing("********")
+//    }).save((newadmin)=>{console.log("newadmin")}).then(()=>{res.render("adminlogin")}).catch((err)=>{console.log(err)})
     // res.render("adminlogin")
 })
 
