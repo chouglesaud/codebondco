@@ -42,7 +42,7 @@ router.get("/login",async(req,res)=>{
 //      email: "*********",
 //      password: await bcryptHashing("********")
 //    }).save((newadmin)=>{console.log("newadmin")}).then(()=>{res.render("adminlogin")}).catch((err)=>{console.log(err)})
-    // res.render("adminlogin")
+    res.render("adminlogin")
 })
 
 router.post("/authentication",async(req,res)=>{
