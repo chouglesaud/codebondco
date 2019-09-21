@@ -128,7 +128,9 @@ router.post("/removepost",(req,res)=>{
             Recent.findOneAndDelete({slug}).then(async()=>{
                 User.updateOne({username: postusername},{$pull: {posts: {title: title}}}).then(()=>{
                     res.json({success: true})
-
+                    
+                }).catch((err)=>{
+                    console.log(err)
                 })
             })
         })
