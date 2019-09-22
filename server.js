@@ -368,17 +368,17 @@
     });
     
 //    500 - Any server error
-     app.use(function(err, req, res, next) {
-         let error = {
-             name      : 500,
-             firstnum  : 5,
-             secondnum : 0,
-             thirdnum  : 0,
-             firstword : "internal",
-             secondword: "server",
-             thirdword : "error"
-         }
-         res.render("error",{user: req.user,error,nouser: false})
-     });
+    //  app.use(function(err, req, res, next) {
+    //      let error = {
+    //          name      : 500,
+    //          firstnum  : 5,
+    //          secondnum : 0,
+    //          thirdnum  : 0,
+    //          firstword : "internal",
+    //          secondword: "server",
+    //          thirdword : "error"
+    //      }
+    //      res.render("error",{user: req.user,error,nouser: false})
+    //  });
 
 
