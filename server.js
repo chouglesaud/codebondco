@@ -11,7 +11,7 @@
         cert: fs.readFileSync(path.join(__dirname,"/ssl/codebond_co_cert.pem")),
         key : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co_key.pem")),
         ca  : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co.ca-bundle")),
-
+        passphrase: "saudchougle"
     }
     const ejs           = require("ejs")
     const ejsLayout     = require("express-ejs-layouts")
