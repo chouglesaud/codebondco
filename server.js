@@ -10,8 +10,8 @@
     const httpsOptions = {
         cert: fs.readFileSync(path.join(__dirname,"/ssl/codebond_co_cert.pem")),
         key : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co_key.pem")),
-        ca  : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co.ca-bundle")),
-        passphrase: "saudchougle"
+        ca  : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co.pem")),
+        passphrase: "1234"
     }
     const ejs           = require("ejs")
     const ejsLayout     = require("express-ejs-layouts")
