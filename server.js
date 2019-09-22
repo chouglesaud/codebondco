@@ -81,13 +81,13 @@
         }
     }
 
-    // route Middlewares
-    // app.use("/tutorial",tutorial)
-    // app.use("/api",api)
-    // app.use("/auth",auth)
-    // app.use("/admin",admin)
-    // app.use("/comment",checkUser,comment)
-    // app.use("/publish",publish)
+ //   route Middlewares
+    app.use("/tutorial",tutorial)
+    app.use("/api",api)
+    app.use("/auth",auth)
+    app.use("/admin",admin)
+    app.use("/comment",checkUser,comment)
+    app.use("/publish",publish)
 
     //  routes
     // homepage
@@ -350,18 +350,18 @@
 
 
     // 404
-    // app.use(function(req, res, next) {
-    //     let error = {
-    //         name      : 404,
-    //         firstnum  : 4,
-    //         secondnum : 0,
-    //         thirdnum  : 4,
-    //         firstword : "webpage",
-    //         secondword: "not",
-    //         thirdword : "found"
-    //     }
-    //     res.render("error",{user: req.user,error,nouser: false})
-    // });
+    app.use(function(req, res, next) {
+        let error = {
+            name      : 404,
+            firstnum  : 4,
+            secondnum : 0,
+            thirdnum  : 4,
+            firstword : "webpage",
+            secondword: "not",
+            thirdword : "found"
+        }
+        res.render("error",{user: req.user,error,nouser: false})
+    });
     
 //    500 - Any server error
      app.use(function(err, req, res, next) {
