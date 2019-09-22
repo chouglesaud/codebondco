@@ -9,9 +9,10 @@
     const httpsPORT    = 443
     const httpsOptions = {
         cert: fs.readFileSync(path.join(__dirname,"/ssl/codebond_co_cert.pem")),
-        key : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co_key.pem"))
+        key : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co_key.pem")),
+        ca  : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co.ca-bundle")),
+
     }
-    //ca  : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co.ca-bundle")),
     const ejs           = require("ejs")
     const ejsLayout     = require("express-ejs-layouts")
     const mongoose      = require("mongoose")
