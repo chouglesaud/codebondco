@@ -102,9 +102,13 @@
         // SEO 
         // robot.txt
         // sitemap.xml
- 
+        app.get("/.well-known/pki-validation/7466059DDBB0B1F91FD0479C0EED3B2A.txt",(req,res)=>{
+            let txt = "F25ADB64FFB376395D79E51DAF02D3B1DFFEEBFFB89FC9658F791AEA8C2F4B16 comodoca.com 5d8722414b6c5"
+            res.header('Content-Type', 'text/txt');
+            res.send(txt)
+        })
         
-        app.get("/robot.txt",(req,res)=>{
+        app.get("/robot.tx                                                                                                                                                                  t",(req,res)=>{
             let txt = `
             User-agent: Mediapartners-Google\n
             Allow: /\n
