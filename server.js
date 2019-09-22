@@ -1,8 +1,19 @@
     const fs           = require('fs')
-    const express    = require("express")
-    const bodyParser = require("body-parser")
-    const path       = require("path")
-    const httpPORT   = 80
+    const express      = require("express")
+    const bodyParser   = require("body-parser")
+    const path         = require("path")
+    const http         = require("http")
+    const https        = require("https")
+    const hostname     = "codebond.co"
+    const httpPORT     = 80
+    const httpsPORT    = 443
+    const httpsOptions = {
+        cert: fs.readFileSync(path.join(__dirname,"/ssl/codebond_co.crt")),
+        ca  : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co.ca-bundle")),
+        key : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co.key"))
+
+
+    }
     const ejs           = require("ejs")
     const ejsLayout     = require("express-ejs-layouts")
     const mongoose      = require("mongoose")
@@ -42,9 +53,16 @@
    
     
     // Initialization
-      app.listen(httpPORT,()=> console.log("server started ..."))
+    //   app.listen(httpPORT,()=> console.log("server started ..."))
+    http.createServer(app).listen(httpPORT,hostname)
+    https.createServer(httpsOptions,app).listen(httpsPORT,hostname)
 
-   
+   app.use((req,res,next)=>{
+       if(req.protocol === "http"){
+           res.redirect(301,`https://${req.header.host}${req.url}`)
+       }
+       next()
+   })
     
     // Middlewares
     app.use('/static', express.static(path.join(__dirname, 'public')))
@@ -110,22 +128,22 @@
         app.get("/robot.txt",(req,res)=>{                                                                              
             let txt = `
             User-agent: Mediapartners-Google\n
-            Allow: /\n
+            Allow     : /\n
             User-agent: Googlebot\n
-            Allow: /\n
+            Allow     : /\n
             User-agent: Adsbot-Google\n
-            Allow: /\n
+            Allow     : /\n
             User-agent: Googlebot-Mobile\n
-            Allow: /\n
+            Allow     : /\n
             User-agent: Bingbot\n
-            Allow: /\n
+            Allow     : /\n
             User-agent: Slurp\n
-            Allow: /\n
+            Allow     : /\n
             User-agent: DuckDuckBot\n
-            Allow: /\n
+            Allow     : /\n
             User-agent: Baiduspider
-            Allow: /\n
-            Sitemap: http://codebond.co/sitemap.xml
+            Allow     : /\n
+            Sitemap   : http: //codebond.co/sitemap.xml
             `
             res.header('Content-Type', 'text/txt');
             res.send(txt)
@@ -136,38 +154,38 @@
                 found.forEach((data)=>{
                     xml +=`
                     <url>\n
-                        <loc>http://codebond.co${data.url}</loc>\n
+                        <loc>http: //codebond.co${data.url}</loc>\n
                         <priority>0.5</priority>\n
                     </url>\n
                     `
                 })
                 xml += `
                 <url>\n
-                     <loc>http://codebond.co/</loc>\n
+                     <loc>http: //codebond.co/</loc>\n
                      <priority>0.5</priority>\n
                 </url>\n
                 <url>\n
-                <loc>http://codebond.co/tutorial/javascript</loc>\n
+                <loc>http: //codebond.co/tutorial/javascript</loc>\n
                 <priority>0.3</priority>\n
                 </url>\n  
                 <url>\n
-                <loc>http://codebond.co/tutorial/nodejs</loc>\n
+                <loc>http: //codebond.co/tutorial/nodejs</loc>\n
                 <priority>0.3</priority>\n
                 </url>\n  
                 <url>\n
-                <loc>http://codebond.co/tutorial/reactjs</loc>\n
+                <loc>http: //codebond.co/tutorial/reactjs</loc>\n
                 <priority>0.3</priority>\n
                 </url>\n  
                 <url>\n
-                <loc>http://codebond.co/tutorial/npm</loc>\n
+                <loc>http: //codebond.co/tutorial/npm</loc>\n
                 <priority>0.3</priority>\n
                 </url>\n  
                 <url>\n
-                <loc>http://codebond.co/tutorial/css</loc>\n
+                <loc>http: //codebond.co/tutorial/css</loc>\n
                 <priority>0.3</priority>\n
                 </url>\n  
                 <url>\n
-                <loc>http://codebond.co/tutorial/other</loc>\n
+                <loc>http: //codebond.co/tutorial/other</loc>\n
                 <priority>0.3</priority>\n
                 </url>\n  
                 </urlset>
