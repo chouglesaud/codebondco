@@ -103,10 +103,9 @@
         // robot.txt
         // sitemap.xml
         app.get("/.well-known/pki-validation/7466059DDBB0B1F91FD0479C0EED3B2A.txt",(req,res)=>{
-            res.sendFile(path(__dirname+"/7466059DDBB0B1F91FD0479C0EED3B2A.txt",(err)=>{
-                console.log(err)
-            })
+            res.sendFile(path.join(__dirname+"/7466059DDBB0B1F91FD0479C0EED3B2A.txt"))
         })
+        
         
         app.get("/robot.txt",(req,res)=>{                                                                              
             let txt = `
