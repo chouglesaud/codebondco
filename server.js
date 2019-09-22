@@ -7,12 +7,12 @@
     const hostname     = "codebond.co"
     const httpPORT     = 80
     const httpsPORT    = 443
-    const httpsOptions = {
-        cert: fs.readFileSync(path.join(__dirname,"/ssl/codebond_co_cert.pem")),
-        key : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co_key.pem")),
-        ca  : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co.pem")),
-        passphrase: "1234"
-    }
+    // const httpsOptions = {
+    //     cert: fs.readFileSync(path.join(__dirname,"/ssl/codebond_co_cert.pem")),
+    //     key : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co_key.pem")),
+    //     ca  : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co.pem")),
+    //     passphrase: "1234"
+    // }
     const ejs           = require("ejs")
     const ejsLayout     = require("express-ejs-layouts")
     const mongoose      = require("mongoose")
@@ -52,16 +52,16 @@
    
     
     // Initialization
-    //   app.listen(httpPORT,()=> console.log("server started ..."))
-    http.createServer(app).listen(httpPORT,hostname)
-    https.createServer(httpsOptions,app).listen(httpsPORT,hostname)
+      app.listen(httpPORT,()=> console.log("server started ..."))
+//     http.createServer(app).listen(httpPORT,hostname)
+//     https.createServer(httpsOptions,app).listen(httpsPORT,hostname)
 
-   app.use((req,res,next)=>{
-       if(req.protocol === "http"){
-           res.redirect(301,`https://${req.header.host}${req.url}`)
-       }
-       next()
-   })
+//    app.use((req,res,next)=>{
+//        if(req.protocol === "http"){
+//            res.redirect(301,`https://${req.header.host}${req.url}`)
+//        }
+//        next()
+//    })
     
     // Middlewares
     app.use('/static', express.static(path.join(__dirname, 'public')))
@@ -384,17 +384,17 @@
     });
     
 //    500 - Any server error
-    //  app.use(function(err, req, res, next) {
-    //      let error = {
-    //          name      : 500,
-    //          firstnum  : 5,
-    //          secondnum : 0,
-    //          thirdnum  : 0,
-    //          firstword : "internal",
-    //          secondword: "server",
-    //          thirdword : "error"
-    //      }
-    //      res.render("error",{user: req.user,error,nouser: false})
-    //  });
+     app.use(function(err, req, res, next) {
+         let error = {
+             name      : 500,
+             firstnum  : 5,
+             secondnum : 0,
+             thirdnum  : 0,
+             firstword : "internal",
+             secondword: "server",
+             thirdword : "error"
+         }
+         res.render("error",{user: req.user,error,nouser: false})
+     });
 
 
