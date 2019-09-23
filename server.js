@@ -33,6 +33,9 @@
     const comment       = require("./routes/comment")
     const publish       = require("./routes/publish")
     const admin         = require("./routes/admin")
+    
+    const xml        = require("./seo/sitemap").xml
+
 
     const Css        = require("./models/css")
     const Javascript = require("./models/javascript")
@@ -122,77 +125,12 @@
         app.get("/.well-known/pki-validation/7466059DDBB0B1F91FD0479C0EED3B2A.txt",(req,res)=>{
             res.sendFile(path.join(__dirname+"/7466059DDBB0B1F91FD0479C0EED3B2A.txt"))
         })
-        
-        
         app.get("/robot.txt",(req,res)=>{                                                                              
-            let txt = `
-            User-agent: Mediapartners-Google\n
-            Allow     : /\n
-            User-agent: Googlebot\n
-            Allow     : /\n
-            User-agent: Adsbot-Google\n
-            Allow     : /\n
-            User-agent: Googlebot-Mobile\n
-            Allow     : /\n
-            User-agent: Bingbot\n
-            Allow     : /\n
-            User-agent: Slurp\n
-            Allow     : /\n
-            User-agent: DuckDuckBot\n
-            Allow     : /\n
-            User-agent: Baiduspider
-            Allow     : /\n
-            Sitemap   : http: //codebond.co/sitemap.xml
-            `
-            res.header('Content-Type', 'text/txt');
-            res.send(txt)
+            res.sendFile(path.join(__dirname,"/seo/robot.txt"))
         })
         app.get("/sitemap.xml",(req,res)=>{
-            let xml = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
-            Recent.find({}).then((found)=>{
-                found.forEach((data)=>{
-                    xml +=`
-                    <url>\n
-                        <loc>http: //codebond.co${data.url}</loc>\n
-                        <priority>0.5</priority>\n
-                    </url>\n
-                    `
-                })
-                xml += `
-                <url>\n
-                     <loc>http: //codebond.co/</loc>\n
-                     <priority>0.5</priority>\n
-                </url>\n
-                <url>\n
-                <loc>http: //codebond.co/tutorial/javascript</loc>\n
-                <priority>0.3</priority>\n
-                </url>\n  
-                <url>\n
-                <loc>http: //codebond.co/tutorial/nodejs</loc>\n
-                <priority>0.3</priority>\n
-                </url>\n  
-                <url>\n
-                <loc>http: //codebond.co/tutorial/reactjs</loc>\n
-                <priority>0.3</priority>\n
-                </url>\n  
-                <url>\n
-                <loc>http: //codebond.co/tutorial/npm</loc>\n
-                <priority>0.3</priority>\n
-                </url>\n  
-                <url>\n
-                <loc>http: //codebond.co/tutorial/css</loc>\n
-                <priority>0.3</priority>\n
-                </url>\n  
-                <url>\n
-                <loc>http: //codebond.co/tutorial/other</loc>\n
-                <priority>0.3</priority>\n
-                </url>\n  
-                </urlset>
-               `
                res.header('Content-Type', 'text/xml');
                res.send(xml)
-                
-            })
         })
     
 
