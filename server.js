@@ -5,7 +5,7 @@
     const http         = require("http")
     const https        = require("https")
     const hostname     = "codebond.co"
-    const httpPORT     = 5000
+    const httpPORT     = 80
     const httpsPORT    = 443
     // const httpsOptions = {
     //     cert: fs.readFileSync(path.join(__dirname,"/ssl/codebond_co_cert.pem")),
