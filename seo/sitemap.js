@@ -48,4 +48,4 @@ Recent.find({}).then((found)=>{
 })
 
 
-module.exports = {xml}
+module.exports = xml
