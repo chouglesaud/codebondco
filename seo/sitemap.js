@@ -1,11 +1,9 @@
 const express    = require("express")
 const path       = require("path")
 const Recent     = require("../models/recent")
-let   xml;
 
-(async()=>{
-  await  Recent.find({}).then((found)=>{
-        xml =  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
+module.exports = Recent.find({}).then((found)=>{
+      let xml =  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
        found.forEach((data)=>{
            xml +=`
            <url>\n
@@ -44,9 +42,6 @@ let   xml;
        <priority>0.3</priority>\n
        </url>\n  
        </urlset>
-      `
-       
+      ` 
+      return xml
    })
-})();
-
-module.exports = {xml:xml}

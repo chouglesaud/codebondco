@@ -33,8 +33,6 @@
     const comment       = require("./routes/comment")
     const publish       = require("./routes/publish")
     const admin         = require("./routes/admin")
-    
-    const xml        = require("./seo/sitemap").xml
 
     const Css        = require("./models/css")
     const Javascript = require("./models/javascript")
@@ -127,9 +125,9 @@
         app.get("/robot.txt",(req,res)=>{                                                                              
             res.sendFile(path.join(__dirname,"/seo/robot.txt"))
         })
-        app.get("/sitemap.xml",(req,res)=>{
+        app.get("/sitemap.xml",async(req,res)=>{
+            const xml        = await require("./seo/sitemap")
                res.header('Content-Type', 'text/xml');
-               console.log(xml)
                res.send(xml)
         })
     
