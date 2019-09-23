@@ -4,8 +4,8 @@ const Recent     = require("../models/recent")
 let   xml;
 
 (async()=>{
-    Recent.find({}).then((found)=>{
-        xml = await `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
+  await  Recent.find({}).then((found)=>{
+        xml =  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
        found.forEach((data)=>{
            xml +=`
            <url>\n
