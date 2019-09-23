@@ -34,7 +34,7 @@
     const publish       = require("./routes/publish")
     const admin         = require("./routes/admin")
     
-    const xml        = require("./seo/sitemap")
+    const xml        = require("./seo/sitemap").xml
 
     const Css        = require("./models/css")
     const Javascript = require("./models/javascript")
