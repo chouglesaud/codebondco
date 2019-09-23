@@ -129,6 +129,7 @@
         })
         app.get("/sitemap.xml",(req,res)=>{
                res.header('Content-Type', 'text/xml');
+               console.log(xml)
                res.send(xml)
         })
     
