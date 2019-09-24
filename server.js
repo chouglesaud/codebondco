@@ -1,18 +1,10 @@
+    require("dotenv").config()
     const fs           = require('fs')
     const express      = require("express")
     const bodyParser   = require("body-parser")
     const path         = require("path")
-    const http         = require("http")
-    const https        = require("https")
-    const hostname     = "codebond.co"
     const httpPORT     = 8000
     const httpsPORT    = 443
-    // const httpsOptions = {
-    //     cert: fs.readFileSync(path.join(__dirname,"/ssl/codebond_co_cert.pem")),
-    //     key : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co_key.pem")),
-    //     ca  : fs.readFileSync(path.join(__dirname,"/ssl/codebond_co.pem")),
-    //     passphrase: "1234"
-    // }
     const ejs           = require("ejs")
     const ejsLayout     = require("express-ejs-layouts")
     const mongoose      = require("mongoose")
@@ -53,16 +45,8 @@
     
     // Initialization
       app.listen(httpPORT,()=> console.log("server started ..."))
-//     http.createServer(app).listen(httpPORT,hostname)
-//     https.createServer(httpsOptions,app).listen(httpsPORT,hostname)
 
-//    app.use((req,res,next)=>{
-//        if(req.protocol === "http"){
-//            res.redirect(301,`https://${req.header.host}${req.url}`)
-//        }
-//        next()
-//    })
-    
+      
     // Middlewares
     app.use('/static', express.static(path.join(__dirname, 'public')))
     app.use(bodyParser.urlencoded({extended: true}))
