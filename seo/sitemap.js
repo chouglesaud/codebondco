@@ -2,13 +2,14 @@ const express    = require("express")
 const path       = require("path")
 const Recent     = require("../models/recent")
 
-module.exports = Recent.find({}).then((found)=>{
+module.exports = Recent.find({}).then(async(found)=>{
       let xml =  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
-       found.forEach((data)=>{
+      
+      await found.forEach((data)=>{
            xml +=`
            <url>\n
                <loc>http://codebond.co${data.url}</loc>\n
-               <priority>0.5</priority>\n
+               <priority>0.6</priority>\n
            </url>\n
            `
        })
