@@ -22,4 +22,4 @@ Allow     : /
 User-agent: Baiduspider
 Allow     : /
 
-Sitemap   : http://codebond.co/sitemap.xml
+Sitemap   : https://codebond.co/sitemap.xml
