@@ -210,6 +210,12 @@ text.forEach(function (el) {
 para.forEach(function (el) {
   TextToHtml(el);
 });
+$("a").attr({
+  rel: "noopener"
+});
+$(".comment-section a").attr({
+  rel: "noopner nofollow"
+});
 
 function TextToHtml(element) {
   var tc = element.textContent;
@@ -322,7 +328,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37159" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37019" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

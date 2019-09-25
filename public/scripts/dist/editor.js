@@ -694,6 +694,10 @@ function publish(hero) {
     }
   });
 }
+
+$("a").attr({
+  rel: "noopener nofollow"
+});
 },{"@editorjs/editorjs":"../../node_modules/@editorjs/editorjs/dist/editor.js","@editorjs/header":"../../node_modules/@editorjs/header/dist/bundle.js","@editorjs/list":"../../node_modules/@editorjs/list/dist/bundle.js","@editorjs/simple-image":"../../node_modules/@editorjs/simple-image/dist/bundle.js","@editorjs/code":"../../node_modules/@editorjs/code/dist/bundle.js","@editorjs/quote":"../../node_modules/@editorjs/quote/dist/bundle.js","@editorjs/inline-code":"../../node_modules/@editorjs/inline-code/dist/bundle.js","@editorjs/warning":"../../node_modules/@editorjs/warning/dist/bundle.js","@editorjs/paragraph":"../../node_modules/@editorjs/paragraph/dist/bundle.js","@editorjs/embed":"../../node_modules/@editorjs/embed/dist/bundle.js","@editorjs/marker":"../../node_modules/@editorjs/marker/dist/bundle.js","os":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/os-browserify/browser.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -722,7 +726,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37893" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41735" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
