@@ -270,7 +270,7 @@ exports.tmpdir = exports.tmpDir = function () {
 exports.EOL = '\n';
 
 exports.homedir = function () {
-	return '/'
+  return '/'
 };
 
 },{}],"editor.js":[function(require,module,exports) {
@@ -423,7 +423,17 @@ regeneratorRuntime.mark(function _callee3() {
                       youtube: true,
                       codepen: {
                         regex: /https:\/\/codepen.io\/([^\/\?\&]*)\/pen\/([^\/\?\&]*)/,
-                        embedUrl: 'https://codepen.io/<%= remote_id %>?height=300&theme-id=0&default-tab=css,result&embed-version=2',
+                        embedUrl: 'https://codepen.io/<%= remote_id %>?height=400&theme-id=0&default-tab=css,result&embed-version=2',
+                        html: "<iframe height='300' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
+                        height: 300,
+                        width: 600,
+                        id: function id(groups) {
+                          return groups.join('/embed/preview/');
+                        }
+                      },
+                      codesandbox: {
+                        regex: /https:\/\/codesandbox.io\/embed\/([^\/\?\&]*)/,
+                        embedUrl: 'https://codesandbox.io/embed/<%= remote_id %>?height=400&theme-id=0&default-tab=css,result&embed-version=2',
                         html: "<iframe height='300' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
                         height: 300,
                         width: 600,
@@ -726,7 +736,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41735" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33881" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
