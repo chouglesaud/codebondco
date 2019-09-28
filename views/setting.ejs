@@ -95,16 +95,18 @@
                 </div>
                 <form action=<%="/"+user.username+"/update"%> method="post">
                     <div class="form-group shadow-sm p-3 bg-white rounded">
-
+                        <label for="name">name </label>
+                        <input type="text" id="name" name="name" value="<%=user.name%>"
+                            class="form-control" placeholder="john doe or jane doe" />
                         <label for="instagram">instagram</label>
 
-                        <input type="text" id="instagram" name="instagram" value=<%=user.instagram%>
+                        <input type="text" id="instagram" name="instagram" value="<%=user.instagram%>"
                             class="form-control" placeholder="instagram username">
                         <label for="twitter">twitter</label>
-                        <input type="text" id="twitter" name="twitter" value=<%=user.twitter%> class="form-control"
+                        <input type="text" id="twitter" name="twitter" value="<%=user.twitter%>" class="form-control"
                             placeholder="twitter username">
                         <label for="insta">github</label>
-                        <input type="text" id="github" name="github" value=<%=user.github%> class="form-control"
+                        <input type="text" id="github" name="github" value="<%=user.github%>" class="form-control"
                             placeholder="github username">
                         <label for="bio">bio</label>
                         <textarea name="bio" class="form-control" id="bio" cols="30" rows="4"><%=user.bio %></textarea>

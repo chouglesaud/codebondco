@@ -161,6 +161,7 @@
     })
 
     app.post("/:username/update",checkUser,(req,res)=>{
+        let name      = setusername(req.body.name)
         let instagram = setusername(req.body.instagram)
         let twitter   = setusername(req.body.twitter)
         let github    = setusername(req.body.github)
@@ -175,7 +176,7 @@
         }
         
 
-        User.findByIdAndUpdate({_id: req.user.id},{instagram,github,twitter,bio: req.body.bio}).then(found=>{
+        User.findByIdAndUpdate({_id: req.user.id},{instagram,github,twitter,name,bio: req.body.bio}).then(found=>{
             res.redirect(`/${req.user.username}/setting`)
         }).catch(err=>{
             console.log(err)
