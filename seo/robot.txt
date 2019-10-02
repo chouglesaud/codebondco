@@ -1,16 +1,29 @@
-User-agent: Mediapartners-Google
+User-agent: Googlebot-Image
 Allow     : /
 
 User-agent: Googlebot
 Allow     : /
 
-User-agent: Adsbot-Google
+User-agent: Googlebot-News
+Allow     : /
+
+User-agent: Mediapartners-Google
+Allow     : /
+
+
+User-agent: AdsBot-Google
 Allow     : /
 
 User-agent: Googlebot-Mobile
 Allow     : /
 
-User-agent: Bingbot
+User-agent: bingbot
+Allow     : /
+
+User-agent: msnbot
+Allow     : /
+
+User-agent: msnbot-media
 Allow     : /
 
 User-agent: Slurp
@@ -19,7 +32,19 @@ Allow     : /
 User-agent: DuckDuckBot
 Allow     : /
 
-User-agent: Baiduspider
+User-agent: baiduspider
+Allow     : /
+
+User-agent: baiduspider-image
+Allow     : /
+
+User-agent: baiduspider-mobile
+Allow     : /
+
+User-agent: baiduspider-news
+Allow     : /
+
+User-agent: yandex
 Allow     : /
 
 Sitemap   : https://codebond.co/sitemap.xml
