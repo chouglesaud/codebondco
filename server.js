@@ -102,14 +102,12 @@
         // SEO 
         // robot.txt
         // sitemap.xml
-        app.get("/.well-known/pki-validation/7466059DDBB0B1F91FD0479C0EED3B2A.txt",(req,res)=>{
-            res.sendFile(path.join(__dirname+"/7466059DDBB0B1F91FD0479C0EED3B2A.txt"))
-        })
+      
         app.get("/robot.txt",(req,res)=>{                                                                              
             res.sendFile(path.join(__dirname,"/seo/robot.txt"))
         })
         app.get("/sitemap.xml",async(req,res)=>{
-            const xml        = await require("./seo/sitemap")
+            let xml        = await require("./seo/sitemap")
                res.header('Content-Type', 'text/xml');
                res.send(xml)
         })
