@@ -12,14 +12,13 @@
     const passport      = require("passport")
 
 
-    const fileParser = require("./globalfunction/function").fileParser
+    const globalFunction      = require("./globalfunction/function");
     const cloudinary = require("cloudinary")
     const app        = express()
     require("./services/cloudinary")
     const upload        = require("./services/multer")
     const auth          = require("./routes/auth")               // routes/auth.js
     const tutorial      = require("./routes/tutorial")           // routes/writeblog.js
-    const api           = require("./routes/api")                // routes/api.js
     const passportSetup = require("./services/passport.config")  //  services/passportconfig.js
     const comment       = require("./routes/comment")
     const publish       = require("./routes/publish")
@@ -83,7 +82,6 @@
 
  //   route Middlewares
     app.use("/tutorial",tutorial)
-    app.use("/api",api)
     app.use("/auth",auth)
     app.use("/admin",admin)
     app.use("/comment",checkUser,comment)
@@ -226,32 +224,16 @@
         }else if(tech === "other"){
             findPost(Other)
         }else{
-            let error = {
-                name      : 404,
-                firstnum  : 4,
-                secondnum : 0,
-                thirdnum  : 4,
-                firstword : "webpage",
-                secondword: "not",
-                thirdword : "found"
-            }
-            res.render("error",{user: req.user,error,nouser: false})
+            
+            res.render("error",{user: req.user,error: globalFunction.error404,nouser: false})
         }
         function findPost(category){
             category.find({}).sort({_id:-1}) .then(found=>{
                 if(found){
                     res.render("category",{Res: found,tech ,user: req.user})
                 }else{
-                    let error = {
-                        name      : 404,
-                        firstnum  : 4,
-                        secondnum : 0,
-                        thirdnum  : 4,
-                        firstword : "webpage",
-                        secondword: "not",
-                        thirdword : "found"
-                    }
-                    res.render("error",{user: req.user,error,nouser: false})
+                    
+                    res.render("error",{user: req.user,error: globalFunction.error404,nouser: false})
                 }
             })
         }
@@ -289,30 +271,14 @@
 
     // 404
     app.use(function(req, res, next) {
-        let error = {
-            name      : 404,
-            firstnum  : 4,
-            secondnum : 0,
-            thirdnum  : 4,
-            firstword : "webpage",
-            secondword: "not",
-            thirdword : "found"
-        }
-        res.render("error",{user: req.user,error,nouser: false})
+     
+        res.render("error",{user: req.user,error:globalFunction.error404,nouser: false})
     });
     
 //    500 - Any server error
      app.use(function(err, req, res, next) {
-         let error = {
-             name      : 500,
-             firstnum  : 5,
-             secondnum : 0,
-             thirdnum  : 0,
-             firstword : "internal",
-             secondword: "server",
-             thirdword : "error"
-         }
-         res.render("error",{user: req.user,error,nouser: false})
+         
+         res.render("error",{user: req.user,error: globalFunction.error404,nouser: false})
      });
 
 

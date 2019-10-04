@@ -11,6 +11,7 @@ const Npm        = require("../models/npm")
 const Other      = require("../models/other")
 const Recent     = require("../models/recent")
 const User       = require("../models/user")
+const globalFunction = require("../globalfunction/function")
 
 
 
@@ -74,16 +75,8 @@ router.post("/post",async(req,res)=>{
         wirtePost(Other)
         
     }else{
-        let error = {
-            name      : 404,
-            firstnum  : 4,
-            secondnum : 0,
-            thirdnum  : 4,
-            firstword : "webpage",
-            secondword: "not",
-            thirdword : "found"
-        }
-        res.render("error",{user: req.user,error,nouser: false})
+       
+        res.render("error",{user: req.user,error: globalFunction.error404,nouser: false})
     }
     function wirtePost(tech){
         new tech(fullNewPost).save()

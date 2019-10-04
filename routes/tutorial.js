@@ -6,6 +6,7 @@ const Nodejs     = require("../models/nodejs")
 const Reactjs    = require("../models/reactjs")
 const Npm        = require("../models/npm")
 const Other      = require("../models/other")
+const globalFunction = require("../globalfunction/function")
 
 router.get("/:tech/:postname",(req,res)=>{
     localStorage.setItem('redirect', `/tutorial${req.url}`);
@@ -27,16 +28,8 @@ router.get("/:tech/:postname",(req,res)=>{
         findPost(Other)
         
     }else{
-        let error = {
-            name      : 404,
-            firstnum  : 4,
-            secondnum : 0,
-            thirdnum  : 4,
-            firstword : "webpage",
-            secondword: "not",
-            thirdword : "found"
-        }
-        res.render("error",{user: req.user,error,nouser: false})
+       
+        res.render("error",{user: req.user,error: globalFunction.error404,nouser: false})
     }
     
     function findPost(tech){    
@@ -45,16 +38,8 @@ router.get("/:tech/:postname",(req,res)=>{
                 
                 res.render("post",{data: found,user: req.user})
             }else{
-                let error = {
-                    name      : 404,
-                    firstnum  : 4,
-                    secondnum : 0,
-                    thirdnum  : 4,
-                    firstword : "webpage",
-                    secondword: "not",
-                    thirdword : "found"
-                }
-                res.render("error",{user: req.user,error,nouser: false})
+                
+                res.render("error",{user: req.user,error: globalFunction.error404,nouser: false})
             }
         })
     }

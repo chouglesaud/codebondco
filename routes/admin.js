@@ -15,6 +15,7 @@ const Admin      = require("../models/adminschema")
 const bcrypt     = require("bcryptjs")
 const jwt        = require("jsonwebtoken")
 const verifyToken= require("../services/verifytoken")
+const globalFunction = require("../globalfunction/function")
 
 let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -64,30 +65,14 @@ router.post("/authentication",async(req,res)=>{
                     (err) ? console.log(err): res.redirect("/")
                 })
                 }else{
-                    let error = {
-                        name      : 400,
-                        firstnum  : 4,
-                        secondnum : 0,
-                        thirdnum  : 0,
-                        firstword : "bad",
-                        secondword: "request",
-                        thirdword : "error"
-                    }
-                    res.render("error",{user: req.user,error,nouser: false})
+                   
+                    res.render("error",{user: req.user,error:globalFunction.error400,nouser: false})
                 }
         
             })
         }else{
-            let error = {
-                name      : 400,
-                firstnum  : 4,
-                secondnum : 0,
-                thirdnum  : 0,
-                firstword : "bad",
-                secondword: "request",
-                thirdword : "error"
-            }
-            res.render("error",{user: req.user,error,nouser: false})
+           
+            res.render("error",{user: req.user,error: globalFunction.error400,nouser: false})
         }
     })
 })
