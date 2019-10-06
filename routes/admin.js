@@ -80,7 +80,7 @@ router.post("/authentication",async(req,res)=>{
 
 router.get("/:token/dashboard",verifyToken,async(req,res)=>{
    
-    res.render("admin",{js: await countDoc(Javascript),node: await countDoc(Nodejs),react: await countDoc(Reactjs),npm: await countDoc(Npm),css: await countDoc(Css),other: await countDoc(Other),total: await countDoc(Recent),user: await countDoc(User)})
+    res.render("admin",{js: await countDoc(Javascript),py: await countDoc(Python),node: await countDoc(Nodejs),react: await countDoc(Reactjs),npm: await countDoc(Npm),css: await countDoc(Css),other: await countDoc(Other),total: await countDoc(Recent),user: await countDoc(User)})
 })
 
 router.post("/removepost",(req,res)=>{
@@ -92,6 +92,8 @@ router.post("/removepost",(req,res)=>{
 
     if(tech === "javascript"){
         removePost(Javascript)
+    }else if(tech === "python"){
+        removePost(Python)
     }else if(tech === "nodejs"){
         removePost(Nodejs)
     }else if(tech === "reactjs"){
