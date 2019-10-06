@@ -26,6 +26,7 @@
 
     const Css        = require("./models/css")
     const Javascript = require("./models/javascript")
+    const Python     = require("./models/python")
     const Nodejs     = require("./models/nodejs")
     const Reactjs    = require("./models/reactjs")
     const Npm        = require("./models/npm")
@@ -125,6 +126,10 @@
                   <loc>https://codebond.co/tutorial/javascript</loc>\n
                   <priority>0.3</priority>\n
                   </url>\n  
+                  <url>\n
+                  <loc>https://codebond.co/tutorial/python</loc>\n
+                  <priority>0.3</priority>\n
+                  </url>\n
                   <url>\n
                   <loc>https://codebond.co/tutorial/nodejs</loc>\n
                   <priority>0.3</priority>\n
@@ -254,6 +259,8 @@
 
         if(tech === "javascript"){
             findPost(Javascript)
+        }else if(tech === "python"){
+            findPost(Python)
         }else if(tech === "nodejs"){
             findPost(Nodejs)
         }else if(tech === "reactjs"){

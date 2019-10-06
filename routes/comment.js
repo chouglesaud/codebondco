@@ -4,6 +4,7 @@ const fs         = require("fs")
 const router     = express.Router();
 const Css        = require("../models/css")
 const Javascript = require("../models/javascript")
+const Python     = require("./models/python")
 const Nodejs     = require("../models/nodejs")
 const Reactjs    = require("../models/reactjs")
 const Npm        = require("../models/npm")
@@ -40,6 +41,8 @@ router.post("/post",async(req,res)=>{
 
     if(tech === "javascript"){
         writecomment(Javascript)
+    }else if(tech === "python"){
+        writecomment(Python)   
     }else if(tech === "nodejs"){
         writecomment(Nodejs)
     }else if(tech === "reactjs"){

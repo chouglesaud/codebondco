@@ -4,6 +4,7 @@ const fs         = require("fs")
 const slugger    = require("slugify")
 const router     = express.Router();
 const Css        = require("../models/css")
+const Python     = require("./models/python")
 const Javascript = require("../models/javascript")
 const Nodejs     = require("../models/nodejs")
 const Reactjs    = require("../models/reactjs")
@@ -62,6 +63,8 @@ router.post("/post",async(req,res)=>{
 
     if(tech === "javascript"){
         wirtePost(Javascript)
+    }else if(tech === "python"){
+        wirtePost(Python)
     }else if(tech === "nodejs"){
         wirtePost(Nodejs)
     }else if(tech === "reactjs"){

@@ -2,6 +2,7 @@ const express    = require("express")
 const router     = express.Router();
 const Css        = require("../models/css")
 const Javascript = require("../models/javascript")
+const Python     = require("../models/python")
 const Nodejs     = require("../models/nodejs")
 const Reactjs    = require("../models/reactjs")
 const Npm        = require("../models/npm")
@@ -15,6 +16,8 @@ router.get("/:tech/:postname",(req,res)=>{
   
     if(tech === "javascript"){
         findPost(Javascript)
+    }else if(tech === "python"){
+        findPost(Python)
     }else if(tech === "nodejs"){
         findPost(Nodejs)
     }else if(tech === "reactjs"){
