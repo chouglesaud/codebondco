@@ -105,9 +105,51 @@
             res.sendFile(path.join(__dirname,"/seo/robot.txt"))
         })
         app.get("/sitemap.xml",async(req,res)=>{
-            let xml        = await require("./seo/sitemap")
-               res.header('Content-Type', 'text/xml');
-               res.send(xml)
+            Recent.find({}).then(async(found)=>{
+                let  xml =  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
+                 
+                 await found.reverse().forEach((data)=>{
+                      xml +=`
+                      <url>\n
+                          <loc>https://codebond.co${data.url}</loc>\n
+                          <priority>0.6</priority>\n
+                      </url>\n
+                      `
+                  })
+                  xml += `
+                  <url>\n
+                       <loc>https://codebond.co/</loc>\n
+                       <priority>0.5</priority>\n
+                  </url>\n
+                  <url>\n
+                  <loc>https://codebond.co/tutorial/javascript</loc>\n
+                  <priority>0.3</priority>\n
+                  </url>\n  
+                  <url>\n
+                  <loc>https://codebond.co/tutorial/nodejs</loc>\n
+                  <priority>0.3</priority>\n
+                  </url>\n  
+                  <url>\n
+                  <loc>https://codebond.co/tutorial/reactjs</loc>\n
+                  <priority>0.3</priority>\n
+                  </url>\n  
+                  <url>\n
+                  <loc>https://codebond.co/tutorial/npm</loc>\n
+                  <priority>0.3</priority>\n
+                  </url>\n  
+                  <url>\n
+                  <loc>https://codebond.co/tutorial/css</loc>\n
+                  <priority>0.3</priority>\n
+                  </url>\n  
+                  <url>\n
+                  <loc>https://codebond.co/tutorial/other</loc>\n
+                  <priority>0.3</priority>\n
+                  </url>\n  
+                  </urlset>
+                 ` 
+                 res.header('Content-Type', 'text/xml');
+                 res.send(xml)
+              })
         })
     
 
