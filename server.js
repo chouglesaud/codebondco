@@ -101,6 +101,12 @@
         // SEO 
         // robot.txt
         // sitemap.xml
+        // ads.txt
+
+        app.get("/ads.txt",(req,res)=>{
+            res.sendFile(path.join(__dirname,"/seo/ads.txt"))
+
+        })
       
         app.get("/robot.txt",(req,res)=>{                                                                              
             res.sendFile(path.join(__dirname,"/seo/robot.txt"))
