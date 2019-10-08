@@ -4,37 +4,45 @@
         <div class="div col-lg-6 col-md-8 col-sm-12 col-12">
             <% Res.forEach((post,i)=>{%>
             <div class="cont col-lg-12 col-md-12 col-sm-12 col-12">
-
-               <% if(post.img){ %>
-                   <div class="image">
-                       <a href=<%=post.url%>>
-                    <img src="/static/images/ph.png" class="lazy img-fluid" alt=<%=post.slug%> data-src=<%= post.img %>>
-                </a>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle" style="display:block" data-ad-format="fluid"
+                    data-ad-layout-key="-6a+eb+1g-6c+am" data-ad-client="ca-pub-2650533982969945"
+                    data-ad-slot="1816701284"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                <% if(post.img){ %>
+                <div class="image">
+                    <a href=<%=post.url%>>
+                        <img src="/static/images/ph.png" class="lazy img-fluid" alt=<%=post.slug%>
+                            data-src=<%= post.img %>>
+                    </a>
                 </div>
-            <% } %>
+                <% } %>
                 <div class="details">
-                <div class="info">
-                    <a href=<%="/"+post.username %>> <img class="profilepic" src=<%=post.profilePic%>
-                            alt="P"></a>
-                    <div class="nameblock">
-                        <span aria-label="author name" class="author"><a href=<%="/"+post.username %>><%= post.name %></a></span>
-                        <span aria-label="published date" class="time"><%= post.date %></span>
-                    </div>
-                    
-                    <div class="tech">
-                        <a href=<%="/tutorial/"+post.tech %>><span aria-label=<%=post.tech %> class="badge badge-dark"
-                                id=<%= post.tech %>><%= post.tech %></span>
-                        </a>
-                    </div>
-                </div>
-                <div class="description">
-                    <h1 class="title"><%=post.title %></h1>
-                </div>
+                    <div class="info">
+                        <a href=<%="/"+post.username %>> <img class="profilepic" src=<%=post.profilePic%> alt="P"></a>
+                        <div class="nameblock">
+                            <span aria-label="author name" class="author"><a
+                                    href=<%="/"+post.username %>><%= post.name %></a></span>
+                            <span aria-label="published date" class="time"><%= post.date %></span>
+                        </div>
 
-                <div class="read"><a role="button" class="btn btn-sm btn-outline-primary" href=<%=post.url%>>Read now</a></div>
+                        <div class="tech">
+                            <a href=<%="/tutorial/"+post.tech %>><span aria-label=<%=post.tech %>
+                                    class="badge badge-dark" id=<%= post.tech %>><%= post.tech %></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <h1 class="title"><%=post.title %></h1>
+                    </div>
+
+                    <div class="read"><a role="button" class="btn btn-sm btn-outline-primary" href=<%=post.url%>>Read
+                            now</a></div>
+                </div>
             </div>
-            </div>
-            
+
             <% }) %>
         </div>
         <div class="col-lg-7 col-md-12 col-sm-12 col-12 message">
