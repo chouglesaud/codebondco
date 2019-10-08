@@ -62,12 +62,22 @@
   </script>
 
   <!-- google ads -->
+  <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
   <script data-ad-client="ca-pub-2650533982969945" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <title><%= tech %></title>
 </head>
 
 <body>
-
+  <div align="left">
+      <amp-ad width="100vw" height=320
+      type="adsense"
+      data-ad-client="ca-pub-2650533982969945"
+      data-ad-slot="8274298424"
+      data-auto-format="rspv"
+      data-full-width>
+   <div overflow></div>
+ </amp-ad>
+  </div>
   <%- include('component/navbar')  %>
 
 

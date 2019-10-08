@@ -20,42 +20,48 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/styles/grid.css">
 
-    <script type = "application/ld+json" > [{
-        "@context": "http:\/\/schema.org",
-        "@type": "Organization",
-        "logo": "https://codebond.co/static/images/codebond.png",
-        "name": "codebond",
-        "url": "http:\/\/codebond.co\/",
-        "image": "https:\/\/res.cloudinary.com\/codebond\/image\/upload\/w_700,q_auto:good,f_auto\/v1569218202\/g3tneci5gmzhmkfanzzw.png",
-        "address": {
-            "addressRegion": "maharashtra",
-            "addressCountry": "india",
-            "@type": "PostalAddress"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "Technical Support",
-            "email": "codebond.cb@gmail.com",
-            "telephone": "+917387307106"
-        },
-        "sameAs": ["https:\/\/twitter.com\/codebondco", "https:\/\/facebook.com\/codebondco", "https:\/\/www.reddit.com\/user\/codebondco"]
-    }, {
-        "@context": "http:\/\/schema.org",
-        "@type": "Website",
-        "name": "codebond",
-        "url": "http:\/\/codebond.co",
-        "keywords": "Weekly Articles about JavaScript,Reactjs,Nodejs,NPM,CSS and all other things related to web development.",
-        "sameAs": ["https:\/\/twitter.com\/codebondco", "https:\/\/facebook.com\/codebondco", "https:\/\/www.reddit.com\/user\/codebondco"]
-    }, {
-        "@context": "http:\/\/schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [{
-            "@type": "ListItem",
-            "position": 1,
+    <script type="application/ld+json">
+        [{
+            "@context": "http:\/\/schema.org",
+            "@type": "Organization",
+            "logo": "https://codebond.co/static/images/codebond.png",
             "name": "codebond",
-            "item": "http:\/\/codebond.co"
+            "url": "http:\/\/codebond.co\/",
+            "image": "https:\/\/res.cloudinary.com\/codebond\/image\/upload\/w_700,q_auto:good,f_auto\/v1569218202\/g3tneci5gmzhmkfanzzw.png",
+            "address": {
+                "addressRegion": "maharashtra",
+                "addressCountry": "india",
+                "@type": "PostalAddress"
+            },
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "Technical Support",
+                "email": "codebond.cb@gmail.com",
+                "telephone": "+917387307106"
+            },
+            "sameAs": ["https:\/\/twitter.com\/codebondco", "https:\/\/facebook.com\/codebondco",
+                "https:\/\/www.reddit.com\/user\/codebondco"
+            ]
+        }, {
+            "@context": "http:\/\/schema.org",
+            "@type": "Website",
+            "name": "codebond",
+            "url": "http:\/\/codebond.co",
+            "keywords": "Weekly Articles about JavaScript,Reactjs,Nodejs,NPM,CSS and all other things related to web development.",
+            "sameAs": ["https:\/\/twitter.com\/codebondco", "https:\/\/facebook.com\/codebondco",
+                "https:\/\/www.reddit.com\/user\/codebondco"
+            ]
+        }, {
+            "@context": "http:\/\/schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "codebond",
+                "item": "http:\/\/codebond.co"
+            }]
         }]
-    }] </script>
+    </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147948621-1"></script>
     <script>
@@ -69,7 +75,9 @@
     </script>
 
     <!-- google ads -->
-    <script data-ad-client="ca-pub-2650533982969945" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <script data-ad-client="ca-pub-2650533982969945" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     <title><%=data.title %></title>
     <style>
@@ -85,7 +93,12 @@
 </head>
 
 <body>
-
+    <div align="left">
+        <amp-ad width="100vw" height=320 type="adsense" data-ad-client="ca-pub-2650533982969945"
+            data-ad-slot="8274298424" data-auto-format="rspv" data-full-width>
+            <div overflow></div>
+        </amp-ad>
+    </div>
     <%- include('component/navbar')  %>
 
     <div class="rootcontainer">
@@ -111,21 +124,21 @@
         let title = document.querySelector(".heading").textContent.replace(/\s/g, "%20");
         let fullURL = window.location;
         let newURL = fullURL.href
-        let url   = newURL.replace(/\//g, "%2F").replace(/:/g,"3A");
+        let url = newURL.replace(/\//g, "%2F").replace(/:/g, "3A");
 
-         $('#twitter-link').attr({
+        $('#twitter-link').attr({
             href: `https://twitter.com/intent/tweet?text=${title}${window.location.href}&url=${url}`,
-            target:"_blank",
-            rel:"noopener noreferrer",
+            target: "_blank",
+            rel: "noopener noreferrer",
             title: "twitter"
         });
         $('#facebook-link').attr({
-            href:`https://www.facebook.com/sharer.php?u=${window.location.href}`,
-            target:"_blank",
-            rel:"noopener noreferrer",
+            href: `https://www.facebook.com/sharer.php?u=${window.location.href}`,
+            target: "_blank",
+            rel: "noopener noreferrer",
             title: "facebook"
         });
-        
+
         console.log(`
                                                                                                                                           
                                                        dddddddd                     bbbbbbbb                                                              dddddddd
@@ -148,7 +161,7 @@
                                                                                                                                                         
         `)
         console.log(`Did you find a bug or vulnerability? if yes contact us codebond.cb@gmail.com`)
-      </script>
+    </script>
 
 </body>
 
