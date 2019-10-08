@@ -26,96 +26,104 @@
                 </div>
 
             </div>
-
+            <div class="ads">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article"
+                    data-ad-format="fluid" data-ad-client="ca-pub-2650533982969945" data-ad-slot="5400723071"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
 
             <% data.post.forEach((el,i)=>{ %>
-                <% switch(el.type){
+            <% switch(el.type){
                     case "header": %>
-                     <div class="header col-lg-12 col-md-12 col-sm-12 col-12">
-                         <% switch(el.data.level){
+            <div class="header col-lg-12 col-md-12 col-sm-12 col-12">
+                <% switch(el.data.level){
                              case 1: %>
-                                <h1><%= el.data.text %></h1>
-                          <% break;
+                <h1><%= el.data.text %></h1>
+                <% break;
                              case 2: %>
-                                <h2><%= el.data.text %></h2>
-                          <% break; 
+                <h2><%= el.data.text %></h2>
+                <% break; 
                              case 3: %>
-                                <h3><%= el.data.text %></h3>
-                          <% break; 
+                <h3><%= el.data.text %></h3>
+                <% break; 
                              case 4: %>
-                                <h4><%= el.data.text %></h4> 
-                          <% break; 
+                <h4><%= el.data.text %></h4>
+                <% break; 
                              case 5: %>
-                                <h5><%= el.data.text %></h5> 
-                          <% break; 
+                <h5><%= el.data.text %></h5>
+                <% break; 
                              case 6: %>
-                                <h6><%= el.data.text %></h6>
-                          <% break; 
-                          } %> 
-                     </div>
-                 <% break;
+                <h6><%= el.data.text %></h6>
+                <% break; 
+                          } %>
+            </div>
+            <% break;
                 
                  case "paragraph": %>
-                     <div class=" exp col-lg-12 col-md-12 col-sm-12 col-12">
-                         <p class="para"><%= el.data.text %></p>
-                     </div>
-                 <% break;
+            <div class=" exp col-lg-12 col-md-12 col-sm-12 col-12">
+                <p class="para"><%= el.data.text %></p>
+            </div>
+            <% break;
                 
                  case "image": %>
-     
-                     <div class="myimage col-lg-12 col-md-12 col-sm-12 col-12">
-                         <img src="/static/images/ph.png" data-src=<%=el.data.url%>   class="lazy img-fluid" alt="photo">
-                     </div>
-                 <% break;
+
+            <div class="myimage col-lg-12 col-md-12 col-sm-12 col-12">
+                <img src="/static/images/ph.png" data-src=<%=el.data.url%> class="lazy img-fluid" alt="photo">
+            </div>
+            <% break;
      
                  case "code": %>
-                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 code">
-<pre>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 code">
+                <pre>
 <%= el.data.code%>
 </pre>
-                </div>
-                <% break;
+            </div>
+            <% break;
      
                    case "quote": 
                      if(el.data.text.length > 0){ %>
-                 
-                     <div class="col-lg-12 col-md-12 col-sm-12 col-12 quote">
-                         <p class="para"><%= el.data.text %></p>
-                         <% if(el.data.caption) {%>
-                             <p class="text-right" style="font-size: 16px;"><%= el.data.caption %></p>
-                         <% } %>
-                     </div>
-                     <% } %>
-               <% break;
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 quote">
+                <p class="para"><%= el.data.text %></p>
+                <% if(el.data.caption) {%>
+                <p class="text-right" style="font-size: 16px;"><%= el.data.caption %></p>
+                <% } %>
+            </div>
+            <% } %>
+            <% break;
                    case "warning": %>
-             
-                     <div class="col-lg-12 col-md-12 col-sm-12 col-12 warning">
-                             <p class="para"><%= el.data.message %></p>
-                     </div>
-              <% break;
-                 case "list": %>   
-                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 list">
-                    <% if(el.data.style === "unordered") {%>
-                     <ul>
-                         <% el.data.items.forEach((element)=>{ %>
-                         <li><%= element %></li>
-                         <% }) %>
-                     </ul>
-                     <% }else{ %>
-                         <ol>
-                             <% el.data.items.forEach((element)=>{ %>
-                             <li><%= element %></li>
-                             <% }) %>
-                         </ol>
-                         <% } %>
-                 </div>
-                 <% break;
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 warning">
+                <p class="para"><%= el.data.message %></p>
+            </div>
+            <% break;
+                 case "list": %>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 list">
+                <% if(el.data.style === "unordered") {%>
+                <ul>
+                    <% el.data.items.forEach((element)=>{ %>
+                    <li><%= element %></li>
+                    <% }) %>
+                </ul>
+                <% }else{ %>
+                <ol>
+                    <% el.data.items.forEach((element)=>{ %>
+                    <li><%= element %></li>
+                    <% }) %>
+                </ol>
+                <% } %>
+            </div>
+            <% break;
                     case "embed": %>
-     
-                     <div class="col-lg-12 col-md-12 col-sm-12 col-12 embed embed-responsive embed-responsive-16by9">
-                                 <iframe  src=<%=el.data.embed %> class="shadow embed-responsive-item"  frameborder="0" allowfullscreen loading="lazy"></iframe>  
-                     </div> 
-                 <% break;
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 embed embed-responsive embed-responsive-16by9">
+                <iframe src=<%=el.data.embed %> class="shadow embed-responsive-item" frameborder="0" allowfullscreen
+                    loading="lazy"></iframe>
+            </div>
+            <% break;
                   }
              }); %>
         </div>

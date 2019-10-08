@@ -2,7 +2,6 @@
     <!-- new post -->
     <div class="row justify-content-center newpost">
         <div class="div col-lg-6 col-md-8 col-sm-12 col-12">
-            <% Res.forEach((post,i)=>{%>
             <div class="cont col-lg-12 col-md-12 col-sm-12 col-12">
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <ins class="adsbygoogle" style="display:block" data-ad-format="fluid"
@@ -11,6 +10,10 @@
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
+            </div>
+            <% Res.forEach((post,i)=>{%>
+            <div class="cont col-lg-12 col-md-12 col-sm-12 col-12">
+
                 <% if(post.img){ %>
                 <div class="image">
                     <a href=<%=post.url%>>
