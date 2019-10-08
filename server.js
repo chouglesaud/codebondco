@@ -176,7 +176,7 @@
     app.post("/:username/upload",checkUser,upload.single("image"),async(req,res)=>{
         let result      = await cloudinary.v2.uploader.upload(req.file.path)
         let splitResult = result.secure_url.split("/")
-        let newUrl      = `https://res.cloudinary.com/codebond/image/upload/w_700,q_auto:good,f_auto/${splitResult[6]}/${splitResult[7]}`
+        let newUrl      = `https://res.cloudinary.com/codebond/image/upload/${splitResult[6]}/${splitResult[7]}`
         
         User.findOneAndUpdate({_id: req.user.id},{$push: { gallery: newUrl } }).then(()=>{
             res.redirect(`/${req.user.username}/host`)
