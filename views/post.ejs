@@ -93,15 +93,16 @@
 </head>
 
 <body>
-    <div align="left">
-        <amp-ad width="100vw" height=320 type="adsense" data-ad-client="ca-pub-2650533982969945"
-            data-ad-slot="8274298424" data-auto-format="rspv" data-full-width>
-            <div overflow></div>
-        </amp-ad>
-    </div>
+   
     <%- include('component/navbar')  %>
 
     <div class="rootcontainer">
+            <div align="left">
+                    <amp-ad width="100vw" height=320 type="adsense" data-ad-client="ca-pub-2650533982969945"
+                        data-ad-slot="8274298424" data-auto-format="rspv" data-full-width>
+                        <div overflow></div>
+                    </amp-ad>
+                </div>
         <%- include('component/content')  %>
         <%- include('component/comment') %>
     </div>
