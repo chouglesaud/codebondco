@@ -270,7 +270,7 @@ exports.tmpdir = exports.tmpDir = function () {
 exports.EOL = '\n';
 
 exports.homedir = function () {
-  return '/'
+	return '/'
 };
 
 },{}],"editor.js":[function(require,module,exports) {
@@ -301,6 +301,8 @@ var _marker = _interopRequireDefault(require("@editorjs/marker"));
 var _os = require("os");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -419,7 +421,7 @@ regeneratorRuntime.mark(function _callee3() {
                 embed: {
                   class: _embed.default,
                   config: {
-                    services: {
+                    services: _defineProperty({
                       youtube: true,
                       codepen: {
                         regex: /https:\/\/codepen.io\/([^\/\?\&]*)\/pen\/([^\/\?\&]*)/,
@@ -441,7 +443,16 @@ regeneratorRuntime.mark(function _callee3() {
                           return groups.join('/embed/preview/');
                         }
                       }
-                    }
+                    }, "codesandbox", {
+                      regex: /spotify:episode:([^\/\?\&]*)/,
+                      embedUrl: 'https://open.spotify.com/embed-podcast/episode/<%= remote_id %>?height=200&theme-id=0&default-tab=css,result&embed-version=2',
+                      html: "<iframe height='200' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%; height: 200 !important;'></iframe>",
+                      height: 200,
+                      width: 600,
+                      id: function id(groups) {
+                        return groups.join('/embed/preview/');
+                      }
+                    })
                   }
                 },
                 Marker: {
@@ -736,7 +747,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33881" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35787" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
