@@ -107,8 +107,8 @@ router.post("/removepost",(req,res)=>{
        
         res.render("admin")
     }
-    function removePost(tech){
-        tech.findOneAndDelete({slug}).then(found=>{
+    // function removePost(tech){
+    //     tech.findOneAndDelete({slug}).then(found=>{
            
             Recent.findOneAndDelete({slug}).then(async()=>{
                 User.updateOne({username: postusername},{$pull: {posts: {title: title}}}).then(()=>{
@@ -118,9 +118,9 @@ router.post("/removepost",(req,res)=>{
                     console.log(err)
                 })
             })
-        })
+    //     })
        
-    }
+    // }
     
 })
 router.post("/removeuser",(req,res)=>{
