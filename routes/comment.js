@@ -7,7 +7,6 @@ const Javascript = require("../models/javascript")
 const Python     = require("../models/python")
 const Nodejs     = require("../models/nodejs")
 const Reactjs    = require("../models/reactjs")
-const Npm        = require("../models/npm")
 const Other      = require("../models/other")
 const Recent     = require("../models/recent")
 const User       = require("../models/user")
@@ -47,8 +46,6 @@ router.post("/post",async(req,res)=>{
         writecomment(Nodejs)
     }else if(tech === "reactjs"){
         writecomment(Reactjs)
-    }else if(tech === "npm"){
-        writecomment(Npm)
     }else if(tech === "css"){
         writecomment(Css)
         

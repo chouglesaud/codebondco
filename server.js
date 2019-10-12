@@ -29,7 +29,6 @@
     const Python     = require("./models/python")
     const Nodejs     = require("./models/nodejs")
     const Reactjs    = require("./models/reactjs")
-    const Npm        = require("./models/npm")
     const Other      = require("./models/other")
     const Recent     = require("./models/recent")
     const User       = require("./models/user")
@@ -143,11 +142,7 @@
                   <url>\n
                   <loc>https://codebond.co/tutorial/reactjs</loc>\n
                   <priority>0.3</priority>\n
-                  </url>\n  
-                  <url>\n
-                  <loc>https://codebond.co/tutorial/npm</loc>\n
-                  <priority>0.3</priority>\n
-                  </url>\n  
+                  </url>\n   
                   <url>\n
                   <loc>https://codebond.co/tutorial/css</loc>\n
                   <priority>0.3</priority>\n
@@ -271,8 +266,6 @@
             findPost(Nodejs)
         }else if(tech === "reactjs"){
             findPost(Reactjs)
-        }else if(tech === "npm"){
-            findPost(Npm)
         }else if(tech === "css"){
             findPost(Css)
             

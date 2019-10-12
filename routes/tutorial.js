@@ -5,7 +5,6 @@ const Javascript = require("../models/javascript")
 const Python     = require("../models/python")
 const Nodejs     = require("../models/nodejs")
 const Reactjs    = require("../models/reactjs")
-const Npm        = require("../models/npm")
 const Other      = require("../models/other")
 const globalFunction = require("../globalfunction/function")
 
@@ -22,8 +21,6 @@ router.get("/:tech/:postname",(req,res)=>{
         findPost(Nodejs)
     }else if(tech === "reactjs"){
         findPost(Reactjs)
-    }else if(tech === "npm"){
-        findPost(Npm)
     }else if(tech === "css"){
         findPost(Css)
         

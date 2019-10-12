@@ -7,7 +7,6 @@ const Javascript = require("../models/javascript")
 const Nodejs     = require("../models/nodejs")
 const Python     = require("../models/python")
 const Reactjs    = require("../models/reactjs")
-const Npm        = require("../models/npm")
 const Other      = require("../models/other")
 const Recent     = require("../models/recent")
 const User       = require("../models/user")
@@ -80,7 +79,7 @@ router.post("/authentication",async(req,res)=>{
 
 router.get("/:token/dashboard",verifyToken,async(req,res)=>{
    
-    res.render("admin",{js: await countDoc(Javascript),py: await countDoc(Python),node: await countDoc(Nodejs),react: await countDoc(Reactjs),npm: await countDoc(Npm),css: await countDoc(Css),other: await countDoc(Other),total: await countDoc(Recent),user: await countDoc(User)})
+    res.render("admin",{js: await countDoc(Javascript),py: await countDoc(Python),node: await countDoc(Nodejs),react: await countDoc(Reactjs),css: await countDoc(Css),other: await countDoc(Other),total: await countDoc(Recent),user: await countDoc(User)})
 })
 
 router.post("/removepost",(req,res)=>{
@@ -98,8 +97,6 @@ router.post("/removepost",(req,res)=>{
         removePost(Nodejs)
     }else if(tech === "reactjs"){
         removePost(Reactjs)
-    }else if(tech === "npm"){
-        removePost(Npm)
     }else if(tech === "css"){
         removePost(Css)
         
