@@ -101,7 +101,9 @@
         // robot.txt
         // sitemap.xml
         // ads.txt
-
+        app.get("/tutorial/npm/npm-bcryptjs",(req,res)=>{
+            res.redirect("/tutorial/nodejs/npm-bcryptjs")
+        })
         app.get("/ads.txt",(req,res)=>{
             res.sendFile(path.join(__dirname,"/seo/ads.txt"))
 
