@@ -3,7 +3,7 @@
     <% data.post.forEach((el,i)=>{
         if(el.type === "header"){
             if(el.data.level === 1 || el.data.level === 2){ %>
-              <a href=<%="#"+el.data.text.toLowerCase().replace(/\s/g, '')%>><%=el.data.text%></a><br>  
+              <li><a href=<%="#"+el.data.text.toLowerCase().replace(/\s/g, '')%>><%=el.data.text%></a></li>  
     <%   }
         }
     }); %>
