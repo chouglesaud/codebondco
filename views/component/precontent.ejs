@@ -3,9 +3,30 @@
         <% if(data) { %>
         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
             <!-- hero-compoent -->
-            <%- include('hero') %>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 hero" style="margin-bottom:20px;">
+                <% if(data.img){ %>
+                <div class="myimage col-lg-12 col-md-12 col-sm-12 col-12">
+                    <img src=<%=data.img%> alt="image" class="rounded img-fluid">
+                </div>
+                <% } %>
+                <h1 class="heading"><%= data.title %></h1>
+                <div class="author">
+                    <a href=<%="/"+data.username %>> <img class="profilepic" src=<%=data.profilePic%>
+                            alt="profile picture"></a>
+                    <a href=<%="/"+data.username%>> <span style="font-size: 14px;color: #212529;">
+                            <%= data.name %></span> </a>
+                    <span class="space"></span>
+                    <span style="font-size: 13px;color: #54595d;"><%= data.date %></span>
+                    <span class="space"></span>
+                    <span style="font-size: 13px;color: #54595d;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="#afb4b6" d="M24 1h-24v16.981h4v5.019l7-5.019h13z" /></svg>
+                        <%= data.comment.length %></span>
+                </div>
+            
+            </div>
 
-            <%- include('tableofcontent') %>
+           
 
 
 
