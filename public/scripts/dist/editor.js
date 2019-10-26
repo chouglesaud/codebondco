@@ -441,9 +441,17 @@ regeneratorRuntime.mark(function _callee3() {
                           return groups.join('/embed/preview/');
                         }
                       },
+                      //   spotify: {
+                      //     regex   : /https:\/\/open.spotify.com\/episode\/([^\/\?\&]*)/,
+                      //     embedUrl: 'https://open.spotify.com/embed-podcast/episode/<%= remote_id %>?height=200&theme-id=0&default-tab=css,result&embed-version=2',
+                      //     html    : "<iframe height='200' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%; height: 200 !important;'></iframe>",
+                      //     height  : 200,
+                      //     width   : 600,
+                      //     id      : (groups) => groups.join('/embed/preview/')
+                      // },
                       pythonsandbox: {
                         regex: /https:\/\/repl.it\/([^\/\?\&]*)\/([^\/\?\&]*)/,
-                        embedUrl: 'https://repl.it/<%= remote_id %>?lite=1&outputonly=1',
+                        embedUrl: 'https://repl.it/<%= remote_id %>?lite=true',
                         html: "<iframe height='300' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
                         height: 200,
                         width: 600,
@@ -746,7 +754,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36287" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36323" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
