@@ -10,6 +10,8 @@ Allow     : /
 User-agent: Mediapartners-Google
 Allow     : /
 
+User-agent: Twitterbot
+Allow     : /
 
 User-agent: AdsBot-Google
 Allow     : /
