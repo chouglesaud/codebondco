@@ -96,9 +96,11 @@
    
     <%- include('component/navbar')  %>
 
-    <div class="rootcontainer">
+    <div class="container-fluid">
         <%- include('component/content')  %>
-        <%- include('component/comment') %>
+        <div class="row justify-content-center">
+            <%- include('component/comment') %>
+        </div>
     </div>
 
 
