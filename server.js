@@ -171,7 +171,7 @@ app.get("/sitemap.xml", async (req, res) => {
 });
 
 // profile
-app.get("/:username", (req, res) => {
+app.get("/:username", async(req, res) => {
     const username = req.params.username;
     let foundUser = await User.find(username);
     if (foundUser) {
