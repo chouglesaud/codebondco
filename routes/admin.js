@@ -81,7 +81,7 @@ router.post("/authentication",async(req,res)=>{
 
 router.get("/:token/dashboard",verifyToken,async(req,res)=>{
    
-    res.render("admin",{js: await countDoc(Javascript),py: await countDoc(Python),node: await countDoc(Nodejs),react: await countDoc(Reactjs),css: await countDoc(Css),other: await countDoc(Other),total: await countDoc(Recent),user: await countDoc(User)})
+    res.render("admin",{js: await countDoc(JavascriptModel),py: await countDoc(PythonModel),node: await countDoc(NodejsModel),react: await countDoc(ReactjsModel),css: await countDoc(CssModel),other: await countDoc(OtherModel),total: await countDoc(RecentModel),user: await countDoc(UserModel)})
 })
 
 router.post("/removepost",(req,res)=>{
