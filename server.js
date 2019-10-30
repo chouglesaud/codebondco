@@ -36,9 +36,9 @@ const UserModel = require("./models/user");
 const Postclass = require("./globalfunction/Post");
 const Userclass = require("./globalfunction/User").User;
 const Updateclass = require("./globalfunction/User").Update;
-const User = new Userclass(),
-  Update = new Updateclass(),
-  Post = new Postclass()
+const User   = new Userclass
+const Update = new Updateclass
+const Post   = new Postclass
 
 
 if (typeof localStorage === "undefined" || localStorage === null) {
