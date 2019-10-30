@@ -24,14 +24,14 @@
     const publish       = require("./routes/publish")
     const admin         = require("./routes/admin")
 
-    const Css        = require("./models/css")
-    const Javascript = require("./models/javascript")
-    const Python     = require("./models/python")
-    const Nodejs     = require("./models/nodejs")
-    const Reactjs    = require("./models/reactjs")
-    const Other      = require("./models/other")
-    const Recent     = require("./models/recent")
-    const User       = require("./models/user")
+    const CssModel        = require("./models/css")
+    const JavascriptModel = require("./models/javascript")
+    const PythonModel     = require("./models/python")
+    const NodejsModel     = require("./models/nodejs")
+    const ReactjsModel    = require("./models/reactjs")
+    const OtherModel      = require("./models/other")
+    const RecentModel     = require("./models/recent")
+    const UserModel       = require("./models/user")
 
 
     
@@ -72,7 +72,7 @@
     const checkUser = (req,res,next)=>{
         if(!req.user){
             localStorage.setItem('redirect', req.url);
-            Recent.find({}).sort({_id:-1}).then(found=>{
+            RecentModel.find({}).sort({_id:-1}).then(found=>{
                 res.render("home",{Res: found,user: req.user})
             })
         }else{
@@ -91,7 +91,7 @@
     // homepage
     app.get("/",checkUser,async(req,res)=>{
     
-        Recent.find({}).sort({_id:-1}).then(found=>{
+        RecentModel.find({}).sort({_id:-1}).then(found=>{
             res.render("home",{Res: found,user: req.user})
         })
 
@@ -113,7 +113,7 @@
             res.sendFile(path.join(__dirname,"/seo/robot.txt"))
         })
         app.get("/sitemap.xml",async(req,res)=>{
-            Recent.find({}).then(async(found)=>{
+            RecentModel.find({}).then(async(found)=>{
                 let  xml =  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
                  
                  await found.reverse().forEach((data)=>{
@@ -175,7 +175,7 @@
         let splitResult = result.secure_url.split("/")
         let newUrl      = `https://res.cloudinary.com/codebond/image/upload/${splitResult[6]}/${splitResult[7]}`
         
-        User.findOneAndUpdate({_id: req.user.id},{$push: { gallery: newUrl } }).then(()=>{
+        UserModel.findOneAndUpdate({_id: req.user.id},{$push: { gallery: newUrl } }).then(()=>{
             res.redirect(`/${req.user.username}/host`)
         })
 
@@ -187,7 +187,7 @@
         let splitResult = result.secure_url.split("/")
   console.log(result) 
      let newProfilepic = `https://res.cloudinary.com/codebond/image/upload/w_120,h_120,c_thumb,g_face/${splitResult[6]}/${splitResult[7]}`
-        User.findOneAndUpdate({_id: req.user.id},{profilePic:  newProfilepic}).then(()=>{
+        UserModel.findOneAndUpdate({_id: req.user.id},{profilePic:  newProfilepic}).then(()=>{
             res.redirect(`/${req.user.username}/setting`)
         })
 
@@ -196,7 +196,7 @@
      // profile
      app.get("/:username",(req,res)=>{
         const username = req.params.username;
-        User.findOne({username: username}).then((found)=>{
+        UserModel.findOne({username: username}).then((found)=>{
             if(found){
                 res.render("profile",{user: req.user,
                     found: found})
@@ -222,7 +222,7 @@
         }
         
 
-        User.findByIdAndUpdate({_id: req.user.id},{instagram,github,twitter,name,bio: req.body.bio}).then(found=>{
+        UserModel.findByIdAndUpdate({_id: req.user.id},{instagram,github,twitter,name,bio: req.body.bio}).then(found=>{
             res.redirect(`/${req.user.username}/setting`)
         }).catch(err=>{
             console.log(err)
@@ -235,13 +235,13 @@
         res.render("write",{user: req.user})
     })
     app.post("/post/reload",checkUser,(req,res)=>{
-        User.findOne({username: req.user.username}).then((found)=>{
+        UserModel.findOne({username: req.user.username}).then((found)=>{
             res.json(found.writing)
         })
     })
     app.post("/post/preview",checkUser,async(req,res)=>{
 
-       User.findOneAndUpdate({username: req.user.username},{writing: req.body},{new: true}).then((found)=>{
+       UserModel.findOneAndUpdate({username: req.user.username},{writing: req.body},{new: true}).then((found)=>{
            res.json(found.writing)
        })
     })
@@ -261,18 +261,18 @@
 
 
         if(tech === "javascript"){
-            findPost(Javascript)
+            findPost(JavascriptModel)
         }else if(tech === "python"){
-            findPost(Python)
+            findPost(PythonModel)
         }else if(tech === "nodejs"){
-            findPost(Nodejs)
+            findPost(NodejsModel)
         }else if(tech === "reactjs"){
-            findPost(Reactjs)
+            findPost(ReactjsModel)
         }else if(tech === "css"){
-            findPost(Css)
+            findPost(CssModel)
             
         }else if(tech === "other"){
-            findPost(Other)
+            findPost(OtherModel)
         }else{
             
             res.render("error",{user: req.user,error: globalFunction.error404,nouser: false})
@@ -296,7 +296,7 @@
         let slug = req.body.slug
         
         
-        Recent.findOne({slug: slug}).then((found)=>{
+        RecentModel.findOne({slug: slug}).then((found)=>{
             if(found){
                 res.json({confirmation: true})
             }else{

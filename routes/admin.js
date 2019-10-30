@@ -2,16 +2,18 @@ const express    = require("express")
 const path       = require("path")
 const fs         = require("fs")
 const router     = express.Router();
-const Css        = require("../models/css")
-const Javascript = require("../models/javascript")
-const Nodejs     = require("../models/nodejs")
-const Python     = require("../models/python")
-const Reactjs    = require("../models/reactjs")
-const Other      = require("../models/other")
-const Recent     = require("../models/recent")
-const User       = require("../models/user")
+
+const CssModel       = require("../models/css")
+const JavascriptModel = require("../models/javascript")
+const NodejsModel     = require("../models/nodejs")
+const PythonModel     = require("../models/python")
+const ReactjsModel    = require("../models/reactjs")
+const OtherModel      = require("../models/other")
+const RecentModel     = require("../models/recent")
+const UserModel       = require("../models/user")
+const AdminModel      = require("../models/adminschema")
+
 const nodemailer = require("nodemailer")
-const Admin      = require("../models/adminschema")
 const bcrypt     = require("bcryptjs")
 const jwt        = require("jsonwebtoken")
 const verifyToken= require("../services/verifytoken")
@@ -47,7 +49,7 @@ router.get("/login",async(req,res)=>{
 })
 
 router.post("/authentication",async(req,res)=>{
-    Admin.findOne({email: req.body.email}).then((found)=>{
+    AdminModel.findOne({email: req.body.email}).then((found)=>{
         if(found){
             bcrypt.compare(req.body.password,found.password).then(async(match)=>{
                 if(match){
@@ -90,18 +92,18 @@ router.post("/removepost",(req,res)=>{
     const postusername = req.body.postusername
 
     if(tech === "javascript"){
-        removePost(Javascript)
+        removePost(JavascriptModel)
     }else if(tech === "python"){
-        removePost(Python)
+        removePost(PythonModel)
     }else if(tech === "nodejs"){
-        removePost(Nodejs)
+        removePost(NodejsModel)
     }else if(tech === "reactjs"){
-        removePost(Reactjs)
+        removePost(ReactjsModel)
     }else if(tech === "css"){
-        removePost(Css)
+        removePost(CssModel)
         
     }else if(tech === "other"){
-        removePost(Other)
+        removePost(OtherModel)
         
     }else{
        
@@ -110,8 +112,8 @@ router.post("/removepost",(req,res)=>{
     function removePost(tech){
         tech.findOneAndDelete({slug}).then(found=>{
            
-            Recent.findOneAndDelete({slug}).then(async()=>{
-                User.updateOne({username: postusername},{$pull: {posts: {title: title}}}).then(()=>{
+            RecentModel.findOneAndDelete({slug}).then(async()=>{
+                UserModel.updateOne({username: postusername},{$pull: {posts: {title: title}}}).then(()=>{
                     res.json({success: true})
                     
                 }).catch((err)=>{
@@ -124,7 +126,7 @@ router.post("/removepost",(req,res)=>{
     
 })
 router.post("/removeuser",(req,res)=>{
-    User.findOneAndDelete({username: req.body.username}).then(async()=>{
+    UserModel.findOneAndDelete({username: req.body.username}).then(async()=>{
         res.json({success: true})
     })
 })

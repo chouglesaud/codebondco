@@ -1,6 +1,6 @@
 const passport       = require("passport")
 const googleStrategy = require("passport-google-oauth20")
-const User           = require("../models/user")
+const UserModel           = require("../models/user")
 
 
 passport.serializeUser((user,done)=>{
@@ -8,7 +8,7 @@ passport.serializeUser((user,done)=>{
 })
 
 passport.deserializeUser((id,done)=>{
-    User.findById(id).then((user)=>{
+    UserModel.findById(id).then((user)=>{
         done(null,user)
     })
 })
@@ -27,7 +27,7 @@ passport.use(
 
            
 
-            User.findOne({googleId: data.sub}).then((currentUser)=>{
+            UserModel.findOne({googleId: data.sub}).then((currentUser)=>{
                 if(currentUser){
                     // user already logged in
                     done(null,currentUser)
@@ -36,7 +36,7 @@ passport.use(
                     let   Split    = data.email.split("@")
                     const username = Split[0]
                    
-                    new User({
+                    new UserModel({
                         googleId  : data.sub,
                         name      : data.name,
                         email     : data.email,

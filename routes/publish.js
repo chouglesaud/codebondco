@@ -3,14 +3,16 @@ const path       = require("path")
 const fs         = require("fs")
 const slugger    = require("slugify")
 const router     = express.Router();
-const Css        = require("../models/css")
-const Python     = require("../models/python")
-const Javascript = require("../models/javascript")
-const Nodejs     = require("../models/nodejs")
-const Reactjs    = require("../models/reactjs")
-const Other      = require("../models/other")
-const Recent     = require("../models/recent")
-const User       = require("../models/user")
+
+const CssModel        = require("../models/css")
+const JavascriptModel = require("../models/javascript")
+const PythonModel     = require("../models/python")
+const NodejsModel     = require("../models/nodejs")
+const ReactjsModel    = require("../models/reactjs")
+const OtherModel      = require("../models/other")
+const RecentModel     = require("../models/recent")
+const UserModel       = require("../models/user")
+
 const globalFunction = require("../globalfunction/function")
 
 
@@ -61,18 +63,18 @@ router.post("/post",async(req,res)=>{
 
 
     if(tech === "javascript"){
-        wirtePost(Javascript)
+        wirtePost(JavascriptModel)
     }else if(tech === "python"){
-        wirtePost(Python)
+        wirtePost(PythonModel)
     }else if(tech === "nodejs"){
-        wirtePost(Nodejs)
+        wirtePost(NodejsModel)
     }else if(tech === "reactjs"){
-        wirtePost(Reactjs)
+        wirtePost(ReactjsModel)
     }else if(tech === "css"){
-        wirtePost(Css)
+        wirtePost(CssModel)
         
     }else if(tech === "other"){
-        wirtePost(Other)
+        wirtePost(OtherModel)
         
     }else{
        
@@ -81,9 +83,9 @@ router.post("/post",async(req,res)=>{
     function wirtePost(tech){
         new tech(fullNewPost).save()
     }
-   await new Recent(overview).save()  // adding in recent collection
+   await new RecentModel(overview).save()  // adding in recent collection
 
-   await User.findOneAndUpdate({ _id: req.user.id },{ $push: { posts: userPost } }).then(()=>{
+   await UserModel.findOneAndUpdate({ _id: req.user.id },{ $push: { posts: userPost } }).then(()=>{
        res.json({done: true})
    })
 

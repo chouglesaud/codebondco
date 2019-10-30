@@ -1,15 +1,16 @@
-const express    = require("express")
-const path       = require("path")
-const fs         = require("fs")
-const router     = express.Router();
-const Css        = require("../models/css")
-const Javascript = require("../models/javascript")
-const Python     = require("../models/python")
-const Nodejs     = require("../models/nodejs")
-const Reactjs    = require("../models/reactjs")
-const Other      = require("../models/other")
-const Recent     = require("../models/recent")
-const User       = require("../models/user")
+const express         = require("express")
+const path            = require("path")
+const fs              = require("fs")
+const router          = express.Router();
+
+const CssModel        = require("../models/css")
+const JavascriptModel = require("../models/javascript")
+const PythonModel     = require("../models/python")
+const NodejsModel     = require("../models/nodejs")
+const ReactjsModel    = require("../models/reactjs")
+const OtherModel      = require("../models/other")
+const RecentModel     = require("../models/recent")
+const UserModel       = require("../models/user")
 
 
 router.post("/post",async(req,res)=>{
@@ -39,18 +40,18 @@ router.post("/post",async(req,res)=>{
     }
 
     if(tech === "javascript"){
-        writecomment(Javascript)
+        writecomment(JavascriptModel)
     }else if(tech === "python"){
-        writecomment(Python)   
+        writecomment(PythonModel)   
     }else if(tech === "nodejs"){
-        writecomment(Nodejs)
+        writecomment(NodejsModel)
     }else if(tech === "reactjs"){
-        writecomment(Reactjs)
+        writecomment(ReactjsModel)
     }else if(tech === "css"){
-        writecomment(Css)
+        writecomment(CssModel)
         
     }else{
-        writecomment(Other)
+        writecomment(OtherModel)
     }
     function writecomment(category){
         category.findOneAndUpdate({slug: newSlug},{ $push: { comment:  mycomment } }).then(()=>{

@@ -1,11 +1,15 @@
 const express    = require("express")
 const router     = express.Router();
-const Css        = require("../models/css")
-const Javascript = require("../models/javascript")
-const Python     = require("../models/python")
-const Nodejs     = require("../models/nodejs")
-const Reactjs    = require("../models/reactjs")
-const Other      = require("../models/other")
+
+const CssModel        = require("../models/css")
+const JavascriptModel = require("../models/javascript")
+const PythonModel     = require("../models/python")
+const NodejsModel     = require("../models/nodejs")
+const ReactjsModel    = require("../models/reactjs")
+const OtherModel      = require("../models/other")
+const RecentModel     = require("../models/recent")
+const UserModel       = require("../models/user")
+
 const globalFunction = require("../globalfunction/function")
 
 router.get("/:tech/:postname",(req,res)=>{
@@ -14,18 +18,18 @@ router.get("/:tech/:postname",(req,res)=>{
     let slug = req.params.postname;
   
     if(tech === "javascript"){
-        findPost(Javascript)
+        findPost(JavascriptModel)
     }else if(tech === "python"){
-        findPost(Python)
+        findPost(PythonModel)
     }else if(tech === "nodejs"){
-        findPost(Nodejs)
+        findPost(NodejsModel)
     }else if(tech === "reactjs"){
-        findPost(Reactjs)
+        findPost(ReactjsModel)
     }else if(tech === "css"){
-        findPost(Css)
+        findPost(CssModel)
         
     }else if(tech === "other"){
-        findPost(Other)
+        findPost(OtherModel)
         
     }else{
        
