@@ -66,7 +66,7 @@ router.post("/post",async(req,res)=>{
 
    switch (tech) {
     case "javascript": 
-        res.json({done: Post.write(JavascriptModel,fullNewPost,overview,userPost,req.user.id)})
+        res.json({done: Post.wirte(JavascriptModel,fullNewPost,overview,userPost,req.user.id)})
         break;
     case "python": 
         res.json({done: Post.write(PythonModel,fullNewPost,overview,userPost,req.user.id)})
