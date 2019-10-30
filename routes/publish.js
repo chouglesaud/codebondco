@@ -1,6 +1,4 @@
 const express    = require("express")
-const path       = require("path")
-const fs         = require("fs")
 const slugger    = require("slugify")
 const router     = express.Router();
 
@@ -10,10 +8,11 @@ const PythonModel     = require("../models/python")
 const NodejsModel     = require("../models/nodejs")
 const ReactjsModel    = require("../models/reactjs")
 const OtherModel      = require("../models/other")
-const RecentModel     = require("../models/recent")
-const UserModel       = require("../models/user")
+
 
 const globalFunction = require("../globalfunction/function")
+const Postclass      = require("../globalfunction/Post")
+const Post           = new Postclass
 
 
 
@@ -62,33 +61,33 @@ router.post("/post",async(req,res)=>{
    }
 
 
-    if(tech === "javascript"){
-        wirtePost(JavascriptModel)
-    }else if(tech === "python"){
-        wirtePost(PythonModel)
-    }else if(tech === "nodejs"){
-        wirtePost(NodejsModel)
-    }else if(tech === "reactjs"){
-        wirtePost(ReactjsModel)
-    }else if(tech === "css"){
-        wirtePost(CssModel)
-        
-    }else if(tech === "other"){
-        wirtePost(OtherModel)
-        
-    }else{
-       
-        res.render("error",{user: req.user,error: globalFunction.error404,nouser: false})
-    }
-    function wirtePost(tech){
-        new tech(fullNewPost).save()
-    }
-   await new RecentModel(overview).save()  // adding in recent collection
+  
 
-   await UserModel.findOneAndUpdate({ _id: req.user.id },{ $push: { posts: userPost } }).then(()=>{
-       res.json({done: true})
-   })
 
+   switch (tech) {
+    case "javascript": 
+        res.json({done: Post.write(JavascriptModel,fullNewPost,overview,userPost,req.user.id)})
+        break;
+    case "python": 
+        res.json({done: Post.write(PythonModel,fullNewPost,overview,userPost,req.user.id)})
+        break;
+    case "nodejs": 
+        res.json({done: Post.write(NodejsModel,fullNewPost,overview,userPost,req.user.id)})
+        break;
+    case "reactjs": 
+        res.json({done: Post.write(ReactjsModel,fullNewPost,overview,userPost,req.user.id)})
+        break;
+    case "css": 
+        res.json({done: Post.write(CssModel,fullNewPost,overview,userPost,req.user.id)})
+         break;
+    case "other": 
+        
+        res.json({done: Post.write(OtherModel,fullNewPost,overview,userPost,req.user.id)})
+        break;        
+    default: 
+        res.render("error",{user: req.user,error:globalFunction.error404,nouser: false})
+        break;
+}
    
 })
 
