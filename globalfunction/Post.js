@@ -32,7 +32,7 @@ class Post {
 			.catch(err => console.log(err))
 	}
 	async preview(_id, updateObj) {
-		await User.findByIdAndUpdate(
+		await UserModel.findByIdAndUpdate(
 			{ _id },
 			{ writing: updateObj.preview },
 			{ new: true }
