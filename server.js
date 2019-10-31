@@ -250,7 +250,7 @@ app.post("/post/reload", checkUser, async(req, res) => {
 
 });
 app.post("/post/preview", checkUser, async (req, res) => {
- res.json(await Update.preview(req.user.id, { preview: req.body }));
+ res.json(await Post.preview(req.user.id, { preview: req.body }));
 });
 
 app.get("/:username/preview", checkUser, (req, res) => {
