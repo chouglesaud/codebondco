@@ -12,11 +12,11 @@ const OtherModel      = require("../models/other")
 
 const globalFunction = require("../globalfunction/function")
 const Postclass      = require("../globalfunction/Post")
-const Post           = new Postclass
 
 
 
 router.post("/post",async(req,res)=>{
+    const Post = new Postclass
     const tech = req.body.tech
     let   slug = slugger(req.body.title,{
         replacement: '-',
@@ -59,10 +59,6 @@ router.post("/post",async(req,res)=>{
         username: req.user.username,
        slug
    }
-
-
-  
-
 
    switch (tech) {
     case "javascript": 
