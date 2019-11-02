@@ -19,7 +19,7 @@ const UserModel = require("../models/user")
 
 class Post {
 	constructor() {}
-	async wirte(tech, fullNewPost, overView, userPost, userId) {
+	async write(tech, fullNewPost, overView, userPost, userId) {
 		await new tech(fullNewPost).save()
 		await new RecentModel(overView).save()
 		await UserModel.findOneAndUpdate(
