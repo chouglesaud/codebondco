@@ -62,23 +62,23 @@ router.post("/post",async(req,res)=>{
 
    switch (tech) {
     case "javascript": 
-        res.json({done: Post.wirte(JavascriptModel,fullNewPost,overview,userPost,req.user.id)})
+        res.json({done: await Post.wirte(JavascriptModel,fullNewPost,overview,userPost,req.user.id)})
         break;
     case "python": 
-        res.json({done: Post.write(PythonModel,fullNewPost,overview,userPost,req.user.id)})
+        res.json({done: await Post.write(PythonModel,fullNewPost,overview,userPost,req.user.id)})
         break;
     case "nodejs": 
-        res.json({done: Post.write(NodejsModel,fullNewPost,overview,userPost,req.user.id)})
+        res.json({done: await Post.write(NodejsModel,fullNewPost,overview,userPost,req.user.id)})
         break;
     case "reactjs": 
-        res.json({done: Post.write(ReactjsModel,fullNewPost,overview,userPost,req.user.id)})
+        res.json({done: await Post.write(ReactjsModel,fullNewPost,overview,userPost,req.user.id)})
         break;
     case "css": 
-        res.json({done: Post.write(CssModel,fullNewPost,overview,userPost,req.user.id)})
+        res.json({done: await Post.write(CssModel,fullNewPost,overview,userPost,req.user.id)})
          break;
     case "other": 
         
-        res.json({done: Post.write(OtherModel,fullNewPost,overview,userPost,req.user.id)})
+        res.json({done: await Post.write(OtherModel,fullNewPost,overview,userPost,req.user.id)})
         break;        
     default: 
         res.render("error",{user: req.user,error:globalFunction.error404,nouser: false})
