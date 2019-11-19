@@ -69,9 +69,10 @@ mongoose
     console.log(err);
   });
 
+/* setting up cookie */
 app.use(
   cookieSession({
-    maxAge: 48 * 60 * 60 * 1000,
+    maxAge: 168 * 60 * 60 * 1000,
     keys: [process.env.sessionKey]
   })
 );
