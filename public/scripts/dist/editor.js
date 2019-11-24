@@ -302,10 +302,6 @@ var _os = require("os");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 var button = document.querySelector(".publishbtn"); // let featureImage = document.querySelector("#feature-image")
 
 var imageUrl = document.querySelector("#image-url");
@@ -320,21 +316,17 @@ var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', '
 var date = new Date();
 var fulldate = "".concat(month[date.getMonth()], " ").concat(date.getDate(), ", ").concat(date.getFullYear());
 var techNumber, editor, obj, rawObj, titleList;
-clear.addEventListener('click',
-/*#__PURE__*/
-_asyncToGenerator(
-/*#__PURE__*/
-regeneratorRuntime.mark(function _callee() {
+clear.addEventListener('click', function _callee() {
   var decision;
-  return regeneratorRuntime.wrap(function _callee$(_context) {
+  return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return swal("Are you sure?", {
+          return regeneratorRuntime.awrap(swal("Are you sure?", {
             dangerMode: true,
             buttons: ["No", "Yes"]
-          });
+          }));
 
         case 2:
           decision = _context.sent;
@@ -351,43 +343,29 @@ regeneratorRuntime.mark(function _callee() {
           return _context.stop();
       }
     }
-  }, _callee);
-})));
-window.addEventListener("load",
-/*#__PURE__*/
-_asyncToGenerator(
-/*#__PURE__*/
-regeneratorRuntime.mark(function _callee3() {
-  return regeneratorRuntime.wrap(function _callee3$(_context3) {
+  });
+});
+window.addEventListener("load", function _callee3() {
+  return regeneratorRuntime.async(function _callee3$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
           _context3.next = 2;
-          return axios.post("/post/reload").then(
-          /*#__PURE__*/
-          function () {
-            var _ref3 = _asyncToGenerator(
-            /*#__PURE__*/
-            regeneratorRuntime.mark(function _callee2(res) {
-              return regeneratorRuntime.wrap(function _callee2$(_context2) {
-                while (1) {
-                  switch (_context2.prev = _context2.next) {
-                    case 0:
-                      _context2.next = 2;
-                      return localStorage.setItem("post", JSON.stringify(res.data));
+          return regeneratorRuntime.awrap(axios.post("/post/reload").then(function _callee2(res) {
+            return regeneratorRuntime.async(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    _context2.next = 2;
+                    return regeneratorRuntime.awrap(localStorage.setItem("post", JSON.stringify(res.data)));
 
-                    case 2:
-                    case "end":
-                      return _context2.stop();
-                  }
+                  case 2:
+                  case "end":
+                    return _context2.stop();
                 }
-              }, _callee2);
-            }));
-
-            return function (_x) {
-              return _ref3.apply(this, arguments);
-            };
-          }()).then(function () {
+              }
+            });
+          }).then(function () {
             if (localStorage.getItem("post") !== null) {
               rawObj = localStorage.getItem("post");
               obj = JSON.parse(rawObj);
@@ -441,14 +419,6 @@ regeneratorRuntime.mark(function _callee3() {
                           return groups.join('/embed/preview/');
                         }
                       },
-                      //   spotify: {
-                      //     regex   : /https:\/\/open.spotify.com\/episode\/([^\/\?\&]*)/,
-                      //     embedUrl: 'https://open.spotify.com/embed-podcast/episode/<%= remote_id %>?height=200&theme-id=0&default-tab=css,result&embed-version=2',
-                      //     html    : "<iframe height='200' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%; height: 200 !important;'></iframe>",
-                      //     height  : 200,
-                      //     width   : 600,
-                      //     id      : (groups) => groups.join('/embed/preview/')
-                      // },
                       pythonsandbox: {
                         regex: /https:\/\/repl.it\/([^\/\?\&]*)\/([^\/\?\&]*)/,
                         embedUrl: 'https://repl.it/<%= remote_id %>?lite=true',
@@ -458,7 +428,15 @@ regeneratorRuntime.mark(function _callee3() {
                         id: function id(groups) {
                           return groups.join('/');
                         }
-                      }
+                      } //   spotify: {
+                      //     regex   : /https:\/\/open.spotify.com\/episode\/([^\/\?\&]*)/,
+                      //     embedUrl: 'https://open.spotify.com/embed-podcast/episode/<%= remote_id %>?height=200&theme-id=0&default-tab=css,result&embed-version=2',
+                      //     html    : "<iframe height='200' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%; height: 200 !important;'></iframe>",
+                      //     height  : 200,
+                      //     width   : 600,
+                      //     id      : (groups) => groups.join('/embed/preview/')
+                      // },
+
                     }
                   }
                 },
@@ -530,15 +508,15 @@ regeneratorRuntime.mark(function _callee3() {
                 return true;
               }
             });
-          });
+          }));
 
         case 2:
         case "end":
           return _context3.stop();
       }
     }
-  }, _callee3);
-})));
+  });
+});
 title.addEventListener("focus", function () {
   save.textContent = "Save";
   button.setAttribute("disabled", "disabled");
@@ -556,160 +534,142 @@ imageUrl.addEventListener("focus", function (e) {
 button.addEventListener("click", varification);
 save.addEventListener("click", preview);
 
-function preview(_x2) {
-  return _preview.apply(this, arguments);
+function preview(e) {
+  var newTechNumber, outputData, content, count, slug, hero1;
+  return regeneratorRuntime.async(function preview$(_context4) {
+    while (1) {
+      switch (_context4.prev = _context4.next) {
+        case 0:
+          newTechNumber = techNumber;
+          _context4.next = 3;
+          return regeneratorRuntime.awrap(editor.save());
+
+        case 3:
+          outputData = _context4.sent;
+          content = outputData.blocks;
+          count = content.length;
+          slug = title.value.toLowerCase().replace(/\ /g, "-");
+          previewbtn.removeAttribute("disabled");
+          save.textContent = "Saving";
+          _context4.next = 11;
+          return regeneratorRuntime.awrap({
+            date: fulldate,
+            title: title.value,
+            img: imageUrl.value,
+            techNumber: newTechNumber,
+            savedData: outputData,
+            tech: tech,
+            content: content
+          });
+
+        case 11:
+          hero1 = _context4.sent;
+          axios.post("/post/preview", hero1).then(function (res) {
+            button.removeAttribute("disabled");
+            save.textContent = "Saved";
+            localStorage.setItem("post", JSON.stringify(res.data));
+          });
+
+        case 13:
+        case "end":
+          return _context4.stop();
+      }
+    }
+  });
 }
 
-function _preview() {
-  _preview = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee4(e) {
-    var newTechNumber, outputData, content, count, slug, hero1;
-    return regeneratorRuntime.wrap(function _callee4$(_context4) {
-      while (1) {
-        switch (_context4.prev = _context4.next) {
-          case 0:
-            newTechNumber = techNumber;
-            _context4.next = 3;
-            return editor.save();
+function varification(e) {
+  var outputData, content, score, slug, decision, hero;
+  return regeneratorRuntime.async(function varification$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          _context5.next = 2;
+          return regeneratorRuntime.awrap(editor.save());
 
-          case 3:
-            outputData = _context4.sent;
-            content = outputData.blocks;
-            count = content.length;
-            slug = title.value.toLowerCase().replace(/\ /g, "-");
-            previewbtn.removeAttribute("disabled");
-            save.textContent = "Saving";
-            _context4.next = 11;
-            return {
+        case 2:
+          outputData = _context5.sent;
+          content = outputData.blocks;
+          score = 0;
+          slug = title.value.toLowerCase().replace(/\ /g, "-");
+          _context5.next = 8;
+          return regeneratorRuntime.awrap(axios.post("/confirm", {
+            slug: slug
+          }).then(function (res) {
+            if (res.data.confirmation) {
+              swal("title already exist.", {
+                buttons: "Ok got it !"
+              });
+            } else {
+              score++;
+            }
+          }));
+
+        case 8:
+          if (title.value === "") {
+            swal("title is empty", {
+              buttons: "Ok got it !"
+            });
+          } else {
+            score++;
+          }
+
+          if (tech === "technology") {
+            swal("please select technology", {
+              buttons: "Ok got it !"
+            });
+          } else {
+            score++;
+          }
+
+          if (title.value.length < 5) {
+            swal("title is too short", {
+              buttons: "Ok got it !"
+            });
+          } else {
+            score++;
+          }
+
+          if (content.length < 7) {
+            swal("Content is too short.", {
+              buttons: "Ok, got it !"
+            });
+          } else {
+            score++;
+          }
+
+          if (!(score === 5)) {
+            _context5.next = 17;
+            break;
+          }
+
+          _context5.next = 15;
+          return regeneratorRuntime.awrap(swal("Are you ready?", {
+            buttons: ["No, not ready", "Yes, ready"]
+          }));
+
+        case 15:
+          decision = _context5.sent;
+
+          if (decision) {
+            button.textContent = "Publishing..";
+            button.setAttribute("disabled", "disabled");
+            hero = {
               date: fulldate,
               title: title.value,
               img: imageUrl.value,
-              techNumber: newTechNumber,
-              savedData: outputData,
               tech: tech,
               content: content
             };
+            publish(hero);
+          }
 
-          case 11:
-            hero1 = _context4.sent;
-            axios.post("/post/preview", hero1).then(function (res) {
-              button.removeAttribute("disabled");
-              save.textContent = "Saved";
-              localStorage.setItem("post", JSON.stringify(res.data));
-            });
-
-          case 13:
-          case "end":
-            return _context4.stop();
-        }
+        case 17:
+        case "end":
+          return _context5.stop();
       }
-    }, _callee4);
-  }));
-  return _preview.apply(this, arguments);
-}
-
-function varification(_x3) {
-  return _varification.apply(this, arguments);
-}
-
-function _varification() {
-  _varification = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee5(e) {
-    var outputData, content, score, slug, decision, hero;
-    return regeneratorRuntime.wrap(function _callee5$(_context5) {
-      while (1) {
-        switch (_context5.prev = _context5.next) {
-          case 0:
-            _context5.next = 2;
-            return editor.save();
-
-          case 2:
-            outputData = _context5.sent;
-            content = outputData.blocks;
-            score = 0;
-            slug = title.value.toLowerCase().replace(/\ /g, "-");
-            _context5.next = 8;
-            return axios.post("/confirm", {
-              slug: slug
-            }).then(function (res) {
-              if (res.data.confirmation) {
-                swal("title already exist.", {
-                  buttons: "Ok got it !"
-                });
-              } else {
-                score++;
-              }
-            });
-
-          case 8:
-            if (title.value === "") {
-              swal("title is empty", {
-                buttons: "Ok got it !"
-              });
-            } else {
-              score++;
-            }
-
-            if (tech === "technology") {
-              swal("please select technology", {
-                buttons: "Ok got it !"
-              });
-            } else {
-              score++;
-            }
-
-            if (title.value.length < 5) {
-              swal("title is too short", {
-                buttons: "Ok got it !"
-              });
-            } else {
-              score++;
-            }
-
-            if (content.length < 7) {
-              swal("Content is too short.", {
-                buttons: "Ok, got it !"
-              });
-            } else {
-              score++;
-            }
-
-            if (!(score === 5)) {
-              _context5.next = 17;
-              break;
-            }
-
-            _context5.next = 15;
-            return swal("Are you ready?", {
-              buttons: ["No, not ready", "Yes, ready"]
-            });
-
-          case 15:
-            decision = _context5.sent;
-
-            if (decision) {
-              button.textContent = "Publishing..";
-              button.setAttribute("disabled", "disabled");
-              hero = {
-                date: fulldate,
-                title: title.value,
-                img: imageUrl.value,
-                tech: tech,
-                content: content
-              };
-              publish(hero);
-            }
-
-          case 17:
-          case "end":
-            return _context5.stop();
-        }
-      }
-    }, _callee5);
-  }));
-  return _varification.apply(this, arguments);
+    }
+  });
 }
 
 function publish(hero) {
@@ -754,7 +714,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36323" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39439" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -932,4 +892,3 @@ function hmrAcceptRun(bundle, id) {
 }
 },{}]},{},["../../../../../../../usr/local/lib/node_modules/parcel/src/builtins/hmr-runtime.js","editor.js"], null)
 //# sourceMappingURL=/editor.js.map
-// end
