@@ -42,8 +42,8 @@
     "@editorjs/marker": "^1.2.1",
     "@editorjs/paragraph": "^2.6.0",
     "@editorjs/quote": "^2.3.0",
-    "@editorjs/simple-image": "^1.3.2",
+    "@editorjs/simple-image": "^1.3.3",
     "@editorjs/warning": "^1.1.1",
-    "parcel-bundler": "^1.12.3"
+    "parcel-bundler": "^1.12.4"
   }
 }

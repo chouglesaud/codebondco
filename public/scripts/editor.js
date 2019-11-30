@@ -56,7 +56,7 @@ window.addEventListener("load",async()=>{
         title.value = obj.title
       }
       if(obj.img){
-        imageUrl.value   = obj.img
+        imageUrl.value = obj.img
       }
       if(obj.techNumber){
         selectTag.selectedIndex = obj.techNumber
@@ -77,10 +77,8 @@ window.addEventListener("load",async()=>{
       holder: "editorjs",
       
       tools : { 
-        
         embed: {
           class        : Embed,
-          
           config       : {
             services: {
               youtube: true,
@@ -114,16 +112,6 @@ window.addEventListener("load",async()=>{
               id      : (groups) => groups.join('/')
             
           }
-          //   spotify: {
-              
-          //     regex   : /https:\/\/open.spotify.com\/episode\/([^\/\?\&]*)/,
-          //     embedUrl: 'https://open.spotify.com/embed-podcast/episode/<%= remote_id %>?height=200&theme-id=0&default-tab=css,result&embed-version=2',
-          //     html    : "<iframe height='200' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%; height: 200 !important;'></iframe>",
-          //     height  : 200,
-          //     width   : 600,
-          //     id      : (groups) => groups.join('/embed/preview/')
-            
-          // },
           
             }
           }
