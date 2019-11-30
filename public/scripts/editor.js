@@ -14,7 +14,6 @@ import { type } from "os";
 
 
 let button       = document.querySelector(".publishbtn")
-// let featureImage = document.querySelector("#feature-image")
 let imageUrl     = document.querySelector("#image-url")
 let title        = document.querySelector("#title")
 let selectTag    = document.querySelector("#tech");
