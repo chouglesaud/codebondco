@@ -4,8 +4,7 @@
   "description": "codebond is tutorial website",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "build": "parcel editor.js"
+    "start": "node server.js"
   },
   "author": "saud chougle",
   "license": "ISC",
@@ -35,7 +34,7 @@
   },
   "devDependencies": {
     "@editorjs/code": "^2.4.1",
-    "@editorjs/editorjs": "^2.15.0",
+    "@editorjs/editorjs": "^2.15.1",
     "@editorjs/embed": "^2.2.1",
     "@editorjs/header": "^2.3.0",
     "@editorjs/inline-code": "^1.3.0",
