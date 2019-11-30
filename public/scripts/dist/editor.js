@@ -428,15 +428,7 @@ window.addEventListener("load", function _callee3() {
                         id: function id(groups) {
                           return groups.join('/');
                         }
-                      } //   spotify: {
-                      //     regex   : /https:\/\/open.spotify.com\/episode\/([^\/\?\&]*)/,
-                      //     embedUrl: 'https://open.spotify.com/embed-podcast/episode/<%= remote_id %>?height=200&theme-id=0&default-tab=css,result&embed-version=2',
-                      //     html    : "<iframe height='200' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%; height: 200 !important;'></iframe>",
-                      //     height  : 200,
-                      //     width   : 600,
-                      //     id      : (groups) => groups.join('/embed/preview/')
-                      // },
-
+                      }
                     }
                   }
                 },
@@ -714,7 +706,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39439" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33247" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
