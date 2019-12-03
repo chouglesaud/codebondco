@@ -1,7 +1,10 @@
 <div class="row justify-content-center content-section">
-    <div class="col-lg-6 col-md-8 col-sm-12 col-12 row justify-content-center">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-            <!-- hero-compoent -->
+        <% if(data.img){ %>
+            <div class="myimage col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
+                    <img src=<%=data.img%> alt="image" class="rounded img-fluid">
+            </div>
+        <% } %>
+            
             <%- include('hero') %>
 
             <%- include('tableofcontent') %>
@@ -9,7 +12,7 @@
             <% data.post.forEach((el,i)=>{ %>
             <% switch(el.type){
                     case "header": %>
-                    <div class="header col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="header col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12">
                         <% switch(el.data.level){
                             case 1: %>
                                <h2 id=<%=el.data.text.toLowerCase().replace(/\s/g, '')%>><a href=<%="#"+el.data.text.toLowerCase().replace(/\s/g, '') %>><%= el.data.text %></a></h2>
@@ -35,30 +38,35 @@
             <% break;
                 
                  case "paragraph": %>
-            <div class=" exp col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="exp col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12">
                 <p class="para"><%= el.data.text %></p>
             </div>
             <% break;
                 
                  case "image": %>
-
-            <div class="myimage col-lg-12 col-md-12 col-sm-12 col-12">
-                <img src="/static/images/ph.png" data-src=<%=el.data.url%> class="lazy img-fluid" alt="photo">
-            </div>
+                 <% if(el.data.stretched){ %>
+                    <div class="myimage col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
+                            <img src="/static/images/ph.png" data-src=<%=el.data.url%>   class="rounded lazy img-fluid" alt="photo">
+                        </div>
+                 <%}else{%>
+                    <div class="myimage col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12">
+                            <img src="/static/images/ph.png" data-src=<%=el.data.url%>   class="rounded lazy img-fluid" alt="photo">
+                        </div>
+                 <%}%>
             <% break;
      
                  case "code": %>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-12 code">
+            <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12 code">
                 <pre>
 <%= el.data.code%>
 </pre>
             </div>
             <% break;
      
-                   case "quote": 
-                     if(el.data.text.length > 0){ %>
+            case "quote": 
+              if(el.data.text.length > 0){ %>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-12 quote">
+            <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12 quote">
                 <p class="para"><%= el.data.text %></p>
                 <% if(el.data.caption) {%>
                 <p class="text-right" style="font-size: 16px;"><%= el.data.caption %></p>
@@ -68,12 +76,12 @@
             <% break;
                    case "warning": %>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-12 warning">
+            <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12 warning">
                 <p class="para"><%= el.data.message %></p>
             </div>
             <% break;
                  case "list": %>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-12 list">
+            <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12 list">
                 <% if(el.data.style === "unordered") {%>
                 <ul>
                     <% el.data.items.forEach((element)=>{ %>
@@ -98,7 +106,7 @@
             <% break;
                   }
              }); %>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12">
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2650533982969945"
                     data-ad-slot="9478858443" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -106,10 +114,4 @@
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
-
-        </div>
-
-
-    </div>
-
 </div>
