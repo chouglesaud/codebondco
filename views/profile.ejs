@@ -34,7 +34,7 @@
 
     <div class="container-fluid profile-container">
         <div class="row justify-content-center">
-            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-11 col-11 profile">
+            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-11 col-11 profile bg-white">
                 <div class="intro">
                     <img src=<%=found.profilePic%> alt="profile">
                     <p class="text-center "><%= found.username %></p>
@@ -82,8 +82,8 @@
 
                     <% found.posts.reverse().forEach(post=>{ %>
 
-                    <div class="col-lg-5 col-md-8 col-sm-12 col-12 mypost ">
-                        <div class="p-3 bg-white">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 mypost ">
+                        <div class="p-2 bg-white">
                             
                             <div class="description">
 
