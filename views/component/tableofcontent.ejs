@@ -2,8 +2,8 @@
     <p class="text-center">table of content</p>
     <% data.post.forEach((el,i)=>{
         if(el.type === "header"){
-            if(el.data.level === 1 || el.data.level === 2){ %>
-              <li><a href=<%="#"+el.data.text.toLowerCase().replace(/\s/g, '')%>><%=el.data.text%></a></li>  
+            if(el.data.level === 0 ||el.data.level === 1 || el.data.level === 2){ %>
+              <li><a href=<%="#"+el.data.text.toLowerCase().replace(/\s/g, '')%>><%=el.data.text%></a></li>
     <%   }
         }
     }); %>

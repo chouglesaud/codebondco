@@ -187,26 +187,22 @@ app.get("/:username/setting", checkUser, (req, res) => {
   res.render("setting", { user: req.user });
 });
 
-app.get("/:username/host", checkUser, (req, res) => {
-  res.render("host", {
-    user: req.user,
-    length: parseInt(req.user.gallery.length)
-  });
-});
 
+// updloading image on cloudinary
 app.post(
-  "/:username/upload",
+  "/image/upload",
   checkUser,
-  upload.single("image"),
   async (req, res) => {
-    let result = await cloudinary.v2.uploader.upload(req.file.path);
+  
+    
+    let result = await cloudinary.v2.uploader.upload(req.body.file)
     let splitResult = result.secure_url.split("/");
-    let newUrl = `https://res.cloudinary.com/codebond/image/upload/${
+    let newUrl = `https://res.cloudinary.com/saudchougle/image/upload/${
       splitResult[6]
     }/${splitResult[7]}`;
     let isHosted = Update.image_hosting(req.user.id, { gallery: newUrl });
     if (isHosted) {
-      res.redirect(`/${req.user.username}/host`);
+      res.json({url: newUrl})
     }
   }
 );
@@ -255,9 +251,6 @@ app.post("/post/preview", checkUser, async (req, res) => {
  res.json(await Post.preview(req.user.id, { preview: req.body }));
 });
 
-app.get("/:username/preview", checkUser, (req, res) => {
-    res.render("preview", { user: req.user, data: req.user.writing });
-  });
 
 
 app.get("/tutorial/:tech", async (req, res) => {

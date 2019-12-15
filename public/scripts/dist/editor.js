@@ -185,13 +185,14 @@ var define;
  * @license The MIT License (MIT)
  * @version 2.0.0
  */
-var i=function(){function t(e){var n=e.data,r=e.config,o=e.api;!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t),this.api=o,this._CSS={block:this.api.styles.block,settingsButton:this.api.styles.settingsButton,settingsButtonActive:this.api.styles.settingsButtonActive,wrapper:"ce-header"},this._settings=r,this._data=this.normalizeData(n),this.settingsButtons=[],this._element=this.getTag()}var e,n,i;return e=t,i=[{key:"conversionConfig",get:function(){return{export:"text",import:"text"}}},{key:"sanitize",get:function(){return{level:{}}}},{key:"pasteConfig",get:function(){return{tags:["H1","H2","H3","H4","H5","H6"]}}},{key:"toolbox",get:function(){return{icon:'<svg width="11" height="14" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M7.6 8.15H2.25v4.525a1.125 1.125 0 0 1-2.25 0V1.125a1.125 1.125 0 1 1 2.25 0V5.9H7.6V1.125a1.125 1.125 0 0 1 2.25 0v11.55a1.125 1.125 0 0 1-2.25 0V8.15z"/></svg>',title:"Header"}}}],(n=[{key:"normalizeData",value:function(t){var e={};return"object"!==r(t)&&(t={}),e.text=t.text||"",e.level=parseInt(t.level)||this.defaultLevel.number,e}},{key:"render",value:function(){return this._element}},{key:"renderSettings",value:function(){var t=this,e=document.createElement("DIV");return this.levels.forEach(function(n){var r=document.createElement("SPAN");r.classList.add(t._CSS.settingsButton),t.currentLevel.number===n.number&&r.classList.add(t._CSS.settingsButtonActive),r.innerHTML=n.svg,r.dataset.level=n.number,r.addEventListener("click",function(){t.setLevel(n.number)}),e.appendChild(r),t.settingsButtons.push(r)}),e}},{key:"setLevel",value:function(t){var e=this;this.data={level:t,text:this.data.text},this.settingsButtons.forEach(function(n){n.classList.toggle(e._CSS.settingsButtonActive,parseInt(n.dataset.level)===t)})}},{key:"merge",value:function(t){var e={text:this.data.text+t.text,level:this.data.level};this.data=e}},{key:"validate",value:function(t){return""!==t.text.trim()}},{key:"save",value:function(t){return{text:t.innerHTML,level:this.currentLevel.number}}},{key:"getTag",value:function(){var t=document.createElement(this.currentLevel.tag);return t.innerHTML=this._data.text||"",t.classList.add(this._CSS.wrapper),t.contentEditable="true",t.dataset.placeholder=this._settings.placeholder||"",t}},{key:"onPaste",value:function(t){var e=t.detail.data,n=2;switch(e.tagName){case"H1":n=1;break;case"H3":n=3;break;case"H4":n=4;break;case"H5":n=5;break;case"H6":n=6}this.data={level:n,text:e.innerHTML}}},{key:"data",get:function(){return this._data.text=this._element.innerHTML,this._data.level=this.currentLevel.number,this._data},set:function(t){if(this._data=this.normalizeData(t),void 0!==t.level&&this._element.parentNode){var e=this.getTag();e.innerHTML=this._element.innerHTML,this._element.parentNode.replaceChild(e,this._element),this._element=e}void 0!==t.text&&(this._element.innerHTML=this._data.text||"")}},{key:"currentLevel",get:function(){var t=this,e=this.levels.find(function(e){return e.number===t._data.level});return e||(e=this.defaultLevel),e}},{key:"defaultLevel",get:function(){return this.levels[1]}},{key:"levels",get:function(){return[{number:1,tag:"H1",svg:'<svg width="16" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M2.14 1.494V4.98h4.62V1.494c0-.498.098-.871.293-1.12A.927.927 0 0 1 7.82 0c.322 0 .583.123.782.37.2.246.3.62.3 1.124v9.588c0 .503-.101.88-.303 1.128a.957.957 0 0 1-.779.374.921.921 0 0 1-.77-.378c-.193-.251-.29-.626-.29-1.124V6.989H2.14v4.093c0 .503-.1.88-.302 1.128a.957.957 0 0 1-.778.374.921.921 0 0 1-.772-.378C.096 11.955 0 11.58 0 11.082V1.494C0 .996.095.623.285.374A.922.922 0 0 1 1.06 0c.321 0 .582.123.782.37.199.246.299.62.299 1.124zm11.653 9.985V5.27c-1.279.887-2.14 1.33-2.583 1.33a.802.802 0 0 1-.563-.228.703.703 0 0 1-.245-.529c0-.232.08-.402.241-.511.161-.11.446-.25.854-.424.61-.259 1.096-.532 1.462-.818a5.84 5.84 0 0 0 .97-.962c.282-.355.466-.573.552-.655.085-.082.246-.123.483-.123.267 0 .481.093.642.28.161.186.242.443.242.77v7.813c0 .914-.345 1.371-1.035 1.371-.307 0-.554-.093-.74-.28-.187-.186-.28-.461-.28-.825z"/></svg>'},{number:2,tag:"H2",svg:'<svg width="18" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M2.152 1.494V4.98h4.646V1.494c0-.498.097-.871.293-1.12A.934.934 0 0 1 7.863 0c.324 0 .586.123.786.37.2.246.301.62.301 1.124v9.588c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378c-.194-.251-.29-.626-.29-1.124V6.989H2.152v4.093c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378C.097 11.955 0 11.58 0 11.082V1.494C0 .996.095.623.286.374A.929.929 0 0 1 1.066 0c.323 0 .585.123.786.37.2.246.3.62.3 1.124zm10.99 9.288h3.527c.351 0 .62.072.804.216.185.144.277.34.277.588 0 .22-.073.408-.22.56-.146.154-.368.23-.665.23h-4.972c-.338 0-.601-.093-.79-.28a.896.896 0 0 1-.284-.659c0-.162.06-.377.182-.645s.255-.478.399-.631a38.617 38.617 0 0 1 1.621-1.598c.482-.444.827-.735 1.034-.875.369-.261.676-.523.922-.787.245-.263.432-.534.56-.81.129-.278.193-.549.193-.815 0-.288-.069-.546-.206-.773a1.428 1.428 0 0 0-.56-.53 1.618 1.618 0 0 0-.774-.19c-.59 0-1.054.26-1.392.777-.045.068-.12.252-.226.554-.106.302-.225.534-.358.696-.133.162-.328.243-.585.243a.76.76 0 0 1-.56-.223c-.149-.148-.223-.351-.223-.608 0-.31.07-.635.21-.972.139-.338.347-.645.624-.92a3.093 3.093 0 0 1 1.054-.665c.426-.169.924-.253 1.496-.253.69 0 1.277.108 1.764.324.315.144.592.343.83.595.24.252.425.544.558.875.133.33.2.674.2 1.03 0 .558-.14 1.066-.416 1.523-.277.457-.56.815-.848 1.074-.288.26-.771.666-1.45 1.22-.677.554-1.142.984-1.394 1.29a3.836 3.836 0 0 0-.331.44z"/></svg>'},{number:3,tag:"H3",svg:'<svg width="18" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M2.152 1.494V4.98h4.646V1.494c0-.498.097-.871.293-1.12A.934.934 0 0 1 7.863 0c.324 0 .586.123.786.37.2.246.301.62.301 1.124v9.588c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378c-.194-.251-.29-.626-.29-1.124V6.989H2.152v4.093c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378C.097 11.955 0 11.58 0 11.082V1.494C0 .996.095.623.286.374A.929.929 0 0 1 1.066 0c.323 0 .585.123.786.37.2.246.3.62.3 1.124zm11.61 4.919c.418 0 .778-.123 1.08-.368.301-.245.452-.597.452-1.055 0-.35-.12-.65-.36-.902-.241-.252-.566-.378-.974-.378-.277 0-.505.038-.684.116a1.1 1.1 0 0 0-.426.306 2.31 2.31 0 0 0-.296.49c-.093.2-.178.388-.255.565a.479.479 0 0 1-.245.225.965.965 0 0 1-.409.081.706.706 0 0 1-.5-.22c-.152-.148-.228-.345-.228-.59 0-.236.071-.484.214-.745a2.72 2.72 0 0 1 .627-.746 3.149 3.149 0 0 1 1.024-.568 4.122 4.122 0 0 1 1.368-.214c.44 0 .842.06 1.205.18.364.12.679.294.947.52.267.228.47.49.606.79.136.3.204.622.204.967 0 .454-.099.843-.296 1.168-.198.324-.48.64-.848.95.354.19.653.408.895.653.243.245.426.516.548.813.123.298.184.619.184.964 0 .413-.083.812-.248 1.198-.166.386-.41.73-.732 1.031a3.49 3.49 0 0 1-1.147.708c-.443.17-.932.256-1.467.256a3.512 3.512 0 0 1-1.464-.293 3.332 3.332 0 0 1-1.699-1.64c-.142-.314-.214-.573-.214-.777 0-.263.085-.475.255-.636a.89.89 0 0 1 .637-.242c.127 0 .25.037.367.112a.53.53 0 0 1 .232.27c.236.63.489 1.099.759 1.405.27.306.65.46 1.14.46a1.714 1.714 0 0 0 1.46-.824c.17-.273.256-.588.256-.947 0-.53-.145-.947-.436-1.249-.29-.302-.694-.453-1.212-.453-.09 0-.231.01-.422.028-.19.018-.313.027-.367.027-.25 0-.443-.062-.579-.187-.136-.125-.204-.299-.204-.521 0-.218.081-.394.245-.528.163-.134.406-.2.728-.2h.28z"/></svg>'},{number:4,tag:"H4",svg:'<svg width="20" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M2.152 1.494V4.98h4.646V1.494c0-.498.097-.871.293-1.12A.934.934 0 0 1 7.863 0c.324 0 .586.123.786.37.2.246.301.62.301 1.124v9.588c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378c-.194-.251-.29-.626-.29-1.124V6.989H2.152v4.093c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378C.097 11.955 0 11.58 0 11.082V1.494C0 .996.095.623.286.374A.929.929 0 0 1 1.066 0c.323 0 .585.123.786.37.2.246.3.62.3 1.124zm13.003 10.09v-1.252h-3.38c-.427 0-.746-.097-.96-.29-.213-.193-.32-.456-.32-.788 0-.085.016-.171.048-.259.031-.088.078-.18.141-.276.063-.097.128-.19.195-.28.068-.09.15-.2.25-.33l3.568-4.774a5.44 5.44 0 0 1 .576-.683.763.763 0 0 1 .542-.212c.682 0 1.023.39 1.023 1.171v5.212h.29c.346 0 .623.047.832.142.208.094.313.3.313.62 0 .26-.086.45-.256.568-.17.12-.427.179-.768.179h-.41v1.252c0 .346-.077.603-.23.771-.152.168-.356.253-.612.253a.78.78 0 0 1-.61-.26c-.154-.173-.232-.427-.232-.764zm-2.895-2.76h2.895V4.91L12.26 8.823z"/></svg>'},{number:5,tag:"H5",svg:'<svg width="18" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M2.152 1.494V4.98h4.646V1.494c0-.498.097-.871.293-1.12A.934.934 0 0 1 7.863 0c.324 0 .586.123.786.37.2.246.301.62.301 1.124v9.588c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378c-.194-.251-.29-.626-.29-1.124V6.989H2.152v4.093c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378C.097 11.955 0 11.58 0 11.082V1.494C0 .996.095.623.286.374A.929.929 0 0 1 1.066 0c.323 0 .585.123.786.37.2.246.3.62.3 1.124zm14.16 2.645h-3.234l-.388 2.205c.644-.344 1.239-.517 1.783-.517.436 0 .843.082 1.222.245.38.164.712.39.998.677.286.289.51.63.674 1.025.163.395.245.82.245 1.273 0 .658-.148 1.257-.443 1.797-.295.54-.72.97-1.276 1.287-.556.318-1.197.477-1.923.477-.813 0-1.472-.15-1.978-.45-.506-.3-.865-.643-1.076-1.031-.21-.388-.316-.727-.316-1.018 0-.177.073-.345.22-.504a.725.725 0 0 1 .556-.238c.381 0 .665.22.85.66.182.404.427.719.736.943.309.225.654.337 1.035.337.35 0 .656-.09.919-.272.263-.182.466-.431.61-.749.142-.318.214-.678.214-1.082 0-.436-.078-.808-.232-1.117a1.607 1.607 0 0 0-.62-.69 1.674 1.674 0 0 0-.864-.229c-.39 0-.67.048-.837.143-.168.095-.41.262-.725.5-.316.239-.576.358-.78.358a.843.843 0 0 1-.592-.242c-.173-.16-.259-.344-.259-.548 0-.022.025-.177.075-.463l.572-3.26c.063-.39.181-.675.354-.852.172-.177.454-.265.844-.265h3.595c.708 0 1.062.27 1.062.81a.711.711 0 0 1-.26.572c-.172.145-.426.218-.762.218z"/></svg>'},{number:6,tag:"H6",svg:'<svg width="18" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M2.152 1.494V4.98h4.646V1.494c0-.498.097-.871.293-1.12A.934.934 0 0 1 7.863 0c.324 0 .586.123.786.37.2.246.301.62.301 1.124v9.588c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378c-.194-.251-.29-.626-.29-1.124V6.989H2.152v4.093c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378C.097 11.955 0 11.58 0 11.082V1.494C0 .996.095.623.286.374A.929.929 0 0 1 1.066 0c.323 0 .585.123.786.37.2.246.3.62.3 1.124zM12.53 7.058a3.093 3.093 0 0 1 1.004-.814 2.734 2.734 0 0 1 1.214-.264c.43 0 .827.08 1.19.24.365.161.684.39.957.686.274.296.485.645.635 1.048a3.6 3.6 0 0 1 .223 1.262c0 .637-.145 1.216-.437 1.736-.292.52-.699.926-1.221 1.218-.522.292-1.114.438-1.774.438-.76 0-1.416-.186-1.967-.557-.552-.37-.974-.919-1.265-1.645-.292-.726-.438-1.613-.438-2.662 0-.855.088-1.62.265-2.293.176-.674.43-1.233.76-1.676.33-.443.73-.778 1.2-1.004.47-.226 1.006-.339 1.608-.339.579 0 1.089.113 1.53.34.44.225.773.506.997.84.224.335.335.656.335.964 0 .185-.07.354-.21.505a.698.698 0 0 1-.536.227.874.874 0 0 1-.529-.18 1.039 1.039 0 0 1-.36-.498 1.42 1.42 0 0 0-.495-.655 1.3 1.3 0 0 0-.786-.247c-.24 0-.479.069-.716.207a1.863 1.863 0 0 0-.6.56c-.33.479-.525 1.333-.584 2.563zm1.832 4.213c.456 0 .834-.186 1.133-.56.298-.373.447-.862.447-1.468 0-.412-.07-.766-.21-1.062a1.584 1.584 0 0 0-.577-.678 1.47 1.47 0 0 0-.807-.234c-.28 0-.548.074-.804.224-.255.149-.461.365-.617.647a2.024 2.024 0 0 0-.234.994c0 .61.158 1.12.475 1.527.316.407.714.61 1.194.61z"/></svg>'}]}}])&&o(e.prototype,n),i&&o(e,i),t}();t.exports=i},function(t,e,n){var r=n(2);"string"==typeof r&&(r=[[t.i,r,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(4)(r,o);r.locals&&(t.exports=r.locals)},function(t,e,n){(t.exports=n(3)(!1)).push([t.i,"/**\n * Plugin styles\n */\n.ce-header {\n  padding: 1em 0;\n  margin: 0;\n  margin-bottom: -0.9em;\n  line-height: 1.5em;\n  outline: none;\n}\n\n.ce-header p,\n.ce-header div{\n  padding: 0 !important;\n  margin: 0 !important;\n}\n\n/**\n * Styles for Plugin icon in Toolbar\n */\n.ce-header__icon {}\n\n.ce-header[contentEditable=true][data-placeholder]::before{\n  position: absolute;\n  content: attr(data-placeholder);\n  color: #707684;\n  font-weight: normal;\n  opacity: 0;\n}\n\n.ce-header[contentEditable=true][data-placeholder]:empty::before {\n  opacity: 1;\n}\n\n.ce-header[contentEditable=true][data-placeholder]:empty:focus::before {\n  opacity: 0;\n}\n",""])},function(t,e){t.exports=function(t){var e=[];return e.toString=function(){return this.map(function(e){var n=function(t,e){var n=t[1]||"",r=t[3];if(!r)return n;if(e&&"function"==typeof btoa){var o=(a=r,""),i=r.sources.map(function(t){return"/*# sourceURL="+r.sourceRoot+t+" */"});return[n].concat(i).concat([o]).join("\n")}var a;return[n].join("\n")}(e,t);return e[2]?"@media "+e[2]+"{"+n+"}":n}).join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var r={},o=0;o<this.length;o++){var i=this[o][0];"number"==typeof i&&(r[i]=!0)}for(o=0;o<t.length;o++){var a=t[o];"number"==typeof a[0]&&r[a[0]]||(n&&!a[2]?a[2]=n:n&&(a[2]="("+a[2]+") and ("+n+")"),e.push(a))}},e}},function(t,e,n){var r,o,i={},a=(r=function(){return window&&document&&document.all&&!window.atob},function(){return void 0===o&&(o=r.apply(this,arguments)),o}),s=function(t){var e={};return function(t){if("function"==typeof t)return t();if(void 0===e[t]){var n=function(t){return document.querySelector(t)}.call(this,t);if(window.HTMLIFrameElement&&n instanceof window.HTMLIFrameElement)try{n=n.contentDocument.head}catch(t){n=null}e[t]=n}return e[t]}}(),c=null,u=0,l=[],f=n(5);function d(t,e){for(var n=0;n<t.length;n++){var r=t[n],o=i[r.id];if(o){o.refs++;for(var a=0;a<o.parts.length;a++)o.parts[a](r.parts[a]);for(;a<r.parts.length;a++)o.parts.push(b(r.parts[a],e))}else{var s=[];for(a=0;a<r.parts.length;a++)s.push(b(r.parts[a],e));i[r.id]={id:r.id,refs:1,parts:s}}}}function h(t,e){for(var n=[],r={},o=0;o<t.length;o++){var i=t[o],a=e.base?i[0]+e.base:i[0],s={css:i[1],media:i[2],sourceMap:i[3]};r[a]?r[a].parts.push(s):n.push(r[a]={id:a,parts:[s]})}return n}function p(t,e){var n=s(t.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var r=l[l.length-1];if("top"===t.insertAt)r?r.nextSibling?n.insertBefore(e,r.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),l.push(e);else if("bottom"===t.insertAt)n.appendChild(e);else{if("object"!=typeof t.insertAt||!t.insertAt.before)throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");var o=s(t.insertInto+" "+t.insertAt.before);n.insertBefore(e,o)}}function v(t){if(null===t.parentNode)return!1;t.parentNode.removeChild(t);var e=l.indexOf(t);e>=0&&l.splice(e,1)}function g(t){var e=document.createElement("style");return void 0===t.attrs.type&&(t.attrs.type="text/css"),m(e,t.attrs),p(t,e),e}function m(t,e){Object.keys(e).forEach(function(n){t.setAttribute(n,e[n])})}function b(t,e){var n,r,o,i;if(e.transform&&t.css){if(!(i=e.transform(t.css)))return function(){};t.css=i}if(e.singleton){var a=u++;n=c||(c=g(e)),r=x.bind(null,n,a,!1),o=x.bind(null,n,a,!0)}else t.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=function(t){var e=document.createElement("link");return void 0===t.attrs.type&&(t.attrs.type="text/css"),t.attrs.rel="stylesheet",m(e,t.attrs),p(t,e),e}(e),r=function(t,e,n){var r=n.css,o=n.sourceMap,i=void 0===e.convertToAbsoluteUrls&&o;(e.convertToAbsoluteUrls||i)&&(r=f(r));o&&(r+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(o))))+" */");var a=new Blob([r],{type:"text/css"}),s=t.href;t.href=URL.createObjectURL(a),s&&URL.revokeObjectURL(s)}.bind(null,n,e),o=function(){v(n),n.href&&URL.revokeObjectURL(n.href)}):(n=g(e),r=function(t,e){var n=e.css,r=e.media;r&&t.setAttribute("media",r);if(t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}.bind(null,n),o=function(){v(n)});return r(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;r(t=e)}else o()}}t.exports=function(t,e){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");(e=e||{}).attrs="object"==typeof e.attrs?e.attrs:{},e.singleton||"boolean"==typeof e.singleton||(e.singleton=a()),e.insertInto||(e.insertInto="head"),e.insertAt||(e.insertAt="bottom");var n=h(t,e);return d(n,e),function(t){for(var r=[],o=0;o<n.length;o++){var a=n[o];(s=i[a.id]).refs--,r.push(s)}t&&d(h(t,e),e);for(o=0;o<r.length;o++){var s;if(0===(s=r[o]).refs){for(var c=0;c<s.parts.length;c++)s.parts[c]();delete i[s.id]}}}};var y,w=(y=[],function(t,e){return y[t]=e,y.filter(Boolean).join("\n")});function x(t,e,n,r){var o=n?"":r.css;if(t.styleSheet)t.styleSheet.cssText=w(e,o);else{var i=document.createTextNode(o),a=t.childNodes;a[e]&&t.removeChild(a[e]),a.length?t.insertBefore(i,a[e]):t.appendChild(i)}}},function(t,e){t.exports=function(t){var e="undefined"!=typeof window&&window.location;if(!e)throw new Error("fixUrls requires window.location");if(!t||"string"!=typeof t)return t;var n=e.protocol+"//"+e.host,r=n+e.pathname.replace(/\/[^\/]*$/,"/");return t.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,function(t,e){var o,i=e.trim().replace(/^"(.*)"$/,function(t,e){return e}).replace(/^'(.*)'$/,function(t,e){return e});return/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(i)?t:(o=0===i.indexOf("//")?i:0===i.indexOf("/")?n+i:r+i.replace(/^\.\//,""),"url("+JSON.stringify(o)+")")})}}])});
+var i=function(){function t(e){var n=e.data,r=e.config,o=e.api;!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t),this.api=o,this._CSS={block:this.api.styles.block,settingsButton:this.api.styles.settingsButton,settingsButtonActive:this.api.styles.settingsButtonActive,wrapper:"ce-header"},this._settings=r,this._data=this.normalizeData(n),this.settingsButtons=[],this._element=this.getTag()}var e,i,a;return e=t,a=[{key:"conversionConfig",get:function(){return{export:"text",import:"text"}}},{key:"sanitize",get:function(){return{level:{}}}},{key:"pasteConfig",get:function(){return{tags:["H1","H2","H3","H4","H5","H6"]}}},{key:"toolbox",get:function(){return{icon:n(6).default,title:"Heading"}}}],(i=[{key:"normalizeData",value:function(t){var e={};return"object"!==r(t)&&(t={}),e.text=t.text||"",e.level=parseInt(t.level)||this.defaultLevel.number,e}},{key:"render",value:function(){return this._element}},{key:"renderSettings",value:function(){var t=this,e=document.createElement("DIV");return this.levels.forEach(function(n){var r=document.createElement("SPAN");r.classList.add(t._CSS.settingsButton),t.currentLevel.number===n.number&&r.classList.add(t._CSS.settingsButtonActive),r.innerHTML=n.svg,r.dataset.level=n.number,r.addEventListener("click",function(){t.setLevel(n.number)}),e.appendChild(r),t.settingsButtons.push(r)}),e}},{key:"setLevel",value:function(t){var e=this;this.data={level:t,text:this.data.text},this.settingsButtons.forEach(function(n){n.classList.toggle(e._CSS.settingsButtonActive,parseInt(n.dataset.level)===t)})}},{key:"merge",value:function(t){var e={text:this.data.text+t.text,level:this.data.level};this.data=e}},{key:"validate",value:function(t){return""!==t.text.trim()}},{key:"save",value:function(t){return{text:t.innerHTML,level:this.currentLevel.number}}},{key:"getTag",value:function(){var t=document.createElement(this.currentLevel.tag);return t.innerHTML=this._data.text||"",t.classList.add(this._CSS.wrapper),t.contentEditable="true",t.dataset.placeholder=this._settings.placeholder||"",t}},{key:"onPaste",value:function(t){var e=t.detail.data,n=2;switch(e.tagName){case"H1":n=0;break;case"H3":n=1;break;case"H4":n=2;break;}this.data={level:n,text:e.innerHTML}}},{key:"data",get:function(){return this._data.text=this._element.innerHTML,this._data.level=this.currentLevel.number,this._data},set:function(t){if(this._data=this.normalizeData(t),void 0!==t.level&&this._element.parentNode){var e=this.getTag();e.innerHTML=this._element.innerHTML,this._element.parentNode.replaceChild(e,this._element),this._element=e}void 0!==t.text&&(this._element.innerHTML=this._data.text||"")}},{key:"currentLevel",get:function(){var t=this,e=this.levels.find(function(e){return e.number===t._data.level});return e||(e=this.defaultLevel),e}},{key:"defaultLevel",get:function(){return this.levels[0]}},{key:"levels",get:function(){return[{number:2,tag:"H2",svg:'<svg width="18" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M2.152 1.494V4.98h4.646V1.494c0-.498.097-.871.293-1.12A.934.934 0 0 1 7.863 0c.324 0 .586.123.786.37.2.246.301.62.301 1.124v9.588c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378c-.194-.251-.29-.626-.29-1.124V6.989H2.152v4.093c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378C.097 11.955 0 11.58 0 11.082V1.494C0 .996.095.623.286.374A.929.929 0 0 1 1.066 0c.323 0 .585.123.786.37.2.246.3.62.3 1.124zm10.99 9.288h3.527c.351 0 .62.072.804.216.185.144.277.34.277.588 0 .22-.073.408-.22.56-.146.154-.368.23-.665.23h-4.972c-.338 0-.601-.093-.79-.28a.896.896 0 0 1-.284-.659c0-.162.06-.377.182-.645s.255-.478.399-.631a38.617 38.617 0 0 1 1.621-1.598c.482-.444.827-.735 1.034-.875.369-.261.676-.523.922-.787.245-.263.432-.534.56-.81.129-.278.193-.549.193-.815 0-.288-.069-.546-.206-.773a1.428 1.428 0 0 0-.56-.53 1.618 1.618 0 0 0-.774-.19c-.59 0-1.054.26-1.392.777-.045.068-.12.252-.226.554-.106.302-.225.534-.358.696-.133.162-.328.243-.585.243a.76.76 0 0 1-.56-.223c-.149-.148-.223-.351-.223-.608 0-.31.07-.635.21-.972.139-.338.347-.645.624-.92a3.093 3.093 0 0 1 1.054-.665c.426-.169.924-.253 1.496-.253.69 0 1.277.108 1.764.324.315.144.592.343.83.595.24.252.425.544.558.875.133.33.2.674.2 1.03 0 .558-.14 1.066-.416 1.523-.277.457-.56.815-.848 1.074-.288.26-.771.666-1.45 1.22-.677.554-1.142.984-1.394 1.29a3.836 3.836 0 0 0-.331.44z"/></svg>'},{number:3,tag:"H3",svg:'<svg width="18" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M2.152 1.494V4.98h4.646V1.494c0-.498.097-.871.293-1.12A.934.934 0 0 1 7.863 0c.324 0 .586.123.786.37.2.246.301.62.301 1.124v9.588c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378c-.194-.251-.29-.626-.29-1.124V6.989H2.152v4.093c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378C.097 11.955 0 11.58 0 11.082V1.494C0 .996.095.623.286.374A.929.929 0 0 1 1.066 0c.323 0 .585.123.786.37.2.246.3.62.3 1.124zm11.61 4.919c.418 0 .778-.123 1.08-.368.301-.245.452-.597.452-1.055 0-.35-.12-.65-.36-.902-.241-.252-.566-.378-.974-.378-.277 0-.505.038-.684.116a1.1 1.1 0 0 0-.426.306 2.31 2.31 0 0 0-.296.49c-.093.2-.178.388-.255.565a.479.479 0 0 1-.245.225.965.965 0 0 1-.409.081.706.706 0 0 1-.5-.22c-.152-.148-.228-.345-.228-.59 0-.236.071-.484.214-.745a2.72 2.72 0 0 1 .627-.746 3.149 3.149 0 0 1 1.024-.568 4.122 4.122 0 0 1 1.368-.214c.44 0 .842.06 1.205.18.364.12.679.294.947.52.267.228.47.49.606.79.136.3.204.622.204.967 0 .454-.099.843-.296 1.168-.198.324-.48.64-.848.95.354.19.653.408.895.653.243.245.426.516.548.813.123.298.184.619.184.964 0 .413-.083.812-.248 1.198-.166.386-.41.73-.732 1.031a3.49 3.49 0 0 1-1.147.708c-.443.17-.932.256-1.467.256a3.512 3.512 0 0 1-1.464-.293 3.332 3.332 0 0 1-1.699-1.64c-.142-.314-.214-.573-.214-.777 0-.263.085-.475.255-.636a.89.89 0 0 1 .637-.242c.127 0 .25.037.367.112a.53.53 0 0 1 .232.27c.236.63.489 1.099.759 1.405.27.306.65.46 1.14.46a1.714 1.714 0 0 0 1.46-.824c.17-.273.256-.588.256-.947 0-.53-.145-.947-.436-1.249-.29-.302-.694-.453-1.212-.453-.09 0-.231.01-.422.028-.19.018-.313.027-.367.027-.25 0-.443-.062-.579-.187-.136-.125-.204-.299-.204-.521 0-.218.081-.394.245-.528.163-.134.406-.2.728-.2h.28z"/></svg>'},{number:4,tag:"H4",svg:'<svg width="20" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M2.152 1.494V4.98h4.646V1.494c0-.498.097-.871.293-1.12A.934.934 0 0 1 7.863 0c.324 0 .586.123.786.37.2.246.301.62.301 1.124v9.588c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378c-.194-.251-.29-.626-.29-1.124V6.989H2.152v4.093c0 .503-.101.88-.304 1.128a.964.964 0 0 1-.783.374.928.928 0 0 1-.775-.378C.097 11.955 0 11.58 0 11.082V1.494C0 .996.095.623.286.374A.929.929 0 0 1 1.066 0c.323 0 .585.123.786.37.2.246.3.62.3 1.124zm13.003 10.09v-1.252h-3.38c-.427 0-.746-.097-.96-.29-.213-.193-.32-.456-.32-.788 0-.085.016-.171.048-.259.031-.088.078-.18.141-.276.063-.097.128-.19.195-.28.068-.09.15-.2.25-.33l3.568-4.774a5.44 5.44 0 0 1 .576-.683.763.763 0 0 1 .542-.212c.682 0 1.023.39 1.023 1.171v5.212h.29c.346 0 .623.047.832.142.208.094.313.3.313.62 0 .26-.086.45-.256.568-.17.12-.427.179-.768.179h-.41v1.252c0 .346-.077.603-.23.771-.152.168-.356.253-.612.253a.78.78 0 0 1-.61-.26c-.154-.173-.232-.427-.232-.764zm-2.895-2.76h2.895V4.91L12.26 8.823z"/></svg>'}]}}])&&o(e.prototype,i),a&&o(e,a),t}();t.exports=i},function(t,e,n){var r=n(2);"string"==typeof r&&(r=[[t.i,r,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(4)(r,o);r.locals&&(t.exports=r.locals)},function(t,e,n){(t.exports=n(3)(!1)).push([t.i,"/**\n * Plugin styles\n */\n.ce-header {\n  padding: 1em 0;\n  margin: 0;\n  margin-bottom: -0.9em;\n  line-height: 1.5em;\n  outline: none;\n}\n\n.ce-header p,\n.ce-header div{\n  padding: 0 !important;\n  margin: 0 !important;\n}\n\n/**\n * Styles for Plugin icon in Toolbar\n */\n.ce-header__icon {}\n\n.ce-header[contentEditable=true][data-placeholder]::before{\n  position: absolute;\n  content: attr(data-placeholder);\n  color: #707684;\n  font-weight: normal;\n  display: none;\n}\n\n.ce-header[contentEditable=true][data-placeholder]:empty::before {\n  display: block;\n}\n\n.ce-header[contentEditable=true][data-placeholder]:empty:focus::before {\n  display: none;\n}\n",""])},function(t,e){t.exports=function(t){var e=[];return e.toString=function(){return this.map(function(e){var n=function(t,e){var n=t[1]||"",r=t[3];if(!r)return n;if(e&&"function"==typeof btoa){var o=(a=r,""),i=r.sources.map(function(t){return"/*# sourceURL="+r.sourceRoot+t+" */"});return[n].concat(i).concat([o]).join("\n")}var a;return[n].join("\n")}(e,t);return e[2]?"@media "+e[2]+"{"+n+"}":n}).join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var r={},o=0;o<this.length;o++){var i=this[o][0];"number"==typeof i&&(r[i]=!0)}for(o=0;o<t.length;o++){var a=t[o];"number"==typeof a[0]&&r[a[0]]||(n&&!a[2]?a[2]=n:n&&(a[2]="("+a[2]+") and ("+n+")"),e.push(a))}},e}},function(t,e,n){var r,o,i={},a=(r=function(){return window&&document&&document.all&&!window.atob},function(){return void 0===o&&(o=r.apply(this,arguments)),o}),s=function(t){var e={};return function(t){if("function"==typeof t)return t();if(void 0===e[t]){var n=function(t){return document.querySelector(t)}.call(this,t);if(window.HTMLIFrameElement&&n instanceof window.HTMLIFrameElement)try{n=n.contentDocument.head}catch(t){n=null}e[t]=n}return e[t]}}(),c=null,u=0,l=[],f=n(5);function d(t,e){for(var n=0;n<t.length;n++){var r=t[n],o=i[r.id];if(o){o.refs++;for(var a=0;a<o.parts.length;a++)o.parts[a](r.parts[a]);for(;a<r.parts.length;a++)o.parts.push(b(r.parts[a],e))}else{var s=[];for(a=0;a<r.parts.length;a++)s.push(b(r.parts[a],e));i[r.id]={id:r.id,refs:1,parts:s}}}}function h(t,e){for(var n=[],r={},o=0;o<t.length;o++){var i=t[o],a=e.base?i[0]+e.base:i[0],s={css:i[1],media:i[2],sourceMap:i[3]};r[a]?r[a].parts.push(s):n.push(r[a]={id:a,parts:[s]})}return n}function p(t,e){var n=s(t.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var r=l[l.length-1];if("top"===t.insertAt)r?r.nextSibling?n.insertBefore(e,r.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),l.push(e);else if("bottom"===t.insertAt)n.appendChild(e);else{if("object"!=typeof t.insertAt||!t.insertAt.before)throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");var o=s(t.insertInto+" "+t.insertAt.before);n.insertBefore(e,o)}}function v(t){if(null===t.parentNode)return!1;t.parentNode.removeChild(t);var e=l.indexOf(t);e>=0&&l.splice(e,1)}function g(t){var e=document.createElement("style");return void 0===t.attrs.type&&(t.attrs.type="text/css"),m(e,t.attrs),p(t,e),e}function m(t,e){Object.keys(e).forEach(function(n){t.setAttribute(n,e[n])})}function b(t,e){var n,r,o,i;if(e.transform&&t.css){if(!(i=e.transform(t.css)))return function(){};t.css=i}if(e.singleton){var a=u++;n=c||(c=g(e)),r=x.bind(null,n,a,!1),o=x.bind(null,n,a,!0)}else t.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=function(t){var e=document.createElement("link");return void 0===t.attrs.type&&(t.attrs.type="text/css"),t.attrs.rel="stylesheet",m(e,t.attrs),p(t,e),e}(e),r=function(t,e,n){var r=n.css,o=n.sourceMap,i=void 0===e.convertToAbsoluteUrls&&o;(e.convertToAbsoluteUrls||i)&&(r=f(r));o&&(r+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(o))))+" */");var a=new Blob([r],{type:"text/css"}),s=t.href;t.href=URL.createObjectURL(a),s&&URL.revokeObjectURL(s)}.bind(null,n,e),o=function(){v(n),n.href&&URL.revokeObjectURL(n.href)}):(n=g(e),r=function(t,e){var n=e.css,r=e.media;r&&t.setAttribute("media",r);if(t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}.bind(null,n),o=function(){v(n)});return r(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;r(t=e)}else o()}}t.exports=function(t,e){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");(e=e||{}).attrs="object"==typeof e.attrs?e.attrs:{},e.singleton||"boolean"==typeof e.singleton||(e.singleton=a()),e.insertInto||(e.insertInto="head"),e.insertAt||(e.insertAt="bottom");var n=h(t,e);return d(n,e),function(t){for(var r=[],o=0;o<n.length;o++){var a=n[o];(s=i[a.id]).refs--,r.push(s)}t&&d(h(t,e),e);for(o=0;o<r.length;o++){var s;if(0===(s=r[o]).refs){for(var c=0;c<s.parts.length;c++)s.parts[c]();delete i[s.id]}}}};var y,w=(y=[],function(t,e){return y[t]=e,y.filter(Boolean).join("\n")});function x(t,e,n,r){var o=n?"":r.css;if(t.styleSheet)t.styleSheet.cssText=w(e,o);else{var i=document.createTextNode(o),a=t.childNodes;a[e]&&t.removeChild(a[e]),a.length?t.insertBefore(i,a[e]):t.appendChild(i)}}},function(t,e){t.exports=function(t){var e="undefined"!=typeof window&&window.location;if(!e)throw new Error("fixUrls requires window.location");if(!t||"string"!=typeof t)return t;var n=e.protocol+"//"+e.host,r=n+e.pathname.replace(/\/[^\/]*$/,"/");return t.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,function(t,e){var o,i=e.trim().replace(/^"(.*)"$/,function(t,e){return e}).replace(/^'(.*)'$/,function(t,e){return e});return/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(i)?t:(o=0===i.indexOf("//")?i:0===i.indexOf("/")?n+i:r+i.replace(/^\.\//,""),"url("+JSON.stringify(o)+")")})}},function(t,e,n){"use strict";n.r(e),e.default='<svg width="10" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 14">\n  <path d="M7.6 8.15H2.25v4.525a1.125 1.125 0 0 1-2.25 0V1.125a1.125 1.125 0 1 1 2.25 0V5.9H7.6V1.125a1.125 1.125 0 0 1 2.25 0v11.55a1.125 1.125 0 0 1-2.25 0V8.15z"/>\n</svg>\n'}])});
+
 },{}],"../../node_modules/@editorjs/list/dist/bundle.js":[function(require,module,exports) {
 var define;
 !function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.List=t():e.List=t()}(window,function(){return function(e){var t={};function n(r){if(t[r])return t[r].exports;var i=t[r]={i:r,l:!1,exports:{}};return e[r].call(i.exports,i,i.exports,n),i.l=!0,i.exports}return n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var i in e)n.d(r,i,function(t){return e[t]}.bind(null,i));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s=0)}([function(e,t,n){function r(e){return function(e){if(Array.isArray(e)){for(var t=0,n=new Array(e.length);t<e.length;t++)n[t]=e[t];return n}}(e)||function(e){if(Symbol.iterator in Object(e)||"[object Arguments]"===Object.prototype.toString.call(e))return Array.from(e)}(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}()}function i(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function o(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}n(1).toString();var a=function(){function e(t){var n=t.data,r=(t.config,t.api);!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e),this._elements={wrapper:null},this.settings=[{name:"unordered",title:"Unordered",icon:'<svg width="17" height="13" viewBox="0 0 17 13" xmlns="http://www.w3.org/2000/svg"> <path d="M5.625 4.85h9.25a1.125 1.125 0 0 1 0 2.25h-9.25a1.125 1.125 0 0 1 0-2.25zm0-4.85h9.25a1.125 1.125 0 0 1 0 2.25h-9.25a1.125 1.125 0 0 1 0-2.25zm0 9.85h9.25a1.125 1.125 0 0 1 0 2.25h-9.25a1.125 1.125 0 0 1 0-2.25zm-4.5-5a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25zm0-4.85a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25zm0 9.85a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25z"/></svg>',default:!1},{name:"ordered",title:"Ordered",icon:'<svg width="17" height="13" viewBox="0 0 17 13" xmlns="http://www.w3.org/2000/svg"><path d="M5.819 4.607h9.362a1.069 1.069 0 0 1 0 2.138H5.82a1.069 1.069 0 1 1 0-2.138zm0-4.607h9.362a1.069 1.069 0 0 1 0 2.138H5.82a1.069 1.069 0 1 1 0-2.138zm0 9.357h9.362a1.069 1.069 0 0 1 0 2.138H5.82a1.069 1.069 0 0 1 0-2.137zM1.468 4.155V1.33c-.554.404-.926.606-1.118.606a.338.338 0 0 1-.244-.104A.327.327 0 0 1 0 1.59c0-.107.035-.184.105-.234.07-.05.192-.114.369-.192.264-.118.475-.243.633-.373.158-.13.298-.276.42-.438a3.94 3.94 0 0 1 .238-.298C1.802.019 1.872 0 1.975 0c.115 0 .208.042.277.127.07.085.105.202.105.351v3.556c0 .416-.15.624-.448.624a.421.421 0 0 1-.32-.127c-.08-.085-.121-.21-.121-.376zm-.283 6.664h1.572c.156 0 .275.03.358.091a.294.294 0 0 1 .123.25.323.323 0 0 1-.098.238c-.065.065-.164.097-.296.097H.629a.494.494 0 0 1-.353-.119.372.372 0 0 1-.126-.28c0-.068.027-.16.081-.273a.977.977 0 0 1 .178-.268c.267-.264.507-.49.722-.678.215-.188.368-.312.46-.371.165-.11.302-.222.412-.334.109-.112.192-.226.25-.344a.786.786 0 0 0 .085-.345.6.6 0 0 0-.341-.553.75.75 0 0 0-.345-.08c-.263 0-.47.11-.62.329-.02.029-.054.107-.101.235a.966.966 0 0 1-.16.295c-.059.069-.145.103-.26.103a.348.348 0 0 1-.25-.094.34.34 0 0 1-.099-.258c0-.132.031-.27.093-.413.063-.143.155-.273.279-.39.123-.116.28-.21.47-.282.189-.072.411-.107.666-.107.307 0 .569.045.786.137a1.182 1.182 0 0 1 .618.623 1.18 1.18 0 0 1-.096 1.083 2.03 2.03 0 0 1-.378.457c-.128.11-.344.282-.646.517-.302.235-.509.417-.621.547a1.637 1.637 0 0 0-.148.187z"/></svg>',default:!0}],this._data={style:this.settings.find(function(e){return!0===e.default}).name,items:[]},this.api=r,this.data=n}return o(e,null,[{key:"enableLineBreaks",get:function(){return!0}},{key:"toolbox",get:function(){return{icon:'<svg width="17" height="13" viewBox="0 0 17 13" xmlns="http://www.w3.org/2000/svg"> <path d="M5.625 4.85h9.25a1.125 1.125 0 0 1 0 2.25h-9.25a1.125 1.125 0 0 1 0-2.25zm0-4.85h9.25a1.125 1.125 0 0 1 0 2.25h-9.25a1.125 1.125 0 0 1 0-2.25zm0 9.85h9.25a1.125 1.125 0 0 1 0 2.25h-9.25a1.125 1.125 0 0 1 0-2.25zm-4.5-5a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25zm0-4.85a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25zm0 9.85a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25z"/></svg>',title:"List"}}}]),o(e,[{key:"render",value:function(){var e=this,t="ordered"===this._data.style?this.CSS.wrapperOrdered:this.CSS.wrapperUnordered;return this._elements.wrapper=this._make("ul",[this.CSS.baseBlock,this.CSS.wrapper,t],{contentEditable:!0}),this._data.items.length?this._data.items.forEach(function(t){e._elements.wrapper.appendChild(e._make("li",e.CSS.item,{innerHTML:t}))}):this._elements.wrapper.appendChild(this._make("li",this.CSS.item)),this._elements.wrapper.addEventListener("keydown",function(t){switch(t.keyCode){case 13:e.getOutofList(t);break;case 8:e.backspace(t)}},!1),this._elements.wrapper}},{key:"save",value:function(){return this.data}},{key:"renderSettings",value:function(){var e=this,t=this._make("div",[this.CSS.settingsWrapper],{});return this.settings.forEach(function(n){var r=e._make("div",e.CSS.settingsButton,{innerHTML:n.icon});r.addEventListener("click",function(){e.toggleTune(n.name);var t=r.parentNode.querySelectorAll("."+e.CSS.settingsButton);Array.from(t).forEach(function(t){return t.classList.remove(e.CSS.settingsButtonActive)}),r.classList.toggle(e.CSS.settingsButtonActive)}),e._data.style===n.name&&r.classList.add(e.CSS.settingsButtonActive),t.appendChild(r)}),t}},{key:"onPaste",value:function(e){var t=e.detail.data;this.data=this.pasteHandler(t)}},{key:"toggleTune",value:function(e){this._elements.wrapper.classList.toggle(this.CSS.wrapperOrdered,"ordered"===e),this._elements.wrapper.classList.toggle(this.CSS.wrapperUnordered,"unordered"===e),this._data.style=e}},{key:"_make",value:function(e){var t,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,i=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},o=document.createElement(e);Array.isArray(n)?(t=o.classList).add.apply(t,r(n)):n&&o.classList.add(n);for(var a in i)o[a]=i[a];return o}},{key:"getOutofList",value:function(e){var t=this._elements.wrapper.querySelectorAll("."+this.CSS.item);if(!(t.length<2)){var n=t[t.length-1],r=this.currentItem;r!==n||n.textContent.trim().length||(r.parentElement.removeChild(r),this.api.blocks.insertNewBlock(),e.preventDefault(),e.stopPropagation())}}},{key:"backspace",value:function(e){var t=this._elements.wrapper.querySelectorAll("."+this.CSS.item),n=t[0];n&&t.length<2&&!n.innerHTML.replace("<br>"," ").trim()&&e.preventDefault()}},{key:"selectItem",value:function(e){e.preventDefault();var t=window.getSelection(),n=t.anchorNode.parentNode.closest("."+this.CSS.item),r=new Range;r.selectNodeContents(n),t.removeAllRanges(),t.addRange(r)}},{key:"pasteHandler",value:function(e){var t,n=e.tagName;switch(n){case"OL":t="ordered";break;case"UL":case"LI":t="unordered"}var r={type:t,items:[]};if("LI"===n)r.items=[e.innerHTML];else{var i=Array.from(e.querySelectorAll("LI"));r.items=i.map(function(e){return e.innerHTML}).filter(function(e){return!!e.trim()})}return r}},{key:"CSS",get:function(){return{baseBlock:this.api.styles.block,wrapper:"cdx-list",wrapperOrdered:"cdx-list--ordered",wrapperUnordered:"cdx-list--unordered",item:"cdx-list__item",settingsWrapper:"cdx-list-settings",settingsButton:this.api.styles.settingsButton,settingsButtonActive:this.api.styles.settingsButtonActive}}},{key:"data",set:function(e){e||(e={}),this._data.style=e.style||this.settings.find(function(e){return!0===e.default}).name,this._data.items=e.items||[];var t=this._elements.wrapper;t&&t.parentNode.replaceChild(this.render(),t)},get:function(){this._data.items=[];for(var e=this._elements.wrapper.querySelectorAll(".".concat(this.CSS.item)),t=0;t<e.length;t++){e[t].innerHTML.replace("<br>"," ").trim()&&this._data.items.push(e[t].innerHTML)}return this._data}},{key:"currentItem",get:function(){var e=window.getSelection().anchorNode;return e.nodeType!==Node.ELEMENT_NODE&&(e=e.parentNode),e.closest(".".concat(this.CSS.item))}}],[{key:"conversionConfig",get:function(){return{export:function(e){return e.items.join(". ")},import:function(e){return{items:[e],style:"unordered"}}}}},{key:"sanitize",get:function(){return{style:{},items:{br:!0}}}},{key:"pasteConfig",get:function(){return{tags:["OL","UL","LI"]}}}]),e}();e.exports=a},function(e,t,n){var r=n(2);"string"==typeof r&&(r=[[e.i,r,""]]);var i={hmr:!0,transform:void 0,insertInto:void 0};n(4)(r,i);r.locals&&(e.exports=r.locals)},function(e,t,n){(e.exports=n(3)(!1)).push([e.i,".cdx-list {\n    margin: 0;\n    padding-left: 40px;\n    outline: none;\n}\n\n    .cdx-list__item {\n        padding: 5.5px 0 5.5px 3px;\n        line-height: 1.6em;\n    }\n\n    .cdx-list--unordered {\n        list-style: disc;\n    }\n\n    .cdx-list--ordered {\n        list-style: decimal;\n    }\n\n    .cdx-list-settings {\n        display: flex;\n    }\n\n    .cdx-list-settings .cdx-settings-button {\n            width: 50%;\n        }\n",""])},function(e,t){e.exports=function(e){var t=[];return t.toString=function(){return this.map(function(t){var n=function(e,t){var n=e[1]||"",r=e[3];if(!r)return n;if(t&&"function"==typeof btoa){var i=(a=r,""),o=r.sources.map(function(e){return"/*# sourceURL="+r.sourceRoot+e+" */"});return[n].concat(o).concat([i]).join("\n")}var a;return[n].join("\n")}(t,e);return t[2]?"@media "+t[2]+"{"+n+"}":n}).join("")},t.i=function(e,n){"string"==typeof e&&(e=[[null,e,""]]);for(var r={},i=0;i<this.length;i++){var o=this[i][0];"number"==typeof o&&(r[o]=!0)}for(i=0;i<e.length;i++){var a=e[i];"number"==typeof a[0]&&r[a[0]]||(n&&!a[2]?a[2]=n:n&&(a[2]="("+a[2]+") and ("+n+")"),t.push(a))}},t}},function(e,t,n){var r,i,o={},a=(r=function(){return window&&document&&document.all&&!window.atob},function(){return void 0===i&&(i=r.apply(this,arguments)),i}),s=function(e){var t={};return function(e){if("function"==typeof e)return e();if(void 0===t[e]){var n=function(e){return document.querySelector(e)}.call(this,e);if(window.HTMLIFrameElement&&n instanceof window.HTMLIFrameElement)try{n=n.contentDocument.head}catch(e){n=null}t[e]=n}return t[e]}}(),c=null,l=0,u=[],f=n(5);function d(e,t){for(var n=0;n<e.length;n++){var r=e[n],i=o[r.id];if(i){i.refs++;for(var a=0;a<i.parts.length;a++)i.parts[a](r.parts[a]);for(;a<r.parts.length;a++)i.parts.push(y(r.parts[a],t))}else{var s=[];for(a=0;a<r.parts.length;a++)s.push(y(r.parts[a],t));o[r.id]={id:r.id,refs:1,parts:s}}}}function p(e,t){for(var n=[],r={},i=0;i<e.length;i++){var o=e[i],a=t.base?o[0]+t.base:o[0],s={css:o[1],media:o[2],sourceMap:o[3]};r[a]?r[a].parts.push(s):n.push(r[a]={id:a,parts:[s]})}return n}function h(e,t){var n=s(e.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var r=u[u.length-1];if("top"===e.insertAt)r?r.nextSibling?n.insertBefore(t,r.nextSibling):n.appendChild(t):n.insertBefore(t,n.firstChild),u.push(t);else if("bottom"===e.insertAt)n.appendChild(t);else{if("object"!=typeof e.insertAt||!e.insertAt.before)throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");var i=s(e.insertInto+" "+e.insertAt.before);n.insertBefore(t,i)}}function m(e){if(null===e.parentNode)return!1;e.parentNode.removeChild(e);var t=u.indexOf(e);t>=0&&u.splice(t,1)}function v(e){var t=document.createElement("style");return void 0===e.attrs.type&&(e.attrs.type="text/css"),g(t,e.attrs),h(e,t),t}function g(e,t){Object.keys(t).forEach(function(n){e.setAttribute(n,t[n])})}function y(e,t){var n,r,i,o;if(t.transform&&e.css){if(!(o=t.transform(e.css)))return function(){};e.css=o}if(t.singleton){var a=l++;n=c||(c=v(t)),r=S.bind(null,n,a,!1),i=S.bind(null,n,a,!0)}else e.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=function(e){var t=document.createElement("link");return void 0===e.attrs.type&&(e.attrs.type="text/css"),e.attrs.rel="stylesheet",g(t,e.attrs),h(e,t),t}(t),r=function(e,t,n){var r=n.css,i=n.sourceMap,o=void 0===t.convertToAbsoluteUrls&&i;(t.convertToAbsoluteUrls||o)&&(r=f(r));i&&(r+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(i))))+" */");var a=new Blob([r],{type:"text/css"}),s=e.href;e.href=URL.createObjectURL(a),s&&URL.revokeObjectURL(s)}.bind(null,n,t),i=function(){m(n),n.href&&URL.revokeObjectURL(n.href)}):(n=v(t),r=function(e,t){var n=t.css,r=t.media;r&&e.setAttribute("media",r);if(e.styleSheet)e.styleSheet.cssText=n;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(n))}}.bind(null,n),i=function(){m(n)});return r(e),function(t){if(t){if(t.css===e.css&&t.media===e.media&&t.sourceMap===e.sourceMap)return;r(e=t)}else i()}}e.exports=function(e,t){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");(t=t||{}).attrs="object"==typeof t.attrs?t.attrs:{},t.singleton||"boolean"==typeof t.singleton||(t.singleton=a()),t.insertInto||(t.insertInto="head"),t.insertAt||(t.insertAt="bottom");var n=p(e,t);return d(n,t),function(e){for(var r=[],i=0;i<n.length;i++){var a=n[i];(s=o[a.id]).refs--,r.push(s)}e&&d(p(e,t),t);for(i=0;i<r.length;i++){var s;if(0===(s=r[i]).refs){for(var c=0;c<s.parts.length;c++)s.parts[c]();delete o[s.id]}}}};var b,w=(b=[],function(e,t){return b[e]=t,b.filter(Boolean).join("\n")});function S(e,t,n,r){var i=n?"":r.css;if(e.styleSheet)e.styleSheet.cssText=w(t,i);else{var o=document.createTextNode(i),a=e.childNodes;a[t]&&e.removeChild(a[t]),a.length?e.insertBefore(o,a[t]):e.appendChild(o)}}},function(e,t){e.exports=function(e){var t="undefined"!=typeof window&&window.location;if(!t)throw new Error("fixUrls requires window.location");if(!e||"string"!=typeof e)return e;var n=t.protocol+"//"+t.host,r=n+t.pathname.replace(/\/[^\/]*$/,"/");return e.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,function(e,t){var i,o=t.trim().replace(/^"(.*)"$/,function(e,t){return t}).replace(/^'(.*)'$/,function(e,t){return t});return/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(o)?e:(i=0===o.indexOf("//")?o:0===o.indexOf("/")?n+o:r+o.replace(/^\.\//,""),"url("+JSON.stringify(i)+")")})}}])});
 },{}],"../../node_modules/@editorjs/simple-image/dist/bundle.js":[function(require,module,exports) {
 var define;
-!function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.SimpleImage=e():t.SimpleImage=e()}(window,function(){return function(t){var e={};function n(i){if(e[i])return e[i].exports;var r=e[i]={i:i,l:!1,exports:{}};return t[i].call(r.exports,r,r.exports,n),r.l=!0,r.exports}return n.m=t,n.c=e,n.d=function(t,e,i){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:i})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var i=Object.create(null);if(n.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var r in t)n.d(i,r,function(e){return t[e]}.bind(null,r));return i},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="/",n(n.s=0)}([function(t,e,n){function i(t){return function(t){if(Array.isArray(t)){for(var e=0,n=new Array(t.length);e<t.length;e++)n[e]=t[e];return n}}(t)||function(t){if(Symbol.iterator in Object(t)||"[object Arguments]"===Object.prototype.toString.call(t))return Array.from(t)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}()}function r(t,e){for(var n=0;n<e.length;n++){var i=e[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(t,i.key,i)}}n(1).toString();var o=function(){function t(e){var n=e.data,i=(e.config,e.api);!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t),this.api=i,this.blockIndex=this.api.blocks.getCurrentBlockIndex()+1,this.CSS={baseClass:this.api.styles.block,loading:this.api.styles.loader,input:this.api.styles.input,settingsButton:this.api.styles.settingsButton,settingsButtonActive:this.api.styles.settingsButtonActive,wrapper:"cdx-simple-image",imageHolder:"cdx-simple-image__picture",caption:"cdx-simple-image__caption"},this.nodes={wrapper:null,imageHolder:null,image:null,caption:null},this.data={url:n.url||"",caption:n.caption||"",withBorder:void 0!==n.withBorder&&n.withBorder,withBackground:void 0!==n.withBackground&&n.withBackground,stretched:void 0!==n.stretched&&n.stretched},this.settings=[{name:"withBorder",icon:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M15.8 10.592v2.043h2.35v2.138H15.8v2.232h-2.25v-2.232h-2.4v-2.138h2.4v-2.28h2.25v.237h1.15-1.15zM1.9 8.455v-3.42c0-1.154.985-2.09 2.2-2.09h4.2v2.137H4.15v3.373H1.9zm0 2.137h2.25v3.325H8.3v2.138H4.1c-1.215 0-2.2-.936-2.2-2.09v-3.373zm15.05-2.137H14.7V5.082h-4.15V2.945h4.2c1.215 0 2.2.936 2.2 2.09v3.42z"/></svg>'},{name:"stretched",icon:'<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg"><path d="M13.568 5.925H4.056l1.703 1.703a1.125 1.125 0 0 1-1.59 1.591L.962 6.014A1.069 1.069 0 0 1 .588 4.26L4.38.469a1.069 1.069 0 0 1 1.512 1.511L4.084 3.787h9.606l-1.85-1.85a1.069 1.069 0 1 1 1.512-1.51l3.792 3.791a1.069 1.069 0 0 1-.475 1.788L13.514 9.16a1.125 1.125 0 0 1-1.59-1.591l1.644-1.644z"/></svg>'},{name:"withBackground",icon:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.043 8.265l3.183-3.183h-2.924L4.75 10.636v2.923l4.15-4.15v2.351l-2.158 2.159H8.9v2.137H4.7c-1.215 0-2.2-.936-2.2-2.09v-8.93c0-1.154.985-2.09 2.2-2.09h10.663l.033-.033.034.034c1.178.04 2.12.96 2.12 2.089v3.23H15.3V5.359l-2.906 2.906h-2.35zM7.951 5.082H4.75v3.201l3.201-3.2zm5.099 7.078v3.04h4.15v-3.04h-4.15zm-1.1-2.137h6.35c.635 0 1.15.489 1.15 1.092v5.13c0 .603-.515 1.092-1.15 1.092h-6.35c-.635 0-1.15-.489-1.15-1.092v-5.13c0-.603.515-1.092 1.15-1.092z"/></svg>'}]}var e,n,o;return e=t,o=[{key:"sanitize",get:function(){return{url:{},withBorder:{},withBackground:{},stretched:{},caption:{br:!0}}}},{key:"pasteConfig",get:function(){return{patterns:{image:/https?:\/\/\S+\.(gif|jpe?g|tiff|png)$/i},tags:["img"],files:{mimeTypes:["image/*"]}}}}],(n=[{key:"render",value:function(){var t=this,e=this._make("div",[this.CSS.baseClass,this.CSS.wrapper]),n=this._make("div",this.CSS.loading),i=this._make("div",this.CSS.imageHolder),r=this._make("img"),o=this._make("div",[this.CSS.input,this.CSS.caption],{contentEditable:"true",innerHTML:this.data.caption||""});return o.dataset.placeholder="Enter a caption",e.appendChild(n),this.data.url&&(r.src=this.data.url),r.onload=function(){e.classList.remove(t.CSS.loading),i.appendChild(r),e.appendChild(i),e.appendChild(o),n.remove(),t._acceptTuneView()},r.onerror=function(t){console.log("Failed to load an image",t)},this.nodes.imageHolder=i,this.nodes.wrapper=e,this.nodes.image=r,this.nodes.caption=o,e}},{key:"save",value:function(t){var e=t.querySelector("img"),n=t.querySelector("."+this.CSS.input);return e?Object.assign(this.data,{url:e.src,caption:n.innerHTML}):this.data}},{key:"onDropHandler",value:function(t){var e=new FileReader;return e.readAsDataURL(t),new Promise(function(n){e.onload=function(e){n({url:e.target.result,caption:t.name})}})}},{key:"onPaste",value:function(t){var e=this;switch(t.type){case"tag":var n=t.detail.data;this.data={url:n.src};break;case"pattern":var i=t.detail.data;this.data={url:i};break;case"file":var r=t.detail.file;this.onDropHandler(r).then(function(t){e.data=t})}}},{key:"renderSettings",value:function(){var t=this,e=document.createElement("div");return this.settings.forEach(function(n){var i=document.createElement("div");i.classList.add(t.CSS.settingsButton),i.innerHTML=n.icon,i.addEventListener("click",function(){t._toggleTune(n.name),i.classList.toggle(t.CSS.settingsButtonActive)}),i.classList.toggle(t.CSS.settingsButtonActive,t.data[n.name]),e.appendChild(i)}),e}},{key:"_make",value:function(t){var e,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},o=document.createElement(t);Array.isArray(n)?(e=o.classList).add.apply(e,i(n)):n&&o.classList.add(n);for(var a in r)o[a]=r[a];return o}},{key:"_toggleTune",value:function(t){this.data[t]=!this.data[t],this._acceptTuneView()}},{key:"_acceptTuneView",value:function(){var t=this;this.settings.forEach(function(e){t.nodes.imageHolder.classList.toggle(t.CSS.imageHolder+"--"+e.name.replace(/([A-Z])/g,function(t){return"-".concat(t[0].toLowerCase())}),!!t.data[e.name]),"stretched"===e.name&&t.api.blocks.stretchBlock(t.blockIndex,!!t.data.stretched)})}},{key:"data",get:function(){return this._data},set:function(t){this._data=Object.assign({},this.data,t),this.nodes.image&&(this.nodes.image.src=this.data.url),this.nodes.caption&&(this.nodes.caption.innerHTML=this.data.caption)}}])&&r(e.prototype,n),o&&r(e,o),t}();t.exports=o},function(t,e,n){var i=n(2);"string"==typeof i&&(i=[[t.i,i,""]]);var r={hmr:!0,transform:void 0,insertInto:void 0};n(4)(i,r);i.locals&&(t.exports=i.locals)},function(t,e,n){(t.exports=n(3)(!1)).push([t.i,".cdx-simple-image {}\n\n.cdx-simple-image .cdx-loader {\n  min-height: 200px;\n}\n\n.cdx-simple-image .cdx-input {\n  margin-top: 10px;\n}\n\n.cdx-simple-image img {\n  max-width: 100%;\n  vertical-align: bottom;\n}\n\n.cdx-simple-image__caption[contentEditable=true][data-placeholder]:empty::before {\n  position: absolute;\n  content: attr(data-placeholder);\n  color: #707684;\n  font-weight: normal;\n  opacity: 0;\n }\n\n.cdx-simple-image__caption[contentEditable=true][data-placeholder]:empty::before {\n  opacity: 1;\n}\n\n.cdx-simple-image__caption[contentEditable=true][data-placeholder]:empty:focus::before {\n  opacity: 0;\n}\n\n\n.cdx-simple-image__picture--with-background {\n  background: #eff2f5;\n  padding: 10px;\n}\n\n.cdx-simple-image__picture--with-background img {\n  display: block;\n  max-width: 60%;\n  margin: 0 auto;\n}\n\n.cdx-simple-image__picture--with-border {\n  border: 1px solid #e8e8eb;\n  padding: 1px;\n}\n\n.cdx-simple-image__picture--stretched img {\n  max-width: none;\n  width: 100%;\n}\n",""])},function(t,e){t.exports=function(t){var e=[];return e.toString=function(){return this.map(function(e){var n=function(t,e){var n=t[1]||"",i=t[3];if(!i)return n;if(e&&"function"==typeof btoa){var r=(a=i,""),o=i.sources.map(function(t){return"/*# sourceURL="+i.sourceRoot+t+" */"});return[n].concat(o).concat([r]).join("\n")}var a;return[n].join("\n")}(e,t);return e[2]?"@media "+e[2]+"{"+n+"}":n}).join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var i={},r=0;r<this.length;r++){var o=this[r][0];"number"==typeof o&&(i[o]=!0)}for(r=0;r<t.length;r++){var a=t[r];"number"==typeof a[0]&&i[a[0]]||(n&&!a[2]?a[2]=n:n&&(a[2]="("+a[2]+") and ("+n+")"),e.push(a))}},e}},function(t,e,n){var i,r,o={},a=(i=function(){return window&&document&&document.all&&!window.atob},function(){return void 0===r&&(r=i.apply(this,arguments)),r}),s=function(t){var e={};return function(t){if("function"==typeof t)return t();if(void 0===e[t]){var n=function(t){return document.querySelector(t)}.call(this,t);if(window.HTMLIFrameElement&&n instanceof window.HTMLIFrameElement)try{n=n.contentDocument.head}catch(t){n=null}e[t]=n}return e[t]}}(),c=null,l=0,u=[],d=n(5);function p(t,e){for(var n=0;n<t.length;n++){var i=t[n],r=o[i.id];if(r){r.refs++;for(var a=0;a<r.parts.length;a++)r.parts[a](i.parts[a]);for(;a<i.parts.length;a++)r.parts.push(b(i.parts[a],e))}else{var s=[];for(a=0;a<i.parts.length;a++)s.push(b(i.parts[a],e));o[i.id]={id:i.id,refs:1,parts:s}}}}function f(t,e){for(var n=[],i={},r=0;r<t.length;r++){var o=t[r],a=e.base?o[0]+e.base:o[0],s={css:o[1],media:o[2],sourceMap:o[3]};i[a]?i[a].parts.push(s):n.push(i[a]={id:a,parts:[s]})}return n}function h(t,e){var n=s(t.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var i=u[u.length-1];if("top"===t.insertAt)i?i.nextSibling?n.insertBefore(e,i.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),u.push(e);else if("bottom"===t.insertAt)n.appendChild(e);else{if("object"!=typeof t.insertAt||!t.insertAt.before)throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");var r=s(t.insertInto+" "+t.insertAt.before);n.insertBefore(e,r)}}function m(t){if(null===t.parentNode)return!1;t.parentNode.removeChild(t);var e=u.indexOf(t);e>=0&&u.splice(e,1)}function v(t){var e=document.createElement("style");return void 0===t.attrs.type&&(t.attrs.type="text/css"),g(e,t.attrs),h(t,e),e}function g(t,e){Object.keys(e).forEach(function(n){t.setAttribute(n,e[n])})}function b(t,e){var n,i,r,o;if(e.transform&&t.css){if(!(o=e.transform(t.css)))return function(){};t.css=o}if(e.singleton){var a=l++;n=c||(c=v(e)),i=x.bind(null,n,a,!1),r=x.bind(null,n,a,!0)}else t.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=function(t){var e=document.createElement("link");return void 0===t.attrs.type&&(t.attrs.type="text/css"),t.attrs.rel="stylesheet",g(e,t.attrs),h(t,e),e}(e),i=function(t,e,n){var i=n.css,r=n.sourceMap,o=void 0===e.convertToAbsoluteUrls&&r;(e.convertToAbsoluteUrls||o)&&(i=d(i));r&&(i+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");var a=new Blob([i],{type:"text/css"}),s=t.href;t.href=URL.createObjectURL(a),s&&URL.revokeObjectURL(s)}.bind(null,n,e),r=function(){m(n),n.href&&URL.revokeObjectURL(n.href)}):(n=v(e),i=function(t,e){var n=e.css,i=e.media;i&&t.setAttribute("media",i);if(t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}.bind(null,n),r=function(){m(n)});return i(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;i(t=e)}else r()}}t.exports=function(t,e){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");(e=e||{}).attrs="object"==typeof e.attrs?e.attrs:{},e.singleton||"boolean"==typeof e.singleton||(e.singleton=a()),e.insertInto||(e.insertInto="head"),e.insertAt||(e.insertAt="bottom");var n=f(t,e);return p(n,e),function(t){for(var i=[],r=0;r<n.length;r++){var a=n[r];(s=o[a.id]).refs--,i.push(s)}t&&p(f(t,e),e);for(r=0;r<i.length;r++){var s;if(0===(s=i[r]).refs){for(var c=0;c<s.parts.length;c++)s.parts[c]();delete o[s.id]}}}};var y,w=(y=[],function(t,e){return y[t]=e,y.filter(Boolean).join("\n")});function x(t,e,n,i){var r=n?"":i.css;if(t.styleSheet)t.styleSheet.cssText=w(e,r);else{var o=document.createTextNode(r),a=t.childNodes;a[e]&&t.removeChild(a[e]),a.length?t.insertBefore(o,a[e]):t.appendChild(o)}}},function(t,e){t.exports=function(t){var e="undefined"!=typeof window&&window.location;if(!e)throw new Error("fixUrls requires window.location");if(!t||"string"!=typeof t)return t;var n=e.protocol+"//"+e.host,i=n+e.pathname.replace(/\/[^\/]*$/,"/");return t.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,function(t,e){var r,o=e.trim().replace(/^"(.*)"$/,function(t,e){return e}).replace(/^'(.*)'$/,function(t,e){return e});return/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(o)?t:(r=0===o.indexOf("//")?o:0===o.indexOf("/")?n+o:i+o.replace(/^\.\//,""),"url("+JSON.stringify(r)+")")})}}])});
+!function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.SimpleImage=e():t.SimpleImage=e()}(window,function(){return function(t){var e={};function n(i){if(e[i])return e[i].exports;var r=e[i]={i:i,l:!1,exports:{}};return t[i].call(r.exports,r,r.exports,n),r.l=!0,r.exports}return n.m=t,n.c=e,n.d=function(t,e,i){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:i})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var i=Object.create(null);if(n.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var r in t)n.d(i,r,function(e){return t[e]}.bind(null,r));return i},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="/",n(n.s=0)}([function(t,e,n){function i(t){return function(t){if(Array.isArray(t)){for(var e=0,n=new Array(t.length);e<t.length;e++)n[e]=t[e];return n}}(t)||function(t){if(Symbol.iterator in Object(t)||"[object Arguments]"===Object.prototype.toString.call(t))return Array.from(t)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}()}function r(t,e){for(var n=0;n<e.length;n++){var i=e[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(t,i.key,i)}}n(1).toString();var o=function(){function t(e){var n=e.data,i=(e.config,e.api);!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t),this.api=i,this.blockIndex=this.api.blocks.getCurrentBlockIndex()+1,this.CSS={baseClass:this.api.styles.block,loading:this.api.styles.loader,input:this.api.styles.input,settingsButton:this.api.styles.settingsButton,settingsButtonActive:this.api.styles.settingsButtonActive,wrapper:"cdx-simple-image",imageHolder:"cdx-simple-image__picture",caption:"cdx-simple-image__caption"},this.nodes={wrapper:null,imageHolder:null,image:null,caption:null},this.data={url:n.url||"",caption:n.caption||"",withBorder:void 0!==n.withBorder&&n.withBorder,withBackground:void 0!==n.withBackground&&n.withBackground,stretched:void 0!==n.stretched&&n.stretched},this.settings=[{name:"stretched",icon:'<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg"><path d="M13.568 5.925H4.056l1.703 1.703a1.125 1.125 0 0 1-1.59 1.591L.962 6.014A1.069 1.069 0 0 1 .588 4.26L4.38.469a1.069 1.069 0 0 1 1.512 1.511L4.084 3.787h9.606l-1.85-1.85a1.069 1.069 0 1 1 1.512-1.51l3.792 3.791a1.069 1.069 0 0 1-.475 1.788L13.514 9.16a1.125 1.125 0 0 1-1.59-1.591l1.644-1.644z"/></svg>'}]}var e,n,o;return e=t,o=[{key:"sanitize",get:function(){return{url:{},withBorder:{},withBackground:{},stretched:{},caption:{br:!0}}}},{key:"pasteConfig",get:function(){return{patterns:{image:/https?:\/\/\S+\.(gif|jpe?g|tiff|png)$/i},tags:["img"],files:{mimeTypes:["image/*"]}}}}],(n=[{key:"render",value:function(){var t=this,e=this._make("div",[this.CSS.baseClass,this.CSS.wrapper]),n=this._make("div",this.CSS.loading),i=this._make("div",this.CSS.imageHolder),r=this._make("img"),o=this._make("div",[this.CSS.input,this.CSS.caption],{contentEditable:"true",innerHTML:this.data.caption||""});return o.dataset.placeholder="Caption",e.appendChild(n),this.data.url&&(r.src=this.data.url),r.onload=function(){e.classList.remove(t.CSS.loading),i.appendChild(r),e.appendChild(i),i.appendChild(o),n.remove(),t._acceptTuneView()},r.onerror=function(t){console.log("Failed to load an image",t)},this.nodes.imageHolder=i,this.nodes.wrapper=e,this.nodes.image=r,this.nodes.caption=o,e}},{key:"save",value:function(t){var e=t.querySelector("img"),n=t.querySelector("."+this.CSS.input);return e?Object.assign(this.data,{url:e.src,caption:n.innerHTML}):this.data}},{key:"onDropHandler",value:function(t){var e=new FileReader;return e.readAsDataURL(t),new Promise(function(n){e.onload=function(e){n({url:e.target.result,caption:t.name})}})}},{key:"onPaste",value:function(t){var e=this;switch(t.type){case"tag":var n=t.detail.data;this.data={url:n.src};break;case"pattern":var i=t.detail.data;this.data={url:i};break;case"file":var r=t.detail.file;this.onDropHandler(r).then(function(t){e.data=t})}}},{key:"renderSettings",value:function(){var t=this,e=document.createElement("div");return this.settings.forEach(function(n){var i=document.createElement("div");i.classList.add(t.CSS.settingsButton),i.innerHTML=n.icon,i.addEventListener("click",function(){t._toggleTune(n.name),i.classList.toggle(t.CSS.settingsButtonActive)}),i.classList.toggle(t.CSS.settingsButtonActive,t.data[n.name]),e.appendChild(i)}),e}},{key:"_make",value:function(t){var e,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},o=document.createElement(t);Array.isArray(n)?(e=o.classList).add.apply(e,i(n)):n&&o.classList.add(n);for(var a in r)o[a]=r[a];return o}},{key:"_toggleTune",value:function(t){this.data[t]=!this.data[t],this._acceptTuneView()}},{key:"_acceptTuneView",value:function(){var t=this;this.settings.forEach(function(e){t.nodes.imageHolder.classList.toggle(t.CSS.imageHolder+"--"+e.name.replace(/([A-Z])/g,function(t){return"-".concat(t[0].toLowerCase())}),!!t.data[e.name]),"stretched"===e.name&&t.api.blocks.stretchBlock(t.blockIndex,!!t.data.stretched)})}},{key:"data",get:function(){return this._data},set:function(t){this._data=Object.assign({},this.data,t),this.nodes.image&&(this.nodes.image.src=this.data.url),this.nodes.caption&&(this.nodes.caption.innerHTML=this.data.caption)}}])&&r(e.prototype,n),o&&r(e,o),t}();t.exports=o},function(t,e,n){var i=n(2);"string"==typeof i&&(i=[[t.i,i,""]]);var r={hmr:!0,transform:void 0,insertInto:void 0};n(4)(i,r);i.locals&&(t.exports=i.locals)},function(t,e,n){(t.exports=n(3)(!1)).push([t.i,".cdx-simple-image {}\n\n.cdx-simple-image .cdx-loader {\n  min-height: 200px;\n}\n\n.cdx-simple-image .cdx-input {\n  margin-top: 10px;\n}\n\n.cdx-simple-image img {\n  max-width: 100%;\n  vertical-align: bottom;\n}\n\n.cdx-simple-image__caption[contentEditable=true][data-placeholder]:empty::before {\n  position: absolute;\n  content: attr(data-placeholder);\n  color: #707684;\n  font-weight: normal;\n  opacity: 0;\n }\n\n.cdx-simple-image__caption[contentEditable=true][data-placeholder]:empty::before {\n  opacity: 1;\n}\n\n.cdx-simple-image__caption[contentEditable=true][data-placeholder]:empty:focus::before {\n  opacity: 0;\n}\n\n\n.cdx-simple-image__picture--with-background {\n  background: #eff2f5;\n  padding: 10px;\n}\n\n.cdx-simple-image__picture--with-background img {\n  display: block;\n  max-width: 60%;\n  margin: 0 auto;\n}\n\n.cdx-simple-image__picture--with-border {\n  border: 1px solid #e8e8eb;\n  padding: 1px;\n}\n\n.cdx-simple-image__picture--stretched img {\n  max-width: none;\n  width: 100%;\n}\n",""])},function(t,e){t.exports=function(t){var e=[];return e.toString=function(){return this.map(function(e){var n=function(t,e){var n=t[1]||"",i=t[3];if(!i)return n;if(e&&"function"==typeof btoa){var r=(a=i,""),o=i.sources.map(function(t){return"/*# sourceURL="+i.sourceRoot+t+" */"});return[n].concat(o).concat([r]).join("\n")}var a;return[n].join("\n")}(e,t);return e[2]?"@media "+e[2]+"{"+n+"}":n}).join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var i={},r=0;r<this.length;r++){var o=this[r][0];"number"==typeof o&&(i[o]=!0)}for(r=0;r<t.length;r++){var a=t[r];"number"==typeof a[0]&&i[a[0]]||(n&&!a[2]?a[2]=n:n&&(a[2]="("+a[2]+") and ("+n+")"),e.push(a))}},e}},function(t,e,n){var i,r,o={},a=(i=function(){return window&&document&&document.all&&!window.atob},function(){return void 0===r&&(r=i.apply(this,arguments)),r}),s=function(t){var e={};return function(t){if("function"==typeof t)return t();if(void 0===e[t]){var n=function(t){return document.querySelector(t)}.call(this,t);if(window.HTMLIFrameElement&&n instanceof window.HTMLIFrameElement)try{n=n.contentDocument.head}catch(t){n=null}e[t]=n}return e[t]}}(),c=null,l=0,u=[],d=n(5);function p(t,e){for(var n=0;n<t.length;n++){var i=t[n],r=o[i.id];if(r){r.refs++;for(var a=0;a<r.parts.length;a++)r.parts[a](i.parts[a]);for(;a<i.parts.length;a++)r.parts.push(b(i.parts[a],e))}else{var s=[];for(a=0;a<i.parts.length;a++)s.push(b(i.parts[a],e));o[i.id]={id:i.id,refs:1,parts:s}}}}function f(t,e){for(var n=[],i={},r=0;r<t.length;r++){var o=t[r],a=e.base?o[0]+e.base:o[0],s={css:o[1],media:o[2],sourceMap:o[3]};i[a]?i[a].parts.push(s):n.push(i[a]={id:a,parts:[s]})}return n}function h(t,e){var n=s(t.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var i=u[u.length-1];if("top"===t.insertAt)i?i.nextSibling?n.insertBefore(e,i.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),u.push(e);else if("bottom"===t.insertAt)n.appendChild(e);else{if("object"!=typeof t.insertAt||!t.insertAt.before)throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");var r=s(t.insertInto+" "+t.insertAt.before);n.insertBefore(e,r)}}function m(t){if(null===t.parentNode)return!1;t.parentNode.removeChild(t);var e=u.indexOf(t);e>=0&&u.splice(e,1)}function v(t){var e=document.createElement("style");return void 0===t.attrs.type&&(t.attrs.type="text/css"),g(e,t.attrs),h(t,e),e}function g(t,e){Object.keys(e).forEach(function(n){t.setAttribute(n,e[n])})}function b(t,e){var n,i,r,o;if(e.transform&&t.css){if(!(o=e.transform(t.css)))return function(){};t.css=o}if(e.singleton){var a=l++;n=c||(c=v(e)),i=x.bind(null,n,a,!1),r=x.bind(null,n,a,!0)}else t.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=function(t){var e=document.createElement("link");return void 0===t.attrs.type&&(t.attrs.type="text/css"),t.attrs.rel="stylesheet",g(e,t.attrs),h(t,e),e}(e),i=function(t,e,n){var i=n.css,r=n.sourceMap,o=void 0===e.convertToAbsoluteUrls&&r;(e.convertToAbsoluteUrls||o)&&(i=d(i));r&&(i+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");var a=new Blob([i],{type:"text/css"}),s=t.href;t.href=URL.createObjectURL(a),s&&URL.revokeObjectURL(s)}.bind(null,n,e),r=function(){m(n),n.href&&URL.revokeObjectURL(n.href)}):(n=v(e),i=function(t,e){var n=e.css,i=e.media;i&&t.setAttribute("media",i);if(t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}.bind(null,n),r=function(){m(n)});return i(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;i(t=e)}else r()}}t.exports=function(t,e){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");(e=e||{}).attrs="object"==typeof e.attrs?e.attrs:{},e.singleton||"boolean"==typeof e.singleton||(e.singleton=a()),e.insertInto||(e.insertInto="head"),e.insertAt||(e.insertAt="bottom");var n=f(t,e);return p(n,e),function(t){for(var i=[],r=0;r<n.length;r++){var a=n[r];(s=o[a.id]).refs--,i.push(s)}t&&p(f(t,e),e);for(r=0;r<i.length;r++){var s;if(0===(s=i[r]).refs){for(var c=0;c<s.parts.length;c++)s.parts[c]();delete o[s.id]}}}};var y,w=(y=[],function(t,e){return y[t]=e,y.filter(Boolean).join("\n")});function x(t,e,n,i){var r=n?"":i.css;if(t.styleSheet)t.styleSheet.cssText=w(e,r);else{var o=document.createTextNode(r),a=t.childNodes;a[e]&&t.removeChild(a[e]),a.length?t.insertBefore(o,a[e]):t.appendChild(o)}}},function(t,e){t.exports=function(t){var e="undefined"!=typeof window&&window.location;if(!e)throw new Error("fixUrls requires window.location");if(!t||"string"!=typeof t)return t;var n=e.protocol+"//"+e.host,i=n+e.pathname.replace(/\/[^\/]*$/,"/");return t.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,function(t,e){var r,o=e.trim().replace(/^"(.*)"$/,function(t,e){return e}).replace(/^'(.*)'$/,function(t,e){return e});return/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(o)?t:(r=0===o.indexOf("//")?o:0===o.indexOf("/")?n+o:i+o.replace(/^\.\//,""),"url("+JSON.stringify(r)+")")})}}])});
 },{}],"../../node_modules/@editorjs/code/dist/bundle.js":[function(require,module,exports) {
 var define;
 !function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.CodeTool=t():e.CodeTool=t()}(window,function(){return function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s=0)}([function(e,t,n){function r(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function o(e,t,n){return t&&r(e.prototype,t),n&&r(e,n),e}n(1).toString();
@@ -232,58 +233,2464 @@ var define;
 },{}],"../../node_modules/@editorjs/marker/dist/bundle.js":[function(require,module,exports) {
 var define;
 !function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.Marker=e():t.Marker=e()}(window,function(){return function(t){var e={};function n(r){if(e[r])return e[r].exports;var o=e[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(r,o,function(e){return t[e]}.bind(null,o));return r},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="/",n(n.s=0)}([function(t,e,n){function r(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}function o(t,e,n){return e&&r(t.prototype,e),n&&r(t,n),t}n(1).toString();var i=function(){function t(e){var n=e.api;!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t),this.api=n,this.button=null,this.tag="MARK",this.iconClasses={base:this.api.styles.inlineToolButton,active:this.api.styles.inlineToolButtonActive}}return o(t,null,[{key:"CSS",get:function(){return"cdx-marker"}}]),o(t,[{key:"render",value:function(){return this.button=document.createElement("button"),this.button.type="button",this.button.classList.add(this.iconClasses.base),this.button.innerHTML=this.toolboxIcon,this.button}},{key:"surround",value:function(e){if(e){var n=this.api.selection.findParentTag(this.tag,t.CSS);n?this.unwrap(n):this.wrap(e)}}},{key:"wrap",value:function(e){var n=document.createElement(this.tag);n.classList.add(t.CSS),n.appendChild(e.extractContents()),e.insertNode(n),this.api.selection.expandToTag(n)}},{key:"unwrap",value:function(t){this.api.selection.expandToTag(t);var e=window.getSelection(),n=e.getRangeAt(0),r=n.extractContents();t.parentNode.removeChild(t),n.insertNode(r),e.removeAllRanges(),e.addRange(n)}},{key:"checkState",value:function(){var e=this.api.selection.findParentTag(this.tag,t.CSS);this.button.classList.toggle(this.iconClasses.active,!!e)}},{key:"toolboxIcon",get:function(){return'<svg width="34" height="34" xmlns="http://www.w3.org/2000/svg"><path d="M17.78 19.543l3.085 1.78-.825 1.499-1.04-.033-1.03 1.784h-2.075l1.575-2.73-.537-.82.848-1.48zm.578-1.007l3.83-6.687a1.688 1.688 0 0 1 2.303-.626l.003.002a1.725 1.725 0 0 1 .65 2.327l-3.719 6.755-3.067-1.771zm-8.17 3.665h3.662a1.187 1.187 0 0 1 0 2.374h-3.663a1.187 1.187 0 1 1 0-2.374z"/></svg>'}}],[{key:"isInline",get:function(){return!0}},{key:"sanitize",get:function(){return{mark:{class:t.CSS}}}}]),t}();t.exports=i},function(t,e,n){var r=n(2);"string"==typeof r&&(r=[[t.i,r,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(4)(r,o);r.locals&&(t.exports=r.locals)},function(t,e,n){(t.exports=n(3)(!1)).push([t.i,".cdx-marker {\n  background: rgba(245,235,111,0.29);\n  padding: 3px 0;\n}",""])},function(t,e){t.exports=function(t){var e=[];return e.toString=function(){return this.map(function(e){var n=function(t,e){var n=t[1]||"",r=t[3];if(!r)return n;if(e&&"function"==typeof btoa){var o=(a=r,""),i=r.sources.map(function(t){return"/*# sourceURL="+r.sourceRoot+t+" */"});return[n].concat(i).concat([o]).join("\n")}var a;return[n].join("\n")}(e,t);return e[2]?"@media "+e[2]+"{"+n+"}":n}).join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var r={},o=0;o<this.length;o++){var i=this[o][0];"number"==typeof i&&(r[i]=!0)}for(o=0;o<t.length;o++){var a=t[o];"number"==typeof a[0]&&r[a[0]]||(n&&!a[2]?a[2]=n:n&&(a[2]="("+a[2]+") and ("+n+")"),e.push(a))}},e}},function(t,e,n){var r,o,i={},a=(r=function(){return window&&document&&document.all&&!window.atob},function(){return void 0===o&&(o=r.apply(this,arguments)),o}),s=function(t){var e={};return function(t){if("function"==typeof t)return t();if(void 0===e[t]){var n=function(t){return document.querySelector(t)}.call(this,t);if(window.HTMLIFrameElement&&n instanceof window.HTMLIFrameElement)try{n=n.contentDocument.head}catch(t){n=null}e[t]=n}return e[t]}}(),u=null,c=0,f=[],l=n(5);function p(t,e){for(var n=0;n<t.length;n++){var r=t[n],o=i[r.id];if(o){o.refs++;for(var a=0;a<o.parts.length;a++)o.parts[a](r.parts[a]);for(;a<r.parts.length;a++)o.parts.push(m(r.parts[a],e))}else{var s=[];for(a=0;a<r.parts.length;a++)s.push(m(r.parts[a],e));i[r.id]={id:r.id,refs:1,parts:s}}}}function d(t,e){for(var n=[],r={},o=0;o<t.length;o++){var i=t[o],a=e.base?i[0]+e.base:i[0],s={css:i[1],media:i[2],sourceMap:i[3]};r[a]?r[a].parts.push(s):n.push(r[a]={id:a,parts:[s]})}return n}function h(t,e){var n=s(t.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var r=f[f.length-1];if("top"===t.insertAt)r?r.nextSibling?n.insertBefore(e,r.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),f.push(e);else if("bottom"===t.insertAt)n.appendChild(e);else{if("object"!=typeof t.insertAt||!t.insertAt.before)throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");var o=s(t.insertInto+" "+t.insertAt.before);n.insertBefore(e,o)}}function v(t){if(null===t.parentNode)return!1;t.parentNode.removeChild(t);var e=f.indexOf(t);e>=0&&f.splice(e,1)}function b(t){var e=document.createElement("style");return void 0===t.attrs.type&&(t.attrs.type="text/css"),y(e,t.attrs),h(t,e),e}function y(t,e){Object.keys(e).forEach(function(n){t.setAttribute(n,e[n])})}function m(t,e){var n,r,o,i;if(e.transform&&t.css){if(!(i=e.transform(t.css)))return function(){};t.css=i}if(e.singleton){var a=c++;n=u||(u=b(e)),r=x.bind(null,n,a,!1),o=x.bind(null,n,a,!0)}else t.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=function(t){var e=document.createElement("link");return void 0===t.attrs.type&&(t.attrs.type="text/css"),t.attrs.rel="stylesheet",y(e,t.attrs),h(t,e),e}(e),r=function(t,e,n){var r=n.css,o=n.sourceMap,i=void 0===e.convertToAbsoluteUrls&&o;(e.convertToAbsoluteUrls||i)&&(r=l(r));o&&(r+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(o))))+" */");var a=new Blob([r],{type:"text/css"}),s=t.href;t.href=URL.createObjectURL(a),s&&URL.revokeObjectURL(s)}.bind(null,n,e),o=function(){v(n),n.href&&URL.revokeObjectURL(n.href)}):(n=b(e),r=function(t,e){var n=e.css,r=e.media;r&&t.setAttribute("media",r);if(t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}.bind(null,n),o=function(){v(n)});return r(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;r(t=e)}else o()}}t.exports=function(t,e){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");(e=e||{}).attrs="object"==typeof e.attrs?e.attrs:{},e.singleton||"boolean"==typeof e.singleton||(e.singleton=a()),e.insertInto||(e.insertInto="head"),e.insertAt||(e.insertAt="bottom");var n=d(t,e);return p(n,e),function(t){for(var r=[],o=0;o<n.length;o++){var a=n[o];(s=i[a.id]).refs--,r.push(s)}t&&p(d(t,e),e);for(o=0;o<r.length;o++){var s;if(0===(s=r[o]).refs){for(var u=0;u<s.parts.length;u++)s.parts[u]();delete i[s.id]}}}};var g,w=(g=[],function(t,e){return g[t]=e,g.filter(Boolean).join("\n")});function x(t,e,n,r){var o=n?"":r.css;if(t.styleSheet)t.styleSheet.cssText=w(e,o);else{var i=document.createTextNode(o),a=t.childNodes;a[e]&&t.removeChild(a[e]),a.length?t.insertBefore(i,a[e]):t.appendChild(i)}}},function(t,e){t.exports=function(t){var e="undefined"!=typeof window&&window.location;if(!e)throw new Error("fixUrls requires window.location");if(!t||"string"!=typeof t)return t;var n=e.protocol+"//"+e.host,r=n+e.pathname.replace(/\/[^\/]*$/,"/");return t.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,function(t,e){var o,i=e.trim().replace(/^"(.*)"$/,function(t,e){return e}).replace(/^'(.*)'$/,function(t,e){return e});return/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(i)?t:(o=0===i.indexOf("//")?i:0===i.indexOf("/")?n+i:r+i.replace(/^\.\//,""),"url("+JSON.stringify(o)+")")})}}])});
-},{}],"../../../../../../../usr/local/lib/node_modules/parcel/node_modules/os-browserify/browser.js":[function(require,module,exports) {
-exports.endianness = function () { return 'LE' };
+},{}],"../../node_modules/@editorjs/delimiter/dist/bundle.js":[function(require,module,exports) {
+var define;
+!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.Delimiter=t():e.Delimiter=t()}(window,function(){return function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s=0)}([function(e,t,n){function r(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function o(e,t,n){return t&&r(e.prototype,t),n&&r(e,n),e}n(1).toString();
+/**
+ * Delimiter Block for the Editor.js.
+ *
+ * @author CodeX (team@ifmo.su)
+ * @copyright CodeX 2018
+ * @license The MIT License (MIT)
+ * @version 2.0.0
+ */
+var i=function(){function e(t){var n=t.data,r=(t.config,t.api);!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e),this.api=r,this._CSS={block:this.api.styles.block,wrapper:"ce-delimiter"},this._data={},this._element=this.drawView(),this.data=n}return o(e,null,[{key:"contentless",get:function(){return!0}}]),o(e,[{key:"drawView",value:function(){var e=document.createElement("DIV");return e.classList.add(this._CSS.wrapper,this._CSS.block),e}},{key:"render",value:function(){return this._element}},{key:"save",value:function(e){return{}}}],[{key:"toolbox",get:function(){return{icon:'<svg width="19" height="4" viewBox="0 0 19 4" xmlns="http://www.w3.org/2000/svg"><path d="M1.25 0H7a1.25 1.25 0 1 1 0 2.5H1.25a1.25 1.25 0 1 1 0-2.5zM11 0h5.75a1.25 1.25 0 0 1 0 2.5H11A1.25 1.25 0 0 1 11 0z"/></svg>',title:"Delimiter"}}}]),e}();e.exports=i},function(e,t,n){var r=n(2);"string"==typeof r&&(r=[[e.i,r,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(4)(r,o);r.locals&&(e.exports=r.locals)},function(e,t,n){(e.exports=n(3)(!1)).push([e.i,'.ce-delimiter {\n    line-height: 1.6em;\n    width: 100%;\n    text-align: center;\n}\n\n.ce-delimiter:before {\n    display: inline-block;\n    content: "***";\n    font-size: 30px;\n    line-height: 65px;\n    height: 30px;\n    letter-spacing: 0.2em;\n}',""])},function(e,t){e.exports=function(e){var t=[];return t.toString=function(){return this.map(function(t){var n=function(e,t){var n=e[1]||"",r=e[3];if(!r)return n;if(t&&"function"==typeof btoa){var o=(a=r,""),i=r.sources.map(function(e){return"/*# sourceURL="+r.sourceRoot+e+" */"});return[n].concat(i).concat([o]).join("\n")}var a;return[n].join("\n")}(t,e);return t[2]?"@media "+t[2]+"{"+n+"}":n}).join("")},t.i=function(e,n){"string"==typeof e&&(e=[[null,e,""]]);for(var r={},o=0;o<this.length;o++){var i=this[o][0];"number"==typeof i&&(r[i]=!0)}for(o=0;o<e.length;o++){var a=e[o];"number"==typeof a[0]&&r[a[0]]||(n&&!a[2]?a[2]=n:n&&(a[2]="("+a[2]+") and ("+n+")"),t.push(a))}},t}},function(e,t,n){var r,o,i={},a=(r=function(){return window&&document&&document.all&&!window.atob},function(){return void 0===o&&(o=r.apply(this,arguments)),o}),s=function(e){var t={};return function(e){if("function"==typeof e)return e();if(void 0===t[e]){var n=function(e){return document.querySelector(e)}.call(this,e);if(window.HTMLIFrameElement&&n instanceof window.HTMLIFrameElement)try{n=n.contentDocument.head}catch(e){n=null}t[e]=n}return t[e]}}(),u=null,c=0,f=[],l=n(5);function p(e,t){for(var n=0;n<e.length;n++){var r=e[n],o=i[r.id];if(o){o.refs++;for(var a=0;a<o.parts.length;a++)o.parts[a](r.parts[a]);for(;a<r.parts.length;a++)o.parts.push(y(r.parts[a],t))}else{var s=[];for(a=0;a<r.parts.length;a++)s.push(y(r.parts[a],t));i[r.id]={id:r.id,refs:1,parts:s}}}}function d(e,t){for(var n=[],r={},o=0;o<e.length;o++){var i=e[o],a=t.base?i[0]+t.base:i[0],s={css:i[1],media:i[2],sourceMap:i[3]};r[a]?r[a].parts.push(s):n.push(r[a]={id:a,parts:[s]})}return n}function h(e,t){var n=s(e.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var r=f[f.length-1];if("top"===e.insertAt)r?r.nextSibling?n.insertBefore(t,r.nextSibling):n.appendChild(t):n.insertBefore(t,n.firstChild),f.push(t);else if("bottom"===e.insertAt)n.appendChild(t);else{if("object"!=typeof e.insertAt||!e.insertAt.before)throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");var o=s(e.insertInto+" "+e.insertAt.before);n.insertBefore(t,o)}}function v(e){if(null===e.parentNode)return!1;e.parentNode.removeChild(e);var t=f.indexOf(e);t>=0&&f.splice(t,1)}function b(e){var t=document.createElement("style");return void 0===e.attrs.type&&(e.attrs.type="text/css"),m(t,e.attrs),h(e,t),t}function m(e,t){Object.keys(t).forEach(function(n){e.setAttribute(n,t[n])})}function y(e,t){var n,r,o,i;if(t.transform&&e.css){if(!(i=t.transform(e.css)))return function(){};e.css=i}if(t.singleton){var a=c++;n=u||(u=b(t)),r=x.bind(null,n,a,!1),o=x.bind(null,n,a,!0)}else e.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=function(e){var t=document.createElement("link");return void 0===e.attrs.type&&(e.attrs.type="text/css"),e.attrs.rel="stylesheet",m(t,e.attrs),h(e,t),t}(t),r=function(e,t,n){var r=n.css,o=n.sourceMap,i=void 0===t.convertToAbsoluteUrls&&o;(t.convertToAbsoluteUrls||i)&&(r=l(r));o&&(r+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(o))))+" */");var a=new Blob([r],{type:"text/css"}),s=e.href;e.href=URL.createObjectURL(a),s&&URL.revokeObjectURL(s)}.bind(null,n,t),o=function(){v(n),n.href&&URL.revokeObjectURL(n.href)}):(n=b(t),r=function(e,t){var n=t.css,r=t.media;r&&e.setAttribute("media",r);if(e.styleSheet)e.styleSheet.cssText=n;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(n))}}.bind(null,n),o=function(){v(n)});return r(e),function(t){if(t){if(t.css===e.css&&t.media===e.media&&t.sourceMap===e.sourceMap)return;r(e=t)}else o()}}e.exports=function(e,t){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");(t=t||{}).attrs="object"==typeof t.attrs?t.attrs:{},t.singleton||"boolean"==typeof t.singleton||(t.singleton=a()),t.insertInto||(t.insertInto="head"),t.insertAt||(t.insertAt="bottom");var n=d(e,t);return p(n,t),function(e){for(var r=[],o=0;o<n.length;o++){var a=n[o];(s=i[a.id]).refs--,r.push(s)}e&&p(d(e,t),t);for(o=0;o<r.length;o++){var s;if(0===(s=r[o]).refs){for(var u=0;u<s.parts.length;u++)s.parts[u]();delete i[s.id]}}}};var g,w=(g=[],function(e,t){return g[e]=t,g.filter(Boolean).join("\n")});function x(e,t,n,r){var o=n?"":r.css;if(e.styleSheet)e.styleSheet.cssText=w(t,o);else{var i=document.createTextNode(o),a=e.childNodes;a[t]&&e.removeChild(a[t]),a.length?e.insertBefore(i,a[t]):e.appendChild(i)}}},function(e,t){e.exports=function(e){var t="undefined"!=typeof window&&window.location;if(!t)throw new Error("fixUrls requires window.location");if(!e||"string"!=typeof e)return e;var n=t.protocol+"//"+t.host,r=n+t.pathname.replace(/\/[^\/]*$/,"/");return e.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,function(e,t){var o,i=t.trim().replace(/^"(.*)"$/,function(e,t){return t}).replace(/^'(.*)'$/,function(e,t){return t});return/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(i)?e:(o=0===i.indexOf("//")?i:0===i.indexOf("/")?n+i:r+i.replace(/^\.\//,""),"url("+JSON.stringify(o)+")")})}}])});
+},{}],"../../node_modules/@editorjs/image/dist/bundle.js":[function(require,module,exports) {
+var define;
+!function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.ImageTool=e():t.ImageTool=e()}(window,function(){return function(t){var e={};function n(r){if(e[r])return e[r].exports;var o=e[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(r,o,function(e){return t[e]}.bind(null,o));return r},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="/",n(n.s=25)}([function(t,e){function n(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}t.exports=function(t,e,r){return e&&n(t.prototype,e),r&&n(t,r),t}},function(t,e){t.exports=function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}},function(t,e,n){window,t.exports=function(t){var e={};function n(r){if(e[r])return e[r].exports;var o=e[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(r,o,function(e){return t[e]}.bind(null,o));return r},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=3)}([function(t,e){var n;n=function(){return this}();try{n=n||new Function("return this")()}catch(t){"object"==typeof window&&(n=window)}t.exports=n},function(t,e,n){"use strict";(function(t){var r=n(2),o=setTimeout;function i(){}function a(t){if(!(this instanceof a))throw new TypeError("Promises must be constructed via new");if("function"!=typeof t)throw new TypeError("not a function");this._state=0,this._handled=!1,this._value=void 0,this._deferreds=[],d(t,this)}function s(t,e){for(;3===t._state;)t=t._value;0!==t._state?(t._handled=!0,a._immediateFn(function(){var n=1===t._state?e.onFulfilled:e.onRejected;if(null!==n){var r;try{r=n(t._value)}catch(t){return void c(e.promise,t)}u(e.promise,r)}else(1===t._state?u:c)(e.promise,t._value)})):t._deferreds.push(e)}function u(t,e){try{if(e===t)throw new TypeError("A promise cannot be resolved with itself.");if(e&&("object"==typeof e||"function"==typeof e)){var n=e.then;if(e instanceof a)return t._state=3,t._value=e,void l(t);if("function"==typeof n)return void d((r=n,o=e,function(){r.apply(o,arguments)}),t)}t._state=1,t._value=e,l(t)}catch(e){c(t,e)}var r,o}function c(t,e){t._state=2,t._value=e,l(t)}function l(t){2===t._state&&0===t._deferreds.length&&a._immediateFn(function(){t._handled||a._unhandledRejectionFn(t._value)});for(var e=0,n=t._deferreds.length;e<n;e++)s(t,t._deferreds[e]);t._deferreds=null}function f(t,e,n){this.onFulfilled="function"==typeof t?t:null,this.onRejected="function"==typeof e?e:null,this.promise=n}function d(t,e){var n=!1;try{t(function(t){n||(n=!0,u(e,t))},function(t){n||(n=!0,c(e,t))})}catch(t){if(n)return;n=!0,c(e,t)}}a.prototype.catch=function(t){return this.then(null,t)},a.prototype.then=function(t,e){var n=new this.constructor(i);return s(this,new f(t,e,n)),n},a.prototype.finally=r.a,a.all=function(t){return new a(function(e,n){if(!t||void 0===t.length)throw new TypeError("Promise.all accepts an array");var r=Array.prototype.slice.call(t);if(0===r.length)return e([]);var o=r.length;function i(t,a){try{if(a&&("object"==typeof a||"function"==typeof a)){var s=a.then;if("function"==typeof s)return void s.call(a,function(e){i(t,e)},n)}r[t]=a,0==--o&&e(r)}catch(t){n(t)}}for(var a=0;a<r.length;a++)i(a,r[a])})},a.resolve=function(t){return t&&"object"==typeof t&&t.constructor===a?t:new a(function(e){e(t)})},a.reject=function(t){return new a(function(e,n){n(t)})},a.race=function(t){return new a(function(e,n){for(var r=0,o=t.length;r<o;r++)t[r].then(e,n)})},a._immediateFn="function"==typeof t&&function(e){t(e)}||function(t){o(t,0)},a._unhandledRejectionFn=function(t){"undefined"!=typeof console&&console&&console.warn("Possible Unhandled Promise Rejection:",t)},e.a=a}).call(this,n(5).setImmediate)},function(t,e,n){"use strict";e.a=function(t){var e=this.constructor;return this.then(function(n){return e.resolve(t()).then(function(){return n})},function(n){return e.resolve(t()).then(function(){return e.reject(n)})})}},function(t,e,n){"use strict";function r(t){return(r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}n(4);var o,i,a,s,u,c,l=n(8),f=(i=function(t){return new Promise(function(e,n){t=s(t),t=u(t);var r=window.XMLHttpRequest?new window.XMLHttpRequest:new window.ActiveXObject("Microsoft.XMLHTTP");r.open(t.method,t.url),r.setRequestHeader("X-Requested-With","XMLHttpRequest"),Object.keys(t.headers).forEach(function(e){var n=t.headers[e];r.setRequestHeader(e,n)});var o=t.ratio;r.upload.addEventListener("progress",function(e){var n=Math.round(e.loaded/e.total*100),r=Math.ceil(n*o/100);t.progress(r)},!1),r.addEventListener("progress",function(e){var n=Math.round(e.loaded/e.total*100),r=Math.ceil(n*(100-o)/100)+o;t.progress(r)},!1),r.onreadystatechange=function(){if(4===r.readyState){var t=r.response;try{t=JSON.parse(t)}catch(t){}var o=l.parseHeaders(r.getAllResponseHeaders()),i={body:t,code:r.status,headers:o};200===r.status?e(i):n(i)}},r.send(t.data)})},a=function(t){return t.method="POST",i(t)},s=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};if(t.url&&"string"!=typeof t.url)throw new Error("Url must be a string");if(t.url=t.url||"",t.method&&"string"!=typeof t.method)throw new Error("`method` must be a string or null");if(t.method=t.method?t.method.toUpperCase():"GET",t.headers&&"object"!==r(t.headers))throw new Error("`headers` must be an object or null");if(t.headers=t.headers||{},t.type&&("string"!=typeof t.type||!Object.values(o).includes(t.type)))throw new Error("`type` must be taken from module's «contentType» library");if(t.progress&&"function"!=typeof t.progress)throw new Error("`progress` must be a function or null");if(t.progress=t.progress||function(t){},t.beforeSend=t.beforeSend||function(t){},t.ratio&&"number"!=typeof t.ratio)throw new Error("`ratio` must be a number");if(t.ratio<0||t.ratio>100)throw new Error("`ratio` must be in a 0-100 interval");if(t.ratio=t.ratio||90,t.accept&&"string"!=typeof t.accept)throw new Error("`accept` must be a string with a list of allowed mime-types");if(t.accept=t.accept||"*/*",t.multiple&&"boolean"!=typeof t.multiple)throw new Error("`multiple` must be a true or false");if(t.multiple=t.multiple||!1,t.fieldName&&"string"!=typeof t.fieldName)throw new Error("`fieldName` must be a string");return t.fieldName=t.fieldName||"files",t},u=function(t){switch(t.method){case"GET":var e=c(t.data,o.URLENCODED);delete t.data,t.url=/\?/.test(t.url)?t.url+"&"+e:t.url+"?"+e;break;case"POST":case"PUT":case"DELETE":case"UPDATE":var n=function(){return(arguments.length>0&&void 0!==arguments[0]?arguments[0]:{}).type||o.JSON}(t);(l.isFormData(t.data)||l.isFormElement(t.data))&&(n=o.FORM),t.data=c(t.data,n),n!==f.contentType.FORM&&(t.headers["content-type"]=n)}return t},c=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};switch(arguments.length>1?arguments[1]:void 0){case o.URLENCODED:return l.urlEncode(t);case o.JSON:return l.jsonEncode(t);case o.FORM:return l.formEncode(t);default:return t}},{contentType:o={URLENCODED:"application/x-www-form-urlencoded; charset=utf-8",FORM:"multipart/form-data",JSON:"application/json; charset=utf-8"},request:i,get:function(t){return t.method="GET",i(t)},post:a,transport:function(t){return t=s(t),l.selectFiles(t).then(function(e){for(var n=new FormData,r=0;r<e.length;r++)n.append(t.fieldName,e[r],e[r].name);return l.isObject(t.data)&&Object.keys(t.data).forEach(function(e){var r=t.data[e];n.append(e,r)}),t.beforeSend&&t.beforeSend(e),t.data=n,a(t)})},selectFiles:function(t){return delete(t=s(t)).beforeSend,l.selectFiles(t)}});t.exports=f},function(t,e,n){"use strict";n.r(e);var r=n(1);window.Promise=window.Promise||r.a},function(t,e,n){(function(t){var r=void 0!==t&&t||"undefined"!=typeof self&&self||window,o=Function.prototype.apply;function i(t,e){this._id=t,this._clearFn=e}e.setTimeout=function(){return new i(o.call(setTimeout,r,arguments),clearTimeout)},e.setInterval=function(){return new i(o.call(setInterval,r,arguments),clearInterval)},e.clearTimeout=e.clearInterval=function(t){t&&t.close()},i.prototype.unref=i.prototype.ref=function(){},i.prototype.close=function(){this._clearFn.call(r,this._id)},e.enroll=function(t,e){clearTimeout(t._idleTimeoutId),t._idleTimeout=e},e.unenroll=function(t){clearTimeout(t._idleTimeoutId),t._idleTimeout=-1},e._unrefActive=e.active=function(t){clearTimeout(t._idleTimeoutId);var e=t._idleTimeout;e>=0&&(t._idleTimeoutId=setTimeout(function(){t._onTimeout&&t._onTimeout()},e))},n(6),e.setImmediate="undefined"!=typeof self&&self.setImmediate||void 0!==t&&t.setImmediate||this&&this.setImmediate,e.clearImmediate="undefined"!=typeof self&&self.clearImmediate||void 0!==t&&t.clearImmediate||this&&this.clearImmediate}).call(this,n(0))},function(t,e,n){(function(t,e){!function(t,n){"use strict";if(!t.setImmediate){var r,o,i,a,s,u=1,c={},l=!1,f=t.document,d=Object.getPrototypeOf&&Object.getPrototypeOf(t);d=d&&d.setTimeout?d:t,"[object process]"==={}.toString.call(t.process)?r=function(t){e.nextTick(function(){h(t)})}:function(){if(t.postMessage&&!t.importScripts){var e=!0,n=t.onmessage;return t.onmessage=function(){e=!1},t.postMessage("","*"),t.onmessage=n,e}}()?(a="setImmediate$"+Math.random()+"$",s=function(e){e.source===t&&"string"==typeof e.data&&0===e.data.indexOf(a)&&h(+e.data.slice(a.length))},t.addEventListener?t.addEventListener("message",s,!1):t.attachEvent("onmessage",s),r=function(e){t.postMessage(a+e,"*")}):t.MessageChannel?((i=new MessageChannel).port1.onmessage=function(t){h(t.data)},r=function(t){i.port2.postMessage(t)}):f&&"onreadystatechange"in f.createElement("script")?(o=f.documentElement,r=function(t){var e=f.createElement("script");e.onreadystatechange=function(){h(t),e.onreadystatechange=null,o.removeChild(e),e=null},o.appendChild(e)}):r=function(t){setTimeout(h,0,t)},d.setImmediate=function(t){"function"!=typeof t&&(t=new Function(""+t));for(var e=new Array(arguments.length-1),n=0;n<e.length;n++)e[n]=arguments[n+1];var o={callback:t,args:e};return c[u]=o,r(u),u++},d.clearImmediate=p}function p(t){delete c[t]}function h(t){if(l)setTimeout(h,0,t);else{var e=c[t];if(e){l=!0;try{!function(t){var e=t.callback,r=t.args;switch(r.length){case 0:e();break;case 1:e(r[0]);break;case 2:e(r[0],r[1]);break;case 3:e(r[0],r[1],r[2]);break;default:e.apply(n,r)}}(e)}finally{p(t),l=!1}}}}}("undefined"==typeof self?void 0===t?this:t:self)}).call(this,n(0),n(7))},function(t,e){var n,r,o=t.exports={};function i(){throw new Error("setTimeout has not been defined")}function a(){throw new Error("clearTimeout has not been defined")}function s(t){if(n===setTimeout)return setTimeout(t,0);if((n===i||!n)&&setTimeout)return n=setTimeout,setTimeout(t,0);try{return n(t,0)}catch(e){try{return n.call(null,t,0)}catch(e){return n.call(this,t,0)}}}!function(){try{n="function"==typeof setTimeout?setTimeout:i}catch(t){n=i}try{r="function"==typeof clearTimeout?clearTimeout:a}catch(t){r=a}}();var u,c=[],l=!1,f=-1;function d(){l&&u&&(l=!1,u.length?c=u.concat(c):f=-1,c.length&&p())}function p(){if(!l){var t=s(d);l=!0;for(var e=c.length;e;){for(u=c,c=[];++f<e;)u&&u[f].run();f=-1,e=c.length}u=null,l=!1,function(t){if(r===clearTimeout)return clearTimeout(t);if((r===a||!r)&&clearTimeout)return r=clearTimeout,clearTimeout(t);try{r(t)}catch(e){try{return r.call(null,t)}catch(e){return r.call(this,t)}}}(t)}}function h(t,e){this.fun=t,this.array=e}function m(){}o.nextTick=function(t){var e=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)e[n-1]=arguments[n];c.push(new h(t,e)),1!==c.length||l||s(p)},h.prototype.run=function(){this.fun.apply(null,this.array)},o.title="browser",o.browser=!0,o.env={},o.argv=[],o.version="",o.versions={},o.on=m,o.addListener=m,o.once=m,o.off=m,o.removeListener=m,o.removeAllListeners=m,o.emit=m,o.prependListener=m,o.prependOnceListener=m,o.listeners=function(t){return[]},o.binding=function(t){throw new Error("process.binding is not supported")},o.cwd=function(){return"/"},o.chdir=function(t){throw new Error("process.chdir is not supported")},o.umask=function(){return 0}},function(t,e,n){function r(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}var o=n(9);t.exports=function(){function t(){!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t)}var e,n;return e=t,(n=[{key:"urlEncode",value:function(t){return o(t)}},{key:"jsonEncode",value:function(t){return JSON.stringify(t)}},{key:"formEncode",value:function(t){if(this.isFormData(t))return t;if(this.isFormElement(t))return new FormData(t);if(this.isObject(t)){var e=new FormData;return Object.keys(t).forEach(function(n){var r=t[n];e.append(n,r)}),e}throw new Error("`data` must be an instance of Object, FormData or <FORM> HTMLElement")}},{key:"isObject",value:function(t){return"[object Object]"===Object.prototype.toString.call(t)}},{key:"isFormData",value:function(t){return t instanceof FormData}},{key:"isFormElement",value:function(t){return t instanceof HTMLFormElement}},{key:"selectFiles",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};return new Promise(function(e,n){var r=document.createElement("INPUT");r.type="file",t.multiple&&r.setAttribute("multiple","multiple"),t.accept&&r.setAttribute("accept",t.accept),r.style.display="none",document.body.appendChild(r),r.addEventListener("change",function(t){var n=t.target.files;e(n),document.body.removeChild(r)},!1),r.click()})}},{key:"parseHeaders",value:function(t){var e=t.trim().split(/[\r\n]+/),n={};return e.forEach(function(t){var e=t.split(": "),r=e.shift(),o=e.join(": ");r&&(n[r]=o)}),n}}])&&r(e,n),t}()},function(t,e){var n=function(t){return encodeURIComponent(t).replace(/[!'()*]/g,escape).replace(/%20/g,"+")},r=function(t,e,o,i){return e=e||null,o=o||"&",i=i||null,t?function(t){for(var e=new Array,n=0;n<t.length;n++)t[n]&&e.push(t[n]);return e}(Object.keys(t).map(function(a){var s,u,c=a;if(i&&(c=i+"["+c+"]"),"object"==typeof t[a]&&null!==t[a])s=r(t[a],null,o,c);else{e&&(u=c,c=!isNaN(parseFloat(u))&&isFinite(u)?e+Number(c):c);var l=t[a];l=(l=0===(l=!1===(l=!0===l?"1":l)?"0":l)?"0":l)||"",s=n(c)+"="+n(l)}return s})).join(o).replace(/[!'()*]/g,""):""};t.exports=r}])},function(t,e,n){t.exports=n(12)},function(t,e){function n(t,e,n,r,o,i,a){try{var s=t[i](a),u=s.value}catch(t){return void n(t)}s.done?e(u):Promise.resolve(u).then(r,o)}t.exports=function(t){return function(){var e=this,r=arguments;return new Promise(function(o,i){var a=t.apply(e,r);function s(t){n(a,o,i,s,u,"next",t)}function u(t){n(a,o,i,s,u,"throw",t)}s(void 0)})}}},function(t,e,n){var r=n(19),o=n(20),i=n(21);t.exports=function(t){return r(t)||o(t)||i()}},function(t,e){t.exports='<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M3.15 13.628A7.749 7.749 0 0 0 10 17.75a7.74 7.74 0 0 0 6.305-3.242l-2.387-2.127-2.765 2.244-4.389-4.496-3.614 3.5zm-.787-2.303l4.446-4.371 4.52 4.63 2.534-2.057 3.533 2.797c.23-.734.354-1.514.354-2.324a7.75 7.75 0 1 0-15.387 1.325zM10 20C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10z"></path></svg>'},function(t,e){t.exports='<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.043 8.265l3.183-3.183h-2.924L4.75 10.636v2.923l4.15-4.15v2.351l-2.158 2.159H8.9v2.137H4.7c-1.215 0-2.2-.936-2.2-2.09v-8.93c0-1.154.985-2.09 2.2-2.09h10.663l.033-.033.034.034c1.178.04 2.12.96 2.12 2.089v3.23H15.3V5.359l-2.906 2.906h-2.35zM7.951 5.082H4.75v3.201l3.201-3.2zm5.099 7.078v3.04h4.15v-3.04h-4.15zm-1.1-2.137h6.35c.635 0 1.15.489 1.15 1.092v5.13c0 .603-.515 1.092-1.15 1.092h-6.35c-.635 0-1.15-.489-1.15-1.092v-5.13c0-.603.515-1.092 1.15-1.092z"></path></svg>'},function(t,e){t.exports='<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M15.8 10.592v2.043h2.35v2.138H15.8v2.232h-2.25v-2.232h-2.4v-2.138h2.4v-2.28h2.25v.237h1.15-1.15zM1.9 8.455v-3.42c0-1.154.985-2.09 2.2-2.09h4.2v2.137H4.15v3.373H1.9zm0 2.137h2.25v3.325H8.3v2.138H4.1c-1.215 0-2.2-.936-2.2-2.09v-3.373zm15.05-2.137H14.7V5.082h-4.15V2.945h4.2c1.215 0 2.2.936 2.2 2.09v3.42z"></path></svg>'},function(t,e){t.exports='<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg"><path d="M13.568 5.925H4.056l1.703 1.703a1.125 1.125 0 0 1-1.59 1.591L.962 6.014A1.069 1.069 0 0 1 .588 4.26L4.38.469a1.069 1.069 0 0 1 1.512 1.511L4.084 3.787h9.606l-1.85-1.85a1.069 1.069 0 1 1 1.512-1.51l3.792 3.791a1.069 1.069 0 0 1-.475 1.788L13.514 9.16a1.125 1.125 0 0 1-1.59-1.591l1.644-1.644z"></path></svg>'},function(t,e){t.exports='<svg width="17" height="15" viewBox="0 0 336 276" xmlns="http://www.w3.org/2000/svg"><path d="M291 150.242V79c0-18.778-15.222-34-34-34H79c-18.778 0-34 15.222-34 34v42.264l67.179-44.192 80.398 71.614 56.686-29.14L291 150.242zm-.345 51.622l-42.3-30.246-56.3 29.884-80.773-66.925L45 174.187V197c0 18.778 15.222 34 34 34h178c17.126 0 31.295-12.663 33.655-29.136zM79 0h178c43.63 0 79 35.37 79 79v118c0 43.63-35.37 79-79 79H79c-43.63 0-79-35.37-79-79V79C0 35.37 35.37 0 79 0z"></path></svg>'},function(t,e,n){var r=n(22),o=n(23),i=n(24);t.exports=function(t,e){return r(t)||o(t,e)||i()}},function(t,e,n){var r=function(){return this||"object"==typeof self&&self}()||Function("return this")(),o=r.regeneratorRuntime&&Object.getOwnPropertyNames(r).indexOf("regeneratorRuntime")>=0,i=o&&r.regeneratorRuntime;if(r.regeneratorRuntime=void 0,t.exports=n(13),o)r.regeneratorRuntime=i;else try{delete r.regeneratorRuntime}catch(t){r.regeneratorRuntime=void 0}},function(t,e){!function(e){"use strict";var n,r=Object.prototype,o=r.hasOwnProperty,i="function"==typeof Symbol?Symbol:{},a=i.iterator||"@@iterator",s=i.asyncIterator||"@@asyncIterator",u=i.toStringTag||"@@toStringTag",c="object"==typeof t,l=e.regeneratorRuntime;if(l)c&&(t.exports=l);else{(l=e.regeneratorRuntime=c?t.exports:{}).wrap=w;var f="suspendedStart",d="suspendedYield",p="executing",h="completed",m={},g={};g[a]=function(){return this};var v=Object.getPrototypeOf,y=v&&v(v(F([])));y&&y!==r&&o.call(y,a)&&(g=y);var b=S.prototype=E.prototype=Object.create(g);_.prototype=b.constructor=S,S.constructor=_,S[u]=_.displayName="GeneratorFunction",l.isGeneratorFunction=function(t){var e="function"==typeof t&&t.constructor;return!!e&&(e===_||"GeneratorFunction"===(e.displayName||e.name))},l.mark=function(t){return Object.setPrototypeOf?Object.setPrototypeOf(t,S):(t.__proto__=S,u in t||(t[u]="GeneratorFunction")),t.prototype=Object.create(b),t},l.awrap=function(t){return{__await:t}},k(T.prototype),T.prototype[s]=function(){return this},l.AsyncIterator=T,l.async=function(t,e,n,r){var o=new T(w(t,e,n,r));return l.isGeneratorFunction(e)?o:o.next().then(function(t){return t.done?t.value:o.next()})},k(b),b[u]="Generator",b[a]=function(){return this},b.toString=function(){return"[object Generator]"},l.keys=function(t){var e=[];for(var n in t)e.push(n);return e.reverse(),function n(){for(;e.length;){var r=e.pop();if(r in t)return n.value=r,n.done=!1,n}return n.done=!0,n}},l.values=F,C.prototype={constructor:C,reset:function(t){if(this.prev=0,this.next=0,this.sent=this._sent=n,this.done=!1,this.delegate=null,this.method="next",this.arg=n,this.tryEntries.forEach(O),!t)for(var e in this)"t"===e.charAt(0)&&o.call(this,e)&&!isNaN(+e.slice(1))&&(this[e]=n)},stop:function(){this.done=!0;var t=this.tryEntries[0].completion;if("throw"===t.type)throw t.arg;return this.rval},dispatchException:function(t){if(this.done)throw t;var e=this;function r(r,o){return s.type="throw",s.arg=t,e.next=r,o&&(e.method="next",e.arg=n),!!o}for(var i=this.tryEntries.length-1;i>=0;--i){var a=this.tryEntries[i],s=a.completion;if("root"===a.tryLoc)return r("end");if(a.tryLoc<=this.prev){var u=o.call(a,"catchLoc"),c=o.call(a,"finallyLoc");if(u&&c){if(this.prev<a.catchLoc)return r(a.catchLoc,!0);if(this.prev<a.finallyLoc)return r(a.finallyLoc)}else if(u){if(this.prev<a.catchLoc)return r(a.catchLoc,!0)}else{if(!c)throw new Error("try statement without catch or finally");if(this.prev<a.finallyLoc)return r(a.finallyLoc)}}}},abrupt:function(t,e){for(var n=this.tryEntries.length-1;n>=0;--n){var r=this.tryEntries[n];if(r.tryLoc<=this.prev&&o.call(r,"finallyLoc")&&this.prev<r.finallyLoc){var i=r;break}}i&&("break"===t||"continue"===t)&&i.tryLoc<=e&&e<=i.finallyLoc&&(i=null);var a=i?i.completion:{};return a.type=t,a.arg=e,i?(this.method="next",this.next=i.finallyLoc,m):this.complete(a)},complete:function(t,e){if("throw"===t.type)throw t.arg;return"break"===t.type||"continue"===t.type?this.next=t.arg:"return"===t.type?(this.rval=this.arg=t.arg,this.method="return",this.next="end"):"normal"===t.type&&e&&(this.next=e),m},finish:function(t){for(var e=this.tryEntries.length-1;e>=0;--e){var n=this.tryEntries[e];if(n.finallyLoc===t)return this.complete(n.completion,n.afterLoc),O(n),m}},catch:function(t){for(var e=this.tryEntries.length-1;e>=0;--e){var n=this.tryEntries[e];if(n.tryLoc===t){var r=n.completion;if("throw"===r.type){var o=r.arg;O(n)}return o}}throw new Error("illegal catch attempt")},delegateYield:function(t,e,r){return this.delegate={iterator:F(t),resultName:e,nextLoc:r},"next"===this.method&&(this.arg=n),m}}}function w(t,e,n,r){var o=e&&e.prototype instanceof E?e:E,i=Object.create(o.prototype),a=new C(r||[]);return i._invoke=function(t,e,n){var r=f;return function(o,i){if(r===p)throw new Error("Generator is already running");if(r===h){if("throw"===o)throw i;return P()}for(n.method=o,n.arg=i;;){var a=n.delegate;if(a){var s=L(a,n);if(s){if(s===m)continue;return s}}if("next"===n.method)n.sent=n._sent=n.arg;else if("throw"===n.method){if(r===f)throw r=h,n.arg;n.dispatchException(n.arg)}else"return"===n.method&&n.abrupt("return",n.arg);r=p;var u=x(t,e,n);if("normal"===u.type){if(r=n.done?h:d,u.arg===m)continue;return{value:u.arg,done:n.done}}"throw"===u.type&&(r=h,n.method="throw",n.arg=u.arg)}}}(t,n,a),i}function x(t,e,n){try{return{type:"normal",arg:t.call(e,n)}}catch(t){return{type:"throw",arg:t}}}function E(){}function _(){}function S(){}function k(t){["next","throw","return"].forEach(function(e){t[e]=function(t){return this._invoke(e,t)}})}function T(t){var e;this._invoke=function(n,r){function i(){return new Promise(function(e,i){!function e(n,r,i,a){var s=x(t[n],t,r);if("throw"!==s.type){var u=s.arg,c=u.value;return c&&"object"==typeof c&&o.call(c,"__await")?Promise.resolve(c.__await).then(function(t){e("next",t,i,a)},function(t){e("throw",t,i,a)}):Promise.resolve(c).then(function(t){u.value=t,i(u)},function(t){return e("throw",t,i,a)})}a(s.arg)}(n,r,e,i)})}return e=e?e.then(i,i):i()}}function L(t,e){var r=t.iterator[e.method];if(r===n){if(e.delegate=null,"throw"===e.method){if(t.iterator.return&&(e.method="return",e.arg=n,L(t,e),"throw"===e.method))return m;e.method="throw",e.arg=new TypeError("The iterator does not provide a 'throw' method")}return m}var o=x(r,t.iterator,e.arg);if("throw"===o.type)return e.method="throw",e.arg=o.arg,e.delegate=null,m;var i=o.arg;return i?i.done?(e[t.resultName]=i.value,e.next=t.nextLoc,"return"!==e.method&&(e.method="next",e.arg=n),e.delegate=null,m):i:(e.method="throw",e.arg=new TypeError("iterator result is not an object"),e.delegate=null,m)}function j(t){var e={tryLoc:t[0]};1 in t&&(e.catchLoc=t[1]),2 in t&&(e.finallyLoc=t[2],e.afterLoc=t[3]),this.tryEntries.push(e)}function O(t){var e=t.completion||{};e.type="normal",delete e.arg,t.completion=e}function C(t){this.tryEntries=[{tryLoc:"root"}],t.forEach(j,this),this.reset(!0)}function F(t){if(t){var e=t[a];if(e)return e.call(t);if("function"==typeof t.next)return t;if(!isNaN(t.length)){var r=-1,i=function e(){for(;++r<t.length;)if(o.call(t,r))return e.value=t[r],e.done=!1,e;return e.value=n,e.done=!0,e};return i.next=i}}return{next:P}}function P(){return{value:n,done:!0}}}(function(){return this||"object"==typeof self&&self}()||Function("return this")())},function(t,e,n){var r=n(15);"string"==typeof r&&(r=[[t.i,r,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(17)(r,o);r.locals&&(t.exports=r.locals)},function(t,e,n){(t.exports=n(16)(!1)).push([t.i,'.image-tool {\n  --bg-color: #fff;\n  --front-color: #388ae5;\n  --border-color: #e8e8eb;\n}\n\n  .image-tool__image {\n    border-radius: 3px;\n    overflow: hidden;\n    margin-bottom: 10px;\n  }\n\n  .image-tool__image-picture {\n      max-width: 100%;\n      vertical-align: bottom;\n      display: block;\n    }\n\n  .image-tool__image-preloader {\n      width: 50px;\n      height: 50px;\n      border-radius: 50%;\n      background-size: cover;\n      margin: auto;\n      position: relative;\n      background-color: var(--bg-color);\n      background-position: center center;\n    }\n\n  .image-tool__image-preloader::after {\n        content: "";\n        position: absolute;\n        z-index: 3;\n        width: 60px;\n        height: 60px;\n        border-radius: 50%;\n        border: 2px solid var(--bg-color);\n        border-top-color: var(--front-color);\n        left: 50%;\n        top: 50%;\n        margin-top: -30px;\n        margin-left: -30px;\n        animation: image-preloader-spin 2s infinite linear;\n        box-sizing: border-box;\n      }\n\n  .image-tool__caption[contentEditable="true"][data-placeholder]::before {\n      position: absolute;\n      content: attr(data-placeholder);\n      color: #707684;\n      font-weight: normal;\n      display: none;\n    }\n\n  .image-tool__caption[contentEditable="true"][data-placeholder]:empty::before {\n        display: block;\n      }\n\n  .image-tool__caption[contentEditable="true"][data-placeholder]:empty:focus::before {\n        display: none;\n      }\n\n  .image-tool--empty .image-tool__image {\n      display: none;\n    }\n\n  .image-tool--empty .image-tool__caption, .image-tool--loading .image-tool__caption {\n      display: none;\n    }\n\n  .image-tool--filled .cdx-button {\n      display: none;\n    }\n\n  .image-tool--filled .image-tool__image-preloader {\n        display: none;\n      }\n\n  .image-tool--loading .image-tool__image {\n      min-height: 200px;\n      display: flex;\n      border: 1px solid var(--border-color);\n      background-color: #fff;\n    }\n\n  .image-tool--loading .image-tool__image-picture {\n        display: none;\n      }\n\n  .image-tool--loading .cdx-button {\n      display: none;\n    }\n\n  /**\n   * Tunes\n   * ----------------\n   */\n\n  .image-tool--withBorder .image-tool__image {\n      border: 1px solid var(--border-color);\n    }\n\n  .image-tool--withBackground .image-tool__image {\n      padding: 15px;\n      background: var(--bg-color);\n    }\n\n  .image-tool--withBackground .image-tool__image-picture {\n        max-width: 60%;\n        margin: 0 auto;\n      }\n\n  .image-tool--stretched .image-tool__image-picture {\n        width: 100%;\n      }\n\n@keyframes image-preloader-spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n',""])},function(t,e){t.exports=function(t){var e=[];return e.toString=function(){return this.map(function(e){var n=function(t,e){var n=t[1]||"",r=t[3];if(!r)return n;if(e&&"function"==typeof btoa){var o=(a=r,""),i=r.sources.map(function(t){return"/*# sourceURL="+r.sourceRoot+t+" */"});return[n].concat(i).concat([o]).join("\n")}var a;return[n].join("\n")}(e,t);return e[2]?"@media "+e[2]+"{"+n+"}":n}).join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var r={},o=0;o<this.length;o++){var i=this[o][0];"number"==typeof i&&(r[i]=!0)}for(o=0;o<t.length;o++){var a=t[o];"number"==typeof a[0]&&r[a[0]]||(n&&!a[2]?a[2]=n:n&&(a[2]="("+a[2]+") and ("+n+")"),e.push(a))}},e}},function(t,e,n){var r,o,i={},a=(r=function(){return window&&document&&document.all&&!window.atob},function(){return void 0===o&&(o=r.apply(this,arguments)),o}),s=function(t){var e={};return function(t){if("function"==typeof t)return t();if(void 0===e[t]){var n=function(t){return document.querySelector(t)}.call(this,t);if(window.HTMLIFrameElement&&n instanceof window.HTMLIFrameElement)try{n=n.contentDocument.head}catch(t){n=null}e[t]=n}return e[t]}}(),u=null,c=0,l=[],f=n(18);function d(t,e){for(var n=0;n<t.length;n++){var r=t[n],o=i[r.id];if(o){o.refs++;for(var a=0;a<o.parts.length;a++)o.parts[a](r.parts[a]);for(;a<r.parts.length;a++)o.parts.push(y(r.parts[a],e))}else{var s=[];for(a=0;a<r.parts.length;a++)s.push(y(r.parts[a],e));i[r.id]={id:r.id,refs:1,parts:s}}}}function p(t,e){for(var n=[],r={},o=0;o<t.length;o++){var i=t[o],a=e.base?i[0]+e.base:i[0],s={css:i[1],media:i[2],sourceMap:i[3]};r[a]?r[a].parts.push(s):n.push(r[a]={id:a,parts:[s]})}return n}function h(t,e){var n=s(t.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var r=l[l.length-1];if("top"===t.insertAt)r?r.nextSibling?n.insertBefore(e,r.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),l.push(e);else if("bottom"===t.insertAt)n.appendChild(e);else{if("object"!=typeof t.insertAt||!t.insertAt.before)throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");var o=s(t.insertInto+" "+t.insertAt.before);n.insertBefore(e,o)}}function m(t){if(null===t.parentNode)return!1;t.parentNode.removeChild(t);var e=l.indexOf(t);e>=0&&l.splice(e,1)}function g(t){var e=document.createElement("style");return void 0===t.attrs.type&&(t.attrs.type="text/css"),v(e,t.attrs),h(t,e),e}function v(t,e){Object.keys(e).forEach(function(n){t.setAttribute(n,e[n])})}function y(t,e){var n,r,o,i;if(e.transform&&t.css){if(!(i=e.transform(t.css)))return function(){};t.css=i}if(e.singleton){var a=c++;n=u||(u=g(e)),r=x.bind(null,n,a,!1),o=x.bind(null,n,a,!0)}else t.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=function(t){var e=document.createElement("link");return void 0===t.attrs.type&&(t.attrs.type="text/css"),t.attrs.rel="stylesheet",v(e,t.attrs),h(t,e),e}(e),r=function(t,e,n){var r=n.css,o=n.sourceMap,i=void 0===e.convertToAbsoluteUrls&&o;(e.convertToAbsoluteUrls||i)&&(r=f(r));o&&(r+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(o))))+" */");var a=new Blob([r],{type:"text/css"}),s=t.href;t.href=URL.createObjectURL(a),s&&URL.revokeObjectURL(s)}.bind(null,n,e),o=function(){m(n),n.href&&URL.revokeObjectURL(n.href)}):(n=g(e),r=function(t,e){var n=e.css,r=e.media;r&&t.setAttribute("media",r);if(t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}.bind(null,n),o=function(){m(n)});return r(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;r(t=e)}else o()}}t.exports=function(t,e){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");(e=e||{}).attrs="object"==typeof e.attrs?e.attrs:{},e.singleton||"boolean"==typeof e.singleton||(e.singleton=a()),e.insertInto||(e.insertInto="head"),e.insertAt||(e.insertAt="bottom");var n=p(t,e);return d(n,e),function(t){for(var r=[],o=0;o<n.length;o++){var a=n[o];(s=i[a.id]).refs--,r.push(s)}t&&d(p(t,e),e);for(o=0;o<r.length;o++){var s;if(0===(s=r[o]).refs){for(var u=0;u<s.parts.length;u++)s.parts[u]();delete i[s.id]}}}};var b,w=(b=[],function(t,e){return b[t]=e,b.filter(Boolean).join("\n")});function x(t,e,n,r){var o=n?"":r.css;if(t.styleSheet)t.styleSheet.cssText=w(e,o);else{var i=document.createTextNode(o),a=t.childNodes;a[e]&&t.removeChild(a[e]),a.length?t.insertBefore(i,a[e]):t.appendChild(i)}}},function(t,e){t.exports=function(t){var e="undefined"!=typeof window&&window.location;if(!e)throw new Error("fixUrls requires window.location");if(!t||"string"!=typeof t)return t;var n=e.protocol+"//"+e.host,r=n+e.pathname.replace(/\/[^\/]*$/,"/");return t.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,function(t,e){var o,i=e.trim().replace(/^"(.*)"$/,function(t,e){return e}).replace(/^'(.*)'$/,function(t,e){return e});return/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(i)?t:(o=0===i.indexOf("//")?i:0===i.indexOf("/")?n+i:r+i.replace(/^\.\//,""),"url("+JSON.stringify(o)+")")})}},function(t,e){t.exports=function(t){if(Array.isArray(t)){for(var e=0,n=new Array(t.length);e<t.length;e++)n[e]=t[e];return n}}},function(t,e){t.exports=function(t){if(Symbol.iterator in Object(t)||"[object Arguments]"===Object.prototype.toString.call(t))return Array.from(t)}},function(t,e){t.exports=function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}},function(t,e){t.exports=function(t){if(Array.isArray(t))return t}},function(t,e){t.exports=function(t,e){var n=[],r=!0,o=!1,i=void 0;try{for(var a,s=t[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!e||n.length!==e);r=!0);}catch(t){o=!0,i=t}finally{try{r||null==s.return||s.return()}finally{if(o)throw i}}return n}},function(t,e){t.exports=function(){throw new TypeError("Invalid attempt to destructure non-iterable instance")}},function(t,e,n){"use strict";n.r(e);var r=n(3),o=n.n(r),i=n(4),a=n.n(i),s=n(1),u=n.n(s),c=n(0),l=n.n(c),f=(n(14),n(5)),d=n.n(f),p=n(6),h=n.n(p),m=function(){function t(e){var n=e.api,r=e.config,o=e.onSelectFile;u()(this,t),this.api=n,this.config=r,this.onSelectFile=o,this.nodes={wrapper:g("div",[this.CSS.baseClass,this.CSS.wrapper]),imageContainer:g("div",[this.CSS.imageContainer]),fileButton:this.createFileButton(),imageEl:void 0,imagePreloader:g("div",this.CSS.imagePreloader),caption:g("div",[this.CSS.input,this.CSS.caption],{contentEditable:!0})},this.nodes.caption.dataset.placeholder=this.config.captionPlaceholder,this.nodes.imageContainer.appendChild(this.nodes.imagePreloader),this.nodes.wrapper.appendChild(this.nodes.imageContainer),this.nodes.wrapper.appendChild(this.nodes.caption),this.nodes.wrapper.appendChild(this.nodes.fileButton)}return l()(t,[{key:"render",value:function(e){return e.file&&0!==Object.keys(e.file).length?this.toggleStatus(t.status.UPLOADING):this.toggleStatus(t.status.EMPTY),this.nodes.wrapper}},{key:"createFileButton",value:function(){var t=this,e=g("div",[this.CSS.button]);return e.innerHTML=this.config.buttonContent||"".concat(h.a," Select an Image"),e.addEventListener("click",function(){t.onSelectFile()}),e}},{key:"showPreloader",value:function(e){this.nodes.imagePreloader.style.backgroundImage="url(".concat(e,")"),this.toggleStatus(t.status.UPLOADING)}},{key:"hidePreloader",value:function(){this.nodes.imagePreloader.style.backgroundImage="",this.toggleStatus(t.status.EMPTY)}},{key:"fillImage",value:function(e){var n=this,r=/\.mp4$/.test(e)?"VIDEO":"IMG",o={src:e},i="load";"VIDEO"===r&&(o.autoplay=!0,o.loop=!0,o.muted=!0,o.playsinline=!0,i="loadeddata"),this.nodes.imageEl=g(r,this.CSS.imageEl,o),this.nodes.imageEl.addEventListener(i,function(){n.toggleStatus(t.status.FILLED),n.nodes.imagePreloader&&(n.nodes.imagePreloader.style.backgroundImage="")}),this.nodes.imageContainer.appendChild(this.nodes.imageEl)}},{key:"fillCaption",value:function(t){this.nodes.caption&&(this.nodes.caption.innerHTML=t)}},{key:"toggleStatus",value:function(e){for(var n in t.status)t.status.hasOwnProperty(n)&&this.nodes.wrapper.classList.toggle("".concat(this.CSS.wrapper,"--").concat(t.status[n]),e===t.status[n])}},{key:"applyTune",value:function(t,e){this.nodes.wrapper.classList.toggle("".concat(this.CSS.wrapper,"--").concat(t),e)}},{key:"CSS",get:function(){return{baseClass:this.api.styles.block,loading:this.api.styles.loader,input:this.api.styles.input,button:this.api.styles.button,wrapper:"image-tool",imageContainer:"image-tool__image",imagePreloader:"image-tool__image-preloader",imageEl:"image-tool__image-picture",caption:"image-tool__caption"}}}],[{key:"status",get:function(){return{EMPTY:"empty",UPLOADING:"loading",FILLED:"filled"}}}]),t}(),g=function(t){var e,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},o=document.createElement(t);Array.isArray(n)?(e=o.classList).add.apply(e,d()(n)):n&&o.classList.add(n);for(var i in r)o[i]=r[i];return o},v=n(7),y=n.n(v),b=n(8),w=n.n(b),x=n(9),E=n.n(x),_=function(){function t(e){var n=e.api,r=e.onChange;u()(this,t),this.api=n,this.onChange=r,this.buttons=[]}return l()(t,[{key:"render",value:function(e){var n=this,r=g("div",this.CSS.wrapper);return this.buttons=[],t.tunes.forEach(function(t){var o=g("div",[n.CSS.buttonBase,n.CSS.button],{innerHTML:t.icon,title:t.title});o.addEventListener("click",function(){n.tuneClicked(t.name)}),o.dataset.tune=t.name,o.classList.toggle(n.CSS.buttonActive,e[t.name]),n.buttons.push(o),r.appendChild(o)}),r}},{key:"tuneClicked",value:function(t){var e=this.buttons.find(function(e){return e.dataset.tune===t});e.classList.toggle(this.CSS.buttonActive,!e.classList.contains(this.CSS.buttonActive)),this.onChange(t)}},{key:"CSS",get:function(){return{wrapper:"",buttonBase:this.api.styles.settingsButton,button:"image-tool__tune",buttonActive:this.api.styles.settingsButtonActive}}}],[{key:"tunes",get:function(){return[{name:"stretched",icon:E.a,title:"Stretch image"}]}}]),t}(),S=n(10),k=n.n(S),T=n(11),L=n.n(T),j=n(2),O=n.n(j),C=function(){function t(e){var n=e.config,r=e.onUpload,o=e.onError;u()(this,t),this.config=n,this.onUpload=r,this.onError=o}return l()(t,[{key:"uploadSelectedFile",value:function(t){var e=this,n=t.onPreview,r=function(t){var e=new FileReader;e.readAsDataURL(t),e.onload=function(t){n(t.target.result)}};(this.config.uploader&&"function"==typeof this.config.uploader.uploadByFile?O.a.selectFiles({accept:this.config.types}).then(function(t){r(t[0]);var n=e.config.uploader.uploadByFile(t[0]);return F(n)||console.warn("Custom uploader method uploadByFile should return a Promise"),n}):O.a.transport({url:this.config.endpoints.byFile,data:this.config.additionalRequestData,accept:this.config.types,headers:this.config.additionalRequestHeaders,beforeSend:function(t){r(t[0])},fieldName:this.config.field}).then(function(t){return t.body})).then(function(t){e.onUpload(t)}).catch(function(t){e.onError(t)})}},{key:"uploadByUrl",value:function(t){var e,n=this;this.config.uploader&&"function"==typeof this.config.uploader.uploadByUrl?F(e=this.config.uploader.uploadByUrl(t))||console.warn("Custom uploader method uploadByUrl should return a Promise"):e=O.a.post({url:this.config.endpoints.byUrl,data:Object.assign({url:t},this.config.additionalRequestData),type:O.a.contentType.JSON,headers:this.config.additionalRequestHeaders}).then(function(t){return t.body}),e.then(function(t){n.onUpload(t)}).catch(function(t){n.onError(t)})}},{key:"uploadByFile",value:function(t,e){var n,r=this,o=e.onPreview,i=new FileReader;if(i.readAsDataURL(t),i.onload=function(t){o(t.target.result)},this.config.uploader&&"function"==typeof this.config.uploader.uploadByFile)F(n=this.config.uploader.uploadByFile(t))||console.warn("Custom uploader method uploadByFile should return a Promise");else{var a=new FormData;a.append(this.config.field,t),this.config.additionalRequestData&&Object.keys(this.config.additionalRequestData).length&&Object.entries(this.config.additionalRequestData).forEach(function(t){var e=L()(t,2),n=e[0],r=e[1];a.append(n,r)}),n=O.a.post({url:this.config.endpoints.byFile,data:a,type:O.a.contentType.JSON,headers:this.config.additionalRequestHeaders}).then(function(t){return t.body})}n.then(function(t){r.onUpload(t)}).catch(function(t){r.onError(t)})}}]),t}();function F(t){return Promise.resolve(t)===t}n.d(e,"default",function(){return P});
+/**
+ * Image Tool for the Editor.js
+ * @author CodeX <team@ifmo.su>
+ * @license MIT
+ * @see {@link https://github.com/editor-js/image}
+ *
+ * To developers.
+ * To simplify Tool structure, we split it to 4 parts:
+ *  1) index.js — main Tool's interface, public API and methods for working with data
+ *  2) uploader.js — module that has methods for sending files via AJAX: from device, by URL or File pasting
+ *  3) ui.js — module for UI manipulations: render, showing preloader, etc
+ *  4) tunes.js — working with Block Tunes: render buttons, handle clicks
+ *
+ * For debug purposes there is a testing server
+ * that can save uploaded files and return a Response {@link UploadResponseFormat}
+ *
+ *       $ node dev/server.js
+ *
+ * It will expose 8008 port, so you can pass http://localhost:8008 with the Tools config:
+ *
+ * image: {
+ *   class: ImageTool,
+ *   config: {
+ *     endpoints: {
+ *       byFile: 'http://localhost:8008/uploadFile',
+ *       byUrl: 'http://localhost:8008/fetchUrl',
+ *     }
+ *   },
+ * },
+ */
+var P=function(){function t(e){var n=this,r=e.data,o=e.config,i=e.api;u()(this,t),this.api=i,this.config={endpoints:o.endpoints||"",additionalRequestData:o.additionalRequestData||{},additionalRequestHeaders:o.additionalRequestHeaders||{},field:o.field||"image",types:o.types||"image/png, image/jpg, image/gif",captionPlaceholder:o.captionPlaceholder||"Caption",buttonContent:o.buttonContent||"",uploader:o.uploader||void 0},this.uploader=new C({config:this.config,onUpload:function(t){return n.onUpload(t)},onError:function(t){return n.uploadingFailed(t)}}),this.ui=new m({api:i,config:this.config,onSelectFile:function(){n.uploader.uploadSelectedFile({onPreview:function(t){n.ui.showPreloader(t)}})}}),this.tunes=new _({api:i,onChange:function(t){return n.tuneToggled(t)}}),this._data={},this.data=r}return l()(t,null,[{key:"toolbox",get:function(){return{icon:k.a,title:"Image"}}}]),l()(t,[{key:"render",value:function(){return this.ui.render(this.data)}},{key:"save",value:function(){var t=this.ui.nodes.caption;return this._data.caption=t.innerHTML,this.data}},{key:"renderSettings",value:function(){return this.tunes.render(this.data)}},{key:"appendCallback",value:function(){this.ui.nodes.fileButton.click()}},{key:"onPaste",value:function(){var t=a()(o.a.mark(function t(e){var n,r,i,a,s;return o.a.wrap(function(t){for(;;)switch(t.prev=t.next){case 0:t.t0=e.type,t.next="tag"===t.t0?3:"pattern"===t.t0?15:"file"===t.t0?18:21;break;case 3:if(n=e.detail.data,!/^blob:/.test(n.src)){t.next=13;break}return t.next=7,fetch(n.src);case 7:return r=t.sent,t.next=10,r.blob();case 10:return i=t.sent,this.uploadFile(i),t.abrupt("break",21);case 13:return this.uploadUrl(n.src),t.abrupt("break",21);case 15:return a=e.detail.data,this.uploadUrl(a),t.abrupt("break",21);case 18:return s=e.detail.file,this.uploadFile(s),t.abrupt("break",21);case 21:case"end":return t.stop()}},t,this)}));return function(e){return t.apply(this,arguments)}}()},{key:"onUpload",value:function(t){t.success&&t.file?this.image=t.file:this.uploadingFailed("incorrect response: "+JSON.stringify(t))}},{key:"uploadingFailed",value:function(t){console.log("Image Tool: uploading failed because of",t),this.api.notifier.show({message:"Can not upload an image, try another",style:"error"}),this.ui.hidePreloader()}},{key:"tuneToggled",value:function(t){this.setTune(t,!this._data[t])}},{key:"setTune",value:function(t,e){var n=this;this._data[t]=e,this.ui.applyTune(t,e),"stretched"===t&&Promise.resolve().then(function(){var t=n.api.blocks.getCurrentBlockIndex();n.api.blocks.stretchBlock(t,e)}).catch(function(t){console.error(t)})}},{key:"uploadFile",value:function(t){var e=this;this.uploader.uploadByFile(t,{onPreview:function(t){e.ui.showPreloader(t)}})}},{key:"uploadUrl",value:function(t){this.ui.showPreloader(t),this.uploader.uploadByUrl(t)}},{key:"data",set:function(t){var e=this;this.image=t.file,this._data.caption=t.caption||"",this.ui.fillCaption(this._data.caption),_.tunes.forEach(function(n){var r=n.name,o=void 0!==t[r]&&(!0===t[r]||"true"===t[r]);e.setTune(r,o)})},get:function(){return this._data}},{key:"image",set:function(t){this._data.file=t||{},t&&t.url&&this.ui.fillImage(t.url)}}],[{key:"pasteConfig",get:function(){return{tags:["img"],patterns:{image:/https?:\/\/\S+\.(gif|jpe?g|tiff|png)$/i},files:{mimeTypes:["image/*"]}}}}]),t}()}]).default});
+},{}],"../../../../../../../usr/local/lib/node_modules/parcel/src/builtins/_empty.js":[function(require,module,exports) {
 
-exports.hostname = function () {
-    if (typeof location !== 'undefined') {
-        return location.hostname
+},{}],"../../../../../../../usr/local/lib/node_modules/parcel/node_modules/process/browser.js":[function(require,module,exports) {
+
+// shim for using process in browser
+var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+  throw new Error('setTimeout has not been defined');
+}
+
+function defaultClearTimeout() {
+  throw new Error('clearTimeout has not been defined');
+}
+
+(function () {
+  try {
+    if (typeof setTimeout === 'function') {
+      cachedSetTimeout = setTimeout;
+    } else {
+      cachedSetTimeout = defaultSetTimout;
     }
-    else return '';
-};
+  } catch (e) {
+    cachedSetTimeout = defaultSetTimout;
+  }
 
-exports.loadavg = function () { return [] };
-
-exports.uptime = function () { return 0 };
-
-exports.freemem = function () {
-    return Number.MAX_VALUE;
-};
-
-exports.totalmem = function () {
-    return Number.MAX_VALUE;
-};
-
-exports.cpus = function () { return [] };
-
-exports.type = function () { return 'Browser' };
-
-exports.release = function () {
-    if (typeof navigator !== 'undefined') {
-        return navigator.appVersion;
+  try {
+    if (typeof clearTimeout === 'function') {
+      cachedClearTimeout = clearTimeout;
+    } else {
+      cachedClearTimeout = defaultClearTimeout;
     }
-    return '';
+  } catch (e) {
+    cachedClearTimeout = defaultClearTimeout;
+  }
+})();
+
+function runTimeout(fun) {
+  if (cachedSetTimeout === setTimeout) {
+    //normal enviroments in sane situations
+    return setTimeout(fun, 0);
+  } // if setTimeout wasn't available but was latter defined
+
+
+  if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+    cachedSetTimeout = setTimeout;
+    return setTimeout(fun, 0);
+  }
+
+  try {
+    // when when somebody has screwed with setTimeout but no I.E. maddness
+    return cachedSetTimeout(fun, 0);
+  } catch (e) {
+    try {
+      // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+      return cachedSetTimeout.call(null, fun, 0);
+    } catch (e) {
+      // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+      return cachedSetTimeout.call(this, fun, 0);
+    }
+  }
+}
+
+function runClearTimeout(marker) {
+  if (cachedClearTimeout === clearTimeout) {
+    //normal enviroments in sane situations
+    return clearTimeout(marker);
+  } // if clearTimeout wasn't available but was latter defined
+
+
+  if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+    cachedClearTimeout = clearTimeout;
+    return clearTimeout(marker);
+  }
+
+  try {
+    // when when somebody has screwed with setTimeout but no I.E. maddness
+    return cachedClearTimeout(marker);
+  } catch (e) {
+    try {
+      // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+      return cachedClearTimeout.call(null, marker);
+    } catch (e) {
+      // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+      // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+      return cachedClearTimeout.call(this, marker);
+    }
+  }
+}
+
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+  if (!draining || !currentQueue) {
+    return;
+  }
+
+  draining = false;
+
+  if (currentQueue.length) {
+    queue = currentQueue.concat(queue);
+  } else {
+    queueIndex = -1;
+  }
+
+  if (queue.length) {
+    drainQueue();
+  }
+}
+
+function drainQueue() {
+  if (draining) {
+    return;
+  }
+
+  var timeout = runTimeout(cleanUpNextTick);
+  draining = true;
+  var len = queue.length;
+
+  while (len) {
+    currentQueue = queue;
+    queue = [];
+
+    while (++queueIndex < len) {
+      if (currentQueue) {
+        currentQueue[queueIndex].run();
+      }
+    }
+
+    queueIndex = -1;
+    len = queue.length;
+  }
+
+  currentQueue = null;
+  draining = false;
+  runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+  var args = new Array(arguments.length - 1);
+
+  if (arguments.length > 1) {
+    for (var i = 1; i < arguments.length; i++) {
+      args[i - 1] = arguments[i];
+    }
+  }
+
+  queue.push(new Item(fun, args));
+
+  if (queue.length === 1 && !draining) {
+    runTimeout(drainQueue);
+  }
+}; // v8 likes predictible objects
+
+
+function Item(fun, array) {
+  this.fun = fun;
+  this.array = array;
+}
+
+Item.prototype.run = function () {
+  this.fun.apply(null, this.array);
 };
 
-exports.networkInterfaces
-= exports.getNetworkInterfaces
-= function () { return {} };
+process.title = 'browser';
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
 
-exports.arch = function () { return 'javascript' };
+process.versions = {};
 
-exports.platform = function () { return 'browser' };
+function noop() {}
 
-exports.tmpdir = exports.tmpDir = function () {
-    return '/tmp';
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) {
+  return [];
 };
 
-exports.EOL = '\n';
-
-exports.homedir = function () {
-	return '/'
+process.binding = function (name) {
+  throw new Error('process.binding is not supported');
 };
 
-},{}],"editor.js":[function(require,module,exports) {
+process.cwd = function () {
+  return '/';
+};
+
+process.chdir = function (dir) {
+  throw new Error('process.chdir is not supported');
+};
+
+process.umask = function () {
+  return 0;
+};
+},{}],"../../node_modules/q/q.js":[function(require,module,exports) {
+var define;
+var global = arguments[3];
+var process = require("process");
+// vim:ts=4:sts=4:sw=4:
+
+/*!
+ *
+ * Copyright 2009-2017 Kris Kowal under the terms of the MIT
+ * license found at https://github.com/kriskowal/q/blob/v1/LICENSE
+ *
+ * With parts by Tyler Close
+ * Copyright 2007-2009 Tyler Close under the terms of the MIT X license found
+ * at http://www.opensource.org/licenses/mit-license.html
+ * Forked at ref_send.js version: 2009-05-11
+ *
+ * With parts by Mark Miller
+ * Copyright (C) 2011 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+(function (definition) {
+  "use strict"; // This file will function properly as a <script> tag, or a module
+  // using CommonJS and NodeJS or RequireJS module formats.  In
+  // Common/Node/RequireJS, the module exports the Q API and when
+  // executed as a simple <script>, it creates a Q global instead.
+  // Montage Require
+
+  if (typeof bootstrap === "function") {
+    bootstrap("promise", definition); // CommonJS
+  } else if (typeof exports === "object" && typeof module === "object") {
+    module.exports = definition(); // RequireJS
+  } else if (typeof define === "function" && define.amd) {
+    define(definition); // SES (Secure EcmaScript)
+  } else if (typeof ses !== "undefined") {
+    if (!ses.ok()) {
+      return;
+    } else {
+      ses.makeQ = definition;
+    } // <script>
+
+  } else if (typeof window !== "undefined" || typeof self !== "undefined") {
+    // Prefer window over self for add-on scripts. Use self for
+    // non-windowed contexts.
+    var global = typeof window !== "undefined" ? window : self; // Get the `window` object, save the previous Q global
+    // and initialize Q as a global.
+
+    var previousQ = global.Q;
+    global.Q = definition(); // Add a noConflict function so Q can be removed from the
+    // global namespace.
+
+    global.Q.noConflict = function () {
+      global.Q = previousQ;
+      return this;
+    };
+  } else {
+    throw new Error("This environment was not anticipated by Q. Please file a bug.");
+  }
+})(function () {
+  "use strict";
+
+  var hasStacks = false;
+
+  try {
+    throw new Error();
+  } catch (e) {
+    hasStacks = !!e.stack;
+  } // All code after this point will be filtered from stack traces reported
+  // by Q.
+
+
+  var qStartingLine = captureLine();
+  var qFileName; // shims
+  // used for fallback in "allResolved"
+
+  var noop = function () {}; // Use the fastest possible means to execute a task in a future turn
+  // of the event loop.
+
+
+  var nextTick = function () {
+    // linked list of tasks (single, with head node)
+    var head = {
+      task: void 0,
+      next: null
+    };
+    var tail = head;
+    var flushing = false;
+    var requestTick = void 0;
+    var isNodeJS = false; // queue for late tasks, used by unhandled rejection tracking
+
+    var laterQueue = [];
+
+    function flush() {
+      /* jshint loopfunc: true */
+      var task, domain;
+
+      while (head.next) {
+        head = head.next;
+        task = head.task;
+        head.task = void 0;
+        domain = head.domain;
+
+        if (domain) {
+          head.domain = void 0;
+          domain.enter();
+        }
+
+        runSingle(task, domain);
+      }
+
+      while (laterQueue.length) {
+        task = laterQueue.pop();
+        runSingle(task);
+      }
+
+      flushing = false;
+    } // runs a single function in the async queue
+
+
+    function runSingle(task, domain) {
+      try {
+        task();
+      } catch (e) {
+        if (isNodeJS) {
+          // In node, uncaught exceptions are considered fatal errors.
+          // Re-throw them synchronously to interrupt flushing!
+          // Ensure continuation if the uncaught exception is suppressed
+          // listening "uncaughtException" events (as domains does).
+          // Continue in next event to avoid tick recursion.
+          if (domain) {
+            domain.exit();
+          }
+
+          setTimeout(flush, 0);
+
+          if (domain) {
+            domain.enter();
+          }
+
+          throw e;
+        } else {
+          // In browsers, uncaught exceptions are not fatal.
+          // Re-throw them asynchronously to avoid slow-downs.
+          setTimeout(function () {
+            throw e;
+          }, 0);
+        }
+      }
+
+      if (domain) {
+        domain.exit();
+      }
+    }
+
+    nextTick = function (task) {
+      tail = tail.next = {
+        task: task,
+        domain: isNodeJS && process.domain,
+        next: null
+      };
+
+      if (!flushing) {
+        flushing = true;
+        requestTick();
+      }
+    };
+
+    if (typeof process === "object" && process.toString() === "[object process]" && process.nextTick) {
+      // Ensure Q is in a real Node environment, with a `process.nextTick`.
+      // To see through fake Node environments:
+      // * Mocha test runner - exposes a `process` global without a `nextTick`
+      // * Browserify - exposes a `process.nexTick` function that uses
+      //   `setTimeout`. In this case `setImmediate` is preferred because
+      //    it is faster. Browserify's `process.toString()` yields
+      //   "[object Object]", while in a real Node environment
+      //   `process.toString()` yields "[object process]".
+      isNodeJS = true;
+
+      requestTick = function () {
+        process.nextTick(flush);
+      };
+    } else if (typeof setImmediate === "function") {
+      // In IE10, Node.js 0.9+, or https://github.com/NobleJS/setImmediate
+      if (typeof window !== "undefined") {
+        requestTick = setImmediate.bind(window, flush);
+      } else {
+        requestTick = function () {
+          setImmediate(flush);
+        };
+      }
+    } else if (typeof MessageChannel !== "undefined") {
+      // modern browsers
+      // http://www.nonblocking.io/2011/06/windownexttick.html
+      var channel = new MessageChannel(); // At least Safari Version 6.0.5 (8536.30.1) intermittently cannot create
+      // working message ports the first time a page loads.
+
+      channel.port1.onmessage = function () {
+        requestTick = requestPortTick;
+        channel.port1.onmessage = flush;
+        flush();
+      };
+
+      var requestPortTick = function () {
+        // Opera requires us to provide a message payload, regardless of
+        // whether we use it.
+        channel.port2.postMessage(0);
+      };
+
+      requestTick = function () {
+        setTimeout(flush, 0);
+        requestPortTick();
+      };
+    } else {
+      // old browsers
+      requestTick = function () {
+        setTimeout(flush, 0);
+      };
+    } // runs a task after all other tasks have been run
+    // this is useful for unhandled rejection tracking that needs to happen
+    // after all `then`d tasks have been run.
+
+
+    nextTick.runAfter = function (task) {
+      laterQueue.push(task);
+
+      if (!flushing) {
+        flushing = true;
+        requestTick();
+      }
+    };
+
+    return nextTick;
+  }(); // Attempt to make generics safe in the face of downstream
+  // modifications.
+  // There is no situation where this is necessary.
+  // If you need a security guarantee, these primordials need to be
+  // deeply frozen anyway, and if you don’t need a security guarantee,
+  // this is just plain paranoid.
+  // However, this **might** have the nice side-effect of reducing the size of
+  // the minified code by reducing x.call() to merely x()
+  // See Mark Miller’s explanation of what this does.
+  // http://wiki.ecmascript.org/doku.php?id=conventions:safe_meta_programming
+
+
+  var call = Function.call;
+
+  function uncurryThis(f) {
+    return function () {
+      return call.apply(f, arguments);
+    };
+  } // This is equivalent, but slower:
+  // uncurryThis = Function_bind.bind(Function_bind.call);
+  // http://jsperf.com/uncurrythis
+
+
+  var array_slice = uncurryThis(Array.prototype.slice);
+  var array_reduce = uncurryThis(Array.prototype.reduce || function (callback, basis) {
+    var index = 0,
+        length = this.length; // concerning the initial value, if one is not provided
+
+    if (arguments.length === 1) {
+      // seek to the first value in the array, accounting
+      // for the possibility that is is a sparse array
+      do {
+        if (index in this) {
+          basis = this[index++];
+          break;
+        }
+
+        if (++index >= length) {
+          throw new TypeError();
+        }
+      } while (1);
+    } // reduce
+
+
+    for (; index < length; index++) {
+      // account for the possibility that the array is sparse
+      if (index in this) {
+        basis = callback(basis, this[index], index);
+      }
+    }
+
+    return basis;
+  });
+  var array_indexOf = uncurryThis(Array.prototype.indexOf || function (value) {
+    // not a very good shim, but good enough for our one use of it
+    for (var i = 0; i < this.length; i++) {
+      if (this[i] === value) {
+        return i;
+      }
+    }
+
+    return -1;
+  });
+  var array_map = uncurryThis(Array.prototype.map || function (callback, thisp) {
+    var self = this;
+    var collect = [];
+    array_reduce(self, function (undefined, value, index) {
+      collect.push(callback.call(thisp, value, index, self));
+    }, void 0);
+    return collect;
+  });
+
+  var object_create = Object.create || function (prototype) {
+    function Type() {}
+
+    Type.prototype = prototype;
+    return new Type();
+  };
+
+  var object_defineProperty = Object.defineProperty || function (obj, prop, descriptor) {
+    obj[prop] = descriptor.value;
+    return obj;
+  };
+
+  var object_hasOwnProperty = uncurryThis(Object.prototype.hasOwnProperty);
+
+  var object_keys = Object.keys || function (object) {
+    var keys = [];
+
+    for (var key in object) {
+      if (object_hasOwnProperty(object, key)) {
+        keys.push(key);
+      }
+    }
+
+    return keys;
+  };
+
+  var object_toString = uncurryThis(Object.prototype.toString);
+
+  function isObject(value) {
+    return value === Object(value);
+  } // generator related shims
+  // FIXME: Remove this function once ES6 generators are in SpiderMonkey.
+
+
+  function isStopIteration(exception) {
+    return object_toString(exception) === "[object StopIteration]" || exception instanceof QReturnValue;
+  } // FIXME: Remove this helper and Q.return once ES6 generators are in
+  // SpiderMonkey.
+
+
+  var QReturnValue;
+
+  if (typeof ReturnValue !== "undefined") {
+    QReturnValue = ReturnValue;
+  } else {
+    QReturnValue = function (value) {
+      this.value = value;
+    };
+  } // long stack traces
+
+
+  var STACK_JUMP_SEPARATOR = "From previous event:";
+
+  function makeStackTraceLong(error, promise) {
+    // If possible, transform the error stack trace by removing Node and Q
+    // cruft, then concatenating with the stack trace of `promise`. See #57.
+    if (hasStacks && promise.stack && typeof error === "object" && error !== null && error.stack) {
+      var stacks = [];
+
+      for (var p = promise; !!p; p = p.source) {
+        if (p.stack && (!error.__minimumStackCounter__ || error.__minimumStackCounter__ > p.stackCounter)) {
+          object_defineProperty(error, "__minimumStackCounter__", {
+            value: p.stackCounter,
+            configurable: true
+          });
+          stacks.unshift(p.stack);
+        }
+      }
+
+      stacks.unshift(error.stack);
+      var concatedStacks = stacks.join("\n" + STACK_JUMP_SEPARATOR + "\n");
+      var stack = filterStackString(concatedStacks);
+      object_defineProperty(error, "stack", {
+        value: stack,
+        configurable: true
+      });
+    }
+  }
+
+  function filterStackString(stackString) {
+    var lines = stackString.split("\n");
+    var desiredLines = [];
+
+    for (var i = 0; i < lines.length; ++i) {
+      var line = lines[i];
+
+      if (!isInternalFrame(line) && !isNodeFrame(line) && line) {
+        desiredLines.push(line);
+      }
+    }
+
+    return desiredLines.join("\n");
+  }
+
+  function isNodeFrame(stackLine) {
+    return stackLine.indexOf("(module.js:") !== -1 || stackLine.indexOf("(node.js:") !== -1;
+  }
+
+  function getFileNameAndLineNumber(stackLine) {
+    // Named functions: "at functionName (filename:lineNumber:columnNumber)"
+    // In IE10 function name can have spaces ("Anonymous function") O_o
+    var attempt1 = /at .+ \((.+):(\d+):(?:\d+)\)$/.exec(stackLine);
+
+    if (attempt1) {
+      return [attempt1[1], Number(attempt1[2])];
+    } // Anonymous functions: "at filename:lineNumber:columnNumber"
+
+
+    var attempt2 = /at ([^ ]+):(\d+):(?:\d+)$/.exec(stackLine);
+
+    if (attempt2) {
+      return [attempt2[1], Number(attempt2[2])];
+    } // Firefox style: "function@filename:lineNumber or @filename:lineNumber"
+
+
+    var attempt3 = /.*@(.+):(\d+)$/.exec(stackLine);
+
+    if (attempt3) {
+      return [attempt3[1], Number(attempt3[2])];
+    }
+  }
+
+  function isInternalFrame(stackLine) {
+    var fileNameAndLineNumber = getFileNameAndLineNumber(stackLine);
+
+    if (!fileNameAndLineNumber) {
+      return false;
+    }
+
+    var fileName = fileNameAndLineNumber[0];
+    var lineNumber = fileNameAndLineNumber[1];
+    return fileName === qFileName && lineNumber >= qStartingLine && lineNumber <= qEndingLine;
+  } // discover own file name and line number range for filtering stack
+  // traces
+
+
+  function captureLine() {
+    if (!hasStacks) {
+      return;
+    }
+
+    try {
+      throw new Error();
+    } catch (e) {
+      var lines = e.stack.split("\n");
+      var firstLine = lines[0].indexOf("@") > 0 ? lines[1] : lines[2];
+      var fileNameAndLineNumber = getFileNameAndLineNumber(firstLine);
+
+      if (!fileNameAndLineNumber) {
+        return;
+      }
+
+      qFileName = fileNameAndLineNumber[0];
+      return fileNameAndLineNumber[1];
+    }
+  }
+
+  function deprecate(callback, name, alternative) {
+    return function () {
+      if (typeof console !== "undefined" && typeof console.warn === "function") {
+        console.warn(name + " is deprecated, use " + alternative + " instead.", new Error("").stack);
+      }
+
+      return callback.apply(callback, arguments);
+    };
+  } // end of shims
+  // beginning of real work
+
+  /**
+   * Constructs a promise for an immediate reference, passes promises through, or
+   * coerces promises from different systems.
+   * @param value immediate reference or promise
+   */
+
+
+  function Q(value) {
+    // If the object is already a Promise, return it directly.  This enables
+    // the resolve function to both be used to created references from objects,
+    // but to tolerably coerce non-promises to promises.
+    if (value instanceof Promise) {
+      return value;
+    } // assimilate thenables
+
+
+    if (isPromiseAlike(value)) {
+      return coerce(value);
+    } else {
+      return fulfill(value);
+    }
+  }
+
+  Q.resolve = Q;
+  /**
+   * Performs a task in a future turn of the event loop.
+   * @param {Function} task
+   */
+
+  Q.nextTick = nextTick;
+  /**
+   * Controls whether or not long stack traces will be on
+   */
+
+  Q.longStackSupport = false;
+  /**
+   * The counter is used to determine the stopping point for building
+   * long stack traces. In makeStackTraceLong we walk backwards through
+   * the linked list of promises, only stacks which were created before
+   * the rejection are concatenated.
+   */
+
+  var longStackCounter = 1; // enable long stacks if Q_DEBUG is set
+
+  if (typeof process === "object" && process && process.env && undefined) {
+    Q.longStackSupport = true;
+  }
+  /**
+   * Constructs a {promise, resolve, reject} object.
+   *
+   * `resolve` is a callback to invoke with a more resolved value for the
+   * promise. To fulfill the promise, invoke `resolve` with any value that is
+   * not a thenable. To reject the promise, invoke `resolve` with a rejected
+   * thenable, or invoke `reject` with the reason directly. To resolve the
+   * promise to another thenable, thus putting it in the same state, invoke
+   * `resolve` with that other thenable.
+   */
+
+
+  Q.defer = defer;
+
+  function defer() {
+    // if "messages" is an "Array", that indicates that the promise has not yet
+    // been resolved.  If it is "undefined", it has been resolved.  Each
+    // element of the messages array is itself an array of complete arguments to
+    // forward to the resolved promise.  We coerce the resolution value to a
+    // promise using the `resolve` function because it handles both fully
+    // non-thenable values and other thenables gracefully.
+    var messages = [],
+        progressListeners = [],
+        resolvedPromise;
+    var deferred = object_create(defer.prototype);
+    var promise = object_create(Promise.prototype);
+
+    promise.promiseDispatch = function (resolve, op, operands) {
+      var args = array_slice(arguments);
+
+      if (messages) {
+        messages.push(args);
+
+        if (op === "when" && operands[1]) {
+          // progress operand
+          progressListeners.push(operands[1]);
+        }
+      } else {
+        Q.nextTick(function () {
+          resolvedPromise.promiseDispatch.apply(resolvedPromise, args);
+        });
+      }
+    }; // XXX deprecated
+
+
+    promise.valueOf = function () {
+      if (messages) {
+        return promise;
+      }
+
+      var nearerValue = nearer(resolvedPromise);
+
+      if (isPromise(nearerValue)) {
+        resolvedPromise = nearerValue; // shorten chain
+      }
+
+      return nearerValue;
+    };
+
+    promise.inspect = function () {
+      if (!resolvedPromise) {
+        return {
+          state: "pending"
+        };
+      }
+
+      return resolvedPromise.inspect();
+    };
+
+    if (Q.longStackSupport && hasStacks) {
+      try {
+        throw new Error();
+      } catch (e) {
+        // NOTE: don't try to use `Error.captureStackTrace` or transfer the
+        // accessor around; that causes memory leaks as per GH-111. Just
+        // reify the stack trace as a string ASAP.
+        //
+        // At the same time, cut off the first line; it's always just
+        // "[object Promise]\n", as per the `toString`.
+        promise.stack = e.stack.substring(e.stack.indexOf("\n") + 1);
+        promise.stackCounter = longStackCounter++;
+      }
+    } // NOTE: we do the checks for `resolvedPromise` in each method, instead of
+    // consolidating them into `become`, since otherwise we'd create new
+    // promises with the lines `become(whatever(value))`. See e.g. GH-252.
+
+
+    function become(newPromise) {
+      resolvedPromise = newPromise;
+
+      if (Q.longStackSupport && hasStacks) {
+        // Only hold a reference to the new promise if long stacks
+        // are enabled to reduce memory usage
+        promise.source = newPromise;
+      }
+
+      array_reduce(messages, function (undefined, message) {
+        Q.nextTick(function () {
+          newPromise.promiseDispatch.apply(newPromise, message);
+        });
+      }, void 0);
+      messages = void 0;
+      progressListeners = void 0;
+    }
+
+    deferred.promise = promise;
+
+    deferred.resolve = function (value) {
+      if (resolvedPromise) {
+        return;
+      }
+
+      become(Q(value));
+    };
+
+    deferred.fulfill = function (value) {
+      if (resolvedPromise) {
+        return;
+      }
+
+      become(fulfill(value));
+    };
+
+    deferred.reject = function (reason) {
+      if (resolvedPromise) {
+        return;
+      }
+
+      become(reject(reason));
+    };
+
+    deferred.notify = function (progress) {
+      if (resolvedPromise) {
+        return;
+      }
+
+      array_reduce(progressListeners, function (undefined, progressListener) {
+        Q.nextTick(function () {
+          progressListener(progress);
+        });
+      }, void 0);
+    };
+
+    return deferred;
+  }
+  /**
+   * Creates a Node-style callback that will resolve or reject the deferred
+   * promise.
+   * @returns a nodeback
+   */
+
+
+  defer.prototype.makeNodeResolver = function () {
+    var self = this;
+    return function (error, value) {
+      if (error) {
+        self.reject(error);
+      } else if (arguments.length > 2) {
+        self.resolve(array_slice(arguments, 1));
+      } else {
+        self.resolve(value);
+      }
+    };
+  };
+  /**
+   * @param resolver {Function} a function that returns nothing and accepts
+   * the resolve, reject, and notify functions for a deferred.
+   * @returns a promise that may be resolved with the given resolve and reject
+   * functions, or rejected by a thrown exception in resolver
+   */
+
+
+  Q.Promise = promise; // ES6
+
+  Q.promise = promise;
+
+  function promise(resolver) {
+    if (typeof resolver !== "function") {
+      throw new TypeError("resolver must be a function.");
+    }
+
+    var deferred = defer();
+
+    try {
+      resolver(deferred.resolve, deferred.reject, deferred.notify);
+    } catch (reason) {
+      deferred.reject(reason);
+    }
+
+    return deferred.promise;
+  }
+
+  promise.race = race; // ES6
+
+  promise.all = all; // ES6
+
+  promise.reject = reject; // ES6
+
+  promise.resolve = Q; // ES6
+  // XXX experimental.  This method is a way to denote that a local value is
+  // serializable and should be immediately dispatched to a remote upon request,
+  // instead of passing a reference.
+
+  Q.passByCopy = function (object) {
+    //freeze(object);
+    //passByCopies.set(object, true);
+    return object;
+  };
+
+  Promise.prototype.passByCopy = function () {
+    //freeze(object);
+    //passByCopies.set(object, true);
+    return this;
+  };
+  /**
+   * If two promises eventually fulfill to the same value, promises that value,
+   * but otherwise rejects.
+   * @param x {Any*}
+   * @param y {Any*}
+   * @returns {Any*} a promise for x and y if they are the same, but a rejection
+   * otherwise.
+   *
+   */
+
+
+  Q.join = function (x, y) {
+    return Q(x).join(y);
+  };
+
+  Promise.prototype.join = function (that) {
+    return Q([this, that]).spread(function (x, y) {
+      if (x === y) {
+        // TODO: "===" should be Object.is or equiv
+        return x;
+      } else {
+        throw new Error("Q can't join: not the same: " + x + " " + y);
+      }
+    });
+  };
+  /**
+   * Returns a promise for the first of an array of promises to become settled.
+   * @param answers {Array[Any*]} promises to race
+   * @returns {Any*} the first promise to be settled
+   */
+
+
+  Q.race = race;
+
+  function race(answerPs) {
+    return promise(function (resolve, reject) {
+      // Switch to this once we can assume at least ES5
+      // answerPs.forEach(function (answerP) {
+      //     Q(answerP).then(resolve, reject);
+      // });
+      // Use this in the meantime
+      for (var i = 0, len = answerPs.length; i < len; i++) {
+        Q(answerPs[i]).then(resolve, reject);
+      }
+    });
+  }
+
+  Promise.prototype.race = function () {
+    return this.then(Q.race);
+  };
+  /**
+   * Constructs a Promise with a promise descriptor object and optional fallback
+   * function.  The descriptor contains methods like when(rejected), get(name),
+   * set(name, value), post(name, args), and delete(name), which all
+   * return either a value, a promise for a value, or a rejection.  The fallback
+   * accepts the operation name, a resolver, and any further arguments that would
+   * have been forwarded to the appropriate method above had a method been
+   * provided with the proper name.  The API makes no guarantees about the nature
+   * of the returned object, apart from that it is usable whereever promises are
+   * bought and sold.
+   */
+
+
+  Q.makePromise = Promise;
+
+  function Promise(descriptor, fallback, inspect) {
+    if (fallback === void 0) {
+      fallback = function (op) {
+        return reject(new Error("Promise does not support operation: " + op));
+      };
+    }
+
+    if (inspect === void 0) {
+      inspect = function () {
+        return {
+          state: "unknown"
+        };
+      };
+    }
+
+    var promise = object_create(Promise.prototype);
+
+    promise.promiseDispatch = function (resolve, op, args) {
+      var result;
+
+      try {
+        if (descriptor[op]) {
+          result = descriptor[op].apply(promise, args);
+        } else {
+          result = fallback.call(promise, op, args);
+        }
+      } catch (exception) {
+        result = reject(exception);
+      }
+
+      if (resolve) {
+        resolve(result);
+      }
+    };
+
+    promise.inspect = inspect; // XXX deprecated `valueOf` and `exception` support
+
+    if (inspect) {
+      var inspected = inspect();
+
+      if (inspected.state === "rejected") {
+        promise.exception = inspected.reason;
+      }
+
+      promise.valueOf = function () {
+        var inspected = inspect();
+
+        if (inspected.state === "pending" || inspected.state === "rejected") {
+          return promise;
+        }
+
+        return inspected.value;
+      };
+    }
+
+    return promise;
+  }
+
+  Promise.prototype.toString = function () {
+    return "[object Promise]";
+  };
+
+  Promise.prototype.then = function (fulfilled, rejected, progressed) {
+    var self = this;
+    var deferred = defer();
+    var done = false; // ensure the untrusted promise makes at most a
+    // single call to one of the callbacks
+
+    function _fulfilled(value) {
+      try {
+        return typeof fulfilled === "function" ? fulfilled(value) : value;
+      } catch (exception) {
+        return reject(exception);
+      }
+    }
+
+    function _rejected(exception) {
+      if (typeof rejected === "function") {
+        makeStackTraceLong(exception, self);
+
+        try {
+          return rejected(exception);
+        } catch (newException) {
+          return reject(newException);
+        }
+      }
+
+      return reject(exception);
+    }
+
+    function _progressed(value) {
+      return typeof progressed === "function" ? progressed(value) : value;
+    }
+
+    Q.nextTick(function () {
+      self.promiseDispatch(function (value) {
+        if (done) {
+          return;
+        }
+
+        done = true;
+        deferred.resolve(_fulfilled(value));
+      }, "when", [function (exception) {
+        if (done) {
+          return;
+        }
+
+        done = true;
+        deferred.resolve(_rejected(exception));
+      }]);
+    }); // Progress propagator need to be attached in the current tick.
+
+    self.promiseDispatch(void 0, "when", [void 0, function (value) {
+      var newValue;
+      var threw = false;
+
+      try {
+        newValue = _progressed(value);
+      } catch (e) {
+        threw = true;
+
+        if (Q.onerror) {
+          Q.onerror(e);
+        } else {
+          throw e;
+        }
+      }
+
+      if (!threw) {
+        deferred.notify(newValue);
+      }
+    }]);
+    return deferred.promise;
+  };
+
+  Q.tap = function (promise, callback) {
+    return Q(promise).tap(callback);
+  };
+  /**
+   * Works almost like "finally", but not called for rejections.
+   * Original resolution value is passed through callback unaffected.
+   * Callback may return a promise that will be awaited for.
+   * @param {Function} callback
+   * @returns {Q.Promise}
+   * @example
+   * doSomething()
+   *   .then(...)
+   *   .tap(console.log)
+   *   .then(...);
+   */
+
+
+  Promise.prototype.tap = function (callback) {
+    callback = Q(callback);
+    return this.then(function (value) {
+      return callback.fcall(value).thenResolve(value);
+    });
+  };
+  /**
+   * Registers an observer on a promise.
+   *
+   * Guarantees:
+   *
+   * 1. that fulfilled and rejected will be called only once.
+   * 2. that either the fulfilled callback or the rejected callback will be
+   *    called, but not both.
+   * 3. that fulfilled and rejected will not be called in this turn.
+   *
+   * @param value      promise or immediate reference to observe
+   * @param fulfilled  function to be called with the fulfilled value
+   * @param rejected   function to be called with the rejection exception
+   * @param progressed function to be called on any progress notifications
+   * @return promise for the return value from the invoked callback
+   */
+
+
+  Q.when = when;
+
+  function when(value, fulfilled, rejected, progressed) {
+    return Q(value).then(fulfilled, rejected, progressed);
+  }
+
+  Promise.prototype.thenResolve = function (value) {
+    return this.then(function () {
+      return value;
+    });
+  };
+
+  Q.thenResolve = function (promise, value) {
+    return Q(promise).thenResolve(value);
+  };
+
+  Promise.prototype.thenReject = function (reason) {
+    return this.then(function () {
+      throw reason;
+    });
+  };
+
+  Q.thenReject = function (promise, reason) {
+    return Q(promise).thenReject(reason);
+  };
+  /**
+   * If an object is not a promise, it is as "near" as possible.
+   * If a promise is rejected, it is as "near" as possible too.
+   * If it’s a fulfilled promise, the fulfillment value is nearer.
+   * If it’s a deferred promise and the deferred has been resolved, the
+   * resolution is "nearer".
+   * @param object
+   * @returns most resolved (nearest) form of the object
+   */
+  // XXX should we re-do this?
+
+
+  Q.nearer = nearer;
+
+  function nearer(value) {
+    if (isPromise(value)) {
+      var inspected = value.inspect();
+
+      if (inspected.state === "fulfilled") {
+        return inspected.value;
+      }
+    }
+
+    return value;
+  }
+  /**
+   * @returns whether the given object is a promise.
+   * Otherwise it is a fulfilled value.
+   */
+
+
+  Q.isPromise = isPromise;
+
+  function isPromise(object) {
+    return object instanceof Promise;
+  }
+
+  Q.isPromiseAlike = isPromiseAlike;
+
+  function isPromiseAlike(object) {
+    return isObject(object) && typeof object.then === "function";
+  }
+  /**
+   * @returns whether the given object is a pending promise, meaning not
+   * fulfilled or rejected.
+   */
+
+
+  Q.isPending = isPending;
+
+  function isPending(object) {
+    return isPromise(object) && object.inspect().state === "pending";
+  }
+
+  Promise.prototype.isPending = function () {
+    return this.inspect().state === "pending";
+  };
+  /**
+   * @returns whether the given object is a value or fulfilled
+   * promise.
+   */
+
+
+  Q.isFulfilled = isFulfilled;
+
+  function isFulfilled(object) {
+    return !isPromise(object) || object.inspect().state === "fulfilled";
+  }
+
+  Promise.prototype.isFulfilled = function () {
+    return this.inspect().state === "fulfilled";
+  };
+  /**
+   * @returns whether the given object is a rejected promise.
+   */
+
+
+  Q.isRejected = isRejected;
+
+  function isRejected(object) {
+    return isPromise(object) && object.inspect().state === "rejected";
+  }
+
+  Promise.prototype.isRejected = function () {
+    return this.inspect().state === "rejected";
+  }; //// BEGIN UNHANDLED REJECTION TRACKING
+  // This promise library consumes exceptions thrown in handlers so they can be
+  // handled by a subsequent promise.  The exceptions get added to this array when
+  // they are created, and removed when they are handled.  Note that in ES6 or
+  // shimmed environments, this would naturally be a `Set`.
+
+
+  var unhandledReasons = [];
+  var unhandledRejections = [];
+  var reportedUnhandledRejections = [];
+  var trackUnhandledRejections = true;
+
+  function resetUnhandledRejections() {
+    unhandledReasons.length = 0;
+    unhandledRejections.length = 0;
+
+    if (!trackUnhandledRejections) {
+      trackUnhandledRejections = true;
+    }
+  }
+
+  function trackRejection(promise, reason) {
+    if (!trackUnhandledRejections) {
+      return;
+    }
+
+    if (typeof process === "object" && typeof process.emit === "function") {
+      Q.nextTick.runAfter(function () {
+        if (array_indexOf(unhandledRejections, promise) !== -1) {
+          process.emit("unhandledRejection", reason, promise);
+          reportedUnhandledRejections.push(promise);
+        }
+      });
+    }
+
+    unhandledRejections.push(promise);
+
+    if (reason && typeof reason.stack !== "undefined") {
+      unhandledReasons.push(reason.stack);
+    } else {
+      unhandledReasons.push("(no stack) " + reason);
+    }
+  }
+
+  function untrackRejection(promise) {
+    if (!trackUnhandledRejections) {
+      return;
+    }
+
+    var at = array_indexOf(unhandledRejections, promise);
+
+    if (at !== -1) {
+      if (typeof process === "object" && typeof process.emit === "function") {
+        Q.nextTick.runAfter(function () {
+          var atReport = array_indexOf(reportedUnhandledRejections, promise);
+
+          if (atReport !== -1) {
+            process.emit("rejectionHandled", unhandledReasons[at], promise);
+            reportedUnhandledRejections.splice(atReport, 1);
+          }
+        });
+      }
+
+      unhandledRejections.splice(at, 1);
+      unhandledReasons.splice(at, 1);
+    }
+  }
+
+  Q.resetUnhandledRejections = resetUnhandledRejections;
+
+  Q.getUnhandledReasons = function () {
+    // Make a copy so that consumers can't interfere with our internal state.
+    return unhandledReasons.slice();
+  };
+
+  Q.stopUnhandledRejectionTracking = function () {
+    resetUnhandledRejections();
+    trackUnhandledRejections = false;
+  };
+
+  resetUnhandledRejections(); //// END UNHANDLED REJECTION TRACKING
+
+  /**
+   * Constructs a rejected promise.
+   * @param reason value describing the failure
+   */
+
+  Q.reject = reject;
+
+  function reject(reason) {
+    var rejection = Promise({
+      "when": function (rejected) {
+        // note that the error has been handled
+        if (rejected) {
+          untrackRejection(this);
+        }
+
+        return rejected ? rejected(reason) : this;
+      }
+    }, function fallback() {
+      return this;
+    }, function inspect() {
+      return {
+        state: "rejected",
+        reason: reason
+      };
+    }); // Note that the reason has not been handled.
+
+    trackRejection(rejection, reason);
+    return rejection;
+  }
+  /**
+   * Constructs a fulfilled promise for an immediate reference.
+   * @param value immediate reference
+   */
+
+
+  Q.fulfill = fulfill;
+
+  function fulfill(value) {
+    return Promise({
+      "when": function () {
+        return value;
+      },
+      "get": function (name) {
+        return value[name];
+      },
+      "set": function (name, rhs) {
+        value[name] = rhs;
+      },
+      "delete": function (name) {
+        delete value[name];
+      },
+      "post": function (name, args) {
+        // Mark Miller proposes that post with no name should apply a
+        // promised function.
+        if (name === null || name === void 0) {
+          return value.apply(void 0, args);
+        } else {
+          return value[name].apply(value, args);
+        }
+      },
+      "apply": function (thisp, args) {
+        return value.apply(thisp, args);
+      },
+      "keys": function () {
+        return object_keys(value);
+      }
+    }, void 0, function inspect() {
+      return {
+        state: "fulfilled",
+        value: value
+      };
+    });
+  }
+  /**
+   * Converts thenables to Q promises.
+   * @param promise thenable promise
+   * @returns a Q promise
+   */
+
+
+  function coerce(promise) {
+    var deferred = defer();
+    Q.nextTick(function () {
+      try {
+        promise.then(deferred.resolve, deferred.reject, deferred.notify);
+      } catch (exception) {
+        deferred.reject(exception);
+      }
+    });
+    return deferred.promise;
+  }
+  /**
+   * Annotates an object such that it will never be
+   * transferred away from this process over any promise
+   * communication channel.
+   * @param object
+   * @returns promise a wrapping of that object that
+   * additionally responds to the "isDef" message
+   * without a rejection.
+   */
+
+
+  Q.master = master;
+
+  function master(object) {
+    return Promise({
+      "isDef": function () {}
+    }, function fallback(op, args) {
+      return dispatch(object, op, args);
+    }, function () {
+      return Q(object).inspect();
+    });
+  }
+  /**
+   * Spreads the values of a promised array of arguments into the
+   * fulfillment callback.
+   * @param fulfilled callback that receives variadic arguments from the
+   * promised array
+   * @param rejected callback that receives the exception if the promise
+   * is rejected.
+   * @returns a promise for the return value or thrown exception of
+   * either callback.
+   */
+
+
+  Q.spread = spread;
+
+  function spread(value, fulfilled, rejected) {
+    return Q(value).spread(fulfilled, rejected);
+  }
+
+  Promise.prototype.spread = function (fulfilled, rejected) {
+    return this.all().then(function (array) {
+      return fulfilled.apply(void 0, array);
+    }, rejected);
+  };
+  /**
+   * The async function is a decorator for generator functions, turning
+   * them into asynchronous generators.  Although generators are only part
+   * of the newest ECMAScript 6 drafts, this code does not cause syntax
+   * errors in older engines.  This code should continue to work and will
+   * in fact improve over time as the language improves.
+   *
+   * ES6 generators are currently part of V8 version 3.19 with the
+   * --harmony-generators runtime flag enabled.  SpiderMonkey has had them
+   * for longer, but under an older Python-inspired form.  This function
+   * works on both kinds of generators.
+   *
+   * Decorates a generator function such that:
+   *  - it may yield promises
+   *  - execution will continue when that promise is fulfilled
+   *  - the value of the yield expression will be the fulfilled value
+   *  - it returns a promise for the return value (when the generator
+   *    stops iterating)
+   *  - the decorated function returns a promise for the return value
+   *    of the generator or the first rejected promise among those
+   *    yielded.
+   *  - if an error is thrown in the generator, it propagates through
+   *    every following yield until it is caught, or until it escapes
+   *    the generator function altogether, and is translated into a
+   *    rejection for the promise returned by the decorated generator.
+   */
+
+
+  Q.async = async;
+
+  function async(makeGenerator) {
+    return function () {
+      // when verb is "send", arg is a value
+      // when verb is "throw", arg is an exception
+      function continuer(verb, arg) {
+        var result; // Until V8 3.19 / Chromium 29 is released, SpiderMonkey is the only
+        // engine that has a deployed base of browsers that support generators.
+        // However, SM's generators use the Python-inspired semantics of
+        // outdated ES6 drafts.  We would like to support ES6, but we'd also
+        // like to make it possible to use generators in deployed browsers, so
+        // we also support Python-style generators.  At some point we can remove
+        // this block.
+
+        if (typeof StopIteration === "undefined") {
+          // ES6 Generators
+          try {
+            result = generator[verb](arg);
+          } catch (exception) {
+            return reject(exception);
+          }
+
+          if (result.done) {
+            return Q(result.value);
+          } else {
+            return when(result.value, callback, errback);
+          }
+        } else {
+          // SpiderMonkey Generators
+          // FIXME: Remove this case when SM does ES6 generators.
+          try {
+            result = generator[verb](arg);
+          } catch (exception) {
+            if (isStopIteration(exception)) {
+              return Q(exception.value);
+            } else {
+              return reject(exception);
+            }
+          }
+
+          return when(result, callback, errback);
+        }
+      }
+
+      var generator = makeGenerator.apply(this, arguments);
+      var callback = continuer.bind(continuer, "next");
+      var errback = continuer.bind(continuer, "throw");
+      return callback();
+    };
+  }
+  /**
+   * The spawn function is a small wrapper around async that immediately
+   * calls the generator and also ends the promise chain, so that any
+   * unhandled errors are thrown instead of forwarded to the error
+   * handler. This is useful because it's extremely common to run
+   * generators at the top-level to work with libraries.
+   */
+
+
+  Q.spawn = spawn;
+
+  function spawn(makeGenerator) {
+    Q.done(Q.async(makeGenerator)());
+  } // FIXME: Remove this interface once ES6 generators are in SpiderMonkey.
+
+  /**
+   * Throws a ReturnValue exception to stop an asynchronous generator.
+   *
+   * This interface is a stop-gap measure to support generator return
+   * values in older Firefox/SpiderMonkey.  In browsers that support ES6
+   * generators like Chromium 29, just use "return" in your generator
+   * functions.
+   *
+   * @param value the return value for the surrounding generator
+   * @throws ReturnValue exception with the value.
+   * @example
+   * // ES6 style
+   * Q.async(function* () {
+   *      var foo = yield getFooPromise();
+   *      var bar = yield getBarPromise();
+   *      return foo + bar;
+   * })
+   * // Older SpiderMonkey style
+   * Q.async(function () {
+   *      var foo = yield getFooPromise();
+   *      var bar = yield getBarPromise();
+   *      Q.return(foo + bar);
+   * })
+   */
+
+
+  Q["return"] = _return;
+
+  function _return(value) {
+    throw new QReturnValue(value);
+  }
+  /**
+   * The promised function decorator ensures that any promise arguments
+   * are settled and passed as values (`this` is also settled and passed
+   * as a value).  It will also ensure that the result of a function is
+   * always a promise.
+   *
+   * @example
+   * var add = Q.promised(function (a, b) {
+   *     return a + b;
+   * });
+   * add(Q(a), Q(B));
+   *
+   * @param {function} callback The function to decorate
+   * @returns {function} a function that has been decorated.
+   */
+
+
+  Q.promised = promised;
+
+  function promised(callback) {
+    return function () {
+      return spread([this, all(arguments)], function (self, args) {
+        return callback.apply(self, args);
+      });
+    };
+  }
+  /**
+   * sends a message to a value in a future turn
+   * @param object* the recipient
+   * @param op the name of the message operation, e.g., "when",
+   * @param args further arguments to be forwarded to the operation
+   * @returns result {Promise} a promise for the result of the operation
+   */
+
+
+  Q.dispatch = dispatch;
+
+  function dispatch(object, op, args) {
+    return Q(object).dispatch(op, args);
+  }
+
+  Promise.prototype.dispatch = function (op, args) {
+    var self = this;
+    var deferred = defer();
+    Q.nextTick(function () {
+      self.promiseDispatch(deferred.resolve, op, args);
+    });
+    return deferred.promise;
+  };
+  /**
+   * Gets the value of a property in a future turn.
+   * @param object    promise or immediate reference for target object
+   * @param name      name of property to get
+   * @return promise for the property value
+   */
+
+
+  Q.get = function (object, key) {
+    return Q(object).dispatch("get", [key]);
+  };
+
+  Promise.prototype.get = function (key) {
+    return this.dispatch("get", [key]);
+  };
+  /**
+   * Sets the value of a property in a future turn.
+   * @param object    promise or immediate reference for object object
+   * @param name      name of property to set
+   * @param value     new value of property
+   * @return promise for the return value
+   */
+
+
+  Q.set = function (object, key, value) {
+    return Q(object).dispatch("set", [key, value]);
+  };
+
+  Promise.prototype.set = function (key, value) {
+    return this.dispatch("set", [key, value]);
+  };
+  /**
+   * Deletes a property in a future turn.
+   * @param object    promise or immediate reference for target object
+   * @param name      name of property to delete
+   * @return promise for the return value
+   */
+
+
+  Q.del = // XXX legacy
+  Q["delete"] = function (object, key) {
+    return Q(object).dispatch("delete", [key]);
+  };
+
+  Promise.prototype.del = // XXX legacy
+  Promise.prototype["delete"] = function (key) {
+    return this.dispatch("delete", [key]);
+  };
+  /**
+   * Invokes a method in a future turn.
+   * @param object    promise or immediate reference for target object
+   * @param name      name of method to invoke
+   * @param value     a value to post, typically an array of
+   *                  invocation arguments for promises that
+   *                  are ultimately backed with `resolve` values,
+   *                  as opposed to those backed with URLs
+   *                  wherein the posted value can be any
+   *                  JSON serializable object.
+   * @return promise for the return value
+   */
+  // bound locally because it is used by other methods
+
+
+  Q.mapply = // XXX As proposed by "Redsandro"
+  Q.post = function (object, name, args) {
+    return Q(object).dispatch("post", [name, args]);
+  };
+
+  Promise.prototype.mapply = // XXX As proposed by "Redsandro"
+  Promise.prototype.post = function (name, args) {
+    return this.dispatch("post", [name, args]);
+  };
+  /**
+   * Invokes a method in a future turn.
+   * @param object    promise or immediate reference for target object
+   * @param name      name of method to invoke
+   * @param ...args   array of invocation arguments
+   * @return promise for the return value
+   */
+
+
+  Q.send = // XXX Mark Miller's proposed parlance
+  Q.mcall = // XXX As proposed by "Redsandro"
+  Q.invoke = function (object, name
+  /*...args*/
+  ) {
+    return Q(object).dispatch("post", [name, array_slice(arguments, 2)]);
+  };
+
+  Promise.prototype.send = // XXX Mark Miller's proposed parlance
+  Promise.prototype.mcall = // XXX As proposed by "Redsandro"
+  Promise.prototype.invoke = function (name
+  /*...args*/
+  ) {
+    return this.dispatch("post", [name, array_slice(arguments, 1)]);
+  };
+  /**
+   * Applies the promised function in a future turn.
+   * @param object    promise or immediate reference for target function
+   * @param args      array of application arguments
+   */
+
+
+  Q.fapply = function (object, args) {
+    return Q(object).dispatch("apply", [void 0, args]);
+  };
+
+  Promise.prototype.fapply = function (args) {
+    return this.dispatch("apply", [void 0, args]);
+  };
+  /**
+   * Calls the promised function in a future turn.
+   * @param object    promise or immediate reference for target function
+   * @param ...args   array of application arguments
+   */
+
+
+  Q["try"] = Q.fcall = function (object
+  /* ...args*/
+  ) {
+    return Q(object).dispatch("apply", [void 0, array_slice(arguments, 1)]);
+  };
+
+  Promise.prototype.fcall = function ()
+  /*...args*/
+  {
+    return this.dispatch("apply", [void 0, array_slice(arguments)]);
+  };
+  /**
+   * Binds the promised function, transforming return values into a fulfilled
+   * promise and thrown errors into a rejected one.
+   * @param object    promise or immediate reference for target function
+   * @param ...args   array of application arguments
+   */
+
+
+  Q.fbind = function (object
+  /*...args*/
+  ) {
+    var promise = Q(object);
+    var args = array_slice(arguments, 1);
+    return function fbound() {
+      return promise.dispatch("apply", [this, args.concat(array_slice(arguments))]);
+    };
+  };
+
+  Promise.prototype.fbind = function ()
+  /*...args*/
+  {
+    var promise = this;
+    var args = array_slice(arguments);
+    return function fbound() {
+      return promise.dispatch("apply", [this, args.concat(array_slice(arguments))]);
+    };
+  };
+  /**
+   * Requests the names of the owned properties of a promised
+   * object in a future turn.
+   * @param object    promise or immediate reference for target object
+   * @return promise for the keys of the eventually settled object
+   */
+
+
+  Q.keys = function (object) {
+    return Q(object).dispatch("keys", []);
+  };
+
+  Promise.prototype.keys = function () {
+    return this.dispatch("keys", []);
+  };
+  /**
+   * Turns an array of promises into a promise for an array.  If any of
+   * the promises gets rejected, the whole array is rejected immediately.
+   * @param {Array*} an array (or promise for an array) of values (or
+   * promises for values)
+   * @returns a promise for an array of the corresponding values
+   */
+  // By Mark Miller
+  // http://wiki.ecmascript.org/doku.php?id=strawman:concurrency&rev=1308776521#allfulfilled
+
+
+  Q.all = all;
+
+  function all(promises) {
+    return when(promises, function (promises) {
+      var pendingCount = 0;
+      var deferred = defer();
+      array_reduce(promises, function (undefined, promise, index) {
+        var snapshot;
+
+        if (isPromise(promise) && (snapshot = promise.inspect()).state === "fulfilled") {
+          promises[index] = snapshot.value;
+        } else {
+          ++pendingCount;
+          when(promise, function (value) {
+            promises[index] = value;
+
+            if (--pendingCount === 0) {
+              deferred.resolve(promises);
+            }
+          }, deferred.reject, function (progress) {
+            deferred.notify({
+              index: index,
+              value: progress
+            });
+          });
+        }
+      }, void 0);
+
+      if (pendingCount === 0) {
+        deferred.resolve(promises);
+      }
+
+      return deferred.promise;
+    });
+  }
+
+  Promise.prototype.all = function () {
+    return all(this);
+  };
+  /**
+   * Returns the first resolved promise of an array. Prior rejected promises are
+   * ignored.  Rejects only if all promises are rejected.
+   * @param {Array*} an array containing values or promises for values
+   * @returns a promise fulfilled with the value of the first resolved promise,
+   * or a rejected promise if all promises are rejected.
+   */
+
+
+  Q.any = any;
+
+  function any(promises) {
+    if (promises.length === 0) {
+      return Q.resolve();
+    }
+
+    var deferred = Q.defer();
+    var pendingCount = 0;
+    array_reduce(promises, function (prev, current, index) {
+      var promise = promises[index];
+      pendingCount++;
+      when(promise, onFulfilled, onRejected, onProgress);
+
+      function onFulfilled(result) {
+        deferred.resolve(result);
+      }
+
+      function onRejected(err) {
+        pendingCount--;
+
+        if (pendingCount === 0) {
+          var rejection = err || new Error("" + err);
+          rejection.message = "Q can't get fulfillment value from any promise, all " + "promises were rejected. Last error message: " + rejection.message;
+          deferred.reject(rejection);
+        }
+      }
+
+      function onProgress(progress) {
+        deferred.notify({
+          index: index,
+          value: progress
+        });
+      }
+    }, undefined);
+    return deferred.promise;
+  }
+
+  Promise.prototype.any = function () {
+    return any(this);
+  };
+  /**
+   * Waits for all promises to be settled, either fulfilled or
+   * rejected.  This is distinct from `all` since that would stop
+   * waiting at the first rejection.  The promise returned by
+   * `allResolved` will never be rejected.
+   * @param promises a promise for an array (or an array) of promises
+   * (or values)
+   * @return a promise for an array of promises
+   */
+
+
+  Q.allResolved = deprecate(allResolved, "allResolved", "allSettled");
+
+  function allResolved(promises) {
+    return when(promises, function (promises) {
+      promises = array_map(promises, Q);
+      return when(all(array_map(promises, function (promise) {
+        return when(promise, noop, noop);
+      })), function () {
+        return promises;
+      });
+    });
+  }
+
+  Promise.prototype.allResolved = function () {
+    return allResolved(this);
+  };
+  /**
+   * @see Promise#allSettled
+   */
+
+
+  Q.allSettled = allSettled;
+
+  function allSettled(promises) {
+    return Q(promises).allSettled();
+  }
+  /**
+   * Turns an array of promises into a promise for an array of their states (as
+   * returned by `inspect`) when they have all settled.
+   * @param {Array[Any*]} values an array (or promise for an array) of values (or
+   * promises for values)
+   * @returns {Array[State]} an array of states for the respective values.
+   */
+
+
+  Promise.prototype.allSettled = function () {
+    return this.then(function (promises) {
+      return all(array_map(promises, function (promise) {
+        promise = Q(promise);
+
+        function regardless() {
+          return promise.inspect();
+        }
+
+        return promise.then(regardless, regardless);
+      }));
+    });
+  };
+  /**
+   * Captures the failure of a promise, giving an oportunity to recover
+   * with a callback.  If the given promise is fulfilled, the returned
+   * promise is fulfilled.
+   * @param {Any*} promise for something
+   * @param {Function} callback to fulfill the returned promise if the
+   * given promise is rejected
+   * @returns a promise for the return value of the callback
+   */
+
+
+  Q.fail = // XXX legacy
+  Q["catch"] = function (object, rejected) {
+    return Q(object).then(void 0, rejected);
+  };
+
+  Promise.prototype.fail = // XXX legacy
+  Promise.prototype["catch"] = function (rejected) {
+    return this.then(void 0, rejected);
+  };
+  /**
+   * Attaches a listener that can respond to progress notifications from a
+   * promise's originating deferred. This listener receives the exact arguments
+   * passed to ``deferred.notify``.
+   * @param {Any*} promise for something
+   * @param {Function} callback to receive any progress notifications
+   * @returns the given promise, unchanged
+   */
+
+
+  Q.progress = progress;
+
+  function progress(object, progressed) {
+    return Q(object).then(void 0, void 0, progressed);
+  }
+
+  Promise.prototype.progress = function (progressed) {
+    return this.then(void 0, void 0, progressed);
+  };
+  /**
+   * Provides an opportunity to observe the settling of a promise,
+   * regardless of whether the promise is fulfilled or rejected.  Forwards
+   * the resolution to the returned promise when the callback is done.
+   * The callback can return a promise to defer completion.
+   * @param {Any*} promise
+   * @param {Function} callback to observe the resolution of the given
+   * promise, takes no arguments.
+   * @returns a promise for the resolution of the given promise when
+   * ``fin`` is done.
+   */
+
+
+  Q.fin = // XXX legacy
+  Q["finally"] = function (object, callback) {
+    return Q(object)["finally"](callback);
+  };
+
+  Promise.prototype.fin = // XXX legacy
+  Promise.prototype["finally"] = function (callback) {
+    if (!callback || typeof callback.apply !== "function") {
+      throw new Error("Q can't apply finally callback");
+    }
+
+    callback = Q(callback);
+    return this.then(function (value) {
+      return callback.fcall().then(function () {
+        return value;
+      });
+    }, function (reason) {
+      // TODO attempt to recycle the rejection with "this".
+      return callback.fcall().then(function () {
+        throw reason;
+      });
+    });
+  };
+  /**
+   * Terminates a chain of promises, forcing rejections to be
+   * thrown as exceptions.
+   * @param {Any*} promise at the end of a chain of promises
+   * @returns nothing
+   */
+
+
+  Q.done = function (object, fulfilled, rejected, progress) {
+    return Q(object).done(fulfilled, rejected, progress);
+  };
+
+  Promise.prototype.done = function (fulfilled, rejected, progress) {
+    var onUnhandledError = function (error) {
+      // forward to a future turn so that ``when``
+      // does not catch it and turn it into a rejection.
+      Q.nextTick(function () {
+        makeStackTraceLong(error, promise);
+
+        if (Q.onerror) {
+          Q.onerror(error);
+        } else {
+          throw error;
+        }
+      });
+    }; // Avoid unnecessary `nextTick`ing via an unnecessary `when`.
+
+
+    var promise = fulfilled || rejected || progress ? this.then(fulfilled, rejected, progress) : this;
+
+    if (typeof process === "object" && process && process.domain) {
+      onUnhandledError = process.domain.bind(onUnhandledError);
+    }
+
+    promise.then(void 0, onUnhandledError);
+  };
+  /**
+   * Causes a promise to be rejected if it does not get fulfilled before
+   * some milliseconds time out.
+   * @param {Any*} promise
+   * @param {Number} milliseconds timeout
+   * @param {Any*} custom error message or Error object (optional)
+   * @returns a promise for the resolution of the given promise if it is
+   * fulfilled before the timeout, otherwise rejected.
+   */
+
+
+  Q.timeout = function (object, ms, error) {
+    return Q(object).timeout(ms, error);
+  };
+
+  Promise.prototype.timeout = function (ms, error) {
+    var deferred = defer();
+    var timeoutId = setTimeout(function () {
+      if (!error || "string" === typeof error) {
+        error = new Error(error || "Timed out after " + ms + " ms");
+        error.code = "ETIMEDOUT";
+      }
+
+      deferred.reject(error);
+    }, ms);
+    this.then(function (value) {
+      clearTimeout(timeoutId);
+      deferred.resolve(value);
+    }, function (exception) {
+      clearTimeout(timeoutId);
+      deferred.reject(exception);
+    }, deferred.notify);
+    return deferred.promise;
+  };
+  /**
+   * Returns a promise for the given value (or promised value), some
+   * milliseconds after it resolved. Passes rejections immediately.
+   * @param {Any*} promise
+   * @param {Number} milliseconds
+   * @returns a promise for the resolution of the given promise after milliseconds
+   * time has elapsed since the resolution of the given promise.
+   * If the given promise rejects, that is passed immediately.
+   */
+
+
+  Q.delay = function (object, timeout) {
+    if (timeout === void 0) {
+      timeout = object;
+      object = void 0;
+    }
+
+    return Q(object).delay(timeout);
+  };
+
+  Promise.prototype.delay = function (timeout) {
+    return this.then(function (value) {
+      var deferred = defer();
+      setTimeout(function () {
+        deferred.resolve(value);
+      }, timeout);
+      return deferred.promise;
+    });
+  };
+  /**
+   * Passes a continuation to a Node function, which is called with the given
+   * arguments provided as an array, and returns a promise.
+   *
+   *      Q.nfapply(FS.readFile, [__filename])
+   *      .then(function (content) {
+   *      })
+   *
+   */
+
+
+  Q.nfapply = function (callback, args) {
+    return Q(callback).nfapply(args);
+  };
+
+  Promise.prototype.nfapply = function (args) {
+    var deferred = defer();
+    var nodeArgs = array_slice(args);
+    nodeArgs.push(deferred.makeNodeResolver());
+    this.fapply(nodeArgs).fail(deferred.reject);
+    return deferred.promise;
+  };
+  /**
+   * Passes a continuation to a Node function, which is called with the given
+   * arguments provided individually, and returns a promise.
+   * @example
+   * Q.nfcall(FS.readFile, __filename)
+   * .then(function (content) {
+   * })
+   *
+   */
+
+
+  Q.nfcall = function (callback
+  /*...args*/
+  ) {
+    var args = array_slice(arguments, 1);
+    return Q(callback).nfapply(args);
+  };
+
+  Promise.prototype.nfcall = function ()
+  /*...args*/
+  {
+    var nodeArgs = array_slice(arguments);
+    var deferred = defer();
+    nodeArgs.push(deferred.makeNodeResolver());
+    this.fapply(nodeArgs).fail(deferred.reject);
+    return deferred.promise;
+  };
+  /**
+   * Wraps a NodeJS continuation passing function and returns an equivalent
+   * version that returns a promise.
+   * @example
+   * Q.nfbind(FS.readFile, __filename)("utf-8")
+   * .then(console.log)
+   * .done()
+   */
+
+
+  Q.nfbind = Q.denodeify = function (callback
+  /*...args*/
+  ) {
+    if (callback === undefined) {
+      throw new Error("Q can't wrap an undefined function");
+    }
+
+    var baseArgs = array_slice(arguments, 1);
+    return function () {
+      var nodeArgs = baseArgs.concat(array_slice(arguments));
+      var deferred = defer();
+      nodeArgs.push(deferred.makeNodeResolver());
+      Q(callback).fapply(nodeArgs).fail(deferred.reject);
+      return deferred.promise;
+    };
+  };
+
+  Promise.prototype.nfbind = Promise.prototype.denodeify = function ()
+  /*...args*/
+  {
+    var args = array_slice(arguments);
+    args.unshift(this);
+    return Q.denodeify.apply(void 0, args);
+  };
+
+  Q.nbind = function (callback, thisp
+  /*...args*/
+  ) {
+    var baseArgs = array_slice(arguments, 2);
+    return function () {
+      var nodeArgs = baseArgs.concat(array_slice(arguments));
+      var deferred = defer();
+      nodeArgs.push(deferred.makeNodeResolver());
+
+      function bound() {
+        return callback.apply(thisp, arguments);
+      }
+
+      Q(bound).fapply(nodeArgs).fail(deferred.reject);
+      return deferred.promise;
+    };
+  };
+
+  Promise.prototype.nbind = function ()
+  /*thisp, ...args*/
+  {
+    var args = array_slice(arguments, 0);
+    args.unshift(this);
+    return Q.nbind.apply(void 0, args);
+  };
+  /**
+   * Calls a method of a Node-style object that accepts a Node-style
+   * callback with a given array of arguments, plus a provided callback.
+   * @param object an object that has the named method
+   * @param {String} name name of the method of object
+   * @param {Array} args arguments to pass to the method; the callback
+   * will be provided by Q and appended to these arguments.
+   * @returns a promise for the value or error
+   */
+
+
+  Q.nmapply = // XXX As proposed by "Redsandro"
+  Q.npost = function (object, name, args) {
+    return Q(object).npost(name, args);
+  };
+
+  Promise.prototype.nmapply = // XXX As proposed by "Redsandro"
+  Promise.prototype.npost = function (name, args) {
+    var nodeArgs = array_slice(args || []);
+    var deferred = defer();
+    nodeArgs.push(deferred.makeNodeResolver());
+    this.dispatch("post", [name, nodeArgs]).fail(deferred.reject);
+    return deferred.promise;
+  };
+  /**
+   * Calls a method of a Node-style object that accepts a Node-style
+   * callback, forwarding the given variadic arguments, plus a provided
+   * callback argument.
+   * @param object an object that has the named method
+   * @param {String} name name of the method of object
+   * @param ...args arguments to pass to the method; the callback will
+   * be provided by Q and appended to these arguments.
+   * @returns a promise for the value or error
+   */
+
+
+  Q.nsend = // XXX Based on Mark Miller's proposed "send"
+  Q.nmcall = // XXX Based on "Redsandro's" proposal
+  Q.ninvoke = function (object, name
+  /*...args*/
+  ) {
+    var nodeArgs = array_slice(arguments, 2);
+    var deferred = defer();
+    nodeArgs.push(deferred.makeNodeResolver());
+    Q(object).dispatch("post", [name, nodeArgs]).fail(deferred.reject);
+    return deferred.promise;
+  };
+
+  Promise.prototype.nsend = // XXX Based on Mark Miller's proposed "send"
+  Promise.prototype.nmcall = // XXX Based on "Redsandro's" proposal
+  Promise.prototype.ninvoke = function (name
+  /*...args*/
+  ) {
+    var nodeArgs = array_slice(arguments, 1);
+    var deferred = defer();
+    nodeArgs.push(deferred.makeNodeResolver());
+    this.dispatch("post", [name, nodeArgs]).fail(deferred.reject);
+    return deferred.promise;
+  };
+  /**
+   * If a function would like to support both Node continuation-passing-style and
+   * promise-returning-style, it can end its internal promise chain with
+   * `nodeify(nodeback)`, forwarding the optional nodeback argument.  If the user
+   * elects to use a nodeback, the result will be sent there.  If they do not
+   * pass a nodeback, they will receive the result promise.
+   * @param object a result (or a promise for a result)
+   * @param {Function} nodeback a Node.js-style callback
+   * @returns either the promise or nothing
+   */
+
+
+  Q.nodeify = nodeify;
+
+  function nodeify(object, nodeback) {
+    return Q(object).nodeify(nodeback);
+  }
+
+  Promise.prototype.nodeify = function (nodeback) {
+    if (nodeback) {
+      this.then(function (value) {
+        Q.nextTick(function () {
+          nodeback(null, value);
+        });
+      }, function (error) {
+        Q.nextTick(function () {
+          nodeback(error);
+        });
+      });
+    } else {
+      return this;
+    }
+  };
+
+  Q.noConflict = function () {
+    throw new Error("Q.noConflict only works when Q is used as a global");
+  }; // All code before this point will be filtered from stack traces.
+
+
+  var qEndingLine = captureLine();
+  return Q;
+});
+},{"process":"../../../../../../../usr/local/lib/node_modules/parcel/node_modules/process/browser.js"}],"editor.js":[function(require,module,exports) {
 "use strict";
 
 var _editorjs = _interopRequireDefault(require("@editorjs/editorjs"));
@@ -308,26 +2715,48 @@ var _embed = _interopRequireDefault(require("@editorjs/embed"));
 
 var _marker = _interopRequireDefault(require("@editorjs/marker"));
 
-var _os = require("os");
+var _delimiter = _interopRequireDefault(require("@editorjs/delimiter"));
+
+var _image = _interopRequireDefault(require("@editorjs/image"));
+
+var _fs = require("fs");
+
+var _q = require("q");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var button = document.querySelector(".publishbtn");
 var imageUrl = document.querySelector("#image-url");
-var title = document.querySelector("#title");
-var selectTag = document.querySelector("#tech");
-var options = document.querySelectorAll("option");
+var title = document.querySelector("#postTitle h1");
+var publishbtn = document.querySelector(".publishbtn");
 var save = document.querySelector("#save");
-var previewbtn = document.querySelector(".previewbtn");
 var clear = document.querySelector(".clear");
-var tech = "technology";
-var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+var today = document.querySelector(".Today");
+var Radio = document.querySelectorAll("input[type='radio']");
+
+if (localStorage.getItem('tech')) {
+  if (document.querySelector("#".concat(localStorage.getItem('tech')))) {
+    document.querySelector("#".concat(localStorage.getItem('tech'))).setAttribute("checked", "true");
+  }
+}
+
+Radio.forEach(function (element) {
+  element.addEventListener("change", function (e) {
+    save.textContent = "Save";
+    button.setAttribute("disabled", "disabled");
+    localStorage.setItem('tech', e.target.id);
+  });
+});
+var month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 var date = new Date();
-var fulldate = "".concat(month[date.getMonth()], " ").concat(date.getDate(), ", ").concat(date.getFullYear());
+var fulldate = "".concat(month[date.getMonth()], " ").concat(date.getDate(), ",").concat(date.getFullYear());
+today.innerHTML = fulldate;
 var techNumber, editor, obj, rawObj, titleList;
-clear.addEventListener('click', function _callee() {
+clear.addEventListener("click", clearContent);
+
+function clearContent() {
   var decision;
-  return regeneratorRuntime.async(function _callee$(_context) {
+  return regeneratorRuntime.async(function clearContent$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
@@ -342,7 +2771,7 @@ clear.addEventListener('click', function _callee() {
 
           if (decision) {
             axios.post("/post/preview", null).then(function (res) {
-              localStorage.setItem("post", null);
+              localStorage.clear();
               window.location.reload();
             });
           }
@@ -353,15 +2782,16 @@ clear.addEventListener('click', function _callee() {
       }
     }
   });
-});
-window.addEventListener("load", function _callee3() {
-  return regeneratorRuntime.async(function _callee3$(_context3) {
+}
+
+window.addEventListener("load", function _callee2() {
+  return regeneratorRuntime.async(function _callee2$(_context4) {
     while (1) {
-      switch (_context3.prev = _context3.next) {
+      switch (_context4.prev = _context4.next) {
         case 0:
-          _context3.next = 2;
-          return regeneratorRuntime.awrap(axios.post("/post/reload").then(function _callee2(res) {
-            return regeneratorRuntime.async(function _callee2$(_context2) {
+          _context4.next = 2;
+          return regeneratorRuntime.awrap(axios.post("/post/reload").then(function _callee(res) {
+            return regeneratorRuntime.async(function _callee$(_context2) {
               while (1) {
                 switch (_context2.prev = _context2.next) {
                   case 0:
@@ -380,19 +2810,7 @@ window.addEventListener("load", function _callee3() {
               obj = JSON.parse(rawObj);
 
               if (obj.title) {
-                title.value = obj.title;
-              }
-
-              if (obj.img) {
-                imageUrl.value = obj.img;
-              }
-
-              if (obj.techNumber) {
-                selectTag.selectedIndex = obj.techNumber;
-              }
-
-              if (obj.tech) {
-                tech = obj.tech;
+                title.innerHTML = obj.title;
               }
             } else {
               obj = {
@@ -401,97 +2819,155 @@ window.addEventListener("load", function _callee3() {
             }
 
             editor = new _editorjs.default({
-              holder: "editorjs",
+              holder: "postContent",
               tools: {
                 embed: {
                   class: _embed.default,
+                  shortcut: "ALT+E",
                   config: {
                     services: {
                       youtube: true,
                       codepen: {
                         regex: /https:\/\/codepen.io\/([^\/\?\&]*)\/pen\/([^\/\?\&]*)/,
-                        embedUrl: 'https://codepen.io/<%= remote_id %>?height=400&theme-id=0&default-tab=css,result&embed-version=2',
-                        html: "<iframe height='300' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
-                        height: 300,
-                        width: 600,
+                        embedUrl: "https://codepen.io/<%= remote_id %>?height=400&theme-id=0&default-tab=css,result&embed-version=2",
+                        html: "<iframe class='embed-responsive embed-responsive-16by9' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
                         id: function id(groups) {
-                          return groups.join('/embed/preview/');
+                          return groups.join("/embed/preview/");
                         }
                       },
                       codesandbox: {
                         regex: /https:\/\/codesandbox.io\/embed\/([^\/\?\&]*)/,
-                        embedUrl: 'https://codesandbox.io/embed/<%= remote_id %>?height=400&theme-id=0&default-tab=css,result&embed-version=2',
-                        html: "<iframe height='300' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
+                        embedUrl: "https://codesandbox.io/embed/<%= remote_id %>?height=400&theme-id=0&default-tab=css,result&embed-version=2",
+                        html: "<iframe class='embed-responsive embed-responsive-16by9' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
                         height: 300,
                         width: 600,
                         id: function id(groups) {
-                          return groups.join('/embed/preview/');
+                          return groups.join("/embed/preview/");
                         }
                       },
                       pythonsandbox: {
                         regex: /https:\/\/repl.it\/([^\/\?\&]*)\/([^\/\?\&]*)/,
-                        embedUrl: 'https://repl.it/<%= remote_id %>?lite=true',
-                        html: "<iframe height='300' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
+                        embedUrl: "https://repl.it/<%= remote_id %>?lite=true",
+                        html: "<iframe class='embed-responsive embed-responsive-16by9' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
                         height: 200,
                         width: 600,
                         id: function id(groups) {
-                          return groups.join('/');
+                          return groups.join("/");
                         }
                       }
                     }
                   }
                 },
+                hostedImage: {
+                  class: _image.default,
+                  shortcut: "ALT+I",
+                  config: {
+                    /**
+                     * Custom uploader
+                     */
+                    uploader: {
+                      /**
+                       * Upload file to the server and return an uploaded image data
+                       * @param {File} file - file selected from the device or pasted by drag-n-drop
+                       * @return {Promise.<{success, file: {url}}>}
+                       */
+                      uploadByFile: function uploadByFile(file) {
+                        var reader, data, promise1, res;
+                        return regeneratorRuntime.async(function uploadByFile$(_context3) {
+                          while (1) {
+                            switch (_context3.prev = _context3.next) {
+                              case 0:
+                                reader = new FileReader();
+                                reader.readAsDataURL(file);
+                                promise1 = new Promise(function (resolve, reject) {
+                                  reader.onload = function (e) {
+                                    resolve(e.target.result);
+                                  };
+                                });
+                                _context3.next = 5;
+                                return regeneratorRuntime.awrap(promise1);
+
+                              case 5:
+                                data = _context3.sent;
+                                _context3.next = 8;
+                                return regeneratorRuntime.awrap(axios.post("/image/upload", {
+                                  file: data
+                                }));
+
+                              case 8:
+                                res = _context3.sent;
+                                return _context3.abrupt("return", {
+                                  success: 1,
+                                  file: {
+                                    url: res.data.url
+                                  }
+                                });
+
+                              case 10:
+                              case "end":
+                                return _context3.stop();
+                            }
+                          }
+                        });
+                      }
+                    }
+                  }
+                },
+                delimiter: {
+                  class: _delimiter.default,
+                  shortcut: "ALT+D",
+                  inlineToolbar: true
+                },
                 Marker: {
                   class: _marker.default,
-                  shortcut: 'CMD+SHIFT+M',
                   inlineToolbar: true
                 },
                 image: {
                   class: _simpleImage.default,
                   inlineToolbar: ["link"],
-                  caption: false
+                  placeholder: "caption"
                 },
                 code: {
                   class: _code.default,
-                  shortcut: 'CMD+SHIFT+X'
+                  shortcut: "ALT+X"
                 },
                 list: {
                   class: _list.default,
-                  shortcut: 'CMD+SHIFT+L',
+                  shortcut: "ALT+L",
                   inlineToolbar: true
                 },
                 header: {
                   class: _header.default,
-                  shortcut: 'CMD+SHIFT+H',
+                  shortcut: "ALT+H",
                   config: {
-                    placeholder: 'Enter a header'
+                    placeholder: "Enter a header"
                   }
                 },
                 quote: {
                   class: _quote.default,
-                  shortcut: 'CMD+SHIFT+Q',
+                  shortcut: "ALT+Q",
                   inlineToolbar: true,
                   config: {
-                    quotePlaceholder: 'Enter a quote',
-                    captionPlaceholder: 'Quote\'s author'
+                    quotePlaceholder: "Enter a quote",
+                    captionPlaceholder: "Quote's author"
                   }
                 },
                 icode: {
-                  class: _inlineCode.default,
-                  shortcut: 'CMD+SHIFT+M'
+                  class: _inlineCode.default
                 },
                 paragraph: {
                   class: _paragraph.default,
                   inlineToolbar: true,
                   config: {
-                    placeholder: "let's write awesome tutorial"
+                    placeholder: "Start Writing"
                   }
                 },
                 warning: {
                   class: _warning.default,
                   inlineToolbar: true,
+                  shortcut: "ALT+W",
                   config: {
-                    messagePlaceholder: 'Message'
+                    messagePlaceholder: "Message"
                   }
                 }
               },
@@ -513,22 +2989,23 @@ window.addEventListener("load", function _callee3() {
 
         case 2:
         case "end":
-          return _context3.stop();
+          return _context4.stop();
       }
     }
   });
 });
+$(window).keydown(function (event) {
+  if (event.ctrlKey && event.keyCode == 83) {
+    event.preventDefault();
+    preview();
+  }
+
+  if (event.ctrlKey && event.keyCode == 76) {
+    event.preventDefault();
+    clearContent();
+  }
+});
 title.addEventListener("focus", function () {
-  save.textContent = "Save";
-  button.setAttribute("disabled", "disabled");
-});
-selectTag.addEventListener("change", function (e) {
-  save.textContent = "Save";
-  button.setAttribute("disabled", "disabled");
-  tech = options[e.target.value].innerHTML;
-  techNumber = parseInt(options[e.target.value].value);
-});
-imageUrl.addEventListener("focus", function (e) {
   save.textContent = "Save";
   button.setAttribute("disabled", "disabled");
 });
@@ -536,52 +3013,8 @@ button.addEventListener("click", varification);
 save.addEventListener("click", preview);
 
 function preview(e) {
-  var newTechNumber, outputData, content, count, slug, hero1;
-  return regeneratorRuntime.async(function preview$(_context4) {
-    while (1) {
-      switch (_context4.prev = _context4.next) {
-        case 0:
-          newTechNumber = techNumber;
-          _context4.next = 3;
-          return regeneratorRuntime.awrap(editor.save());
-
-        case 3:
-          outputData = _context4.sent;
-          content = outputData.blocks;
-          count = content.length;
-          slug = title.value.toLowerCase().replace(/\ /g, "-");
-          previewbtn.removeAttribute("disabled");
-          save.textContent = "Saving";
-          _context4.next = 11;
-          return regeneratorRuntime.awrap({
-            date: fulldate,
-            title: title.value,
-            img: imageUrl.value,
-            techNumber: newTechNumber,
-            savedData: outputData,
-            tech: tech,
-            content: content
-          });
-
-        case 11:
-          hero1 = _context4.sent;
-          axios.post("/post/preview", hero1).then(function (res) {
-            button.removeAttribute("disabled");
-            save.textContent = "Saved";
-            localStorage.setItem("post", JSON.stringify(res.data));
-          });
-
-        case 13:
-        case "end":
-          return _context4.stop();
-      }
-    }
-  });
-}
-
-function varification(e) {
-  var outputData, content, score, slug, decision, hero;
-  return regeneratorRuntime.async(function varification$(_context5) {
+  var outputData, content, postTitle, hero1;
+  return regeneratorRuntime.async(function preview$(_context5) {
     while (1) {
       switch (_context5.prev = _context5.next) {
         case 0:
@@ -591,41 +3024,84 @@ function varification(e) {
         case 2:
           outputData = _context5.sent;
           content = outputData.blocks;
+          postTitle = title.innerHTML.replace(/[^A-Za-z0-9\-#$*%]/g, ' ');
+          title.innerHTML = postTitle;
+          save.textContent = "Saving";
+          _context5.next = 9;
+          return regeneratorRuntime.awrap({
+            date: fulldate,
+            title: postTitle,
+            savedData: outputData,
+            content: content
+          });
+
+        case 9:
+          hero1 = _context5.sent;
+          axios.post("/post/preview", hero1).then(function (res) {
+            button.removeAttribute("disabled");
+            save.textContent = "Saved";
+            localStorage.setItem("post", JSON.stringify(res.data));
+          });
+
+        case 11:
+        case "end":
+          return _context5.stop();
+      }
+    }
+  });
+}
+
+publishbtn.addEventListener("click", varification);
+
+function varification(e) {
+  var outputData, content, score, noSpecialChar, noWSpaceAtStartAndEnd, slug, decision, hero;
+  return regeneratorRuntime.async(function varification$(_context6) {
+    while (1) {
+      switch (_context6.prev = _context6.next) {
+        case 0:
+          _context6.next = 2;
+          return regeneratorRuntime.awrap(editor.save());
+
+        case 2:
+          outputData = _context6.sent;
+          content = outputData.blocks;
           score = 0;
-          slug = title.value.toLowerCase().replace(/\ /g, "-");
-          _context5.next = 8;
+          noSpecialChar = title.innerHTML.toLowerCase().replace(/[^A-Za-z0-9]/g, " ");
+          noWSpaceAtStartAndEnd = noSpecialChar.trim();
+          slug = noWSpaceAtStartAndEnd.replace(/\s/g, "-");
+          _context6.next = 10;
           return regeneratorRuntime.awrap(axios.post("/confirm", {
             slug: slug
           }).then(function (res) {
             if (res.data.confirmation) {
               swal("title already exist.", {
-                buttons: "Ok got it !"
+                buttons: "Close"
               });
             } else {
               score++;
             }
           }));
 
-        case 8:
-          if (title.value === "") {
+        case 10:
+          if (title.innerHTML === "") {
             swal("title is empty", {
-              buttons: "Ok got it !"
+              buttons: "Close"
             });
           } else {
             score++;
           }
 
-          if (tech === "technology") {
-            swal("please select technology", {
-              buttons: "Ok got it !"
+          if (!document.querySelector("#".concat(localStorage.getItem('tech')))) {
+            swal("please select the post category", {
+              buttons: "Close"
             });
           } else {
             score++;
           }
 
-          if (title.value.length < 5) {
+          if (title.innerHTML.length < 5) {
             swal("title is too short", {
-              buttons: "Ok got it !"
+              buttons: "Close"
             });
           } else {
             score++;
@@ -633,41 +3109,41 @@ function varification(e) {
 
           if (content.length < 7) {
             swal("Content is too short.", {
-              buttons: "Ok, got it !"
+              buttons: "Close"
             });
           } else {
             score++;
           }
 
           if (!(score === 5)) {
-            _context5.next = 17;
+            _context6.next = 19;
             break;
           }
 
-          _context5.next = 15;
-          return regeneratorRuntime.awrap(swal("Are you ready?", {
-            buttons: ["No, not ready", "Yes, ready"]
+          _context6.next = 17;
+          return regeneratorRuntime.awrap(swal("Are you ready to publish?", {
+            buttons: ["No", "Yes"]
           }));
 
-        case 15:
-          decision = _context5.sent;
+        case 17:
+          decision = _context6.sent;
 
           if (decision) {
             button.textContent = "Publishing..";
             button.setAttribute("disabled", "disabled");
             hero = {
               date: fulldate,
-              title: title.value,
-              img: imageUrl.value,
-              tech: tech,
+              title: title.innerHTML,
+              img: content[0].type === "hostedImage" ? content[0].data.file.url : content[0].type === "image" ? content[0].data.url : null,
+              tech: localStorage.getItem('tech'),
               content: content
             };
             publish(hero);
           }
 
-        case 17:
+        case 19:
         case "end":
-          return _context5.stop();
+          return _context6.stop();
       }
     }
   });
@@ -676,7 +3152,6 @@ function varification(e) {
 function publish(hero) {
   axios.post("/publish/post", hero).then(function (res) {
     if (res.data.done) {
-      localStorage.clear();
       setTimeout(function () {
         window.location.href = "/";
       }, 4000);
@@ -687,7 +3162,16 @@ function publish(hero) {
 $("a").attr({
   rel: "noopener nofollow"
 });
-},{"@editorjs/editorjs":"../../node_modules/@editorjs/editorjs/dist/editor.js","@editorjs/header":"../../node_modules/@editorjs/header/dist/bundle.js","@editorjs/list":"../../node_modules/@editorjs/list/dist/bundle.js","@editorjs/simple-image":"../../node_modules/@editorjs/simple-image/dist/bundle.js","@editorjs/code":"../../node_modules/@editorjs/code/dist/bundle.js","@editorjs/quote":"../../node_modules/@editorjs/quote/dist/bundle.js","@editorjs/inline-code":"../../node_modules/@editorjs/inline-code/dist/bundle.js","@editorjs/warning":"../../node_modules/@editorjs/warning/dist/bundle.js","@editorjs/paragraph":"../../node_modules/@editorjs/paragraph/dist/bundle.js","@editorjs/embed":"../../node_modules/@editorjs/embed/dist/bundle.js","@editorjs/marker":"../../node_modules/@editorjs/marker/dist/bundle.js","os":"../../../../../../../usr/local/lib/node_modules/parcel/node_modules/os-browserify/browser.js"}],"../../../../../../../usr/local/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+jQuery(function ($) {
+  $("#postTitle h1").blur(function () {
+    var $element = $(this);
+
+    if ($element.html().length && !$element.text().trim().length) {
+      $element.empty();
+    }
+  });
+});
+},{"@editorjs/editorjs":"../../node_modules/@editorjs/editorjs/dist/editor.js","@editorjs/header":"../../node_modules/@editorjs/header/dist/bundle.js","@editorjs/list":"../../node_modules/@editorjs/list/dist/bundle.js","@editorjs/simple-image":"../../node_modules/@editorjs/simple-image/dist/bundle.js","@editorjs/code":"../../node_modules/@editorjs/code/dist/bundle.js","@editorjs/quote":"../../node_modules/@editorjs/quote/dist/bundle.js","@editorjs/inline-code":"../../node_modules/@editorjs/inline-code/dist/bundle.js","@editorjs/warning":"../../node_modules/@editorjs/warning/dist/bundle.js","@editorjs/paragraph":"../../node_modules/@editorjs/paragraph/dist/bundle.js","@editorjs/embed":"../../node_modules/@editorjs/embed/dist/bundle.js","@editorjs/marker":"../../node_modules/@editorjs/marker/dist/bundle.js","@editorjs/delimiter":"../../node_modules/@editorjs/delimiter/dist/bundle.js","@editorjs/image":"../../node_modules/@editorjs/image/dist/bundle.js","fs":"../../../../../../../usr/local/lib/node_modules/parcel/src/builtins/_empty.js","q":"../../node_modules/q/q.js"}],"../../../../../../../usr/local/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -715,7 +3199,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45659" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45583" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

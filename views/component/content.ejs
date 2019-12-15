@@ -1,11 +1,14 @@
 <div class="row justify-content-center content-section">
+
+    <%- include('title') %>
+    <%- include('author') %>
+
         <% if(data.img){ %>
             <div class="myimage col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
                     <img src=<%=data.img%> alt="image" class="rounded img-fluid">
             </div>
         <% } %>
             
-            <%- include('hero') %>
 
             <%- include('tableofcontent') %>
 
@@ -16,23 +19,23 @@
                         <% switch(el.data.level){
                             case 1: %>
                                <h2 id=<%=el.data.text.toLowerCase().replace(/\s/g, '')%>><a href=<%="#"+el.data.text.toLowerCase().replace(/\s/g, '') %>><%= el.data.text %></a></h2>
-                               
                          <% break;
                             case 2: %>
                                <h2 id=<%=el.data.text.toLowerCase().replace(/\s/g, '')%>><a href=<%="#"+el.data.text.toLowerCase().replace(/\s/g, '') %>><%= el.data.text %></a></h2>
-                         <% break; 
+                         <% break;
                             case 3: %>
-                               <h3><%= el.data.text %></h3>
+                            <h3><%= el.data.text %></h3> 
                          <% break; 
                             case 4: %>
-                               <h4><%= el.data.text %></h4> 
+                            <h4><%= el.data.text %></h4> 
                          <% break; 
                             case 5: %>
-                               <h5><%= el.data.text %></h5> 
+                         <h5><%= el.data.text %></h5> 
                          <% break; 
                             case 6: %>
-                               <h5><%= el.data.text %></h5>
+                         <h5><%= el.data.text %></h5>
                          <% break; 
+                         
                          } %> 
                     </div>
             <% break;
@@ -42,17 +45,49 @@
                 <p class="para"><%= el.data.text %></p>
             </div>
             <% break;
+
+            case "delimiter": %>
+            <div class="delimeter col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12 d-block">
+            </div>
                 
-                 case "image": %>
-                 <% if(el.data.stretched){ %>
-                    <div class="myimage col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
-                            <img src="/static/images/ph.png" data-src=<%=el.data.url%>   class="rounded lazy img-fluid" alt="photo">
-                        </div>
-                 <%}else{%>
-                    <div class="myimage col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12">
-                            <img src="/static/images/ph.png" data-src=<%=el.data.url%>   class="rounded lazy img-fluid" alt="photo">
-                        </div>
-                 <%}%>
+            case "hostedImage": %>
+
+            <% if(el.data.stretched && i !== 0){ %>
+                <div class="myimage col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
+                        <img src="/static/images/ph.png" data-src=<%=el.data.file.url%>   class="rounded lazy img-fluid" alt="photo">
+                        <% if(el.data.caption !== ""){%>
+                            <span style="font-size: 14px;color: #707684dc;"><%=el.data.caption%></span>
+                        <%}%>
+                    </div>
+             <%}else if(i !== 0){%>
+                <div class="myimage col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12">
+                        <img src="/static/images/ph.png" data-src=<%=el.data.file.url%>   class="rounded lazy img-fluid" alt="photo">
+                        <% if(el.data.caption !== ""){%>
+                            <span style="font-size: 14px;color: #707684dc;"><%=el.data.caption%></span>
+                        <%}%>
+
+                    </div>
+             <%}%>
+            <% break;
+
+              case "image": %>
+
+            <% if(el.data.stretched && i !== 0){ %>
+                <div class="myimage col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
+                        <img src="/static/images/ph.png" data-src=<%=el.data.url%>   class="rounded lazy img-fluid" alt="photo">
+                        <% if(el.data.caption !== ""){%>
+                            <span style="font-size: 14px;color: #707684dc;"><%=el.data.caption%></span>
+                        <%}%>
+                    </div>
+             <%}else if(i !== 0){%>
+                <div class="myimage col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12">
+                        <img src="/static/images/ph.png" data-src=<%=el.data.url%>   class="rounded lazy img-fluid" alt="photo">
+                        <% if(el.data.caption !== ""){%>
+                            <span style="font-size: 14px;color: #707684dc;"><%=el.data.caption%></span>
+                        <%}%>
+
+                    </div>
+             <%}%>
             <% break;
      
                  case "code": %>

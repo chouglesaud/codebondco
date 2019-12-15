@@ -1,349 +1,393 @@
-
 import EditorJS from "@editorjs/editorjs"
-import Header   from "@editorjs/header"
-import List     from "@editorjs/list"
-import Image    from "@editorjs/simple-image"
-import Code     from "@editorjs/code"
-import Quote    from "@editorjs/quote"
-import Icode    from "@editorjs/inline-code"  
-import Warning  from "@editorjs/warning"
-import Para     from "@editorjs/paragraph"
-import Embed    from "@editorjs/embed"
-import Marker     from "@editorjs/marker"
-import { type } from "os";
+import Header from "@editorjs/header"
+import List from "@editorjs/list"
+import Image from "@editorjs/simple-image"
+import Code from "@editorjs/code"
+import Quote from "@editorjs/quote"
+import Icode from "@editorjs/inline-code"
+import Warning from "@editorjs/warning"
+import Para from "@editorjs/paragraph"
+import Embed from "@editorjs/embed"
+import Marker from "@editorjs/marker"
+import Delimiter from "@editorjs/delimiter"
+import ImageTool from "@editorjs/image"
+import { readFile, read } from "fs"
+import { reject } from "q"
 
+let button     = document.querySelector(".publishbtn")
+let imageUrl   = document.querySelector("#image-url")
+let title      = document.querySelector("#postTitle h1")
+let publishbtn = document.querySelector(".publishbtn")
+let save       = document.querySelector("#save")
+let clear      = document.querySelector(".clear")
+let today      = document.querySelector(".Today")
+let Radio      = document.querySelectorAll("input[type='radio']")
 
-let button       = document.querySelector(".publishbtn")
-let imageUrl     = document.querySelector("#image-url")
-let title        = document.querySelector("#title")
-let selectTag    = document.querySelector("#tech");
-let options      = document.querySelectorAll("option")
-let save         = document.querySelector("#save")
-let previewbtn   = document.querySelector(".previewbtn")
-let clear        = document.querySelector(".clear")
-let tech = "technology";
-let month        = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-let date         = new Date;
-let fulldate     = `${month[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
-
-let techNumber,editor,obj,rawObj,titleList
-
-
-
-clear.addEventListener('click',async()=>{
-  let decision = await swal("Are you sure?", {
-    dangerMode: true,
-    buttons:["No", "Yes"]
-  });
-  if(decision){ axios.post("/post/preview",null).then((res)=>{
-    localStorage.setItem("post",null)
-    window.location.reload()
-  })
+if(localStorage.getItem('tech')){
+	if(document.querySelector(`#${localStorage.getItem('tech')}`)){
+    document.querySelector(`#${localStorage.getItem('tech')}`).setAttribute("checked","true")
+     
+	}
 }
-})
 
-
-window.addEventListener("load",async()=>{
-  await axios.post("/post/reload").then(async(res)=>{
-   await localStorage.setItem("post",JSON.stringify(res.data))
-   
-  }).then(()=>{
-    if(localStorage.getItem("post") !== null){
-      rawObj = localStorage.getItem("post")
-      obj = JSON.parse(rawObj)
-      if(obj.title){
-        title.value = obj.title
-      }
-      if(obj.img){
-        imageUrl.value = obj.img
-      }
-      if(obj.techNumber){
-        selectTag.selectedIndex = obj.techNumber
-      }
-      if(obj.tech){
-        tech = obj.tech
-      }
-      
-  
-    }else{
-      obj = {
-        savedData: null
-      }
-
-      
-    }
-    editor = new EditorJS({
-      holder: "editorjs",
-      
-      tools : { 
-        embed: {
-          class        : Embed,
-          config       : {
-            services: {
-              youtube: true,
-              codepen: {
-                
-                  regex   : /https:\/\/codepen.io\/([^\/\?\&]*)\/pen\/([^\/\?\&]*)/,
-                  embedUrl: 'https://codepen.io/<%= remote_id %>?height=400&theme-id=0&default-tab=css,result&embed-version=2',
-                  html    : "<iframe height='300' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
-                  height  : 300,
-                  width   : 600,
-                  id      : (groups) => groups.join('/embed/preview/')
-                
-              },
-              codesandbox: {
-                
-                regex   : /https:\/\/codesandbox.io\/embed\/([^\/\?\&]*)/,
-                embedUrl: 'https://codesandbox.io/embed/<%= remote_id %>?height=400&theme-id=0&default-tab=css,result&embed-version=2',
-                html    : "<iframe height='300' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
-                height  : 300,
-                width   : 600,
-                id      : (groups) => groups.join('/embed/preview/')
-              
-            },
-            pythonsandbox: {
-                
-              regex   : /https:\/\/repl.it\/([^\/\?\&]*)\/([^\/\?\&]*)/,
-              embedUrl: 'https://repl.it/<%= remote_id %>?lite=true',
-              html    : "<iframe height='300' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
-              height  : 200,
-              width   : 600,
-              id      : (groups) => groups.join('/')
-            
-          }
-          
-            }
-          }
-        },
-        Marker: {
-          class        : Marker,
-          shortcut     : 'CMD+SHIFT+M',
-          inlineToolbar: true
-        },
-        image : {
-          class        : Image,
-          inlineToolbar: ["link"],
-          caption      : false
-        },
-    
-        code  : {
-          class: Code,
-          shortcut: 'CMD+SHIFT+X',
-        },
-        list  : {
-          class: List,
-          shortcut: 'CMD+SHIFT+L',
-          inlineToolbar: true
-        },
-        header: {
-          class : Header,
-          shortcut: 'CMD+SHIFT+H',
-          config: {
-            placeholder: 'Enter a header'
-          }
-        },
-       
-        quote: {
-          class   : Quote,
-          shortcut: 'CMD+SHIFT+Q',
-          inlineToolbar: true,
-          config  : {
-            quotePlaceholder  : 'Enter a quote',
-            captionPlaceholder: 'Quote\'s author',
-          },
-        },
-         icode: {
-          
-           class        : Icode,
-           shortcut     : 'CMD+SHIFT+M',
-        },
-        paragraph: {
-          class        : Para,
-          inlineToolbar: true,
-          config       : {
-            placeholder: "let's write awesome tutorial"
-          }
-        },
-        warning: {
-          class        : Warning,
-          inlineToolbar: true,
-    
-          config       : {
-            messagePlaceholder: 'Message',
-          },
-         
-        },
-    
-      },
-      data: obj.savedData,
-      initialBlock: "paragraph",
-      
-      onChange: () => {
-        save.textContent = "Save";
-        button.setAttribute("disabled","disabled")
-    
-    },
-      validate(savedData) {
-        if (savedData.text.trim() === "") {
-           return false;
-        }
-    
-        return true;
-      },
+Radio.forEach((element)=>{
+    element.addEventListener("change",(e)=>{
+		save.textContent = "Save"
+	    button.setAttribute("disabled", "disabled")
+        localStorage.setItem('tech',e.target.id)
     })
-  })
+})
+let month = [
+	"Jan",
+	"Feb",
+	"Mar",
+	"Apr",
+	"May",
+	"June",
+	"July",
+	"Aug",
+	"Sept",
+	"Oct",
+	"Nov",
+	"Dec"
+]
+let date = new Date()
+let fulldate = `${month[date.getMonth()]} ${date.getDate()},${date.getFullYear()}`
+
+today.innerHTML = fulldate
+
+let techNumber, editor, obj, rawObj, titleList
+
+clear.addEventListener("click",clearContent)
+
+async function clearContent(){
+	let decision = await swal("Are you sure?", {
+		dangerMode: true,
+		buttons: ["No", "Yes"]
+	})
+	if (decision) {
+		axios.post("/post/preview", null).then(res => {
+			localStorage.clear()
+			
+			window.location.reload()
+		})
+	}
+}
+window.addEventListener("load", async () => {
+	await axios
+		.post("/post/reload")
+		.then(async res => {
+			await localStorage.setItem("post", JSON.stringify(res.data))
+		})
+		.then(() => {
+			if (localStorage.getItem("post") !== null) {
+				rawObj = localStorage.getItem("post")
+				obj = JSON.parse(rawObj)
+				if (obj.title) {
+					title.innerHTML = obj.title
+				}
+			} else {
+				obj = {
+					savedData: null
+				}
+			}
+			editor = new EditorJS({
+				holder: "postContent",
+
+				tools: {
+					embed: {
+						class: Embed,
+						shortcut: "ALT+E",
+						config: {
+							services: {
+								youtube: true,
+								codepen: {
+									regex: /https:\/\/codepen.io\/([^\/\?\&]*)\/pen\/([^\/\?\&]*)/,
+									embedUrl:
+										"https://codepen.io/<%= remote_id %>?height=400&theme-id=0&default-tab=css,result&embed-version=2",
+									html:
+										"<iframe class='embed-responsive embed-responsive-16by9' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
+									
+									id: groups => groups.join("/embed/preview/")
+								},
+								codesandbox: {
+									regex: /https:\/\/codesandbox.io\/embed\/([^\/\?\&]*)/,
+									embedUrl:
+										"https://codesandbox.io/embed/<%= remote_id %>?height=400&theme-id=0&default-tab=css,result&embed-version=2",
+									html:
+										"<iframe class='embed-responsive embed-responsive-16by9' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
+									height: 300,
+									width: 600,
+									id: groups => groups.join("/embed/preview/")
+								},
+								pythonsandbox: {
+									regex: /https:\/\/repl.it\/([^\/\?\&]*)\/([^\/\?\&]*)/,
+									embedUrl:
+										"https://repl.it/<%= remote_id %>?lite=true",
+									html:
+										"<iframe class='embed-responsive embed-responsive-16by9' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
+									height: 200,
+									width: 600,
+									id: groups => groups.join("/")
+								}
+							}
+						}
+					},
+					hostedImage: {
+						class: ImageTool,
+						shortcut: "ALT+I",
+						config: {
+							/**
+							 * Custom uploader
+							 */
+							uploader: {
+								/**
+								 * Upload file to the server and return an uploaded image data
+								 * @param {File} file - file selected from the device or pasted by drag-n-drop
+								 * @return {Promise.<{success, file: {url}}>}
+								 */
+								
+								async uploadByFile(file) {
+									
+									const reader = new FileReader()
+									reader.readAsDataURL(file)
+									let data;
+									
+									let promise1 = new Promise((resolve,reject)=>{
+										reader.onload = e => {
+											resolve(e.target.result)
+										}
+									})
+									data = await promise1
+									
+									
+									
+									let res = await axios.post("/image/upload",{file: data})
+									return {
+										success: 1,
+										file: {
+											url: res.data.url
+										}
+									}
+									
+								}
+							}
+						}
+					},
+					delimiter: {
+						class: Delimiter,
+						shortcut: "ALT+D",
+						inlineToolbar: true
+					},
+					Marker: {
+						class: Marker,
+						inlineToolbar: true
+					},
+					image: {
+						class: Image,
+						inlineToolbar: ["link"],
+						placeholder: "caption"
+					},
+
+					code: {
+						class: Code,
+						shortcut: "ALT+X"
+					},
+					list: {
+						class: List,
+						shortcut: "ALT+L",
+						inlineToolbar: true
+					},
+					header: {
+						class: Header,
+						shortcut: "ALT+H",
+
+						config: {
+							placeholder: "Enter a header"
+						}
+					},
+
+					quote: {
+						class: Quote,
+						shortcut: "ALT+Q",
+						inlineToolbar: true,
+						config: {
+							quotePlaceholder: "Enter a quote",
+							captionPlaceholder: "Quote's author"
+						}
+					},
+					icode: {
+						class: Icode,
+						
+					},
+					paragraph: {
+						class: Para,
+						inlineToolbar: true,
+						config: {
+							placeholder: "Start Writing"
+						}
+					},
+					warning: {
+						class: Warning,
+						inlineToolbar: true,
+						shortcut: "ALT+W",
+
+						config: {
+							messagePlaceholder: "Message"
+						}
+					}
+				},
+				data: obj.savedData,
+				initialBlock: "paragraph",
+
+				onChange: () => {
+					save.textContent = "Save"
+					button.setAttribute("disabled", "disabled")
+				},
+				validate(savedData) {
+					if (savedData.text.trim() === "") {
+						return false
+					}
+
+					return true
+				}
+			})
+		})
+})
+
+$(window).keydown(function(event) {
+	  
+	  if(event.ctrlKey && event.keyCode == 83) { 
+		event.preventDefault(); 
+		preview()
+	  }
+	  if(event.ctrlKey && event.keyCode == 76) { 
+		event.preventDefault(); 
+		clearContent()
+	  }
+	 
+	
+  });
+title.addEventListener("focus", () => {
+	save.textContent = "Save"
+	button.setAttribute("disabled", "disabled")
 })
 
 
+button.addEventListener("click", varification)
+save.addEventListener("click", preview)
 
+async function preview(e) {
+	let outputData = await editor.save()
+	let content = outputData.blocks
+	let postTitle = title.innerHTML.replace(/[^A-Za-z0-9\-#$*%]/g,' ')
 
+	title.innerHTML = postTitle
 
+	save.textContent = "Saving"
 
+	let hero1 = await {
+		date: fulldate,
+		title: postTitle,
+		savedData: outputData,
+		content
+	}
 
-
-
- title.addEventListener("focus",()=>{
-  save.textContent = "Save"
-  button.setAttribute("disabled","disabled")
- })
- 
-
-selectTag.addEventListener("change",(e)=>{
-  save.textContent = "Save"
-  button.setAttribute("disabled","disabled")
-  tech = options[e.target.value].innerHTML
-  techNumber = parseInt(options[e.target.value].value)
-  
-})
-imageUrl.addEventListener("focus",(e)=>{
-  save.textContent = "Save"
-  button.setAttribute("disabled","disabled")
-  
-
-})
-
-
-
-button.addEventListener(("click"),varification)
-save.addEventListener("click",preview)
-
-async function preview(e){
-  let newTechNumber    = techNumber
-  let outputData       = await editor.save()
-  let content          = outputData.blocks
-  let count            = content.length
-  let slug             = title.value.toLowerCase().replace(/\ /g, "-");
-
-      previewbtn.removeAttribute("disabled")
-      
-      save.textContent = "Saving"
-      
-    
-     let hero1 = await {
-      date : fulldate,
-      title: title.value,
-      img  : imageUrl.value,
-      techNumber: newTechNumber,
-      savedData: outputData,
-      tech,
-      content,
-   }
-    
-     
-      axios.post("/post/preview",hero1).then((res)=>{
-        button.removeAttribute("disabled")
-        save.textContent = "Saved"
-        localStorage.setItem("post",JSON.stringify(res.data))
-      })
+	axios.post("/post/preview", hero1).then(res => {
+		button.removeAttribute("disabled")
+		save.textContent = "Saved"
+		localStorage.setItem("post", JSON.stringify(res.data))
+	})
 }
 
-async function varification(e){
-  let outputData = await editor.save()
-  let content    = outputData.blocks
-  let score      = 0;
-  let slug       = title.value.toLowerCase().replace(/\ /g, "-");
+publishbtn.addEventListener("click",varification)
 
-  await axios.post("/confirm",{slug}).then(res=>{
-   
-     if(res.data.confirmation){
-      swal("title already exist.",{buttons: "Ok got it !"});
-     }else{
-       score++
-   
-     }
-   })
-   
-   if(title.value === "" ){
-      swal("title is empty",{buttons: "Ok got it !"});
-  }else{
-    score++
-  
-  }
-  
-  if(tech === "technology"){
-     swal("please select technology",{buttons: "Ok got it !"})
-     
-   }else{
+async function varification(e) {
+	let outputData = await editor.save()
+	let content = outputData.blocks
+	let score = 0
+	let noSpecialChar = title.innerHTML.toLowerCase().replace(/[^A-Za-z0-9]/g, " ")
+	let noWSpaceAtStartAndEnd  = noSpecialChar.trim()
+	let slug = noWSpaceAtStartAndEnd.replace(/\s/g,"-")
+	
+	
 
-    score++
- 
-  }
+	await axios.post("/confirm", { slug }).then(res => {
+		if (res.data.confirmation) {
+			swal("title already exist.", { buttons: "Close" })
+		} else {
+			score++
+		}
+	})
 
-  
-   if((title.value).length < 5){
-      swal("title is too short", {buttons: "Ok got it !"})
-  }else{
-    score++
+	if (title.innerHTML === "") {
+		swal("title is empty", { buttons: "Close" })
+	} else {
+		score++
+	}
+	
+	if (!document.querySelector(`#${localStorage.getItem('tech')}`)) {
+		
+		swal("please select the post category", { buttons: "Close" })
+	} else {
+		score++
+	}
 
-  }
+	if (title.innerHTML.length < 5) {
+		swal("title is too short", { buttons: "Close" })
+	} else {
+		score++
+	}
 
-  if(content.length < 7){
-    swal("Content is too short.",{buttons: "Ok, got it !"})
-  }else{
-    score++
-  
-  }
-      
-  if(score === 5)
-  {
-    let decision = await swal("Are you ready?", {
-      buttons:["No, not ready", "Yes, ready"]
-    });
-    
-    if(decision){
-      button.textContent = "Publishing.."
-      button.setAttribute("disabled","disabled")
-      let hero = {
-        date : fulldate,
-        title: title.value,
-        img  : imageUrl.value,
-        tech,
-        content  
-     }
-       publish(hero);
-    }
-  }
- 
+	if (content.length < 7) {
+		swal("Content is too short.", { buttons: "Close" })
+	} else {
+		score++
+	}
+
+	if (score === 5) {
+		let decision = await swal("Are you ready to publish?", {
+			buttons: ["No", "Yes"]
+		})
+
+		if (decision) {
+			button.textContent = "Publishing.."
+			button.setAttribute("disabled", "disabled")
+			let hero = {
+				date: fulldate,
+				title: title.innerHTML,
+				img: (content[0].type === "hostedImage")?content[0].data.file.url: (content[0].type === "image")? content[0].data.url: null,
+				tech: localStorage.getItem('tech'),
+				content
+			}
+			publish(hero)
+		}
+	}
 }
 
-function publish(hero){
-
-   
-      axios.post("/publish/post",hero).then((res)=>{
-
-        if(res.data.done){
-         localStorage.clear()
-          setTimeout(() => {
-           
-           window.location.href = "/"
-          }, 4000);
-        }
-      })
-     
-
-     
+function publish(hero) {
+	axios.post("/publish/post", hero).then(res => {
+		if (res.data.done) {
+			
+			setTimeout(() => {
+				window.location.href = "/"
+			}, 4000)
+		}
+	})
 }
 
 $("a").attr({
-  rel:"noopener nofollow"
-});
+	rel: "noopener nofollow"
+})
+
+  
+	jQuery(function($){
+		$("#postTitle h1").blur(function(){
+			var $element = $(this);
+			
+			if ($element.html().length && !$element.text().trim().length) {
+				$element.empty();
+			}
+		});
+	});
+	
