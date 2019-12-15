@@ -79,6 +79,8 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(bodyParser.urlencoded({ extended: true,limit: "10mb",parameterLimit: 50000 }));
+app.use(bodyParser.json({limit: "50mb"}));
 
 const checkUser = (req, res, next) => {
   if (!req.user) {
