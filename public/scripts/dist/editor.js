@@ -3024,7 +3024,7 @@ function preview(e) {
         case 2:
           outputData = _context5.sent;
           content = outputData.blocks;
-          postTitle = title.innerHTML.replace(/[^A-Za-z0-9\-#$*%]/g, ' ');
+          postTitle = title.innerHTML.replace(/[^A-Za-z0-9\-#$*%?]/g, ' ');
           title.innerHTML = postTitle;
           save.textContent = "Saving";
           _context5.next = 9;
@@ -3199,7 +3199,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45583" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36671" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

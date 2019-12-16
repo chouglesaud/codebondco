@@ -280,7 +280,7 @@ save.addEventListener("click", preview)
 async function preview(e) {
 	let outputData = await editor.save()
 	let content = outputData.blocks
-	let postTitle = title.innerHTML.replace(/[^A-Za-z0-9\-#$*%]/g,' ')
+	let postTitle = title.innerHTML.replace(/[^A-Za-z0-9\-#$*%?]/g,' ')
 
 	title.innerHTML = postTitle
 
