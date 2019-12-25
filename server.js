@@ -200,9 +200,7 @@ app.post(
     let result = await cloudinary.v2.uploader.upload(req.body.file)
     let splitResult = result.secure_url.split("/");
     let newUrl = `https://res.cloudinary.com/codebond/image/upload/${splitResult[6]}/${splitResult[7]}`;
-    if (isHosted) {
-      res.json({url: newUrl})
-    }
+    res.json({url: newUrl})
   }
 );
 
