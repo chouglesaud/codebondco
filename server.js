@@ -202,7 +202,7 @@ app.post(
     let newUrl = `https://res.cloudinary.com/codebond/image/upload/${
       splitResult[6]
     }/${splitResult[7]}`;
-    let isHosted = Update.image_hosting(req.user.id, { gallery: newUrl });
+    let isHosted = await Update.image_hosting(req.user.id, { gallery: newUrl });
     if (isHosted) {
       res.json({url: newUrl})
     }
