@@ -399,25 +399,45 @@ function () {
   }, {
     key: "_createImage",
     value: function _createImage(url, captionText) {
-      var image = this._createElement("img", ["image-tool__image-picture", "rounded", "img-fluid"], {
-        src: url
-      }, "opacity: 1;");
+      var imagetool, image, caption;
+      return regeneratorRuntime.async(function _createImage$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return regeneratorRuntime.awrap(this._createElement("div", ["image-tool__image"]));
 
-      var imagetool = this._createElement("div", ["image-tool__image"]);
+            case 2:
+              imagetool = _context2.sent;
+              _context2.next = 5;
+              return regeneratorRuntime.awrap(this._createElement("img", ["image-tool__image-picture", "rounded", "img-fluid"], {
+                src: url
+              }, "opacity: 1;"));
 
-      var caption = this._createElement("div", ["cdx-input", "image-tool__caption"], {
-        contentEditable: true,
-        placeholder: "Caption..."
-      });
+            case 5:
+              image = _context2.sent;
+              _context2.next = 8;
+              return regeneratorRuntime.awrap(this._createElement("input", ["cdx-input", "image-tool__caption"], {
+                type: 'text'
+              }, "background-color: #F5F4F5;"));
 
-      caption.dataset.placeholder = "caption";
-      caption.innerHTML = captionText || "";
-      this.wrapper.innerHTML = "";
-      this.wrapper.appendChild(imagetool);
-      imagetool.appendChild(image);
-      imagetool.appendChild(caption);
+            case 8:
+              caption = _context2.sent;
+              caption.placeholder = "caption";
+              caption.value = captionText || "";
+              this.wrapper.innerHTML = "";
+              this.wrapper.appendChild(imagetool);
+              imagetool.appendChild(image);
+              imagetool.appendChild(caption);
 
-      this._acceptTuneView();
+              this._acceptTuneView();
+
+            case 16:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this);
     }
   }, {
     key: "_createImagePreview",
@@ -455,20 +475,20 @@ function () {
   }, {
     key: "save",
     value: function save(blockContent) {
-      return regeneratorRuntime.async(function save$(_context2) {
+      return regeneratorRuntime.async(function save$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              return _context2.abrupt("return", Object.assign(this.data, {
+              return _context3.abrupt("return", Object.assign(this.data, {
                 file: {
                   url: blockContent.querySelector("img").src
                 },
-                caption: blockContent.querySelector("[contentEditable=true]").innerHTML
+                caption: blockContent.querySelector("input[type='text']").value
               }));
 
             case 1:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
       }, null, this);
@@ -682,8 +702,7 @@ window.addEventListener("load", function _callee2() {
                 },
                 hostedImage: {
                   class: _image.default,
-                  shortcut: "ALT+I",
-                  placeholder: "caption"
+                  shortcut: "ALT+I"
                 },
                 delimiter: {
                   class: _delimiter.default,
@@ -942,7 +961,9 @@ jQuery(function ($) {
       $element.empty();
     }
   });
-  $(".image-tool__caption").blur(function () {
+});
+jQuery(function ($) {
+  $(".image-tool__caption[contentEditable='true']").blur(function () {
     var $element = $(this);
 
     if ($element.html().length && !$element.text().trim().length) {

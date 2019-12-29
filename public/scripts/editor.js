@@ -137,7 +137,6 @@ window.addEventListener("load", async () => {
 					hostedImage: {
 						class: ImageTool,
 						shortcut: "ALT+I",
-						placeholder: "caption"
 						
 					},
 					delimiter: {
@@ -352,12 +351,17 @@ jQuery(function($) {
 			$element.empty()
 		}
 	})
-	$(".image-tool__caption").blur(function() {
-		var $element = $(this)
-
-		if ($element.html().length && !$element.text().trim().length) {
-			$element.empty()
-		}
-	})
+	
 	 
+})
+jQuery(function($) {
+
+$(".image-tool__caption[contentEditable='true']").blur(function() {
+	var $element = $(this)
+	
+
+	if ($element.html().length && !$element.text().trim().length) {
+		$element.empty()
+	}
+})
 })
