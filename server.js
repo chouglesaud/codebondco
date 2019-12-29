@@ -195,14 +195,11 @@ app.post(
   "/image/upload",
   checkUser,
   async (req, res) => {
-  
-    
     let result = await cloudinary.v2.uploader.upload(req.body.file)
     let splitResult = result.secure_url.split("/");
     let newUrl = `https://res.cloudinary.com/codebond/image/upload/${splitResult[6]}/${splitResult[7]}`;
     res.json({url: newUrl})
-  }
-);
+  });
 
 app.post(
   "/:username/updateprofile",

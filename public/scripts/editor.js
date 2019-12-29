@@ -10,32 +10,31 @@ import Para from "@editorjs/paragraph"
 import Embed from "@editorjs/embed"
 import Marker from "@editorjs/marker"
 import Delimiter from "@editorjs/delimiter"
-import ImageTool from "@editorjs/image"
-import { readFile, read } from "fs"
-import { reject } from "q"
+import ImageTool from "../../plugin/image/image"
 
-let button     = document.querySelector(".publishbtn")
-let imageUrl   = document.querySelector("#image-url")
-let title      = document.querySelector("#postTitle h1")
+let button = document.querySelector(".publishbtn")
+let imageUrl = document.querySelector("#image-url")
+let title = document.querySelector("#postTitle h1")
 let publishbtn = document.querySelector(".publishbtn")
-let save       = document.querySelector("#save")
-let clear      = document.querySelector(".clear")
-let today      = document.querySelector(".Today")
-let Radio      = document.querySelectorAll("input[type='radio']")
+let save = document.querySelector("#save")
+let clear = document.querySelector(".clear")
+let today = document.querySelector(".Today")
+let Radio = document.querySelectorAll("input[type='radio']")
 
-if(localStorage.getItem('tech')){
-	if(document.querySelector(`#${localStorage.getItem('tech')}`)){
-    document.querySelector(`#${localStorage.getItem('tech')}`).setAttribute("checked","true")
-     
+if (localStorage.getItem("tech")) {
+	if (document.querySelector(`#${localStorage.getItem("tech")}`)) {
+		document
+			.querySelector(`#${localStorage.getItem("tech")}`)
+			.setAttribute("checked", "true")
 	}
 }
 
-Radio.forEach((element)=>{
-    element.addEventListener("change",(e)=>{
+Radio.forEach(element => {
+	element.addEventListener("change", e => {
 		save.textContent = "Save"
-	    button.setAttribute("disabled", "disabled")
-        localStorage.setItem('tech',e.target.id)
-    })
+		button.setAttribute("disabled", "disabled")
+		localStorage.setItem("tech", e.target.id)
+	})
 })
 let month = [
 	"Jan",
@@ -52,15 +51,17 @@ let month = [
 	"Dec"
 ]
 let date = new Date()
-let fulldate = `${month[date.getMonth()]} ${date.getDate()},${date.getFullYear()}`
+let fulldate = `${
+	month[date.getMonth()]
+} ${date.getDate()},${date.getFullYear()}`
 
 today.innerHTML = fulldate
 
 let techNumber, editor, obj, rawObj, titleList
 
-clear.addEventListener("click",clearContent)
+clear.addEventListener("click", clearContent)
 
-async function clearContent(){
+async function clearContent() {
 	let decision = await swal("Are you sure?", {
 		dangerMode: true,
 		buttons: ["No", "Yes"]
@@ -68,7 +69,7 @@ async function clearContent(){
 	if (decision) {
 		axios.post("/post/preview", null).then(res => {
 			localStorage.clear()
-			
+
 			window.location.reload()
 		})
 	}
@@ -107,7 +108,7 @@ window.addEventListener("load", async () => {
 										"https://codepen.io/<%= remote_id %>?height=400&theme-id=0&default-tab=css,result&embed-version=2",
 									html:
 										"<iframe class='embed-responsive embed-responsive-16by9' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
-									
+
 									id: groups => groups.join("/embed/preview/")
 								},
 								codesandbox: {
@@ -136,43 +137,8 @@ window.addEventListener("load", async () => {
 					hostedImage: {
 						class: ImageTool,
 						shortcut: "ALT+I",
-						config: {
-							/**
-							 * Custom uploader
-							 */
-							uploader: {
-								/**
-								 * Upload file to the server and return an uploaded image data
-								 * @param {File} file - file selected from the device or pasted by drag-n-drop
-								 * @return {Promise.<{success, file: {url}}>}
-								 */
-								
-								async uploadByFile(file) {
-									
-									const reader = new FileReader()
-									reader.readAsDataURL(file)
-									let data;
-									
-									let promise1 = new Promise((resolve,reject)=>{
-										reader.onload = e => {
-											resolve(e.target.result)
-										}
-									})
-									data = await promise1
-									
-									
-									
-									let res = await axios.post("/image/upload",{file: data})
-									return {
-										success: 1,
-										file: {
-											url: res.data.url
-										}
-									}
-									
-								}
-							}
-						}
+						placeholder: "caption"
+						
 					},
 					delimiter: {
 						class: Delimiter,
@@ -217,8 +183,7 @@ window.addEventListener("load", async () => {
 						}
 					},
 					icode: {
-						class: Icode,
-						
+						class: Icode
 					},
 					paragraph: {
 						class: Para,
@@ -256,23 +221,19 @@ window.addEventListener("load", async () => {
 })
 
 $(window).keydown(function(event) {
-	  
-	  if(event.ctrlKey && event.keyCode == 83) { 
-		event.preventDefault(); 
+	if (event.ctrlKey && event.keyCode == 83) {
+		event.preventDefault()
 		preview()
-	  }
-	  if(event.ctrlKey && event.keyCode == 76) { 
-		event.preventDefault(); 
+	}
+	if (event.ctrlKey && event.keyCode == 76) {
+		event.preventDefault()
 		clearContent()
-	  }
-	 
-	
-  });
+	}
+})
 title.addEventListener("focus", () => {
 	save.textContent = "Save"
 	button.setAttribute("disabled", "disabled")
 })
-
 
 button.addEventListener("click", varification)
 save.addEventListener("click", preview)
@@ -280,7 +241,7 @@ save.addEventListener("click", preview)
 async function preview(e) {
 	let outputData = await editor.save()
 	let content = outputData.blocks
-	let postTitle = title.innerHTML.replace(/[^A-Za-z0-9\-#$*%?]/g,' ')
+	let postTitle = title.innerHTML.replace(/[^A-Za-z0-9\-#$*%?]/g, " ")
 
 	title.innerHTML = postTitle
 
@@ -294,23 +255,25 @@ async function preview(e) {
 	}
 
 	axios.post("/post/preview", hero1).then(res => {
+		console.log(res.data)
+
 		button.removeAttribute("disabled")
 		save.textContent = "Saved"
 		localStorage.setItem("post", JSON.stringify(res.data))
 	})
 }
 
-publishbtn.addEventListener("click",varification)
+publishbtn.addEventListener("click", varification)
 
 async function varification(e) {
 	let outputData = await editor.save()
 	let content = outputData.blocks
 	let score = 0
-	let noSpecialChar = title.innerHTML.toLowerCase().replace(/[^A-Za-z0-9]/g, " ")
-	let noWSpaceAtStartAndEnd  = noSpecialChar.trim()
-	let slug = noWSpaceAtStartAndEnd.replace(/\s/g,"-")
-	
-	
+	let noSpecialChar = title.innerHTML
+		.toLowerCase()
+		.replace(/[^A-Za-z0-9]/g, " ")
+	let noWSpaceAtStartAndEnd = noSpecialChar.trim()
+	let slug = noWSpaceAtStartAndEnd.replace(/\s/g, "-")
 
 	await axios.post("/confirm", { slug }).then(res => {
 		if (res.data.confirmation) {
@@ -325,9 +288,8 @@ async function varification(e) {
 	} else {
 		score++
 	}
-	
-	if (!document.querySelector(`#${localStorage.getItem('tech')}`)) {
-		
+
+	if (!document.querySelector(`#${localStorage.getItem("tech")}`)) {
 		swal("please select the post category", { buttons: "Close" })
 	} else {
 		score++
@@ -356,8 +318,13 @@ async function varification(e) {
 			let hero = {
 				date: fulldate,
 				title: title.innerHTML,
-				img: (content[0].type === "hostedImage")?content[0].data.file.url: (content[0].type === "image")? content[0].data.url: null,
-				tech: localStorage.getItem('tech'),
+				img:
+					content[0].type === "hostedImage"
+						? content[0].data.file.url
+						: content[0].type === "image"
+						? content[0].data.url
+						: null,
+				tech: localStorage.getItem("tech"),
 				content
 			}
 			publish(hero)
@@ -368,7 +335,6 @@ async function varification(e) {
 function publish(hero) {
 	axios.post("/publish/post", hero).then(res => {
 		if (res.data.done) {
-			
 			setTimeout(() => {
 				window.location.href = "/"
 			}, 4000)
@@ -380,14 +346,20 @@ $("a").attr({
 	rel: "noopener nofollow"
 })
 
-  
-	jQuery(function($){
-		$("#postTitle h1").blur(function(){
-			var $element = $(this);
-			
-			if ($element.html().length && !$element.text().trim().length) {
-				$element.empty();
-			}
-		});
-	});
-	
+jQuery(function($) {
+	$("#postTitle h1").blur(function() {
+		var $element = $(this)
+
+		if ($element.html().length && !$element.text().trim().length) {
+			$element.empty()
+		}
+	})
+	$(".image-tool__caption").blur(function() {
+		var $element = $(this)
+
+		if ($element.html().length && !$element.text().trim().length) {
+			$element.empty()
+		}
+	})
+	 
+})
