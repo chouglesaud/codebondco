@@ -810,7 +810,6 @@ function preview(e) {
         case 9:
           hero1 = _context4.sent;
           axios.post("/post/preview", hero1).then(function (res) {
-            console.log(res.data);
             button.removeAttribute("disabled");
             save.textContent = "Saved";
             localStorage.setItem("post", JSON.stringify(res.data));

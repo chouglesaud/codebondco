@@ -255,8 +255,6 @@ async function preview(e) {
 	}
 
 	axios.post("/post/preview", hero1).then(res => {
-		console.log(res.data)
-
 		button.removeAttribute("disabled")
 		save.textContent = "Saved"
 		localStorage.setItem("post", JSON.stringify(res.data))
