@@ -27,13 +27,17 @@
 
                 <% if(post.img){ 
                     if(post.img.url){ %>
-                     <div class="image">
-                         <img src="/static/images/ph.png" class="lazy img-fluid" alt=<%=post.slug%> data-src=<%= post.img.url %>>
-                     </div>
+                     <a href=<%=post.url%>>
+                        <div class="image">
+                            <img src="/static/images/ph.png" class="lazy img-fluid" alt=<%=post.slug%> data-src=<%= post.img.url %>>
+                        </div>
+                     </a>
                     <%}else if(post.img && post.img.url !== null){ %>
+                 <a href=<%=post.url%>>
                      <div class="image">
                          <img src="/static/images/ph.png" class="lazy img-fluid" alt=<%=post.slug%> data-src=<%= post.img %>>
                      </div>  
+                     </a>
                    <% }
               } %>
                 <div class="details">
