@@ -3,11 +3,27 @@
     <%- include('title') %>
     <%- include('author') %>
 
-        <% if(data.img){ %>
+    <% if(data.img){%>
+        <% if(data.img.url && data.img.stretched){%>
             <div class="myimage col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
-                    <img src=<%=data.img%> alt="image" class="rounded img-fluid">
+                <img src=<%=data.img.url%> alt="image" class="rounded img-fluid">
+                <% if(data.img.caption !== ""){%>
+                    <span style="font-size: 14px;color: #707684dc;"><%=data.img.caption%></span>
+                <%}%>
+        </div>
+        <%}else if(data.img.url && !data.img.stretched){%>
+            <div class="myimage col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12">
+                <img src=<%=data.img.url%>   class="rounded lazy img-fluid" alt="photo">
+                <% if(data.img.caption !== ""){%>
+                    <span style="font-size: 14px;color: #707684dc;"><%=data.img.caption%></span>
+                <%}%>
             </div>
-        <% } %>
+        <%}else if(data.img && data.img.url !== null){%>
+            <div class="myimage col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
+                <img src=<%=data.img%> alt="image" class="rounded img-fluid">
+        </div>
+        <%}
+    }%>
             
 
             <%- include('tableofcontent') %>

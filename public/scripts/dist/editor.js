@@ -925,7 +925,11 @@ function varification(e) {
             hero = {
               date: fulldate,
               title: title.innerHTML,
-              img: content[0].type === "hostedImage" ? content[0].data.file.url : content[0].type === "image" ? content[0].data.url : null,
+              img: {
+                url: content[0].type === "hostedImage" ? content[0].data.file.url : content[0].type === "image" ? content[0].data.url : null,
+                caption: content[0].data.caption,
+                stretched: content[0].data.stretched
+              },
               tech: localStorage.getItem("tech"),
               content: content
             };
@@ -999,7 +1003,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46341" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41627" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
