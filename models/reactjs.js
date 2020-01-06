@@ -10,7 +10,7 @@ const reactjsSchema = new Schema({
          username  : String,
          date      : String,
          profilePic: String,
-         img       : String,
+         img       : Object,
          tech      : String,
          like      : Number,
          post      : [],

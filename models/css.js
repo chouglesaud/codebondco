@@ -10,7 +10,7 @@ const cssSchema = new Schema({
       url       : String,
       date      : String,
       profilePic: String,
-      img       : String,
+      img       : Object,
       tech      : String,
       post      : [],
       comment   : []

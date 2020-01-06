@@ -10,7 +10,7 @@ const nodejsSchema = new Schema({
          url       : String,
          date      : String,
          profilePic: String,
-         img       : String,
+         img       : Object,
          tech      : String,
          like      : Number,
          post      : [],
