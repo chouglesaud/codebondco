@@ -21,10 +21,10 @@ router.post('/post', async (req, res) => {
 		lower: true
 	})
 	if (tech !== 'other') {
-		url = `/tutorial/${req.body.tech}/${slug}`
-	} else if (tech === 'other') {
+		url = `/tutorial/${tech}/${slug}`
+	}
+	if (tech === 'other') {
 		url = `/${req.user.username}/${slug}`
-	} else {
 	}
 
 	let fullNewPost = {
@@ -97,7 +97,7 @@ router.post('/post', async (req, res) => {
 				)
 			})
 			break
-		case 'reactjs':
+		case 'vuejs':
 			res.json({
 				done: Post.write(
 					VuejsModel,
