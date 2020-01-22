@@ -1,21 +1,22 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const pythonSchema = new Schema({
+const vuejsSchema = new Schema({
 	title: String,
 	subtitle: String,
 	slug: String,
 	name: String,
-	username: String,
 	url: String,
+	username: String,
 	date: String,
 	profilePic: String,
 	img: Object,
 	tech: String,
+	like: Number,
 	post: [],
 	comment: []
 })
-pythonSchema.index({ slug: -1 })
+vuejsSchema.index({ slug: -1 })
 
-const python = mongoose.model('python', pythonSchema)
-module.exports = python
+const vuejs = mongoose.model('reactjs', vuejsSchema)
+module.exports = vuejs

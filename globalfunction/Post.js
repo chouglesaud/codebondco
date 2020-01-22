@@ -8,30 +8,27 @@
 6- confirm_slug()
 
 */
-const CssModel = require("../models/css")
-const JavascriptModel = require("../models/javascript")
-const PythonModel = require("../models/python")
-const NodejsModel = require("../models/nodejs")
-const ReactjsModel = require("../models/reactjs")
-const OtherModel = require("../models/other")
-const RecentModel = require("../models/recent")
-const UserModel = require("../models/user")
+const CssModel = require('../models/css')
+const JavascriptModel = require('../models/javascript')
+const PythonModel = require('../models/python')
+const NodejsModel = require('../models/nodejs')
+const VuejsModel = require('../models/vuejs')
+const OtherModel = require('../models/other')
+const RecentModel = require('../models/recent')
+const UserModel = require('../models/user')
 
 class Post {
 	constructor() {}
-	async write(tech, fullNewPost, overView, userPost, userId) {
+	static async write(tech, fullNewPost, overView, userPost, userId) {
 		await new tech(fullNewPost).save()
 		await new RecentModel(overView).save()
 		await UserModel.findOneAndUpdate(
 			{ _id: userId },
 			{ $push: { posts: userPost } }
 		)
-			.then(() => {
-				return true
-			})
-			.catch(err => console.log(err))
+		return true
 	}
-	async preview(_id, updateObj) {
+	static async preview(_id, updateObj) {
 		await UserModel.findByIdAndUpdate(
 			{ _id },
 			{ writing: updateObj.preview },
@@ -41,7 +38,7 @@ class Post {
 		})
 	}
 
-	async find(tech, slug) {
+	static async find(tech, slug) {
 		let result = false
 		await tech
 			.findOne({ slug })
@@ -51,7 +48,7 @@ class Post {
 			.catch(err => console.log(err))
 		return result
 	}
-	async write_comment(tech, slug, comment) {
+	static async write_comment(tech, slug, comment) {
 		await tech
 			.findOneAndUpdate({ slug }, { $push: { comment } })
 			.then(() => {
@@ -59,7 +56,7 @@ class Post {
 			})
 			.catch(err => console.log(err))
 	}
-	async category(category) {
+	static async category(category) {
 		let result = false
 		await category
 			.find({})
@@ -70,7 +67,7 @@ class Post {
 			.catch(err => console.log(err))
 		return result
 	}
-	async confirm_slug(slug) {
+	static async confirm_slug(slug) {
 		let result = false
 		await RecentModel.findOne({ slug })
 			.then(found => {
