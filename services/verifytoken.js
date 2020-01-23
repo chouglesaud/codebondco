@@ -5,8 +5,6 @@ module.exports = function(req, res, next) {
 	if (token) {
 		jwt.verify(token, process.env.jwtSecret, (err, done) => {
 			if (err) {
-				console.log('here')
-
 				let error = {
 					name: 404,
 					firstnum: 4,
