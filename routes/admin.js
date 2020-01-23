@@ -16,7 +16,7 @@ const AdminModel = require('../models/adminschema')
 const nodemailer = require('nodemailer')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const verifyToken = require('../services/verifytoken').default
+const verifyToken = require('../services/verifytoken')
 const globalFunction = require('../globalfunction/function')
 
 let transporter = nodemailer.createTransport({
