@@ -271,6 +271,7 @@ app.get('/tutorial/:tech', async (req, res) => {
 })
 
 app.get('/:username/:slug', async (req, res) => {
+	console.log(req.params)
 	let getPost = await Post.find(OtherModel, req.params.slug)
 
 	if (getPost) {
