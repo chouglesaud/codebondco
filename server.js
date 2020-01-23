@@ -270,25 +270,18 @@ app.get('/tutorial/:tech', async (req, res) => {
 	}
 })
 
-app.get('/:username/:slug', async (req, res) => {
-	let getPost = false
+app.get('/:username/:slug', (req, res) => {
 	Post.find(OtherModel, req.params.slug)
 		.then(found => {
-			getPost = found
+			res.render('post', { data: found, user: req.user })
 		})
 		.catch(err => {
-			console.log(err)
+			res.render('error', {
+				user: req.user,
+				error: globalFunction.error404,
+				nouser: false
+			})
 		})
-
-	if (getPost) {
-		res.render('post', { data: getPost, user: req.user })
-	} else {
-		res.render('error', {
-			user: req.user,
-			error: globalFunction.error404,
-			nouser: false
-		})
-	}
 })
 
 app.post('/confirm', async (req, res) => {
