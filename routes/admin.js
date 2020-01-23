@@ -16,7 +16,7 @@ const AdminModel = require('../models/adminschema')
 const nodemailer = require('nodemailer')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const verifyToken = require('../services/verifytoken')
+const verifyToken = require('../services/verifytoken').default
 const globalFunction = require('../globalfunction/function')
 
 let transporter = nodemailer.createTransport({
@@ -85,6 +85,8 @@ router.post('/authentication', async (req, res) => {
 })
 
 router.get('/:token/dashboard', verifyToken, async (req, res) => {
+	console.log(req.params)
+
 	res.render('admin', {
 		js: await countDoc(JavascriptModel),
 		py: await countDoc(PythonModel),
