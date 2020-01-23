@@ -86,7 +86,6 @@ router.post('/authentication', async (req, res) => {
 
 router.get('/:token/dashboard', verifyToken, async (req, res) => {
 	console.log(req.params)
-
 	res.render('admin', {
 		js: await countDoc(JavascriptModel),
 		py: await countDoc(PythonModel),
