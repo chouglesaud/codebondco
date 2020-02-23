@@ -1,85 +1,90 @@
 <div class="navcontainer">
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <a aria-label="brand logo" role="button" class="navbar-brand" href="/">
-            <div class="d-inline-block">
-                <img src="/static/images/codebond.svg" class="brand d-inline-block align-center" alt="codebond logo" />
-            </div>
-            <span class="brandname d-inline-block align-center">Codebond</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon" />
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a aria-label="brand logo" role="button" class="navbar-brand" href="/">
+      <div class="d-inline-block">
+        <img src="/static/images/codebond.svg" class="brand d-inline-block align-center" alt="codebond logo" />
+      </div>
+      <span class="brandname d-inline-block align-center">Codebond</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" />
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
 
-                <li class="nav-item active">
-                    <a role="button"  aria-label="javascript posts" class="nav-link js" href="/tutorial/javascript">
-                        javascript <span class="sr-only"></span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a role="button" aria-label="nodejs posts" class="nav-link python" href="/tutorial/python">
-                        python <span class="sr-only"></span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a role="button" aria-label="nodejs posts" class="nav-link node" href="/tutorial/nodejs">
-                        node <span class="sr-only"></span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a role="button" aria-label="vuejs posts" class="nav-link vuejs" href="/tutorial/vuejs">
-                        vue <span class="sr-only"></span>
-                    </a>
-                </li>
-               
-                <li class="nav-item">
-                    <a role="button" aria-label="css posts" class="nav-link css" href="/tutorial/css">
-                        css <span class="sr-only"></span>
-                    </a>
-                </li>
-               
-            </ul>
+        <li class="nav-item active">
+          <a role="button" aria-label="javascript posts" class="nav-link js" href="/tutorial/javascript">
+            javascript <span class="sr-only"></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a role="button" aria-label="nodejs posts" class="nav-link python" href="/tutorial/python">
+            python <span class="sr-only"></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a role="button" aria-label="nodejs posts" class="nav-link node" href="/tutorial/nodejs">
+            node <span class="sr-only"></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a role="button" aria-label="vuejs posts" class="nav-link vuejs" href="/tutorial/vuejs">
+            vue <span class="sr-only"></span>
+          </a>
+        </li>
 
+        <li class="nav-item">
+          <a role="button" aria-label="css posts" class="nav-link css" href="/tutorial/css">
+            css <span class="sr-only"></span>
+          </a>
+        </li>
 
-            <div class="right-section">
-                    
-                   
-                        <input name="search" class="form-control search" type="search" placeholder="search">
-                    
-                    
-                    <% if(user) {   %>
-
-                    <img aria-label="dropdown menu" src=<%=user.profilePic%> class="dropdown-toggle" width="40" height="40" 
-                        id="dropdownMenu2" data-toggle="dropdown" 
-                        data-tippy=<%=user.name%> alt="profile picture">
-
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenu2" data-tippy-content="Tooltip">
-                            <a role="button" aria-label="profile" class="dropdown-item" href=<%="/"+user.username%>>
-                                    <img src="/static/images/profile.svg" width="40" height="40" alt="profile"> profile</a>
-                            <a role="button" aria-label="setting" class="dropdown-item" href=<%="/"+user.username+"/setting"%>>
-                                <img src="/static/images/setting.svg" width="40" height="40" alt="setting"> setting</a>
-                       
-
-                        <a role="button" aria-label="write" href=<%="/"+user.username+"/write"%> class="dropdown-item">
-                            <img src="/static/images/write.svg" width="40" height="40" alt="write"> write</a>
-
-                        <a role="button" role="logout" class="dropdown-item" style="border-bottom-left-radius: 6px;" href="/auth/logout">
-                            <img src="/static/images/logout.svg" width="40" height="40" alt="logout"> logout</a>
-
-                    </div>
-                    <% }else{ %>
-
-                    <a role="button" aria-label="login" href="/auth/login" class="btn btn-md btn-primary login">login</a>
-                    <% } %>
-           
+      </ul>
 
 
+      <div class="right-section">
 
 
-            </div>
+        <input name="search" class="form-control search" type="search" placeholder="search">
+
+
+        <% if(user) {   %>
+        <div class="write">
+          <a href=<%="/"+user.username+"/write"%>>write a post</a>
         </div>
+        <img aria-label="dropdown menu" src=<%=user.profilePic%> class="dropdown-toggle" width="40" height="40"
+          id="dropdownMenu2" data-toggle="dropdown" data-tippy=<%=user.name%> alt="profile picture">
 
-    </nav>
+        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenu2"
+          data-tippy-content="Tooltip">
+          <a role="button" aria-label="profile" class="dropdown-item" href=<%="/"+user.username%>>
+            <img src="/static/images/profile.svg" width="40" height="40" alt="profile"> profile</a>
+          <a role="button" aria-label="setting" class="dropdown-item" href=<%="/"+user.username+"/setting"%>>
+            <img src="/static/images/setting.svg" width="40" height="40" alt="setting"> setting</a>
+
+
+          <a role="button" role="logout" class="dropdown-item" style="border-bottom-left-radius: 6px;"
+            href="/auth/logout">
+            <img src="/static/images/logout.svg" width="40" height="40" alt="logout"> logout</a>
+
+        </div>
+        <% }else{ %>
+
+        <div class="login-section">
+          <div class="write">
+            <a href="/auth/login">write a post</a>
+          </div>
+          <a role="button" aria-label="login" href="/auth/login" class="btn btn-sm btn-primary">login</a>
+        </div>
+        <% } %>
+
+
+
+
+
+      </div>
+    </div>
+
+  </nav>
 </div>
