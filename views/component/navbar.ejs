@@ -49,7 +49,7 @@
 
 
         <% if(user) {   %>
-        <div class="write">
+        <div class="write-a-post">
           <a href=<%="/"+user.username+"/write"%>>write a post</a>
         </div>
         <img aria-label="dropdown menu" src=<%=user.profilePic%> class="dropdown-toggle" width="40" height="40"
@@ -71,7 +71,7 @@
         <% }else{ %>
 
         <div class="login-section">
-          <div class="write">
+          <div class="write-a-post">
             <a href="/auth/login">write a post</a>
           </div>
           <a role="button" aria-label="login" href="/auth/login" class="btn btn-sm btn-primary">login</a>

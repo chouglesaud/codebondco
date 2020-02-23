@@ -726,7 +726,7 @@ li img:hover {
 }
 
 .login-section,
-.write {
+.write-a-post {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -739,17 +739,17 @@ li img:hover {
 }
 
 .login-section a,
-.write a {
+.write-a-post a {
   margin-left: 8px
 }
 
-.write a {
+.write-a-post a {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   color: #8b8989 !important;
   text-decoration: none
 }
 
-.write a:hover {
+.write-a-post a:hover {
   color: #ccc !important
 }
 
