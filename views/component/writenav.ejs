@@ -13,9 +13,13 @@
 
 
       <div class="right-section">
+        <span id="help">
+          ?
+        </span>
         <button class="btn btn-sm btn-primary" id="save" data-tippy-content="Ctrl+s">Save</button>
         <button class="btn btn-success btn-sm publishbtn" disabled>Publish</button>
         <button class="btn btn-secondary btn-sm clear" data-tippy-content="Ctrl+l">Clear</button>
+       
 
 
 
@@ -24,8 +28,7 @@
         <img aria-label="dropdown menu" src=<%=user.profilePic%> class="dropdown-toggle" width="40" height="40"
           id="dropdownMenu2" data-toggle="dropdown" data-tippy=<%=user.name%> alt="profile picture">
 
-        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenu2"
-          data-tippy-content="Tooltip">
+        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenu2">
           <a role="button" aria-label="profile" class="dropdown-item" href=<%="/"+user.username%>>
             <img src="/static/images/profile.svg" width="40" height="40" alt="profile"> profile</a>
           <a role="button" aria-label="setting" class="dropdown-item" href=<%="/"+user.username+"/setting"%>>
