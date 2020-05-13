@@ -1,175 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@codebondco" />
+        <meta name="twitter:title" content="<%=data.title%>" />
+        <meta name="twitter:description" content="<%=data.title%>" />
+        <% if (data.img){ %>
+        <meta name="twitter:image" content="<%=data.img%>" />
+        <meta property="og:image" content="<%=data.img%>" />
+        <%}%>
+        <meta property="og:title" content="<%=data.title%>" />
+        <meta propery="og:description" content="<%=data.title%>" />
+        <meta name="twitter:domain" content="codebond.co" />
+        <meta property="og:description" content="<%=data.title%>" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@codebondco">
-  <meta name="twitter:title" content="<%=data.title%>">
-  <meta name="twitter:description" content="<%=data.title%>">
-  <% if (data.img){ %>
-  <meta name="twitter:image" content="<%=data.img%>" />
-  <meta property="og:image" content="<%=data.img%>" />
-  <%}%>
-   <meta property="og:title" content="<%=data.title%>">
-  <meta propery="og:description" content="<%=data.title%>">
-  <meta name="twitter:domain" content="codebond.co">
-  <meta property="og:description" content="<%=data.title%>">
+        <meta name="author" content="<%=data.username%>" />
 
+        <meta name="keywords" content="<%=data.tech%>" />
+        <meta name="author" content="<%=data.username%>" />
 
-  <meta name="author" content="<%=data.username%>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta property="og:title" content="<%=data.title%>" />
+        <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="/static/images/codebond.ico"
+        />
+        <link rel="canonical" href="<%="http://codebond.co" +data.url%>" />
 
-  <meta name="keywords" content="<%=data.tech%>">
-  <meta name="author" content="<%=data.username%>">
+        <!-- Initialize EnlighterJS -->
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta property="og:title" content="<%=data.title%>">
-  <link rel="shortcut icon" type="image/x-icon" href="/static/images/codebond.ico" />
-  <link rel="canonical" href=<%="http://codebond.co"+data.url%>>
-  <!-- Initialize EnlighterJS -->
+        <link
+            href="https://fonts.googleapis.com/css?family=Roboto:400|Ubuntu|Ubuntu+Condensed|Ubuntu+Mono&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" href="/static/styles/grid.css" />
 
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400|Ubuntu|Ubuntu+Condensed|Ubuntu+Mono&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/static/styles/grid.css">
+        <script type="application/ld+json">
+            [
+                {
+                    "@context": "http:\/\/schema.org",
+                    "@type": "Organization",
+                    "logo": "https://codebond.co/static/images/codebond.png",
+                    "name": "codebond",
+                    "url": "http:\/\/codebond.co\/",
+                    "image": "https:\/\/res.cloudinary.com\/codebond\/image\/upload\/w_700,q_auto:good,f_auto\/v1569218202\/g3tneci5gmzhmkfanzzw.png",
+                    "address": {
+                        "addressRegion": "maharashtra",
+                        "addressCountry": "india",
+                        "@type": "PostalAddress"
+                    },
+                    "contactPoint": {
+                        "@type": "ContactPoint",
+                        "contactType": "Technical Support",
+                        "email": "codebond.cb@gmail.com",
+                        "telephone": "+917387307106"
+                    },
+                    "sameAs": [
+                        "https:\/\/twitter.com\/codebondco",
+                        "https:\/\/facebook.com\/codebondco",
+                        "https:\/\/www.reddit.com\/user\/codebondco"
+                    ]
+                },
+                {
+                    "@context": "http:\/\/schema.org",
+                    "@type": "Website",
+                    "name": "codebond",
+                    "url": "http:\/\/codebond.co",
+                    "keywords": "Weekly Articles about JavaScript,Python,Vuejs,Nodejs,CSS and all other things related to web development.",
+                    "sameAs": [
+                        "https:\/\/twitter.com\/codebondco",
+                        "https:\/\/facebook.com\/codebondco",
+                        "https:\/\/www.reddit.com\/user\/codebondco"
+                    ]
+                },
+                {
+                    "@context": "http:\/\/schema.org",
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "codebond",
+                            "item": "http:\/\/codebond.co"
+                        }
+                    ]
+                }
+            ]
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-147948621-1"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
 
-  <script type="application/ld+json">
-    [{
-      "@context": "http:\/\/schema.org",
-      "@type": "Organization",
-      "logo": "https://codebond.co/static/images/codebond.png",
-      "name": "codebond",
-      "url": "http:\/\/codebond.co\/",
-      "image": "https:\/\/res.cloudinary.com\/codebond\/image\/upload\/w_700,q_auto:good,f_auto\/v1569218202\/g3tneci5gmzhmkfanzzw.png",
-      "address": {
-        "addressRegion": "maharashtra",
-        "addressCountry": "india",
-        "@type": "PostalAddress"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "Technical Support",
-        "email": "codebond.cb@gmail.com",
-        "telephone": "+917387307106"
-      },
-      "sameAs": ["https:\/\/twitter.com\/codebondco", "https:\/\/facebook.com\/codebondco",
-        "https:\/\/www.reddit.com\/user\/codebondco"
-      ]
-    }, {
-      "@context": "http:\/\/schema.org",
-      "@type": "Website",
-      "name": "codebond",
-      "url": "http:\/\/codebond.co",
-      "keywords": "Weekly Articles about JavaScript,Python,Reactjs,Nodejs,CSS and all other things related to web development.",
-      "sameAs": ["https:\/\/twitter.com\/codebondco", "https:\/\/facebook.com\/codebondco",
-        "https:\/\/www.reddit.com\/user\/codebondco"
-      ]
-    }, {
-      "@context": "http:\/\/schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "codebond",
-        "item": "http:\/\/codebond.co"
-      }]
-    }]
-  </script>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147948621-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "UA-147948621-1");
+        </script>
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'UA-147948621-1');
-  </script>
+        <!-- google ads -->
+        <script
+            async
+            custom-element="amp-ad"
+            src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"
+        ></script>
+        <script
+            data-ad-client="ca-pub-2650533982969945"
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+        ></script>
 
-  <!-- google ads -->
-  <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-  <script data-ad-client="ca-pub-2650533982969945" async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <title><%=data.title %></title>
+        <style>
+            .author span {
+                font-size: 14px;
+            }
 
-  <title><%=data.title %></title>
-  <style>
-    .author span {
-      font-size: 14px;
+            .space {
+                padding: 0px 6px;
+            }
+        </style>
+    </head>
 
-    }
+    <body>
+        <%- include('component/navbar') %>
 
-    .space {
-      padding: 0px 6px;
-    }
-  </style>
-</head>
+        <div class="container-fluid">
+            <%- include('component/content') %>
+            <div class="row justify-content-center">
+                <%- include('component/comment') %>
+            </div>
+        </div>
 
-<body>
+        <!-- footer-section -->
+        <%- include('component/footer') %>
 
-  <%- include('component/navbar')  %>
+        <!-- Optional JavaScript -->
+        <script src="/static/scripts/dist/lazyloading.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="/editor/build/post.main.js"></script>
 
-  <div class="container-fluid">
-    <%- include('component/content')  %>
-    <div class="row justify-content-center">
-      <%- include('component/comment') %>
-    </div>
-  </div>
+        <script>
+            let title = document
+                .querySelector(".heading")
+                .textContent.replace(/\s/g, "%20");
+            let fullURL = window.location;
+            let newURL = fullURL.href;
+            let url = newURL.replace(/\//g, "%2F").replace(/:/g, "3A");
 
-  <!-- footer-section -->
-  <%- include('component/footer')  %>
+            $("#twitter-link").attr({
+                href: `https://twitter.com/intent/tweet?text=${title} ${window.location.href}&url=${url}`,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                title: "twitter",
+            });
+            $("#facebook-link").attr({
+                href: `https://www.facebook.com/sharer.php?u=${window.location.href}`,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                title: "facebook",
+            });
 
-  <!-- Optional JavaScript -->
-  <script src="/static/scripts/dist/lazyloading.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="/static/scripts/dist/postjs.js"></script>
-  <script>
-    let title = document.querySelector(".heading").textContent.replace(/\s/g, "%20");
-    let fullURL = window.location;
-    let newURL = fullURL.href
-    let url = newURL.replace(/\//g, "%2F").replace(/:/g, "3A");
-
-    $('#twitter-link').attr({
-      href: `https://twitter.com/intent/tweet?text=${title} ${window.location.href}&url=${url}`,
-      target: "_blank",
-      rel: "noopener noreferrer",
-      title: "twitter"
-    });
-    $('#facebook-link').attr({
-      href: `https://www.facebook.com/sharer.php?u=${window.location.href}`,
-      target: "_blank",
-      rel: "noopener noreferrer",
-      title: "facebook"
-    });
-
-    console.log(`
-                                                                                                                                          
-                                                       dddddddd                     bbbbbbbb                                                              dddddddd
-                                                       d::::::d                     b::::::b                                                              d::::::d
-                                                       d::::::d                     b::::::b                                                              d::::::d
-                                                       d::::::d                     b::::::b                                                              d::::::d
-                                                       d:::::d                       b:::::b                                                              d:::::d 
-        cccccccccccccccc    ooooooooooo        ddddddddd:::::d      eeeeeeeeeeee     b:::::bbbbbbbbb        ooooooooooo    nnnn  nnnnnnnn         ddddddddd:::::d 
-      cc:::::::::::::::c  oo:::::::::::oo    dd::::::::::::::d    ee::::::::::::ee   b::::::::::::::bb    oo:::::::::::oo  n:::nn::::::::nn     dd::::::::::::::d 
-     c:::::::::::::::::c o:::::::::::::::o  d::::::::::::::::d   e::::::eeeee:::::ee b::::::::::::::::b  o:::::::::::::::o n::::::::::::::nn   d::::::::::::::::d 
-    c:::::::cccccc:::::c o:::::ooooo:::::o d:::::::ddddd:::::d  e::::::e     e:::::e b:::::bbbbb:::::::b o:::::ooooo:::::o nn:::::::::::::::n d:::::::ddddd:::::d 
-    c::::::c     ccccccc o::::o     o::::o d::::::d    d:::::d  e:::::::eeeee::::::e b:::::b    b::::::b o::::o     o::::o   n:::::nnnn:::::n d::::::d    d:::::d 
-    c:::::c              o::::o     o::::o d:::::d     d:::::d  e:::::::::::::::::e  b:::::b     b:::::b o::::o     o::::o   n::::n    n::::n d:::::d     d:::::d 
-    c:::::c              o::::o     o::::o d:::::d     d:::::d  e::::::eeeeeeeeeee   b:::::b     b:::::b o::::o     o::::o   n::::n    n::::n d:::::d     d:::::d 
-    c::::::c     ccccccc o::::o     o::::o d:::::d     d:::::d  e:::::::e            b:::::b     b:::::b o::::o     o::::o   n::::n    n::::n d:::::d     d:::::d 
-    c:::::::cccccc:::::c o:::::ooooo:::::o d::::::ddddd::::::dd e::::::::e           b:::::bbbbbb::::::b o:::::ooooo:::::o   n::::n    n::::n d::::::ddddd::::::dd
-     c:::::::::::::::::c o:::::::::::::::o  d:::::::::::::::::d  e::::::::eeeeeeee   b::::::::::::::::b  o:::::::::::::::o   n::::n    n::::n  d:::::::::::::::::d
-      cc:::::::::::::::c  oo:::::::::::oo    d:::::::::ddd::::d   ee:::::::::::::e   b:::::::::::::::b    oo:::::::::::oo    n::::n    n::::n   d:::::::::ddd::::d
-        cccccccccccccccc    ooooooooooo       ddddddddd   ddddd     eeeeeeeeeeeeee   bbbbbbbbbbbbbbbb       ooooooooooo      nnnnnn    nnnnnn    ddddddddd   ddddd
-                                                                                                                                                        
-        `)
-    console.log(`Did you find a bug or vulnerability? if yes contact us codebond.cb@gmail.com`)
-  </script>
-
-</body>
-
+            console.log(`⌬ codebond`);
+            console.log(
+                `Did you find a bug or vulnerability? contact us codebond.cb@gmail.com`
+            );
+        </script>
+    </body>
 </html>

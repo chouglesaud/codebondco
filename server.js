@@ -308,10 +308,10 @@ app.use(function (req, res, next) {
 });
 
 //    500 - Any server error
-app.use(function (err, req, res, next) {
-    res.render("error", {
-        user: req.user,
-        error: globalFunction.error404,
-        nouser: false,
-    });
-});
+// app.use(function (err, req, res, next) {
+//     res.render("error", {
+//         user: req.user,
+//         error: globalFunction.error404,
+//         nouser: false,
+//     });
+// });

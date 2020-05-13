@@ -1,7 +1,6 @@
 import EditorJS from "@editorjs/editorjs";
 import tools from "./editor/editor.tools";
 import Editor from "./editor/editor";
-import editorStyle from "./editor.style";
 
 const saveBtn = document.querySelector("#save");
 const clearBtn = document.querySelector(".clear");

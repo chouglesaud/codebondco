@@ -1,7 +1,8 @@
-import axios from "axios";
+import API from "../api";
 
-export default class ArticleAPI {
+export default class EditorAPI {
     constructor() {
+        this.api = new API();
         this.apiRoutes = {
             get_article: "/post/reload",
             save_article: "/post/preview",
@@ -10,13 +11,11 @@ export default class ArticleAPI {
         };
     }
     async getArticle() {
-        const response = await axios.post(this.apiRoutes.get_article);
+        const response = await this.api.getAsPost(this.apiRoutes.get_article);
         return response.data;
     }
     async saveArticle(data) {
-        const response = await axios.post(this.apiRoutes.save_article, data);
-        // button.removeAttribute("disabled")
-        // save.textContent = "Saved"
+        const response = await this.api.post(this.apiRoutes.save_article, data);
         return response.data;
     }
 
@@ -34,13 +33,13 @@ export default class ArticleAPI {
             content: data.content,
         };
 
-        const response = await axios.post(
+        const response = await this.api.post(
             this.apiRoutes.publish_article,
             article
         );
         return response.data.done;
     }
     clearArticle() {
-        axios.post(this.apiRoutes.clear_article, null);
+        this.api.post(this.apiRoutes.clear_article, null);
     }
 }

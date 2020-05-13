@@ -1,9 +1,11 @@
 import { getFullDate } from "../dateFormator";
-import DataProcessor from "./dataProcessor";
+import EditorValidator from "./editor.validator";
+import customAlert from "../customAlert";
+import EditorAPI from "./editor.api";
 
 export default class Editor {
     constructor() {
-        this.dataProcessor = new DataProcessor();
+        this.editorAPI = new EditorAPI();
         this.data = {};
         this.technology = null;
         this.article = {};
@@ -12,7 +14,7 @@ export default class Editor {
         this.publishBtn = document.querySelector(".publishbtn");
     }
     async initialize() {
-        const article = await this.dataProcessor.get();
+        const article = await this.editorAPI.getArticle();
 
         if (article.data || article.title || article.tech) {
             this.data = article.savedData;
@@ -39,22 +41,30 @@ export default class Editor {
             tech: this.technology,
         };
 
-        const response = await this.dataProcessor.save(this.article);
+        const response = await this.editorAPI.saveArticle(this.article);
         localStorage.setItem("post", JSON.stringify(response));
         this.onSaved();
     }
-    clear() {
-        this.dataProcessor.clear();
+    async clear() {
+        const decision = await customAlert("Are you sure?", {
+            dangerMode: true,
+            buttons: ["No", "Yes"],
+        });
+        if (decision) {
+            this.editorAPI.clearArticle();
+            localStorage.clear();
+            window.location.reload();
+        }
     }
     async publish() {
         const article = await JSON.parse(localStorage.getItem("post"));
 
         const isArticleExist = article ? true : false;
         const isArticleValid =
-            isArticleExist && (await this.dataProcessor.validate(article));
+            isArticleExist && (await this.validateArticle(article));
 
         if (isArticleValid) {
-            const response = await this.dataProcessor.publish(article);
+            const response = await this.editorAPI.publishArticle(article);
 
             if (response) {
                 setTimeout(() => {
@@ -62,6 +72,10 @@ export default class Editor {
                 }, 4000);
             }
         }
+    }
+    validateArticle(data) {
+        const editorValidator = new EditorValidator(data);
+        return editorValidator.start();
     }
     render() {
         this._renderTechnology();
